@@ -1,0 +1,30 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+
+# Secrets: only .env.example files are committed
+.env
+.env.*
+!.env.example
+
+# Runtime output
+traces/
+outputs/
+*.log
+
+# Catalog exports with real sample values
+finchat_v3_starter/data/table_catalog/*.xlsx
+finchat_v3_starter/data/table_catalog/*.csv
+finchat_v3_starter/data/table_catalog/catalog_summary.md
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

@@ -1,0 +1,1294 @@
+---
+name: fact_ledger_journal_trans_bi_entities
+schema: silver
+layer: silver
+domain: gl
+type: table
+status: active
+purpose: Ledger journal transaction extract with 1099 and payment fields.
+grain: one row per SOURCE_KEY (one ledger journal line)
+primary_key:
+- SOURCE_KEY
+entity_column: DATA_AREA_ID
+period_columns: []
+pii_columns:
+- APPROVER
+- R_CASH_DOC_REPRES_PERSON_ID
+- MDP_CREATED_BY
+- MDP_MODIFIED_BY
+synonyms: []
+built_from: []
+known_issues:
+- code: empty_column
+  note: TAX_1099_STATE, PAYMENT_NOTES all null
+row_count: 184918
+proposed_fields:
+- grain
+- primary_key
+reviewed: false
+---
+
+# fact_ledger_journal_trans_bi_entities
+
+## Columns
+
+| Column | Type | Meaning | Also called | SQL expression |
+|---|---|---|---|---|
+| `DATA_AREA_ID` | string |  |  | `DATA_AREA_ID` |
+| `SOURCE_KEY` | string |  |  | `SOURCE_KEY` |
+| `TAX_1099_STATE` | string |  |  | `TAX_1099_STATE` |
+| `PAYMENT_NOTES` | string |  |  | `PAYMENT_NOTES` |
+| `TAX_1099_FIELDS` | string |  |  | `TAX_1099_FIELDS` |
+| `R_CASH_DOC_REPRES_TYPE` | string |  |  | `R_CASH_DOC_REPRES_TYPE` |
+| `AGREEMENT_COMPANY_RU` | string |  |  | `AGREEMENT_COMPANY_RU` |
+| `REF_COPY_REVERSE_CN` | string |  |  | `REF_COPY_REVERSE_CN` |
+| `ITM_COST_TYPE_ID` | string |  |  | `ITM_COST_TYPE_ID` |
+| `ADDRESSING_PL` | string |  |  | `ADDRESSING_PL` |
+| `CUST_EINVOICE_PAYM_TRANS_NUM` | string |  |  | `CUST_EINVOICE_PAYM_TRANS_NUM` |
+| `INTENT_LETTER_ID_IT` | string |  |  | `INTENT_LETTER_ID_IT` |
+| `REMITTANCE_LOCATION` | string |  |  | `REMITTANCE_LOCATION` |
+| `PACKED_EXTENSIONS` | string |  |  | `PACKED_EXTENSIONS` |
+| `R_CASH_PAY_TRANS_TYPE` | string |  |  | `R_CASH_PAY_TRANS_TYPE` |
+| `SUB_BILL_SCHED_LINE_REC_ID` | string |  |  | `SUB_BILL_SCHED_LINE_REC_ID` |
+| `CASH_DISC_CODE` | string |  |  | `CASH_DISC_CODE` |
+| `BANK_CLIENT_DOCUMENT_TYPE_ID_RU` | string |  |  | `BANK_CLIENT_DOCUMENT_TYPE_ID_RU` |
+| `LIST_CODE` | string |  |  | `LIST_CODE` |
+| `DEBIT_CURRENCY_CODE_LT` | string |  |  | `DEBIT_CURRENCY_CODE_LT` |
+| `DOCUMENT_DATE` | string |  |  | `DOCUMENT_DATE` |
+| `OFFSET_AGREEMENT_COMPANY_RU` | string |  |  | `OFFSET_AGREEMENT_COMPANY_RU` |
+| `REASON_REF_REC_ID` | string |  |  | `REASON_REF_REC_ID` |
+| `ACCOUNT_TYPE` | string |  |  | `ACCOUNT_TYPE` |
+| `OFFSET_POSTING_PROFILE_RU` | string |  |  | `OFFSET_POSTING_PROFILE_RU` |
+| `BANK_CURRENCY_TRANSFER_LOG_RU` | string |  |  | `BANK_CURRENCY_TRANSFER_LOG_RU` |
+| `TRANSFER_CURRENCY_RU` | string |  |  | `TRANSFER_CURRENCY_RU` |
+| `VEND_BANK_ACCOUNT` | string |  |  | `VEND_BANK_ACCOUNT` |
+| `OFFSET_LEDGER_DIMENSION_VALUES_JSON` | string |  |  | `OFFSET_LEDGER_DIMENSION_VALUES_JSON` |
+| `PAYMENT_REFERENCE` | string |  |  | `PAYMENT_REFERENCE` |
+| `COMPANY` | string |  |  | `COMPANY` |
+| `FB_SPED_ECF_DEREX_CLASIFICATION_CODE_BR` | string |  |  | `FB_SPED_ECF_DEREX_CLASIFICATION_CODE_BR` |
+| `REV_REC_LEDGER_POSTING_TYPE` | string |  |  | `REV_REC_LEDGER_POSTING_TYPE` |
+| `IMPORT_DATE` | string |  |  | `IMPORT_DATE` |
+| `OFFSET_COMPANY` | string |  |  | `OFFSET_COMPANY` |
+| `VAT_PAYM_REF_REC_ID_RU` | string |  |  | `VAT_PAYM_REF_REC_ID_RU` |
+| `SUB_BILL_RENEWAL_LINE_REC_ID` | string |  |  | `SUB_BILL_RENEWAL_LINE_REC_ID` |
+| `BANK_BILL_OF_EXCHANGE_NUM` | string |  |  | `BANK_BILL_OF_EXCHANGE_NUM` |
+| `TAX_PERIOD_PAYMENT_CODE_PL` | string |  |  | `TAX_PERIOD_PAYMENT_CODE_PL` |
+| `OPERATION_TYPE_MX` | string |  |  | `OPERATION_TYPE_MX` |
+| `SYS_DATA_AREA_ID` | string |  |  | `SYS_DATA_AREA_ID` |
+| `AMOUNT_CUR_DEBIT` | string |  |  | `AMOUNT_CUR_DEBIT` |
+| `SKIP_BLOCKED_FOR_MANUAL_ENTRY_CHECK` | string |  |  | `SKIP_BLOCKED_FOR_MANUAL_ENTRY_CHECK` |
+| `INVOICE` | string |  |  | `INVOICE` |
+| `TAX_1099_REC_ID` | string |  |  | `TAX_1099_REC_ID` |
+| `MCR_REF_PAYMENT_ID` | string |  |  | `MCR_REF_PAYMENT_ID` |
+| `DUE` | string |  |  | `DUE` |
+| `BANK_PROMISSORY_NOTE_NUM` | string |  |  | `BANK_PROMISSORY_NOTE_NUM` |
+| `PAYMENT_INSTRUCTION_2` | string |  |  | `PAYMENT_INSTRUCTION_2` |
+| `BANK_COMM_ACCOUNT_ID_RU` | string |  |  | `BANK_COMM_ACCOUNT_ID_RU` |
+| `CANCEL` | string |  |  | `CANCEL` |
+| `INVOICE_SERIES_MX` | string |  |  | `INVOICE_SERIES_MX` |
+| `TRANS_DATE` | string |  |  | `TRANS_DATE` |
+| `TAX_WITHHOLD_CALCULATE_TH` | string |  |  | `TAX_WITHHOLD_CALCULATE_TH` |
+| `ASSET_LEASE_POSTING_TYPES` | string |  |  | `ASSET_LEASE_POSTING_TYPES` |
+| `NEG_INST_ID` | string |  |  | `NEG_INST_ID` |
+| `BRIDGING_BANK_ACCOUNT` | string |  |  | `BRIDGING_BANK_ACCOUNT` |
+| `POSTING_PROFILE` | string |  |  | `POSTING_PROFILE` |
+| `INCOME_CLASSIFICATION_ID_BR` | string |  |  | `INCOME_CLASSIFICATION_ID_BR` |
+| `ITM_COST_AREA` | string |  |  | `ITM_COST_AREA` |
+| `DELAY_TAX_CALCULATION` | string |  |  | `DELAY_TAX_CALCULATION` |
+| `QUANTITY` | string |  |  | `QUANTITY` |
+| `PREPAYMENT` | string |  |  | `PREPAYMENT` |
+| `PAYMENT_INSTRUCTION_3` | string |  |  | `PAYMENT_INSTRUCTION_3` |
+| `CORRECTION_TYPE_RU` | string |  |  | `CORRECTION_TYPE_RU` |
+| `LAST_TRANSFERRED` | string |  |  | `LAST_TRANSFERRED` |
+| `CORRECTED_INVOICE_ID_RU` | string |  |  | `CORRECTED_INVOICE_ID_RU` |
+| `ITM_COST_REF_REC_ID` | string |  |  | `ITM_COST_REF_REC_ID` |
+| `MAIN_ACCOUNT_TYPE` | string |  |  | `MAIN_ACCOUNT_TYPE` |
+| `PAYMENT_SPECIFICATION` | string |  |  | `PAYMENT_SPECIFICATION` |
+| `BANK_TRANS_TYPE` | string |  |  | `BANK_TRANS_TYPE` |
+| `REMITTANCE_ADDRESS` | string |  |  | `REMITTANCE_ADDRESS` |
+| `REV_REC_DEFERRED_TYPE` | string |  |  | `REV_REC_DEFERRED_TYPE` |
+| `NO_EDIT` | string |  |  | `NO_EDIT` |
+| `GST_HST_TAX_TYPE_CA` | string |  |  | `GST_HST_TAX_TYPE_CA` |
+| `FOREIGN_COMPANY` | string |  |  | `FOREIGN_COMPANY` |
+| `CFDI_UUID_MX` | string |  |  | `CFDI_UUID_MX` |
+| `FIN_TAG` | string |  |  | `FIN_TAG` |
+| `REMITTEE_CURRENCY` | string |  |  | `REMITTEE_CURRENCY` |
+| `OFFSET_ACCOUNT_AGREEMENT_ID_RU` | string |  |  | `OFFSET_ACCOUNT_AGREEMENT_ID_RU` |
+| `TRANSFERRED_BY` | string |  |  | `TRANSFERRED_BY` |
+| `MARKED_INVOICE` | string |  |  | `MARKED_INVOICE` |
+| `LEDGER_VOUCHER_TYPE_CN` | string |  |  | `LEDGER_VOUCHER_TYPE_CN` |
+| `OFFSET_FIN_TAG` | string |  |  | `OFFSET_FIN_TAG` |
+| `BANK_CURRENCY` | string |  |  | `BANK_CURRENCY` |
+| `OFFSET_ACCOUNT_TYPE` | string |  |  | `OFFSET_ACCOUNT_TYPE` |
+| `FOREIGN_VOUCHER` | string |  |  | `FOREIGN_VOUCHER` |
+| `EU_SALES_LIST` | string |  |  | `EU_SALES_LIST` |
+| `ANNOUNCEMENT_NUM_RU` | string |  |  | `ANNOUNCEMENT_NUM_RU` |
+| `REVERSE_ENTRY` | string |  |  | `REVERSE_ENTRY` |
+| `REV_REC_DEFERRED_RECOGNIZED_QTY` | string |  |  | `REV_REC_DEFERRED_RECOGNIZED_QTY` |
+| `BANK_CURRENCY_DEAL_COURSE_RU` | string |  |  | `BANK_CURRENCY_DEAL_COURSE_RU` |
+| `FURTHER_POSTING_TYPE` | string |  |  | `FURTHER_POSTING_TYPE` |
+| `APPROVER` | string |  |  | `APPROVER` |
+| `DATE_CASH_DISC` | string |  |  | `DATE_CASH_DISC` |
+| `MARKUP_CODE_RU` | string |  |  | `MARKUP_CODE_RU` |
+| `BANK_CURRENCY_AMOUNT` | string |  |  | `BANK_CURRENCY_AMOUNT` |
+| `CUST_VEND_NEG_INST_PROTEST_REASON` | string |  |  | `CUST_VEND_NEG_INST_PROTEST_REASON` |
+| `FILE_CREATED` | string |  |  | `FILE_CREATED` |
+| `VEND_INVOICE_DECLARATION_IS` | string |  |  | `VEND_INVOICE_DECLARATION_IS` |
+| `PURCH_LEDGER_POSTING` | string |  |  | `PURCH_LEDGER_POSTING` |
+| `PURCHASE_ID_RANGE` | string |  |  | `PURCHASE_ID_RANGE` |
+| `R_CASH_DOC_REPRES_PERSON_ID` | string |  |  | `R_CASH_DOC_REPRES_PERSON_ID` |
+| `PLAFOND_DATE_IT` | string |  |  | `PLAFOND_DATE_IT` |
+| `TAX_GROUP` | string |  |  | `TAX_GROUP` |
+| `USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU` | string |  |  | `USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU` |
+| `BANK_REMITTANCE_TYPE` | string |  |  | `BANK_REMITTANCE_TYPE` |
+| `BANK_DEPOSIT_VOUCHER` | string |  |  | `BANK_DEPOSIT_VOUCHER` |
+| `CASH_DISC_BASE_DAYS` | string |  |  | `CASH_DISC_BASE_DAYS` |
+| `PAYMENT_STATUS` | string |  |  | `PAYMENT_STATUS` |
+| `TAX_1099_AMOUNT` | string |  |  | `TAX_1099_AMOUNT` |
+| `DEFAULT_DIMENSION` | string |  |  | `DEFAULT_DIMENSION` |
+| `REV_REC_DEFERRED_LINE` | string |  |  | `REV_REC_DEFERRED_LINE` |
+| `SYS_REC_VERSION` | string |  |  | `SYS_REC_VERSION` |
+| `CORRECTED_INVOICE_DATE_RU` | string |  |  | `CORRECTED_INVOICE_DATE_RU` |
+| `DIRECT_DEBIT_MANDATE` | string |  |  | `DIRECT_DEBIT_MANDATE` |
+| `TRANSFER` | string |  |  | `TRANSFER` |
+| `RELEASE_DATE` | string |  |  | `RELEASE_DATE` |
+| `LEDGER_DIMENSION` | string |  |  | `LEDGER_DIMENSION` |
+| `DOCUMENT_NUM` | string |  |  | `DOCUMENT_NUM` |
+| `SUB_BILL_ESCALATION_TABLE_REC_ID` | string |  |  | `SUB_BILL_ESCALATION_TABLE_REC_ID` |
+| `CUST_EINVOICE_PAYM_DELIVERY_NUM` | string |  |  | `CUST_EINVOICE_PAYM_DELIVERY_NUM` |
+| `MCR_PAYMENT_ORDER_ID` | string |  |  | `MCR_PAYMENT_ORDER_ID` |
+| `VEND_TRANS_ID` | string |  |  | `VEND_TRANS_ID` |
+| `PAYMENT` | string |  |  | `PAYMENT` |
+| `INT_BANK_LV` | string |  |  | `INT_BANK_LV` |
+| `CASH_DISC_PERCENT` | string |  |  | `CASH_DISC_PERCENT` |
+| `REPORTING_CURRENCY_EXCH_RATE_SECONDARY` | string |  |  | `REPORTING_CURRENCY_EXCH_RATE_SECONDARY` |
+| `REPRES_PERSON_CARD_W` | string |  |  | `REPRES_PERSON_CARD_W` |
+| `FREQ_CODE` | string |  |  | `FREQ_CODE` |
+| `AMOUNT_CUR_CREDIT` | string |  |  | `AMOUNT_CUR_CREDIT` |
+| `TAX_WITHHOLD_ALTERNATE_VENDOR_ACCT_TH` | string |  |  | `TAX_WITHHOLD_ALTERNATE_VENDOR_ACCT_TH` |
+| `BANK_DEPOSIT_NUM` | string |  |  | `BANK_DEPOSIT_NUM` |
+| `VENDOR_VAT_DATE` | string |  |  | `VENDOR_VAT_DATE` |
+| `BANK_CHEQUE_DEPOSIT_TRANS_REF_REC_ID` | string |  |  | `BANK_CHEQUE_DEPOSIT_TRANS_REF_REC_ID` |
+| `CUST_TRANS_ID` | string |  |  | `CUST_TRANS_ID` |
+| `EXCHANGE_RATE` | string |  |  | `EXCHANGE_RATE` |
+| `INTRA_COM_VAT_DUE_DATE_W` | string |  |  | `INTRA_COM_VAT_DUE_DATE_W` |
+| `VAT_NUM_JOURNAL` | string |  |  | `VAT_NUM_JOURNAL` |
+| `CORRECT_RU` | string |  |  | `CORRECT_RU` |
+| `LINE_NUM` | string |  |  | `LINE_NUM` |
+| `PAYMENT_INSTRUCTION_1` | string |  |  | `PAYMENT_INSTRUCTION_1` |
+| `REMAIN_AMOUNT` | string |  |  | `REMAIN_AMOUNT` |
+| `MCR_PRINT_TXT_ON_CHECK` | string |  |  | `MCR_PRINT_TXT_ON_CHECK` |
+| `POOL_REC_ID` | string |  |  | `POOL_REC_ID` |
+| `REPORTING_CURRENCY_EXCH_RATE` | string |  |  | `REPORTING_CURRENCY_EXCH_RATE` |
+| `BANK_NEG_INST_RECIPIENT_NAME` | string |  |  | `BANK_NEG_INST_RECIPIENT_NAME` |
+| `TAX_DIRECTION_CONTROL` | string |  |  | `TAX_DIRECTION_CONTROL` |
+| `TAX_CODE` | string |  |  | `TAX_CODE` |
+| `VAT_ON_PAYMENT_RU` | string |  |  | `VAT_ON_PAYMENT_RU` |
+| `TRIANGULATION` | string |  |  | `TRIANGULATION` |
+| `FURTHER_POSTING_REC_ID` | string |  |  | `FURTHER_POSTING_REC_ID` |
+| `REV_REC_NEW_VALUES_FROM_REALLOCATION` | string |  |  | `REV_REC_NEW_VALUES_FROM_REALLOCATION` |
+| `PAYMENT_ACCOUNT` | string |  |  | `PAYMENT_ACCOUNT` |
+| `PAYMENT_MODE` | string |  |  | `PAYMENT_MODE` |
+| `CUST_VEND_BANK_ACCOUNT_ID` | string |  |  | `CUST_VEND_BANK_ACCOUNT_ID` |
+| `PAYMENT_ID` | string |  |  | `PAYMENT_ID` |
+| `LEDGER_DIMENSION_VALUES_JSON` | string |  |  | `LEDGER_DIMENSION_VALUES_JSON` |
+| `MARKED_INVOICE_REC_ID` | string |  |  | `MARKED_INVOICE_REC_ID` |
+| `CASH_DISC_AMOUNT` | string |  |  | `CASH_DISC_AMOUNT` |
+| `SETTLE_VOUCHER` | string |  |  | `SETTLE_VOUCHER` |
+| `CURRENCY_CODE` | string |  |  | `CURRENCY_CODE` |
+| `RECEIPT_DATE_W` | string |  |  | `RECEIPT_DATE_W` |
+| `VEND_PAYMENT_FEE_GROUP_JP` | string |  |  | `VEND_PAYMENT_FEE_GROUP_JP` |
+| `TRANSFERRED` | string |  |  | `TRANSFERRED` |
+| `REPRES_PERSON_NAME_W` | string |  |  | `REPRES_PERSON_NAME_W` |
+| `COMM_PROFILE_TYPE_RU` | string |  |  | `COMM_PROFILE_TYPE_RU` |
+| `BANK_AGREEMENT_EXT_RU` | string |  |  | `BANK_AGREEMENT_EXT_RU` |
+| `VOUCHER` | string |  |  | `VOUCHER` |
+| `BANK_PRINT_ACCOUNT_NUM_RU` | string |  |  | `BANK_PRINT_ACCOUNT_NUM_RU` |
+| `JOURNAL_NUM` | string |  |  | `JOURNAL_NUM` |
+| `VOUCHER_CN` | string |  |  | `VOUCHER_CN` |
+| `TXT` | string |  |  | `TXT` |
+| `ENTERPRISE_NUMBER` | string |  |  | `ENTERPRISE_NUMBER` |
+| `INFORM_BY_TELEX_LT` | string |  |  | `INFORM_BY_TELEX_LT` |
+| `TAX_1099_STATE_AMOUNT` | string |  |  | `TAX_1099_STATE_AMOUNT` |
+| `BANK_RESP_WORKER_ID_RU` | string |  |  | `BANK_RESP_WORKER_ID_RU` |
+| `BANK_REMITTANCE_FILE_ID` | string |  |  | `BANK_REMITTANCE_FILE_ID` |
+| `PAYMENT_SEQUENCE_NUM` | string |  |  | `PAYMENT_SEQUENCE_NUM` |
+| `CREDIT_CARD_AUTH_TRANS_REF_ID` | string |  |  | `CREDIT_CARD_AUTH_TRANS_REF_ID` |
+| `OFFSET_LEDGER_DIMENSION` | string |  |  | `OFFSET_LEDGER_DIMENSION` |
+| `BANK_CENTRAL_BANK_TRANS_TYPE_CUR_RU` | string |  |  | `BANK_CENTRAL_BANK_TRANS_TYPE_CUR_RU` |
+| `PRICE` | string |  |  | `PRICE` |
+| `VAT_TAX_AGENT_VEND_ACCOUNT_RU` | string |  |  | `VAT_TAX_AGENT_VEND_ACCOUNT_RU` |
+| `REV_REC_SALES_ID` | string |  |  | `REV_REC_SALES_ID` |
+| `BANK_RECONCILE_ACCOUNT_AT_POST` | string |  |  | `BANK_RECONCILE_ACCOUNT_AT_POST` |
+| `CASH_RECEIPT_NUM_LV` | string |  |  | `CASH_RECEIPT_NUM_LV` |
+| `PAYMENT_PURPOSE_LT` | string |  |  | `PAYMENT_PURPOSE_LT` |
+| `INVOICE_RELEASE_DATE` | string |  |  | `INVOICE_RELEASE_DATE` |
+| `MARKED_INVOICE_COMPANY` | string |  |  | `MARKED_INVOICE_COMPANY` |
+| `SYS_MODIFIED_DATE_TIME` | string |  |  | `SYS_MODIFIED_DATE_TIME` |
+| `INVISIBLE` | string |  |  | `INVISIBLE` |
+| `LEDGER_DIMENSION_NAME` | string |  |  | `LEDGER_DIMENSION_NAME` |
+| `TRANSFERRED_ON` | string |  |  | `TRANSFERRED_ON` |
+| `PROVISIONAL_ASSESSMENT_IN` | string |  |  | `PROVISIONAL_ASSESSMENT_IN` |
+| `EXCHANGE_RATE_SECOND` | string |  |  | `EXCHANGE_RATE_SECOND` |
+| `ELECTRONIC_PAYMENT_NUMBER` | string |  |  | `ELECTRONIC_PAYMENT_NUMBER` |
+| `TAX_ITEM_GROUP` | string |  |  | `TAX_ITEM_GROUP` |
+| `REV_REC_ID` | string |  |  | `REV_REC_ID` |
+| `BANK_CENTRAL_BANK_PURPOSE_TEXT` | string |  |  | `BANK_CENTRAL_BANK_PURPOSE_TEXT` |
+| `ACCOUNT_AGREEMENT_ID_RU` | string |  |  | `ACCOUNT_AGREEMENT_ID_RU` |
+| `BANK_ACCOUNT_ID` | string |  |  | `BANK_ACCOUNT_ID` |
+| `TAX_BASE_W` | string |  |  | `TAX_BASE_W` |
+| `TAX_WITHHOLD_ITEM_GROUP_HEADING_TH` | string |  |  | `TAX_WITHHOLD_ITEM_GROUP_HEADING_TH` |
+| `ACKNOWLEDGEMENT_DATE` | string |  |  | `ACKNOWLEDGEMENT_DATE` |
+| `TRANSFERRED_TO` | string |  |  | `TRANSFERRED_TO` |
+| `TAX_WITHHOLD_GROUP` | string |  |  | `TAX_WITHHOLD_GROUP` |
+| `RELEASE_DATE_COMMENT` | string |  |  | `RELEASE_DATE_COMMENT` |
+| `BANK_VEND_ACCOUNT_ID_RU` | string |  |  | `BANK_VEND_ACCOUNT_ID_RU` |
+| `CUST_VEND_ACCOUNT_PL` | string |  |  | `CUST_VEND_ACCOUNT_PL` |
+| `CUST_EINVOICE_PAYM_SECTION_NUM` | string |  |  | `CUST_EINVOICE_PAYM_SECTION_NUM` |
+| `MCRCC_GENERAL_LEDGER_ID` | string |  |  | `MCRCC_GENERAL_LEDGER_ID` |
+| `PAYMENT_INSTRUCTION_4` | string |  |  | `PAYMENT_INSTRUCTION_4` |
+| `REVERSE_DATE` | string |  |  | `REVERSE_DATE` |
+| `OFFSET_TXT` | string |  |  | `OFFSET_TXT` |
+| `ATTACHMENTS_CN` | string |  |  | `ATTACHMENTS_CN` |
+| `SALES_ORDER_ID` | string |  |  | `SALES_ORDER_ID` |
+| `BANK_CENTRAL_BANK_PURPOSE_CODE` | string |  |  | `BANK_CENTRAL_BANK_PURPOSE_CODE` |
+| `CASH_DISC_BASE_DATE` | string |  |  | `CASH_DISC_BASE_DATE` |
+| `VAT_OPERATION_CODE_RU` | string |  |  | `VAT_OPERATION_CODE_RU` |
+| `LEDGER_JOURNAL_DLV_DATE_ES` | string |  |  | `LEDGER_JOURNAL_DLV_DATE_ES` |
+| `OFFSET_DEFAULT_DIMENSION` | string |  |  | `OFFSET_DEFAULT_DIMENSION` |
+| `APPROVED` | string |  |  | `APPROVED` |
+| `BUDGET_SOURCE_LEDGER_ENTRY_UNPOSTED` | string |  |  | `BUDGET_SOURCE_LEDGER_ENTRY_UNPOSTED` |
+| `FREQ_VALUE` | string |  |  | `FREQ_VALUE` |
+| `LOADING_DATE` | string |  |  | `LOADING_DATE` |
+| `ERROR_CODE_PAYMENT` | string |  |  | `ERROR_CODE_PAYMENT` |
+| `INFORM_BY_PHONE_LT` | string |  |  | `INFORM_BY_PHONE_LT` |
+| `BANK_SPEC_ACCOUNT_ID_RU` | string |  |  | `BANK_SPEC_ACCOUNT_ID_RU` |
+| `VAT_DUE_DATE_W` | string |  |  | `VAT_DUE_DATE_W` |
+| `CUST_BANK_ACCOUNT` | string |  |  | `CUST_BANK_ACCOUNT` |
+| `CUST_FACTURE_AUTO_CREATE_RU` | string |  |  | `CUST_FACTURE_AUTO_CREATE_RU` |
+| `CUST_VEND_NAME_PL` | string |  |  | `CUST_VEND_NAME_PL` |
+| `PAYMENT_SCHEDULE` | string |  |  | `PAYMENT_SCHEDULE` |
+| `TRANSACTION_TYPE` | string |  |  | `TRANSACTION_TYPE` |
+| `ASSET_LEASE_STATUS` | string |  |  | `ASSET_LEASE_STATUS` |
+| `BANK_TRANS_SUMMARIZATION_ID` | string |  |  | `BANK_TRANS_SUMMARIZATION_ID` |
+| `BANK_PAYMENT_REGISTRATION_NUM_LV` | string |  |  | `BANK_PAYMENT_REGISTRATION_NUM_LV` |
+| `BANK_CHEQUE_NUM` | string |  |  | `BANK_CHEQUE_NUM` |
+| `OFF_SESSION_ID_RU` | string |  |  | `OFF_SESSION_ID_RU` |
+| `SOURCE_FILE_NAME` | string |  |  | `SOURCE_FILE_NAME` |
+| `HASH_KEY` | string |  |  | `HASH_KEY` |
+| `MDP_CREATED_BY` | string |  |  | `MDP_CREATED_BY` |
+| `MDP_CREATED_DATE` | timestamp |  |  | `MDP_CREATED_DATE` |
+| `MDP_MODIFIED_BY` | string |  |  | `MDP_MODIFIED_BY` |
+| `MDP_MODIFIED_DATE` | timestamp |  |  | `MDP_MODIFIED_DATE` |
+
+## Values
+
+**TAX_1099_STATE**
+- `None`: 184918 rows
+
+**PAYMENT_NOTES**
+- `None`: 184918 rows
+
+**TAX_1099_FIELDS**
+- `0`: 184918 rows
+
+**R_CASH_DOC_REPRES_TYPE**
+- `Employee`: 184918 rows
+
+**REF_COPY_REVERSE_CN**
+- `0`: 184918 rows
+
+**ITM_COST_TYPE_ID**
+- `None`: 184918 rows
+
+**ADDRESSING_PL**
+- `None`: 184918 rows
+
+**CUST_EINVOICE_PAYM_TRANS_NUM**
+- `0`: 184918 rows
+
+**INTENT_LETTER_ID_IT**
+- `None`: 184918 rows
+
+**REMITTANCE_LOCATION**
+- `0`: 184910 rows
+- `5637156582`: 7 rows
+- `5637157326`: 1 rows
+
+**PACKED_EXTENSIONS**
+- `None`: 184918 rows
+
+**R_CASH_PAY_TRANS_TYPE**
+- `None`: 184918 rows
+
+**SUB_BILL_SCHED_LINE_REC_ID**
+- `0`: 184918 rows
+
+**CASH_DISC_CODE**
+- `None`: 184918 rows
+
+**BANK_CLIENT_DOCUMENT_TYPE_ID_RU**
+- `None`: 184918 rows
+
+**LIST_CODE**
+- `IncludeNot`: 184918 rows
+
+**DEBIT_CURRENCY_CODE_LT**
+- `None`: 184918 rows
+
+**REASON_REF_REC_ID**
+- `0`: 184918 rows
+
+**ACCOUNT_TYPE**
+- `Ledger`: 182827 rows
+- `FixedAssets`: 1980 rows
+- `Vend`: 109 rows
+- `Cust`: 2 rows
+
+**OFFSET_POSTING_PROFILE_RU**
+- `None`: 184918 rows
+
+**BANK_CURRENCY_TRANSFER_LOG_RU**
+- `0`: 184918 rows
+
+**TRANSFER_CURRENCY_RU**
+- `None`: 184918 rows
+
+**VEND_BANK_ACCOUNT**
+- `0`: 184918 rows
+
+**PAYMENT_REFERENCE**
+- `None`: 184918 rows
+
+**FB_SPED_ECF_DEREX_CLASIFICATION_CODE_BR**
+- `0`: 184918 rows
+
+**REV_REC_LEDGER_POSTING_TYPE**
+- `None`: 184918 rows
+
+**IMPORT_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**VAT_PAYM_REF_REC_ID_RU**
+- `0`: 184918 rows
+
+**SUB_BILL_RENEWAL_LINE_REC_ID**
+- `0`: 184918 rows
+
+**BANK_BILL_OF_EXCHANGE_NUM**
+- `None`: 184918 rows
+
+**TAX_PERIOD_PAYMENT_CODE_PL**
+- `None`: 184918 rows
+
+**OPERATION_TYPE_MX**
+- `Blank`: 184918 rows
+
+**SKIP_BLOCKED_FOR_MANUAL_ENTRY_CHECK**
+- `No`: 184915 rows
+- `Yes`: 3 rows
+
+**TAX_1099_REC_ID**
+- `0`: 184918 rows
+
+**MCR_REF_PAYMENT_ID**
+- `0`: 184918 rows
+
+**BANK_PROMISSORY_NOTE_NUM**
+- `None`: 184918 rows
+
+**PAYMENT_INSTRUCTION_2**
+- `0`: 184918 rows
+
+**BANK_COMM_ACCOUNT_ID_RU**
+- `None`: 184918 rows
+
+**CANCEL**
+- `No`: 184918 rows
+
+**INVOICE_SERIES_MX**
+- `None`: 184918 rows
+
+**TAX_WITHHOLD_CALCULATE_TH**
+- `No`: 184918 rows
+
+**ASSET_LEASE_POSTING_TYPES**
+- `LeaseAsset`: 184918 rows
+
+**NEG_INST_ID**
+- `None`: 184918 rows
+
+**BRIDGING_BANK_ACCOUNT**
+- `None`: 184918 rows
+
+**POSTING_PROFILE**
+- `None`: 183023 rows
+- `FAPP`: 1784 rows
+- `GEN`: 111 rows
+
+**INCOME_CLASSIFICATION_ID_BR**
+- `None`: 184918 rows
+
+**ITM_COST_AREA**
+- `Shipment`: 184918 rows
+
+**DELAY_TAX_CALCULATION**
+- `Yes`: 182647 rows
+- `No`: 2271 rows
+
+**QUANTITY**
+- `0`: 184918 rows
+
+**PREPAYMENT**
+- `No`: 184918 rows
+
+**PAYMENT_INSTRUCTION_3**
+- `0`: 184918 rows
+
+**CORRECTION_TYPE_RU**
+- `Unknown`: 184918 rows
+
+**LAST_TRANSFERRED**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**CORRECTED_INVOICE_ID_RU**
+- `None`: 184918 rows
+
+**ITM_COST_REF_REC_ID**
+- `0`: 184918 rows
+
+**MAIN_ACCOUNT_TYPE**
+- `None`: 184918 rows
+
+**PAYMENT_SPECIFICATION**
+- `None`: 184918 rows
+
+**BANK_TRANS_TYPE**
+- `None`: 184918 rows
+
+**REMITTANCE_ADDRESS**
+- `0`: 184910 rows
+- `5637154331`: 7 rows
+- `5637155076`: 1 rows
+
+**REV_REC_DEFERRED_TYPE**
+- `Revenue`: 184918 rows
+
+**NO_EDIT**
+- `No`: 184914 rows
+- `Yes`: 4 rows
+
+**GST_HST_TAX_TYPE_CA**
+- `None`: 184918 rows
+
+**CFDI_UUID_MX**
+- `None`: 184918 rows
+
+**FIN_TAG**
+- `5637152077`: 76974 rows
+- `0`: 27897 rows
+- `5637152078`: 27204 rows
+- `5637152081`: 25173 rows
+- `5637152830`: 5923 rows
+- `5637152831`: 5113 rows
+- `5637152828`: 4279 rows
+- `5637152079`: 2341 rows
+- `5637152833`: 1414 rows
+- `5637152827`: 1208 rows
+- `5637152832`: 1202 rows
+- `5637152836`: 1172 rows
+- `5637152835`: 1161 rows
+- `5637152082`: 891 rows
+- `5637152829`: 721 rows
+- `5637152837`: 645 rows
+- `5637152834`: 510 rows
+- `5637152076`: 509 rows
+- `5637149826`: 180 rows
+- `5637150580`: 180 rows
+- `5637151326`: 138 rows
+- `5637150576`: 30 rows
+- `5637150577`: 25 rows
+- `5637150578`: 13 rows
+- `5637152080`: 13 rows
+- `5637150579`: 2 rows
+
+**REMITTEE_CURRENCY**
+- `None`: 184918 rows
+
+**OFFSET_ACCOUNT_AGREEMENT_ID_RU**
+- `None`: 184918 rows
+
+**TRANSFERRED_BY**
+- `None`: 184918 rows
+
+**MARKED_INVOICE**
+- `None`: 184916 rows
+- `100-000002`: 1 rows
+- `100-000003`: 1 rows
+
+**LEDGER_VOUCHER_TYPE_CN**
+- `0`: 184918 rows
+
+**OFFSET_FIN_TAG**
+- `0`: 184908 rows
+- `5637149826`: 10 rows
+
+**BANK_CURRENCY**
+- `None`: 184918 rows
+
+**OFFSET_ACCOUNT_TYPE**
+- `Ledger`: 184065 rows
+- `Bank`: 852 rows
+- `Vend`: 1 rows
+
+**FOREIGN_VOUCHER**
+- `None`: 184914 rows
+- `100-000000001`: 2 rows
+- `100-000000002`: 2 rows
+
+**EU_SALES_LIST**
+- `None`: 184918 rows
+
+**ANNOUNCEMENT_NUM_RU**
+- `None`: 184918 rows
+
+**REVERSE_ENTRY**
+- `No`: 184918 rows
+
+**REV_REC_DEFERRED_RECOGNIZED_QTY**
+- `0`: 184918 rows
+
+**BANK_CURRENCY_DEAL_COURSE_RU**
+- `0`: 184918 rows
+
+**FURTHER_POSTING_TYPE**
+- `No`: 184918 rows
+
+**DATE_CASH_DISC**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**MARKUP_CODE_RU**
+- `None`: 184918 rows
+
+**BANK_CURRENCY_AMOUNT**
+- `0`: 184918 rows
+
+**CUST_VEND_NEG_INST_PROTEST_REASON**
+- `None`: 184918 rows
+
+**FILE_CREATED**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**VEND_INVOICE_DECLARATION_IS**
+- `0`: 184918 rows
+
+**PURCH_LEDGER_POSTING**
+- `None`: 184918 rows
+
+**PURCHASE_ID_RANGE**
+- `None`: 184918 rows
+
+**PLAFOND_DATE_IT**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**TAX_GROUP**
+- `None`: 184918 rows
+
+**USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU**
+- `No`: 184918 rows
+
+**BANK_REMITTANCE_TYPE**
+- `None`: 184918 rows
+
+**BANK_DEPOSIT_VOUCHER**
+- `No`: 184918 rows
+
+**CASH_DISC_BASE_DAYS**
+- `0`: 184918 rows
+
+**PAYMENT_STATUS**
+- `None`: 184918 rows
+
+**TAX_1099_AMOUNT**
+- `0`: 184918 rows
+
+**DEFAULT_DIMENSION**
+- `0`: 184816 rows
+- `5637166326`: 8 rows
+- `5637167831`: 7 rows
+- `5637167834`: 7 rows
+- `5637167833`: 7 rows
+- `5637166377`: 7 rows
+- `5637167829`: 7 rows
+- `5637167827`: 7 rows
+- `5637167830`: 7 rows
+- `5637167826`: 7 rows
+- `5637167828`: 7 rows
+- `5637167832`: 7 rows
+- `5637167836`: 6 rows
+- `5637167835`: 6 rows
+- `5637167838`: 6 rows
+- `5637167837`: 6 rows
+
+**REV_REC_DEFERRED_LINE**
+- `0`: 184918 rows
+
+**CORRECTED_INVOICE_DATE_RU**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**DIRECT_DEBIT_MANDATE**
+- `0`: 184918 rows
+
+**TRANSFER**
+- `No`: 184918 rows
+
+**RELEASE_DATE**
+- `1900-01-01 00:00:00.0000000 +00:00`: 184918 rows
+
+**DOCUMENT_NUM**
+- `None`: 184918 rows
+
+**SUB_BILL_ESCALATION_TABLE_REC_ID**
+- `0`: 184918 rows
+
+**CUST_EINVOICE_PAYM_DELIVERY_NUM**
+- `0`: 184918 rows
+
+**MCR_PAYMENT_ORDER_ID**
+- `None`: 184918 rows
+
+**PAYMENT**
+- `None`: 184809 rows
+- `N10`: 109 rows
+
+**INT_BANK_LV**
+- `None`: 184918 rows
+
+**CASH_DISC_PERCENT**
+- `0`: 184918 rows
+
+**REPORTING_CURRENCY_EXCH_RATE_SECONDARY**
+- `0`: 184918 rows
+
+**REPRES_PERSON_CARD_W**
+- `None`: 184918 rows
+
+**FREQ_CODE**
+- `Day`: 184918 rows
+
+**TAX_WITHHOLD_ALTERNATE_VENDOR_ACCT_TH**
+- `None`: 184918 rows
+
+**BANK_DEPOSIT_NUM**
+- `None`: 184918 rows
+
+**VENDOR_VAT_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**BANK_CHEQUE_DEPOSIT_TRANS_REF_REC_ID**
+- `0`: 184918 rows
+
+**CUST_TRANS_ID**
+- `0`: 184917 rows
+- `5637144578`: 1 rows
+
+**EXCHANGE_RATE**
+- `100`: 184198 rows
+- `75.48309178744`: 514 rows
+- `88.347027122537`: 46 rows
+- `85.448175681449`: 45 rows
+- `52.985746834102`: 32 rows
+- `53.126494182649`: 28 rows
+- `8.814300320841`: 15 rows
+- `52.44663554833`: 14 rows
+- `116.84`: 12 rows
+- `1.847783306756`: 4 rows
+- `7.533694448421`: 4 rows
+- `4.593857094294`: 4 rows
+- `117.03`: 2 rows
+
+**INTRA_COM_VAT_DUE_DATE_W**
+- `No`: 184918 rows
+
+**VAT_NUM_JOURNAL**
+- `None`: 184918 rows
+
+**CORRECT_RU**
+- `No`: 184918 rows
+
+**PAYMENT_INSTRUCTION_1**
+- `0`: 184918 rows
+
+**REMAIN_AMOUNT**
+- `0`: 184918 rows
+
+**MCR_PRINT_TXT_ON_CHECK**
+- `No`: 184918 rows
+
+**POOL_REC_ID**
+- `0`: 184918 rows
+
+**REPORTING_CURRENCY_EXCH_RATE**
+- `100`: 183993 rows
+- `75.48309178744`: 360 rows
+- `132.48`: 244 rows
+- `85.448175681449`: 93 rows
+- `52.985746834102`: 32 rows
+- `70.190215483962`: 29 rows
+- `53.126494182649`: 28 rows
+- `85.587127695995`: 27 rows
+- `113.19`: 27 rows
+- `0`: 15 rows
+- `52.44663554833`: 14 rows
+- `85.4481756814492`: 10 rows
+- `113.9`: 10 rows
+- `7.533694448421`: 9 rows
+- `7.686217842786`: 8 rows
+- `69.48`: 5 rows
+- `6.084390496182`: 4 rows
+- `7.82962730974`: 4 rows
+- `4.593857094294`: 4 rows
+- `9.97695323802`: 2 rows
+
+**BANK_NEG_INST_RECIPIENT_NAME**
+- `None`: 184918 rows
+
+**TAX_DIRECTION_CONTROL**
+- `No`: 184918 rows
+
+**TAX_CODE**
+- `None`: 184918 rows
+
+**VAT_ON_PAYMENT_RU**
+- `No`: 184918 rows
+
+**TRIANGULATION**
+- `No`: 184918 rows
+
+**FURTHER_POSTING_REC_ID**
+- `0`: 184918 rows
+
+**REV_REC_NEW_VALUES_FROM_REALLOCATION**
+- `No`: 184918 rows
+
+**PAYMENT_ACCOUNT**
+- `None`: 184918 rows
+
+**PAYMENT_MODE**
+- `None`: 184918 rows
+
+**CUST_VEND_BANK_ACCOUNT_ID**
+- `None`: 184918 rows
+
+**PAYMENT_ID**
+- `None`: 184918 rows
+
+**MARKED_INVOICE_REC_ID**
+- `0`: 184917 rows
+- `5637145326`: 1 rows
+
+**CASH_DISC_AMOUNT**
+- `0`: 184918 rows
+
+**SETTLE_VOUCHER**
+- `None`: 184910 rows
+- `SelectedTransact`: 8 rows
+
+**CURRENCY_CODE**
+- `USD`: 184115 rows
+- `GBP`: 495 rows
+- `EUR`: 167 rows
+- `CAD`: 89 rows
+- `SEK`: 21 rows
+- `AUD`: 19 rows
+- `ZAR`: 8 rows
+- `NOK`: 4 rows
+
+**RECEIPT_DATE_W**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**VEND_PAYMENT_FEE_GROUP_JP**
+- `None`: 184918 rows
+
+**TRANSFERRED**
+- `No`: 184918 rows
+
+**REPRES_PERSON_NAME_W**
+- `None`: 184918 rows
+
+**COMM_PROFILE_TYPE_RU**
+- `General`: 184918 rows
+
+**BANK_AGREEMENT_EXT_RU**
+- `0`: 184918 rows
+
+**BANK_PRINT_ACCOUNT_NUM_RU**
+- `None`: 184918 rows
+
+**VOUCHER_CN**
+- `None`: 184918 rows
+
+**ENTERPRISE_NUMBER**
+- `None`: 184918 rows
+
+**INFORM_BY_TELEX_LT**
+- `No`: 184918 rows
+
+**TAX_1099_STATE_AMOUNT**
+- `0`: 184918 rows
+
+**BANK_RESP_WORKER_ID_RU**
+- `0`: 184918 rows
+
+**BANK_REMITTANCE_FILE_ID**
+- `None`: 184918 rows
+
+**PAYMENT_SEQUENCE_NUM**
+- `0`: 184918 rows
+
+**CREDIT_CARD_AUTH_TRANS_REF_ID**
+- `0`: 184918 rows
+
+**BANK_CENTRAL_BANK_TRANS_TYPE_CUR_RU**
+- `None`: 184918 rows
+
+**PRICE**
+- `0`: 184918 rows
+
+**VAT_TAX_AGENT_VEND_ACCOUNT_RU**
+- `None`: 184918 rows
+
+**REV_REC_SALES_ID**
+- `None`: 184918 rows
+
+**BANK_RECONCILE_ACCOUNT_AT_POST**
+- `No`: 184918 rows
+
+**CASH_RECEIPT_NUM_LV**
+- `None`: 184918 rows
+
+**PAYMENT_PURPOSE_LT**
+- `None`: 184918 rows
+
+**INVOICE_RELEASE_DATE**
+- `1900-01-01 00:00:00.0000000 +00:00`: 184918 rows
+
+**INVISIBLE**
+- `No`: 184918 rows
+
+**TRANSFERRED_ON**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**PROVISIONAL_ASSESSMENT_IN**
+- `No`: 184918 rows
+
+**EXCHANGE_RATE_SECOND**
+- `0`: 184918 rows
+
+**ELECTRONIC_PAYMENT_NUMBER**
+- `None`: 184918 rows
+
+**TAX_ITEM_GROUP**
+- `None`: 184918 rows
+
+**REV_REC_ID**
+- `0`: 184918 rows
+
+**BANK_CENTRAL_BANK_PURPOSE_TEXT**
+- `None`: 184918 rows
+
+**ACCOUNT_AGREEMENT_ID_RU**
+- `None`: 184918 rows
+
+**BANK_ACCOUNT_ID**
+- `None`: 184918 rows
+
+**TAX_BASE_W**
+- `0`: 184918 rows
+
+**TAX_WITHHOLD_ITEM_GROUP_HEADING_TH**
+- `0`: 184918 rows
+
+**TRANSFERRED_TO**
+- `None`: 184918 rows
+
+**TAX_WITHHOLD_GROUP**
+- `None`: 184918 rows
+
+**RELEASE_DATE_COMMENT**
+- `None`: 184918 rows
+
+**BANK_VEND_ACCOUNT_ID_RU**
+- `None`: 184918 rows
+
+**CUST_VEND_ACCOUNT_PL**
+- `None`: 184918 rows
+
+**CUST_EINVOICE_PAYM_SECTION_NUM**
+- `0`: 184918 rows
+
+**MCRCC_GENERAL_LEDGER_ID**
+- `None`: 184918 rows
+
+**PAYMENT_INSTRUCTION_4**
+- `0`: 184918 rows
+
+**REVERSE_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**OFFSET_TXT**
+- `None`: 184918 rows
+
+**ATTACHMENTS_CN**
+- `0`: 184918 rows
+
+**SALES_ORDER_ID**
+- `None`: 184918 rows
+
+**BANK_CENTRAL_BANK_PURPOSE_CODE**
+- `None`: 184918 rows
+
+**CASH_DISC_BASE_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**VAT_OPERATION_CODE_RU**
+- `None`: 184918 rows
+
+**LEDGER_JOURNAL_DLV_DATE_ES**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**OFFSET_DEFAULT_DIMENSION**
+- `0`: 184917 rows
+- `5637166326`: 1 rows
+
+**APPROVED**
+- `Yes`: 182949 rows
+- `No`: 1969 rows
+
+**BUDGET_SOURCE_LEDGER_ENTRY_UNPOSTED**
+- `0`: 184918 rows
+
+**FREQ_VALUE**
+- `0`: 184918 rows
+
+**LOADING_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**ERROR_CODE_PAYMENT**
+- `None`: 184918 rows
+
+**INFORM_BY_PHONE_LT**
+- `No`: 184918 rows
+
+**BANK_SPEC_ACCOUNT_ID_RU**
+- `None`: 184918 rows
+
+**VAT_DUE_DATE_W**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**CUST_BANK_ACCOUNT**
+- `0`: 184918 rows
+
+**CUST_FACTURE_AUTO_CREATE_RU**
+- `No`: 184918 rows
+
+**CUST_VEND_NAME_PL**
+- `None`: 184918 rows
+
+**PAYMENT_SCHEDULE**
+- `None`: 184918 rows
+
+**TRANSACTION_TYPE**
+- `GeneralJournal`: 182819 rows
+- `FixedAssets`: 1980 rows
+- `Vend`: 102 rows
+- `Payment`: 8 rows
+- `Allocation`: 6 rows
+- `Elimination`: 3 rows
+
+**ASSET_LEASE_STATUS**
+- `No`: 184918 rows
+
+**BANK_TRANS_SUMMARIZATION_ID**
+- `None`: 184918 rows
+
+**BANK_PAYMENT_REGISTRATION_NUM_LV**
+- `None`: 184918 rows
+
+**BANK_CHEQUE_NUM**
+- `None`: 184918 rows
+
+**OFF_SESSION_ID_RU**
+- `None`: 184918 rows
+
+**SOURCE_FILE_NAME**
+- `ledgerjournaltransbientities__20261116_105417.csv`: 184918 rows
+
+**MDP_CREATED_DATE**
+- `2026-11-16 11:42:15.132018+00:00`: 184918 rows
+
+**MDP_MODIFIED_DATE**
+- `2026-11-16 11:42:15.132018+00:00`: 184918 rows
+
+## Profile
+
+Rows in the latest export: 184918.
+
+| Column | Type | Distinct (approx) | Nulls | Min | Max |
+|---|---|---|---|---|---|
+| `DATA_AREA_ID` | STRING | 18 | 0 |  |  |
+| `SOURCE_KEY` | STRING | 183587 | 0 |  |  |
+| `TAX_1099_STATE` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_NOTES` | STRING | 0 | 184918 |  |  |
+| `TAX_1099_FIELDS` | STRING | 1 | 0 | 0 | 0 |
+| `R_CASH_DOC_REPRES_TYPE` | STRING | 1 | 0 | Employee | Employee |
+| `AGREEMENT_COMPANY_RU` | STRING | 0 | 184918 |  |  |
+| `REF_COPY_REVERSE_CN` | STRING | 1 | 0 | 0 | 0 |
+| `ITM_COST_TYPE_ID` | STRING | 0 | 184918 |  |  |
+| `ADDRESSING_PL` | STRING | 0 | 184918 |  |  |
+| `CUST_EINVOICE_PAYM_TRANS_NUM` | STRING | 1 | 0 | 0 | 0 |
+| `INTENT_LETTER_ID_IT` | STRING | 0 | 184918 |  |  |
+| `REMITTANCE_LOCATION` | STRING | 3 | 0 | 0 | 5637157326 |
+| `PACKED_EXTENSIONS` | STRING | 0 | 184918 |  |  |
+| `R_CASH_PAY_TRANS_TYPE` | STRING | 1 | 0 | None | None |
+| `SUB_BILL_SCHED_LINE_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `CASH_DISC_CODE` | STRING | 0 | 184918 |  |  |
+| `BANK_CLIENT_DOCUMENT_TYPE_ID_RU` | STRING | 0 | 184918 |  |  |
+| `LIST_CODE` | STRING | 1 | 0 | IncludeNot | IncludeNot |
+| `DEBIT_CURRENCY_CODE_LT` | STRING | 0 | 184918 |  |  |
+| `DOCUMENT_DATE` | STRING | 108 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 2026-08-25 12:00:00.0000000 +00:00 |
+| `OFFSET_AGREEMENT_COMPANY_RU` | STRING | 0 | 184918 |  |  |
+| `REASON_REF_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `ACCOUNT_TYPE` | STRING | 4 | 0 | Cust | Vend |
+| `OFFSET_POSTING_PROFILE_RU` | STRING | 0 | 184918 |  |  |
+| `BANK_CURRENCY_TRANSFER_LOG_RU` | STRING | 1 | 0 | 0 | 0 |
+| `TRANSFER_CURRENCY_RU` | STRING | 0 | 184918 |  |  |
+| `VEND_BANK_ACCOUNT` | STRING | 1 | 0 | 0 | 0 |
+| `OFFSET_LEDGER_DIMENSION_VALUES_JSON` | STRING | 544 | 179432 | [{"BUSINESSINDICATOR":"CONCUR","COSTC... | [{"SYSTEMGENERATEDATTRIBUTEVENDOR":"1... |
+| `PAYMENT_REFERENCE` | STRING | 0 | 184918 |  |  |
+| `COMPANY` | STRING | 20 | 0 |  |  |
+| `FB_SPED_ECF_DEREX_CLASIFICATION_CODE_BR` | STRING | 1 | 0 | 0 | 0 |
+| `REV_REC_LEDGER_POSTING_TYPE` | STRING | 1 | 0 | None | None |
+| `IMPORT_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `OFFSET_COMPANY` | STRING | 20 | 0 |  |  |
+| `VAT_PAYM_REF_REC_ID_RU` | STRING | 1 | 0 | 0 | 0 |
+| `SUB_BILL_RENEWAL_LINE_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `BANK_BILL_OF_EXCHANGE_NUM` | STRING | 0 | 184918 |  |  |
+| `TAX_PERIOD_PAYMENT_CODE_PL` | STRING | 0 | 184918 |  |  |
+| `OPERATION_TYPE_MX` | STRING | 1 | 0 | Blank | Blank |
+| `SYS_DATA_AREA_ID` | STRING | 18 | 0 |  |  |
+| `AMOUNT_CUR_DEBIT` | STRING | 50984 | 0 | -100 | 99997.5 |
+| `SKIP_BLOCKED_FOR_MANUAL_ENTRY_CHECK` | STRING | 2 | 0 | No | Yes |
+| `INVOICE` | STRING | 106 | 184816 | INV2001 | INV2102 |
+| `TAX_1099_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `MCR_REF_PAYMENT_ID` | STRING | 1 | 0 | 0 | 0 |
+| `DUE` | STRING | 130 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 2026-11-03 12:00:00.0000000 +00:00 |
+| `BANK_PROMISSORY_NOTE_NUM` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_INSTRUCTION_2` | STRING | 1 | 0 | 0 | 0 |
+| `BANK_COMM_ACCOUNT_ID_RU` | STRING | 0 | 184918 |  |  |
+| `CANCEL` | STRING | 1 | 0 | No | No |
+| `INVOICE_SERIES_MX` | STRING | 0 | 184918 |  |  |
+| `TRANS_DATE` | STRING | 502 | 0 | 2024-12-31 12:00:00.0000000 +00:00 | 2026-11-16 12:00:00.0000000 +00:00 |
+| `TAX_WITHHOLD_CALCULATE_TH` | STRING | 1 | 0 | No | No |
+| `ASSET_LEASE_POSTING_TYPES` | STRING | 1 | 0 | LeaseAsset | LeaseAsset |
+| `NEG_INST_ID` | STRING | 0 | 184918 |  |  |
+| `BRIDGING_BANK_ACCOUNT` | STRING | 0 | 184918 |  |  |
+| `POSTING_PROFILE` | STRING | 2 | 183023 | FAPP | GEN |
+| `INCOME_CLASSIFICATION_ID_BR` | STRING | 0 | 184918 |  |  |
+| `ITM_COST_AREA` | STRING | 1 | 0 | Shipment | Shipment |
+| `DELAY_TAX_CALCULATION` | STRING | 2 | 0 | No | Yes |
+| `QUANTITY` | STRING | 1 | 0 | 0 | 0 |
+| `PREPAYMENT` | STRING | 1 | 0 | No | No |
+| `PAYMENT_INSTRUCTION_3` | STRING | 1 | 0 | 0 | 0 |
+| `CORRECTION_TYPE_RU` | STRING | 1 | 0 | Unknown | Unknown |
+| `LAST_TRANSFERRED` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `CORRECTED_INVOICE_ID_RU` | STRING | 0 | 184918 |  |  |
+| `ITM_COST_REF_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `MAIN_ACCOUNT_TYPE` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_SPECIFICATION` | STRING | 0 | 184918 |  |  |
+| `BANK_TRANS_TYPE` | STRING | 0 | 184918 |  |  |
+| `REMITTANCE_ADDRESS` | STRING | 3 | 0 | 0 | 5637155076 |
+| `REV_REC_DEFERRED_TYPE` | STRING | 1 | 0 | Revenue | Revenue |
+| `NO_EDIT` | STRING | 2 | 0 | No | Yes |
+| `GST_HST_TAX_TYPE_CA` | STRING | 1 | 0 | None | None |
+| `FOREIGN_COMPANY` | STRING | 1 | 184914 |  |  |
+| `CFDI_UUID_MX` | STRING | 0 | 184918 |  |  |
+| `FIN_TAG` | STRING | 24 | 0 | 0 | 5637152837 |
+| `REMITTEE_CURRENCY` | STRING | 0 | 184918 |  |  |
+| `OFFSET_ACCOUNT_AGREEMENT_ID_RU` | STRING | 0 | 184918 |  |  |
+| `TRANSFERRED_BY` | STRING | 0 | 184918 |  |  |
+| `MARKED_INVOICE` | STRING | 2 | 184916 | 100-000002 | 100-000003 |
+| `LEDGER_VOUCHER_TYPE_CN` | STRING | 1 | 0 | 0 | 0 |
+| `OFFSET_FIN_TAG` | STRING | 2 | 0 | 0 | 5637149826 |
+| `BANK_CURRENCY` | STRING | 0 | 184918 |  |  |
+| `OFFSET_ACCOUNT_TYPE` | STRING | 3 | 0 | Bank | Vend |
+| `FOREIGN_VOUCHER` | STRING | 2 | 184914 | 100-000000001 | 100-000000002 |
+| `EU_SALES_LIST` | STRING | 0 | 184918 |  |  |
+| `ANNOUNCEMENT_NUM_RU` | STRING | 0 | 184918 |  |  |
+| `REVERSE_ENTRY` | STRING | 1 | 0 | No | No |
+| `REV_REC_DEFERRED_RECOGNIZED_QTY` | STRING | 1 | 0 | 0 | 0 |
+| `BANK_CURRENCY_DEAL_COURSE_RU` | STRING | 1 | 0 | 0 | 0 |
+| `FURTHER_POSTING_TYPE` | STRING | 1 | 0 | No | No |
+| `APPROVER` | STRING | 2 | 0 |  |  |
+| `DATE_CASH_DISC` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `MARKUP_CODE_RU` | STRING | 0 | 184918 |  |  |
+| `BANK_CURRENCY_AMOUNT` | STRING | 1 | 0 | 0 | 0 |
+| `CUST_VEND_NEG_INST_PROTEST_REASON` | STRING | 1 | 0 | None | None |
+| `FILE_CREATED` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `VEND_INVOICE_DECLARATION_IS` | STRING | 1 | 0 | 0 | 0 |
+| `PURCH_LEDGER_POSTING` | STRING | 1 | 0 | None | None |
+| `PURCHASE_ID_RANGE` | STRING | 0 | 184918 |  |  |
+| `R_CASH_DOC_REPRES_PERSON_ID` | STRING | 0 | 184918 |  |  |
+| `PLAFOND_DATE_IT` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `TAX_GROUP` | STRING | 0 | 184918 |  |  |
+| `USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU` | STRING | 1 | 0 | No | No |
+| `BANK_REMITTANCE_TYPE` | STRING | 1 | 0 | None | None |
+| `BANK_DEPOSIT_VOUCHER` | STRING | 1 | 0 | No | No |
+| `CASH_DISC_BASE_DAYS` | STRING | 1 | 0 | 0 | 0 |
+| `PAYMENT_STATUS` | STRING | 1 | 0 | None | None |
+| `TAX_1099_AMOUNT` | STRING | 1 | 0 | 0 | 0 |
+| `DEFAULT_DIMENSION` | STRING | 15 | 0 | 0 | 5637167838 |
+| `REV_REC_DEFERRED_LINE` | STRING | 1 | 0 | 0 | 0 |
+| `SYS_REC_VERSION` | STRING | 1354 | 0 | 1 | 997742750 |
+| `CORRECTED_INVOICE_DATE_RU` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `DIRECT_DEBIT_MANDATE` | STRING | 1 | 0 | 0 | 0 |
+| `TRANSFER` | STRING | 1 | 0 | No | No |
+| `RELEASE_DATE` | STRING | 1 | 0 | 1900-01-01 00:00:00.0000000 +00:00 | 1900-01-01 00:00:00.0000000 +00:00 |
+| `LEDGER_DIMENSION` | STRING | 6157 | 0 | 5637192580 | 5637232058 |
+| `DOCUMENT_NUM` | STRING | 0 | 184918 |  |  |
+| `SUB_BILL_ESCALATION_TABLE_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `CUST_EINVOICE_PAYM_DELIVERY_NUM` | STRING | 1 | 0 | 0 | 0 |
+| `MCR_PAYMENT_ORDER_ID` | STRING | 0 | 184918 |  |  |
+| `VEND_TRANS_ID` | STRING | 71 | 0 | 0 | 5637171576 |
+| `PAYMENT` | STRING | 1 | 184809 | N10 | N10 |
+| `INT_BANK_LV` | STRING | 0 | 184918 |  |  |
+| `CASH_DISC_PERCENT` | STRING | 1 | 0 | 0 | 0 |
+| `REPORTING_CURRENCY_EXCH_RATE_SECONDARY` | STRING | 1 | 0 | 0 | 0 |
+| `REPRES_PERSON_CARD_W` | STRING | 0 | 184918 |  |  |
+| `FREQ_CODE` | STRING | 1 | 0 | Day | Day |
+| `AMOUNT_CUR_CREDIT` | STRING | 42689 | 0 | -97.2 | 99997.5 |
+| `TAX_WITHHOLD_ALTERNATE_VENDOR_ACCT_TH` | STRING | 0 | 184918 |  |  |
+| `BANK_DEPOSIT_NUM` | STRING | 0 | 184918 |  |  |
+| `VENDOR_VAT_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `BANK_CHEQUE_DEPOSIT_TRANS_REF_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `CUST_TRANS_ID` | STRING | 2 | 0 | 0 | 5637144578 |
+| `EXCHANGE_RATE` | STRING | 13 | 0 | 1.847783306756 | 88.347027122537 |
+| `INTRA_COM_VAT_DUE_DATE_W` | STRING | 1 | 0 | No | No |
+| `VAT_NUM_JOURNAL` | STRING | 0 | 184918 |  |  |
+| `CORRECT_RU` | STRING | 1 | 0 | No | No |
+| `LINE_NUM` | STRING | 64767 | 0 | -1 | 9999 |
+| `PAYMENT_INSTRUCTION_1` | STRING | 1 | 0 | 0 | 0 |
+| `REMAIN_AMOUNT` | STRING | 1 | 0 | 0 | 0 |
+| `MCR_PRINT_TXT_ON_CHECK` | STRING | 1 | 0 | No | No |
+| `POOL_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `REPORTING_CURRENCY_EXCH_RATE` | STRING | 20 | 0 | 0 | 9.97695323802 |
+| `BANK_NEG_INST_RECIPIENT_NAME` | STRING | 0 | 184918 |  |  |
+| `TAX_DIRECTION_CONTROL` | STRING | 1 | 0 | No | No |
+| `TAX_CODE` | STRING | 0 | 184918 |  |  |
+| `VAT_ON_PAYMENT_RU` | STRING | 1 | 0 | No | No |
+| `TRIANGULATION` | STRING | 1 | 0 | No | No |
+| `FURTHER_POSTING_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `REV_REC_NEW_VALUES_FROM_REALLOCATION` | STRING | 1 | 0 | No | No |
+| `PAYMENT_ACCOUNT` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_MODE` | STRING | 0 | 184918 |  |  |
+| `CUST_VEND_BANK_ACCOUNT_ID` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_ID` | STRING | 0 | 184918 |  |  |
+| `LEDGER_DIMENSION_VALUES_JSON` | STRING | 5820 | 0 | [{"ASLOB":"010","BUSINESSINDICATOR":"... | [{"SYSTEMGENERATEDATTRIBUTEVENDOR":"1... |
+| `MARKED_INVOICE_REC_ID` | STRING | 2 | 0 | 0 | 5637145326 |
+| `CASH_DISC_AMOUNT` | STRING | 1 | 0 | 0 | 0 |
+| `SETTLE_VOUCHER` | STRING | 2 | 0 | None | SelectedTransact |
+| `CURRENCY_CODE` | STRING | 7 | 0 | AUD | ZAR |
+| `RECEIPT_DATE_W` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `VEND_PAYMENT_FEE_GROUP_JP` | STRING | 0 | 184918 |  |  |
+| `TRANSFERRED` | STRING | 1 | 0 | No | No |
+| `REPRES_PERSON_NAME_W` | STRING | 0 | 184918 |  |  |
+| `COMM_PROFILE_TYPE_RU` | STRING | 1 | 0 | General | General |
+| `BANK_AGREEMENT_EXT_RU` | STRING | 1 | 0 | 0 | 0 |
+| `VOUCHER` | STRING | 13838 | 0 | 100-000000001 | YMH957678142 |
+| `BANK_PRINT_ACCOUNT_NUM_RU` | STRING | 0 | 184918 |  |  |
+| `JOURNAL_NUM` | STRING | 282 | 0 | 100-000001 | UK17-000016 |
+| `VOUCHER_CN` | STRING | 0 | 184918 |  |  |
+| `TXT` | STRING | 120737 | 9901 | 000019\|Vys 5660 Lifefpa Mkwfocz Agahqd | soft drink on Monte Carlo business trip |
+| `ENTERPRISE_NUMBER` | STRING | 0 | 184918 |  |  |
+| `INFORM_BY_TELEX_LT` | STRING | 1 | 0 | No | No |
+| `TAX_1099_STATE_AMOUNT` | STRING | 1 | 0 | 0 | 0 |
+| `BANK_RESP_WORKER_ID_RU` | STRING | 1 | 0 | 0 | 0 |
+| `BANK_REMITTANCE_FILE_ID` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_SEQUENCE_NUM` | STRING | 1 | 0 | 0 | 0 |
+| `CREDIT_CARD_AUTH_TRANS_REF_ID` | STRING | 1 | 0 | 0 | 0 |
+| `OFFSET_LEDGER_DIMENSION` | STRING | 605 | 0 | 0 | 5637224834 |
+| `BANK_CENTRAL_BANK_TRANS_TYPE_CUR_RU` | STRING | 0 | 184918 |  |  |
+| `PRICE` | STRING | 1 | 0 | 0 | 0 |
+| `VAT_TAX_AGENT_VEND_ACCOUNT_RU` | STRING | 0 | 184918 |  |  |
+| `REV_REC_SALES_ID` | STRING | 0 | 184918 |  |  |
+| `BANK_RECONCILE_ACCOUNT_AT_POST` | STRING | 1 | 0 | No | No |
+| `CASH_RECEIPT_NUM_LV` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_PURPOSE_LT` | STRING | 0 | 184918 |  |  |
+| `INVOICE_RELEASE_DATE` | STRING | 1 | 0 | 1900-01-01 00:00:00.0000000 +00:00 | 1900-01-01 00:00:00.0000000 +00:00 |
+| `MARKED_INVOICE_COMPANY` | STRING | 1 | 184916 |  |  |
+| `SYS_MODIFIED_DATE_TIME` | STRING | 1542 | 0 | 2026-10-15 23:39:04.0000000 +00:00 | 2026-11-16 08:41:03.0000000 +00:00 |
+| `INVISIBLE` | STRING | 1 | 0 | No | No |
+| `LEDGER_DIMENSION_NAME` | STRING | 60 | 184807 | ABC Industrial Supplies | Vertex Trade Solutions |
+| `TRANSFERRED_ON` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `PROVISIONAL_ASSESSMENT_IN` | STRING | 1 | 0 | No | No |
+| `EXCHANGE_RATE_SECOND` | STRING | 1 | 0 | 0 | 0 |
+| `ELECTRONIC_PAYMENT_NUMBER` | STRING | 0 | 184918 |  |  |
+| `TAX_ITEM_GROUP` | STRING | 0 | 184918 |  |  |
+| `REV_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `BANK_CENTRAL_BANK_PURPOSE_TEXT` | STRING | 0 | 184918 |  |  |
+| `ACCOUNT_AGREEMENT_ID_RU` | STRING | 0 | 184918 |  |  |
+| `BANK_ACCOUNT_ID` | STRING | 0 | 184918 |  |  |
+| `TAX_BASE_W` | STRING | 1 | 0 | 0 | 0 |
+| `TAX_WITHHOLD_ITEM_GROUP_HEADING_TH` | STRING | 1 | 0 | 0 | 0 |
+| `ACKNOWLEDGEMENT_DATE` | STRING | 189 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 2026-11-16 12:00:00.0000000 +00:00 |
+| `TRANSFERRED_TO` | STRING | 0 | 184918 |  |  |
+| `TAX_WITHHOLD_GROUP` | STRING | 0 | 184918 |  |  |
+| `RELEASE_DATE_COMMENT` | STRING | 0 | 184918 |  |  |
+| `BANK_VEND_ACCOUNT_ID_RU` | STRING | 0 | 184918 |  |  |
+| `CUST_VEND_ACCOUNT_PL` | STRING | 0 | 184918 |  |  |
+| `CUST_EINVOICE_PAYM_SECTION_NUM` | STRING | 1 | 0 | 0 | 0 |
+| `MCRCC_GENERAL_LEDGER_ID` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_INSTRUCTION_4` | STRING | 1 | 0 | 0 | 0 |
+| `REVERSE_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `OFFSET_TXT` | STRING | 0 | 184918 |  |  |
+| `ATTACHMENTS_CN` | STRING | 1 | 0 | 0 | 0 |
+| `SALES_ORDER_ID` | STRING | 0 | 184918 |  |  |
+| `BANK_CENTRAL_BANK_PURPOSE_CODE` | STRING | 0 | 184918 |  |  |
+| `CASH_DISC_BASE_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `VAT_OPERATION_CODE_RU` | STRING | 0 | 184918 |  |  |
+| `LEDGER_JOURNAL_DLV_DATE_ES` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `OFFSET_DEFAULT_DIMENSION` | STRING | 2 | 0 | 0 | 5637166326 |
+| `APPROVED` | STRING | 2 | 0 | No | Yes |
+| `BUDGET_SOURCE_LEDGER_ENTRY_UNPOSTED` | STRING | 1 | 0 | 0 | 0 |
+| `FREQ_VALUE` | STRING | 1 | 0 | 0 | 0 |
+| `LOADING_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `ERROR_CODE_PAYMENT` | STRING | 0 | 184918 |  |  |
+| `INFORM_BY_PHONE_LT` | STRING | 1 | 0 | No | No |
+| `BANK_SPEC_ACCOUNT_ID_RU` | STRING | 0 | 184918 |  |  |
+| `VAT_DUE_DATE_W` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `CUST_BANK_ACCOUNT` | STRING | 1 | 0 | 0 | 0 |
+| `CUST_FACTURE_AUTO_CREATE_RU` | STRING | 1 | 0 | No | No |
+| `CUST_VEND_NAME_PL` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_SCHEDULE` | STRING | 0 | 184918 |  |  |
+| `TRANSACTION_TYPE` | STRING | 6 | 0 | Allocation | Vend |
+| `ASSET_LEASE_STATUS` | STRING | 1 | 0 | No | No |
+| `BANK_TRANS_SUMMARIZATION_ID` | STRING | 0 | 184918 |  |  |
+| `BANK_PAYMENT_REGISTRATION_NUM_LV` | STRING | 0 | 184918 |  |  |
+| `BANK_CHEQUE_NUM` | STRING | 0 | 184918 |  |  |
+| `OFF_SESSION_ID_RU` | STRING | 0 | 184918 |  |  |
+| `SOURCE_FILE_NAME` | STRING | 1 | 0 | ledgerjournaltransbientities__2026111... | ledgerjournaltransbientities__2026111... |
+| `HASH_KEY` | STRING | 171279 | 0 |  |  |
+| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:42:15.132000 | 2026-11-16 11:42:15.132000 |
+| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:42:15.132000 | 2026-11-16 11:42:15.132000 |
+
+## Sample rows
+
+| TAX_1099_STATE | PAYMENT_NOTES | TAX_1099_FIELDS | R_CASH_DOC_REPRES_TYPE | REF_COPY_REVERSE_CN | ITM_COST_TYPE_ID | ADDRESSING_PL | CUST_EINVOICE_PAYM_TRANS_NUM | INTENT_LETTER_ID_IT | REMITTANCE_LOCATION | PACKED_EXTENSIONS | R_CASH_PAY_TRANS_TYPE | SUB_BILL_SCHED_LINE_REC_ID | CASH_DISC_CODE | BANK_CLIENT_DOCUMENT_TYPE_ID_RU | LIST_CODE | DEBIT_CURRENCY_CODE_LT | DOCUMENT_DATE | REASON_REF_REC_ID | ACCOUNT_TYPE | OFFSET_POSTING_PROFILE_RU | BANK_CURRENCY_TRANSFER_LOG_RU | TRANSFER_CURRENCY_RU | VEND_BANK_ACCOUNT | OFFSET_LEDGER_DIMENSION_VALUES_JSON | PAYMENT_REFERENCE | FB_SPED_ECF_DEREX_CLASIFICATION_CODE_BR | REV_REC_LEDGER_POSTING_TYPE | IMPORT_DATE | VAT_PAYM_REF_REC_ID_RU | SUB_BILL_RENEWAL_LINE_REC_ID | BANK_BILL_OF_EXCHANGE_NUM | TAX_PERIOD_PAYMENT_CODE_PL | OPERATION_TYPE_MX | AMOUNT_CUR_DEBIT | SKIP_BLOCKED_FOR_MANUAL_ENTRY_CHECK | INVOICE | TAX_1099_REC_ID | MCR_REF_PAYMENT_ID | DUE | BANK_PROMISSORY_NOTE_NUM | PAYMENT_INSTRUCTION_2 | BANK_COMM_ACCOUNT_ID_RU | CANCEL | INVOICE_SERIES_MX | TRANS_DATE | TAX_WITHHOLD_CALCULATE_TH | ASSET_LEASE_POSTING_TYPES | NEG_INST_ID | BRIDGING_BANK_ACCOUNT | POSTING_PROFILE | INCOME_CLASSIFICATION_ID_BR | ITM_COST_AREA | DELAY_TAX_CALCULATION | QUANTITY | PREPAYMENT | PAYMENT_INSTRUCTION_3 | CORRECTION_TYPE_RU | LAST_TRANSFERRED | CORRECTED_INVOICE_ID_RU | ITM_COST_REF_REC_ID | MAIN_ACCOUNT_TYPE | PAYMENT_SPECIFICATION | BANK_TRANS_TYPE | REMITTANCE_ADDRESS | REV_REC_DEFERRED_TYPE | NO_EDIT | GST_HST_TAX_TYPE_CA | CFDI_UUID_MX | FIN_TAG | REMITTEE_CURRENCY | OFFSET_ACCOUNT_AGREEMENT_ID_RU | TRANSFERRED_BY | MARKED_INVOICE | LEDGER_VOUCHER_TYPE_CN | OFFSET_FIN_TAG | BANK_CURRENCY | OFFSET_ACCOUNT_TYPE | FOREIGN_VOUCHER | EU_SALES_LIST | ANNOUNCEMENT_NUM_RU | REVERSE_ENTRY | REV_REC_DEFERRED_RECOGNIZED_QTY | BANK_CURRENCY_DEAL_COURSE_RU | FURTHER_POSTING_TYPE | APPROVER | DATE_CASH_DISC | MARKUP_CODE_RU | BANK_CURRENCY_AMOUNT | CUST_VEND_NEG_INST_PROTEST_REASON | FILE_CREATED | VEND_INVOICE_DECLARATION_IS | PURCH_LEDGER_POSTING | PURCHASE_ID_RANGE | R_CASH_DOC_REPRES_PERSON_ID | PLAFOND_DATE_IT | TAX_GROUP | USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU | BANK_REMITTANCE_TYPE | BANK_DEPOSIT_VOUCHER | CASH_DISC_BASE_DAYS | PAYMENT_STATUS | TAX_1099_AMOUNT | DEFAULT_DIMENSION | REV_REC_DEFERRED_LINE | SYS_REC_VERSION | CORRECTED_INVOICE_DATE_RU | DIRECT_DEBIT_MANDATE | TRANSFER | RELEASE_DATE | LEDGER_DIMENSION | DOCUMENT_NUM | SUB_BILL_ESCALATION_TABLE_REC_ID | CUST_EINVOICE_PAYM_DELIVERY_NUM | MCR_PAYMENT_ORDER_ID | VEND_TRANS_ID | PAYMENT | INT_BANK_LV | CASH_DISC_PERCENT | REPORTING_CURRENCY_EXCH_RATE_SECONDARY | REPRES_PERSON_CARD_W | FREQ_CODE | AMOUNT_CUR_CREDIT | TAX_WITHHOLD_ALTERNATE_VENDOR_ACCT_TH | BANK_DEPOSIT_NUM | VENDOR_VAT_DATE | BANK_CHEQUE_DEPOSIT_TRANS_REF_REC_ID | CUST_TRANS_ID | EXCHANGE_RATE | INTRA_COM_VAT_DUE_DATE_W | VAT_NUM_JOURNAL | CORRECT_RU | LINE_NUM | PAYMENT_INSTRUCTION_1 | REMAIN_AMOUNT | MCR_PRINT_TXT_ON_CHECK | POOL_REC_ID | REPORTING_CURRENCY_EXCH_RATE | BANK_NEG_INST_RECIPIENT_NAME | TAX_DIRECTION_CONTROL | TAX_CODE | VAT_ON_PAYMENT_RU | TRIANGULATION | FURTHER_POSTING_REC_ID | REV_REC_NEW_VALUES_FROM_REALLOCATION | PAYMENT_ACCOUNT | PAYMENT_MODE | CUST_VEND_BANK_ACCOUNT_ID | PAYMENT_ID | LEDGER_DIMENSION_VALUES_JSON | MARKED_INVOICE_REC_ID | CASH_DISC_AMOUNT | SETTLE_VOUCHER | CURRENCY_CODE | RECEIPT_DATE_W | VEND_PAYMENT_FEE_GROUP_JP | TRANSFERRED | REPRES_PERSON_NAME_W | COMM_PROFILE_TYPE_RU | BANK_AGREEMENT_EXT_RU | VOUCHER | BANK_PRINT_ACCOUNT_NUM_RU | JOURNAL_NUM | VOUCHER_CN | TXT | ENTERPRISE_NUMBER | INFORM_BY_TELEX_LT | TAX_1099_STATE_AMOUNT | BANK_RESP_WORKER_ID_RU | BANK_REMITTANCE_FILE_ID | PAYMENT_SEQUENCE_NUM | CREDIT_CARD_AUTH_TRANS_REF_ID | OFFSET_LEDGER_DIMENSION | BANK_CENTRAL_BANK_TRANS_TYPE_CUR_RU | PRICE | VAT_TAX_AGENT_VEND_ACCOUNT_RU | REV_REC_SALES_ID | BANK_RECONCILE_ACCOUNT_AT_POST | CASH_RECEIPT_NUM_LV | PAYMENT_PURPOSE_LT | INVOICE_RELEASE_DATE | SYS_MODIFIED_DATE_TIME | INVISIBLE | LEDGER_DIMENSION_NAME | TRANSFERRED_ON | PROVISIONAL_ASSESSMENT_IN | EXCHANGE_RATE_SECOND | ELECTRONIC_PAYMENT_NUMBER | TAX_ITEM_GROUP | REV_REC_ID | BANK_CENTRAL_BANK_PURPOSE_TEXT | ACCOUNT_AGREEMENT_ID_RU | BANK_ACCOUNT_ID | TAX_BASE_W | TAX_WITHHOLD_ITEM_GROUP_HEADING_TH | ACKNOWLEDGEMENT_DATE | TRANSFERRED_TO | TAX_WITHHOLD_GROUP | RELEASE_DATE_COMMENT | BANK_VEND_ACCOUNT_ID_RU | CUST_VEND_ACCOUNT_PL | CUST_EINVOICE_PAYM_SECTION_NUM | MCRCC_GENERAL_LEDGER_ID | PAYMENT_INSTRUCTION_4 | REVERSE_DATE | OFFSET_TXT | ATTACHMENTS_CN | SALES_ORDER_ID | BANK_CENTRAL_BANK_PURPOSE_CODE | CASH_DISC_BASE_DATE | VAT_OPERATION_CODE_RU | LEDGER_JOURNAL_DLV_DATE_ES | OFFSET_DEFAULT_DIMENSION | APPROVED | BUDGET_SOURCE_LEDGER_ENTRY_UNPOSTED | FREQ_VALUE | LOADING_DATE | ERROR_CODE_PAYMENT | INFORM_BY_PHONE_LT | BANK_SPEC_ACCOUNT_ID_RU | VAT_DUE_DATE_W | CUST_BANK_ACCOUNT | CUST_FACTURE_AUTO_CREATE_RU | CUST_VEND_NAME_PL | PAYMENT_SCHEDULE | TRANSACTION_TYPE | ASSET_LEASE_STATUS | BANK_TRANS_SUMMARIZATION_ID | BANK_PAYMENT_REGISTRATION_NUM_LV | BANK_CHEQUE_NUM | OFF_SESSION_ID_RU | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| NULL | NULL | 0 | Employee | 0 | NULL | NULL | 0 | NULL | 0 | NULL | None | 0 | NULL | NULL | IncludeNot | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Ledger | NULL | 0 | NULL | 0 | NULL | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | NULL | NULL | Blank | 30398.13 | No | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | No | NULL | 2025-03-31 12:00:00.0000000 +00:00 | No | LeaseAsset | NULL | NULL | NULL | NULL | Shipment | Yes | 0 | No | 0 | Unknown | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | NULL | 0 | Revenue | No | None | NULL | 5637152077 | NULL | NULL | NULL | NULL | 0 | 0 | NULL | Ledger | NULL | NULL | NULL | No | 0 | 0 | No | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | None | NULL | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | None | No | 0 | None | 0 | 0 | 0 | 614041380 | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | 1900-01-01 00:00:00.0000000 +00:00 | 5637227698 | NULL | 0 | 0 | NULL | 0 | NULL | NULL | 0 | 0 | NULL | Day | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 100 | No | NULL | No | 14200 | 0 | 0 | No | 0 | 100 | NULL | No | NULL | No | No | 0 | No | NULL | NULL | NULL | NULL | [{"ASLOB":"021","BUSINESSINDICATOR":"... | 0 | 0 | None | USD | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | General | 0 | GJV_S-000000001 | NULL | 236-000001 | NULL | 86324\|Eua 0341 oqpcy ugez svf txz | NULL | No | 0 | 0 | NULL | 0 | 0 | 0 | NULL | 0 | NULL | NULL | No | NULL | NULL | 1900-01-01 00:00:00.0000000 +00:00 | 2026-11-12 13:45:32.0000000 +00:00 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | NULL | NULL | 0 | NULL | NULL | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | 0 | NULL | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Yes | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | NULL | NULL | GeneralJournal | No | NULL | NULL | NULL | NULL | ledgerjournaltransbientities__2026111... | <masked> | 2026-11-16 11:42:15.132000 | <masked> | 2026-11-16 11:42:15.132000 |
+| NULL | NULL | 0 | Employee | 0 | NULL | NULL | 0 | NULL | 0 | NULL | None | 0 | NULL | NULL | IncludeNot | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Ledger | NULL | 0 | NULL | 0 | NULL | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | NULL | NULL | Blank | 852.5 | No | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | No | NULL | 2025-03-31 12:00:00.0000000 +00:00 | No | LeaseAsset | NULL | NULL | NULL | NULL | Shipment | Yes | 0 | No | 0 | Unknown | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | NULL | 0 | Revenue | No | None | NULL | 5637152077 | NULL | NULL | NULL | NULL | 0 | 0 | NULL | Ledger | NULL | NULL | NULL | No | 0 | 0 | No | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | None | NULL | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | None | No | 0 | None | 0 | 0 | 0 | 614041380 | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | 1900-01-01 00:00:00.0000000 +00:00 | 5637227699 | NULL | 0 | 0 | NULL | 0 | NULL | NULL | 0 | 0 | NULL | Day | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 100 | No | NULL | No | 14201 | 0 | 0 | No | 0 | 100 | NULL | No | NULL | No | No | 0 | No | NULL | NULL | NULL | NULL | [{"ASLOB":"040","BUSINESSINDICATOR":"... | 0 | 0 | None | USD | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | General | 0 | GJV_S-000000001 | NULL | 236-000001 | NULL | 51659\|Mgh 01 EN tjcjax | NULL | No | 0 | 0 | NULL | 0 | 0 | 0 | NULL | 0 | NULL | NULL | No | NULL | NULL | 1900-01-01 00:00:00.0000000 +00:00 | 2026-11-12 13:45:32.0000000 +00:00 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | NULL | NULL | 0 | NULL | NULL | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | 0 | NULL | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Yes | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | NULL | NULL | GeneralJournal | No | NULL | NULL | NULL | NULL | ledgerjournaltransbientities__2026111... | <masked> | 2026-11-16 11:42:15.132000 | <masked> | 2026-11-16 11:42:15.132000 |
+| NULL | NULL | 0 | Employee | 0 | NULL | NULL | 0 | NULL | 0 | NULL | None | 0 | NULL | NULL | IncludeNot | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Ledger | NULL | 0 | NULL | 0 | NULL | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | NULL | NULL | Blank | 52.5 | No | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | No | NULL | 2025-03-31 12:00:00.0000000 +00:00 | No | LeaseAsset | NULL | NULL | NULL | NULL | Shipment | Yes | 0 | No | 0 | Unknown | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | NULL | 0 | Revenue | No | None | NULL | 5637152077 | NULL | NULL | NULL | NULL | 0 | 0 | NULL | Ledger | NULL | NULL | NULL | No | 0 | 0 | No | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | None | NULL | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | None | No | 0 | None | 0 | 0 | 0 | 614041380 | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | 1900-01-01 00:00:00.0000000 +00:00 | 5637227699 | NULL | 0 | 0 | NULL | 0 | NULL | NULL | 0 | 0 | NULL | Day | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 100 | No | NULL | No | 14202 | 0 | 0 | No | 0 | 100 | NULL | No | NULL | No | No | 0 | No | NULL | NULL | NULL | NULL | [{"ASLOB":"040","BUSINESSINDICATOR":"... | 0 | 0 | None | USD | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | General | 0 | GJV_S-000000001 | NULL | 236-000001 | NULL | 00979\|Pis 62 Tlbpf NU Qafgdc | NULL | No | 0 | 0 | NULL | 0 | 0 | 0 | NULL | 0 | NULL | NULL | No | NULL | NULL | 1900-01-01 00:00:00.0000000 +00:00 | 2026-11-12 13:45:32.0000000 +00:00 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | NULL | NULL | 0 | NULL | NULL | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | 0 | NULL | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Yes | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | NULL | NULL | GeneralJournal | No | NULL | NULL | NULL | NULL | ledgerjournaltransbientities__2026111... | <masked> | 2026-11-16 11:42:15.132000 | <masked> | 2026-11-16 11:42:15.132000 |
+| NULL | NULL | 0 | Employee | 0 | NULL | NULL | 0 | NULL | 0 | NULL | None | 0 | NULL | NULL | IncludeNot | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Ledger | NULL | 0 | NULL | 0 | NULL | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | NULL | NULL | Blank | 189981.4 | No | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | No | NULL | 2025-03-31 12:00:00.0000000 +00:00 | No | LeaseAsset | NULL | NULL | NULL | NULL | Shipment | Yes | 0 | No | 0 | Unknown | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | NULL | 0 | Revenue | No | None | NULL | 5637152077 | NULL | NULL | NULL | NULL | 0 | 0 | NULL | Ledger | NULL | NULL | NULL | No | 0 | 0 | No | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | None | NULL | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | None | No | 0 | None | 0 | 0 | 0 | 614041380 | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | 1900-01-01 00:00:00.0000000 +00:00 | 5637227699 | NULL | 0 | 0 | NULL | 0 | NULL | NULL | 0 | 0 | NULL | Day | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 100 | No | NULL | No | 14203 | 0 | 0 | No | 0 | 100 | NULL | No | NULL | No | No | 0 | No | NULL | NULL | NULL | NULL | [{"ASLOB":"040","BUSINESSINDICATOR":"... | 0 | 0 | None | USD | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | General | 0 | GJV_S-000000001 | NULL | 236-000001 | NULL | 57338\|Eua 0341 oqpcy ugez svf txz | NULL | No | 0 | 0 | NULL | 0 | 0 | 0 | NULL | 0 | NULL | NULL | No | NULL | NULL | 1900-01-01 00:00:00.0000000 +00:00 | 2026-11-12 13:45:32.0000000 +00:00 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | NULL | NULL | 0 | NULL | NULL | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | 0 | NULL | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Yes | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | NULL | NULL | GeneralJournal | No | NULL | NULL | NULL | NULL | ledgerjournaltransbientities__2026111... | <masked> | 2026-11-16 11:42:15.132000 | <masked> | 2026-11-16 11:42:15.132000 |
+| NULL | NULL | 0 | Employee | 0 | NULL | NULL | 0 | NULL | 0 | NULL | None | 0 | NULL | NULL | IncludeNot | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Ledger | NULL | 0 | NULL | 0 | NULL | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | NULL | NULL | Blank | 47141.93 | No | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | No | NULL | 2025-03-31 12:00:00.0000000 +00:00 | No | LeaseAsset | NULL | NULL | NULL | NULL | Shipment | Yes | 0 | No | 0 | Unknown | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | NULL | 0 | Revenue | No | None | NULL | 5637152077 | NULL | NULL | NULL | NULL | 0 | 0 | NULL | Ledger | NULL | NULL | NULL | No | 0 | 0 | No | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | None | 1900-01-01 12:00:00.0000000 +00:00 | 0 | None | NULL | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | None | No | 0 | None | 0 | 0 | 0 | 614041380 | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | 1900-01-01 00:00:00.0000000 +00:00 | 5637227702 | NULL | 0 | 0 | NULL | 0 | NULL | NULL | 0 | 0 | NULL | Day | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 100 | No | NULL | No | 14204 | 0 | 0 | No | 0 | 100 | NULL | No | NULL | No | No | 0 | No | NULL | NULL | NULL | NULL | [{"ASLOB":"170","BUSINESSINDICATOR":"... | 0 | 0 | None | USD | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | General | 0 | GJV_S-000000001 | NULL | 236-000001 | NULL | 56538\|Eua 0341 oqpcy ugez svf txz | NULL | No | 0 | 0 | NULL | 0 | 0 | 0 | NULL | 0 | NULL | NULL | No | NULL | NULL | 1900-01-01 00:00:00.0000000 +00:00 | 2026-11-12 13:45:32.0000000 +00:00 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | NULL | NULL | 0 | NULL | NULL | NULL | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | 0 | NULL | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 0 | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | Yes | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | No | NULL | NULL | GeneralJournal | No | NULL | NULL | NULL | NULL | ledgerjournaltransbientities__2026111... | <masked> | 2026-11-16 11:42:15.132000 | <masked> | 2026-11-16 11:42:15.132000 |

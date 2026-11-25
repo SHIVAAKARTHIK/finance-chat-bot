@@ -1,0 +1,290 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Agentic workflows</title><style>
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#57534e;--surface:#ffffff;--line:#c4bfb9;--strong:#57534e;
+--accent:#1d4ed8;--accent-tint:#eef3ff;--guard:#b45309;--guard-tint:#fff3e0;--chip:#f1efec}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#151412;--fg:#ecebe9;--muted:#a8a29e;
+--surface:#1f1d1b;--line:#4a4541;--strong:#a8a29e;--accent:#8db3ff;--accent-tint:#1b2538;--guard:#f0b35a;
+--guard-tint:#33261a;--chip:#262320}}
+:root[data-theme="dark"]{--bg:#151412;--fg:#ecebe9;--muted:#a8a29e;--surface:#1f1d1b;--line:#4a4541;--strong:#a8a29e;
+--accent:#8db3ff;--accent-tint:#1b2538;--guard:#f0b35a;--guard-tint:#33261a;--chip:#262320}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{border-bottom:1px solid var(--line);padding:14px 16px}
+nav{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+nav strong{margin-right:8px}
+nav a{color:var(--muted);text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--fg)}
+nav a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+main{max-width:1280px;margin:0 auto;padding:8px 16px 56px}
+h1{font-size:26px;line-height:1.25;margin:28px 0 6px}
+h2{font-size:18px;margin:36px 0 4px}
+p.lead{color:var(--muted);max-width:78ch;margin:0 0 14px}
+.fig{margin:14px 0 8px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:6px}
+svg{display:block;width:100%;height:auto}
+figcaption{color:var(--muted);font-size:13.5px;max-width:92ch;margin:8px 2px 0}
+svg text{font-family:inherit;fill:currentColor}
+.t{font-size:12.5px;font-weight:600}.s{font-size:11px}.s{fill:var(--muted)}
+.l{font-size:11px}.ft{font-size:12px;font-weight:600;fill:var(--muted)}
+.bx{fill:var(--surface);stroke:var(--strong);stroke-width:1.2}
+.bx.llm{fill:var(--accent-tint);stroke:var(--accent)}
+.bx.data{fill:var(--guard-tint);stroke:var(--guard)}
+.bx.ext,.bx.out{stroke-dasharray:5 4}
+.bx.dim{opacity:.5}
+.fr{fill:none;stroke:var(--line);stroke-width:1.2;stroke-dasharray:3 4}
+.ln{fill:none;stroke:var(--strong);stroke-width:1.4}
+.ln.llm{stroke:var(--accent);stroke-width:1.8}
+.ln.data{stroke:var(--guard);stroke-width:2}
+.ln.dash{stroke-dasharray:6 4}
+.mk{fill:var(--strong)}.mk.llm{fill:var(--accent)}.mk.data{fill:var(--guard)}
+.life{stroke:var(--line);stroke-width:1;stroke-dasharray:2 5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;margin:10px 0 4px;font-size:13.5px;color:var(--muted)}
+.sw{display:inline-block;width:26px;height:14px;border-radius:4px;border:1.5px solid var(--strong);background:var(--surface);
+vertical-align:-3px;margin-right:6px}
+.sw.llm{border-color:var(--accent);background:var(--accent-tint)}
+.sw.data{border-color:var(--guard);background:var(--guard-tint)}
+.sw.ext{border-style:dashed}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:10px 0 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+code{background:var(--chip);border-radius:4px;padding:1px 5px;font-size:12.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:14px}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
+.card a{color:var(--accent);font-weight:600;text-decoration:none}
+.card p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--guard);padding:4px 12px;color:var(--muted);max-width:92ch;margin:12px 0}
+@media (max-width:600px){h1{font-size:22px}}
+</style></head><body><header><nav><strong>Finance Chat v3</strong><a href="index.html">Overview</a><a href="01_high_level_architecture.html">High-level</a><a href="02_low_level_architecture.html">Low-level</a><a href="03_code_flow.html">Code flow</a><a href="04_agentic_workflows.html" aria-current="page">Agentic workflows</a><a href="05_all_agent_vs_hybrid.html">All-agent vs hybrid</a></nav></header><main><h1>Agentic workflows</h1><p class="lead">How a question is classified and how each kind is answered: simple, medium, hard and complex, with the model calls, tools and checks on each path.</p><p class="legend"><span><span class="sw"></span>code step</span><span><span class="sw llm"></span>LLM call (Bedrock)</span><span><span class="sw data"></span>data access, guarded in code</span><span><span class="sw ext"></span>dashed = outside systems or optional paths</span></p><h2>The four tiers at a glance</h2><p class="note">The classifier only emits four routes: <code>general</code>, <code>simple_data</code>, <code>complex</code>, <code>workflow</code>. "Medium" is not a route: it is a simple question that the fast path could not finish, so it escalates. The tier names here map those routes (plus the fallback) onto simple, medium, hard and complex.</p><table><thead><tr><th>Tier</th><th>Classifier route</th><th>Path</th><th>Model calls</th><th>SQL calls</th><th>Example</th><th>Answer is partial when</th></tr></thead><tbody><tr><td>Simple</td><td>simple_data</td><td>fast path</td><td>3 (4 with a repair)</td><td>1</td><td>How many account reconciliations are there?</td><td>n/a: it escalates instead</td></tr><tr><td>Medium</td><td>simple_data, then the fast path failed</td><td>fast path → ReAct (mode fast-&gt;react)</td><td>route, up to 2 for the attempt, then the loop and the writer</td><td>up to 10</td><td>The same kind of question, but the first query errored, came back empty, or needed a join the quick path did not find</td><td>a limit is hit</td></tr><tr><td>Hard</td><td>complex</td><td>ReAct from the start</td><td>several (supervisor, agents, writer)</td><td>up to 10</td><td>Compare two periods and explain the biggest change</td><td>a limit is hit</td></tr><tr><td>Complex</td><td>workflow</td><td>ReAct with a recorded plan</td><td>many (one agent per step)</td><td>up to 10</td><td>1) get this period's status 2) compare with last period 3) export to Excel 4) summarise risks</td><td>any step is not_done, or a limit</td></tr><tr><td>(General)</td><td>general</td><td>knowledge agent</td><td>2</td><td>0</td><td>What is an unreconciled difference?</td><td>never</td></tr></tbody></table><h2>Simple</h2><figure class="fig"><div class="scroll"><svg id="simple" viewBox="0 0 1200 330" role="img" aria-label="Simple questions take the fast path: three model calls and one query, with one repair if the query errors or is empty." style="min-width:900px"><defs><marker id="simple-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="simple-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="simple-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx llm" x="32" y="56" width="140" height="84" rx="6"/>
+<text class="t" x="102" y="87.0" text-anchor="middle">Supervisor</text>
+<text class="s" x="102" y="102.0" text-anchor="middle">Claude · call 1</text>
+<text class="s" x="102" y="117.0" text-anchor="middle">route = simple_data</text>
+<rect class="bx n" x="198" y="56" width="140" height="84" rx="6"/>
+<text class="t" x="268" y="87.0" text-anchor="middle">Fast path prep</text>
+<text class="s" x="268" y="102.0" text-anchor="middle">search top 3 tables</text>
+<text class="s" x="268" y="117.0" text-anchor="middle">entity + period hints</text>
+<rect class="bx llm" x="364" y="56" width="140" height="84" rx="6"/>
+<text class="t" x="434" y="87.0" text-anchor="middle">SQL writer</text>
+<text class="s" x="434" y="102.0" text-anchor="middle">Claude · call 2</text>
+<text class="s" x="434" y="117.0" text-anchor="middle">+ verified examples</text>
+<rect class="bx data" x="530" y="56" width="140" height="84" rx="6"/>
+<text class="t" x="600" y="87.0" text-anchor="middle">run_sql</text>
+<text class="s" x="600" y="102.0" text-anchor="middle">sql_guard, then</text>
+<text class="s" x="600" y="117.0" text-anchor="middle">read-only MCP</text>
+<rect class="bx llm" x="696" y="56" width="140" height="84" rx="6"/>
+<text class="t" x="766" y="87.0" text-anchor="middle">Answer writer</text>
+<text class="s" x="766" y="102.0" text-anchor="middle">gpt-oss · call 3</text>
+<text class="s" x="766" y="117.0" text-anchor="middle">facts in, wording out</text>
+<rect class="bx n" x="862" y="56" width="140" height="84" rx="6"/>
+<text class="t" x="932" y="87.0" text-anchor="middle">Number check</text>
+<text class="s" x="932" y="102.0" text-anchor="middle">every number must</text>
+<text class="s" x="932" y="117.0" text-anchor="middle">match a tool result</text>
+<rect class="bx out" x="1028" y="56" width="140" height="84" rx="6"/>
+<text class="t" x="1098" y="87.0" text-anchor="middle">Answer</text>
+<text class="s" x="1098" y="102.0" text-anchor="middle">+ table if &gt;3 rows</text>
+<text class="s" x="1098" y="117.0" text-anchor="middle">+ how calculated</text>
+<polyline class="ln n" points="172,98 198,98" marker-end="url(#simple-ar-n)"/>
+<text class="l" x="185.0" y="48" text-anchor="middle">simple_data</text>
+<polyline class="ln n" points="338,98 364,98" marker-end="url(#simple-ar-n)"/>
+<text class="l" x="351.0" y="48" text-anchor="middle">tables, hints</text>
+<polyline class="ln n" points="504,98 530,98" marker-end="url(#simple-ar-n)"/>
+<text class="l" x="517.0" y="48" text-anchor="middle">one SELECT</text>
+<polyline class="ln n" points="670,98 696,98" marker-end="url(#simple-ar-n)"/>
+<text class="l" x="683.0" y="48" text-anchor="middle">result r1</text>
+<polyline class="ln n" points="836,98 862,98" marker-end="url(#simple-ar-n)"/>
+<text class="l" x="849.0" y="48" text-anchor="middle">draft answer</text>
+<polyline class="ln n" points="1002,98 1028,98" marker-end="url(#simple-ar-n)"/>
+<text class="l" x="1015.0" y="48" text-anchor="middle">pass</text>
+<polyline class="ln data dash" points="565,140 565,210 434.0,210 434.0,140" marker-end="url(#simple-ar-data)"/>
+<text class="l" x="440.0" y="228" text-anchor="start">error or empty: 1 repair (+1 Claude call)</text>
+<polyline class="ln data dash" points="635,140 635,256" marker-end="url(#simple-ar-data)"/>
+<rect class="bx ext" x="520" y="256" width="230" height="56" rx="6"/>
+<text class="t" x="635" y="273.0" text-anchor="middle">Medium path</text>
+<text class="s" x="635" y="288.0" text-anchor="middle">still failing, or cannot answer:</text>
+<text class="s" x="635" y="303.0" text-anchor="middle">attempt carried over</text>
+<text class="ft" x="32" y="304" text-anchor="start">3 model calls, 1 query (4 calls with a repair)</text>
+</svg></div><figcaption><b>Simple</b> (route <code>simple_data</code>, fast path): the model is called three times, the SQL once. The table search and the entity and period lookups are code, not model calls. If the query errors or comes back empty, one repair is tried (a fourth call). If that also fails, or the writer says it cannot answer, the request moves to the medium path with everything the attempt learned.</figcaption></figure><h2>Medium</h2><figure class="fig"><div class="scroll"><svg id="medium" viewBox="0 0 1200 450" role="img" aria-label="A medium question is a simple one whose fast path failed: the ReAct loop starts with the failed attempt as context (tables, SQL tried, errors, why it stopped) instead of starting from nothing." style="min-width:900px"><defs><marker id="medium-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="medium-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="medium-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx llm" x="40" y="30" width="190" height="64" rx="6"/>
+<text class="t" x="135" y="51.0" text-anchor="middle">Supervisor</text>
+<text class="s" x="135" y="66.0" text-anchor="middle">Claude · call 1</text>
+<text class="s" x="135" y="81.0" text-anchor="middle">route = simple_data</text>
+<rect class="bx dim" x="280" y="30" width="210" height="64" rx="6"/>
+<text class="t" x="385" y="51.0" text-anchor="middle">Fast path attempt</text>
+<text class="s" x="385" y="66.0" text-anchor="middle">search, SQL, run, 1 repair</text>
+<text class="s" x="385" y="81.0" text-anchor="middle">(1–2 Claude calls)</text>
+<rect class="bx data dim" x="540" y="30" width="210" height="64" rx="6"/>
+<text class="t" x="645" y="51.0" text-anchor="middle">Attempt fails</text>
+<text class="s" x="645" y="66.0" text-anchor="middle">error, empty result, or</text>
+<text class="s" x="645" y="81.0" text-anchor="middle">cannot_answer</text>
+<polyline class="ln n" points="230,62 280,62" marker-end="url(#medium-ar-n)"/>
+<polyline class="ln n" points="490,62 540,62" marker-end="url(#medium-ar-n)"/>
+<polyline class="ln data" points="645,94 645,168" marker-end="url(#medium-ar-data)"/>
+<text class="l" x="655" y="136" text-anchor="start">attempt.as_context(): tables, SQL tried, errors, why it stopped</text>
+<rect class="bx llm" x="50" y="210" width="160" height="80" rx="6"/>
+<text class="t" x="130" y="239.0" text-anchor="middle">Supervisor loop</text>
+<text class="s" x="130" y="254.0" text-anchor="middle">Claude, starts with</text>
+<text class="s" x="130" y="269.0" text-anchor="middle">the attempt as context</text>
+<rect class="bx llm" x="238" y="210" width="160" height="80" rx="6"/>
+<text class="t" x="318" y="239.0" text-anchor="middle">catalog_agent</text>
+<text class="s" x="318" y="254.0" text-anchor="middle">Claude: tables, columns,</text>
+<text class="s" x="318" y="269.0" text-anchor="middle">joins, caveats</text>
+<rect class="bx llm" x="426" y="210" width="160" height="80" rx="6"/>
+<text class="t" x="506" y="239.0" text-anchor="middle">sql_agent</text>
+<text class="s" x="506" y="254.0" text-anchor="middle">Claude: describe,</text>
+<text class="s" x="506" y="269.0" text-anchor="middle">run_sql, repair, math</text>
+<rect class="bx n" x="614" y="210" width="160" height="80" rx="6"/>
+<text class="t" x="694" y="239.0" text-anchor="middle">submit_result</text>
+<text class="s" x="694" y="254.0" text-anchor="middle">draft: result_ids,</text>
+<text class="s" x="694" y="269.0" text-anchor="middle">explanation, caveats</text>
+<rect class="bx llm" x="802" y="210" width="160" height="80" rx="6"/>
+<text class="t" x="882" y="239.0" text-anchor="middle">Answer writer</text>
+<text class="s" x="882" y="254.0" text-anchor="middle">gpt-oss + number check</text>
+<text class="s" x="882" y="269.0" text-anchor="middle">(one rewrite at most)</text>
+<rect class="bx out" x="990" y="210" width="160" height="80" rx="6"/>
+<text class="t" x="1070" y="239.0" text-anchor="middle">Answer</text>
+<text class="s" x="1070" y="254.0" text-anchor="middle">+ table if &gt;3 rows</text>
+<text class="s" x="1070" y="269.0" text-anchor="middle">+ how calculated</text>
+<polyline class="ln n" points="210,250 238,250" marker-end="url(#medium-ar-n)"/>
+<text class="l" x="224.0" y="202" text-anchor="middle">plan</text>
+<polyline class="ln n" points="398,250 426,250" marker-end="url(#medium-ar-n)"/>
+<text class="l" x="412.0" y="202" text-anchor="middle">tables, joins</text>
+<polyline class="ln n" points="586,250 614,250" marker-end="url(#medium-ar-n)"/>
+<text class="l" x="600.0" y="202" text-anchor="middle">rows, r1</text>
+<polyline class="ln n" points="774,250 802,250" marker-end="url(#medium-ar-n)"/>
+<text class="l" x="788.0" y="202" text-anchor="middle">draft</text>
+<polyline class="ln n" points="962,250 990,250" marker-end="url(#medium-ar-n)"/>
+<text class="l" x="976.0" y="202" text-anchor="middle">pass</text>
+<rect class="bx data" x="426" y="350" width="160" height="52" rx="6"/>
+<text class="t" x="506" y="372.5" text-anchor="middle">run_sql</text>
+<text class="s" x="506" y="387.5" text-anchor="middle">guarded, as always</text>
+<polyline class="ln data" points="506.0,290 506.0,350" marker-end="url(#medium-ar-data)"/>
+<text class="ft" x="50" y="436" text-anchor="start">limits: 15 steps · 300 s · 10 SQL calls for the whole run; at a limit the answer is partial</text>
+</svg></div><figcaption><b>Medium</b> (mode <code>fast->react</code>): the same start as simple, then the one new edge: the failed attempt is handed to the supervisor loop, so the catalog and SQL agents do not repeat what already failed. The supervisor delegates to specialist agents (each runs its own small loop) and finishes with <code>submit_result</code>; the answer is then written and number-checked exactly as before.</figcaption></figure><h2>Hard</h2><figure class="fig"><div class="scroll"><svg id="hard" viewBox="0 0 1200 440" role="img" aria-label="A hard question runs the supervisor ReAct loop from the start; the supervisor chooses among specialist agents as tools, and the analyst agent asks the SQL agent itself and does exact arithmetic with calculate." style="min-width:900px"><defs><marker id="hard-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="hard-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="hard-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx llm" x="30" y="90" width="200" height="84" rx="6"/>
+<text class="t" x="130" y="121.0" text-anchor="middle">Supervisor</text>
+<text class="s" x="130" y="136.0" text-anchor="middle">Claude · call 1</text>
+<text class="s" x="130" y="151.0" text-anchor="middle">route = complex</text>
+<rect class="fr" x="270" y="30" width="900" height="270" rx="10"/>
+<text class="ft" x="282" y="50">Supervisor ReAct loop: up to 15 steps, agents are its tools</text>
+<polyline class="ln llm" points="230,132 270,132" marker-end="url(#hard-ar-llm)"/>
+<text class="l" x="250" y="124" text-anchor="middle">step 1</text>
+<rect class="bx llm" x="285" y="70" width="190" height="80" rx="6"/>
+<text class="t" x="380" y="99.0" text-anchor="middle">catalog_agent</text>
+<text class="s" x="380" y="114.0" text-anchor="middle">tables, columns, joins</text>
+<text class="s" x="380" y="129.0" text-anchor="middle">for each part</text>
+<rect class="bx llm" x="510" y="70" width="190" height="80" rx="6"/>
+<text class="t" x="605" y="99.0" text-anchor="middle">sql_agent (×N)</text>
+<text class="s" x="605" y="114.0" text-anchor="middle">one query per question</text>
+<text class="s" x="605" y="129.0" text-anchor="middle">part, with repair</text>
+<rect class="bx llm" x="735" y="70" width="190" height="80" rx="6"/>
+<text class="t" x="830" y="99.0" text-anchor="middle">analyst_agent</text>
+<text class="s" x="830" y="114.0" text-anchor="middle">compare, trend, variance,</text>
+<text class="s" x="830" y="129.0" text-anchor="middle">top-N with context</text>
+<rect class="bx llm" x="960" y="70" width="190" height="80" rx="6"/>
+<text class="t" x="1055" y="99.0" text-anchor="middle">knowledge_agent</text>
+<text class="s" x="1055" y="114.0" text-anchor="middle">gpt-oss: the general</text>
+<text class="s" x="1055" y="129.0" text-anchor="middle">part of a mixed question</text>
+<polyline class="ln llm" points="735,110 700,110" marker-end="url(#hard-ar-llm)"/>
+<text class="l" x="718" y="102" text-anchor="middle">asks</text>
+<rect class="bx data" x="510" y="200" width="190" height="70" rx="6"/>
+<text class="t" x="605" y="231.5" text-anchor="middle">run_sql</text>
+<text class="s" x="605" y="246.5" text-anchor="middle">sql_guard, read-only MCP</text>
+<polyline class="ln data" points="605,150 605,200" marker-end="url(#hard-ar-data)"/>
+<rect class="bx n" x="735" y="200" width="190" height="70" rx="6"/>
+<text class="t" x="830" y="231.5" text-anchor="middle">calculate</text>
+<text class="s" x="830" y="246.5" text-anchor="middle">exact arithmetic</text>
+<polyline class="ln n" points="830,150 830,200" marker-end="url(#hard-ar-n)"/>
+<rect class="bx n" x="270" y="340" width="250" height="70" rx="6"/>
+<text class="t" x="395" y="364.0" text-anchor="middle">submit_result</text>
+<text class="s" x="395" y="379.0" text-anchor="middle">status, result_ids, explanation,</text>
+<text class="s" x="395" y="394.0" text-anchor="middle">caveats</text>
+<polyline class="ln n" points="720,300 720,322 395,322 395,340" marker-end="url(#hard-ar-n)"/>
+<text class="l" x="560" y="316" text-anchor="middle">finish tool</text>
+<rect class="bx llm" x="570" y="340" width="250" height="70" rx="6"/>
+<text class="t" x="695" y="371.5" text-anchor="middle">Answer writer</text>
+<text class="s" x="695" y="386.5" text-anchor="middle">gpt-oss + number check</text>
+<rect class="bx out" x="870" y="340" width="300" height="70" rx="6"/>
+<text class="t" x="1020" y="364.0" text-anchor="middle">Answer</text>
+<text class="s" x="1020" y="379.0" text-anchor="middle">table built in code from the result ids</text>
+<text class="s" x="1020" y="394.0" text-anchor="middle">(&gt;3 rows), how calculated</text>
+<polyline class="ln n" points="520,375 570,375" marker-end="url(#hard-ar-n)"/>
+<polyline class="ln n" points="820,375 870,375" marker-end="url(#hard-ar-n)"/>
+<text class="ft" x="30" y="430" text-anchor="start">limits: 15 steps · 300 s · 10 SQL calls for the whole run; at a limit the answer is partial</text>
+</svg></div><figcaption><b>Hard</b> (route <code>complex</code>): comparisons across queries or periods, several questions at once, data plus general knowledge, or a file request. No fast path: the classification call is step 1 of the loop, so it is not paid twice. The supervisor decides which agents to call and in what order; the analyst agent splits a comparison into queries (through the SQL agent) and computes differences with <code>calculate</code>, never in the model's head.</figcaption></figure><h2>Complex</h2><figure class="fig"><div class="scroll"><svg id="complex" viewBox="0 0 1200 560" role="img" aria-label="A complex question is a list of steps: the supervisor records the plan, each step goes to one agent and ends done, done with a caveat, or not done; file steps save a file only its creator can download; the answer lists every step." style="min-width:900px"><defs><marker id="complex-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="complex-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="complex-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx llm" x="30" y="60" width="190" height="84" rx="6"/>
+<text class="t" x="125" y="91.0" text-anchor="middle">Supervisor</text>
+<text class="s" x="125" y="106.0" text-anchor="middle">Claude · call 1</text>
+<text class="s" x="125" y="121.0" text-anchor="middle">route = workflow</text>
+<rect class="bx n" x="260" y="60" width="190" height="84" rx="6"/>
+<text class="t" x="355" y="91.0" text-anchor="middle">record_plan</text>
+<text class="s" x="355" y="106.0" text-anchor="middle">the user's steps,</text>
+<text class="s" x="355" y="121.0" text-anchor="middle">kept for the step list</text>
+<polyline class="ln n" points="220,102 260,102" marker-end="url(#complex-ar-n)"/>
+<polyline class="ln n" points="450,102 490,102" marker-end="url(#complex-ar-n)"/>
+<rect class="fr" x="490" y="20" width="690" height="190" rx="10"/>
+<text class="ft" x="502" y="40">Each step goes to one agent</text>
+<rect class="bx llm" x="510" y="60" width="200" height="84" rx="6"/>
+<text class="t" x="610" y="91.0" text-anchor="middle">Data steps</text>
+<text class="s" x="610" y="106.0" text-anchor="middle">catalog → sql_agent;</text>
+<text class="s" x="610" y="121.0" text-anchor="middle">analyst for comparisons</text>
+<rect class="bx llm" x="730" y="60" width="200" height="84" rx="6"/>
+<text class="t" x="830" y="91.0" text-anchor="middle">Explain steps</text>
+<text class="s" x="830" y="106.0" text-anchor="middle">knowledge_agent</text>
+<text class="s" x="830" y="121.0" text-anchor="middle">(general knowledge)</text>
+<rect class="bx llm" x="950" y="60" width="210" height="84" rx="6"/>
+<text class="t" x="1055" y="91.0" text-anchor="middle">File steps</text>
+<text class="s" x="1055" y="106.0" text-anchor="middle">action_agent:</text>
+<text class="s" x="1055" y="121.0" text-anchor="middle">Excel or saved report</text>
+<text class="ft" x="840" y="190" text-anchor="middle">each step ends as done · done_with_caveat · not_done</text>
+<rect class="bx n" x="30" y="270" width="190" height="70" rx="6"/>
+<text class="t" x="125" y="294.0" text-anchor="middle">submit_result</text>
+<text class="s" x="125" y="309.0" text-anchor="middle">steps with status,</text>
+<text class="s" x="125" y="324.0" text-anchor="middle">result_ids, caveats</text>
+<polyline class="ln n" points="600,210 600,240 125,240 125,270" marker-end="url(#complex-ar-n)"/>
+<text class="l" x="360" y="234" text-anchor="middle">finish tool</text>
+<rect class="bx llm" x="250" y="270" width="190" height="70" rx="6"/>
+<text class="t" x="345" y="301.5" text-anchor="middle">Answer writer</text>
+<text class="s" x="345" y="316.5" text-anchor="middle">gpt-oss + number check</text>
+<rect class="bx n" x="470" y="270" width="200" height="70" rx="6"/>
+<text class="t" x="570" y="294.0" text-anchor="middle">format_steps (code)</text>
+<text class="s" x="570" y="309.0" text-anchor="middle">appends the Steps list</text>
+<text class="s" x="570" y="324.0" text-anchor="middle">for every planned step</text>
+<rect class="bx out" x="700" y="270" width="190" height="70" rx="6"/>
+<text class="t" x="795" y="294.0" text-anchor="middle">Answer</text>
+<text class="s" x="795" y="309.0" text-anchor="middle">any not_done ⇒ status</text>
+<text class="s" x="795" y="324.0" text-anchor="middle">partial</text>
+<polyline class="ln n" points="220,305 250,305" marker-end="url(#complex-ar-n)"/>
+<polyline class="ln n" points="440,305 470,305" marker-end="url(#complex-ar-n)"/>
+<polyline class="ln n" points="670,305 700,305" marker-end="url(#complex-ar-n)"/>
+<polyline class="ln data" points="1055,144 1055,250" marker-end="url(#complex-ar-data)"/>
+<rect class="bx data" x="930" y="250" width="240" height="52" rx="6"/>
+<text class="t" x="1050" y="272.5" text-anchor="middle">export_excel · save_report</text>
+<text class="s" x="1050" y="287.5" text-anchor="middle">from result ids r1, r2…</text>
+<rect class="bx data" x="930" y="324" width="240" height="52" rx="6"/>
+<text class="t" x="1050" y="346.5" text-anchor="middle">file under outputs/&lt;conv&gt;/</text>
+<text class="s" x="1050" y="361.5" text-anchor="middle">idempotent name</text>
+<polyline class="ln data" points="1050,302 1050,324" marker-end="url(#complex-ar-data)"/>
+<rect class="bx data" x="930" y="398" width="240" height="52" rx="6"/>
+<text class="t" x="1050" y="420.5" text-anchor="middle">owner record (.meta.json)</text>
+<text class="s" x="1050" y="435.5" text-anchor="middle">who created the file</text>
+<polyline class="ln data" points="1050,376 1050,398" marker-end="url(#complex-ar-data)"/>
+<rect class="bx data" x="930" y="472" width="240" height="52" rx="6"/>
+<text class="t" x="1050" y="494.5" text-anchor="middle">GET /v3/files/&lt;conv&gt;/&lt;name&gt;</text>
+<text class="s" x="1050" y="509.5" text-anchor="middle">creator only; others get 404</text>
+<polyline class="ln data" points="1050,450 1050,472" marker-end="url(#complex-ar-data)"/>
+<text class="ft" x="30" y="540" text-anchor="start">limits: 15 steps · 300 s · 10 SQL calls for the whole run; at a limit the answer is partial</text>
+</svg></div><figcaption><b>Complex</b> (route <code>workflow</code>): the user gives steps (numbered, bulleted, or "first… then…"). The plan is recorded, each step is delegated to one agent and reported as <code>done</code>, <code>done_with_caveat</code> or <code>not_done</code>. Code, not the model, appends the per-step list to the answer, so a skipped step cannot be hidden; any <code>not_done</code> turns the answer into <code>partial</code>. Files stay on the server; the UI gets a download URL that only the creator can open.</figcaption></figure><h2>Not a data question</h2><figure class="fig"><div class="scroll"><svg id="general" viewBox="0 0 1200 170" role="img" aria-label="A general question never touches the data: the supervisor routes it to the knowledge agent, which answers from model knowledge and the glossary, with no SQL and no number check." style="min-width:900px"><defs><marker id="general-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="general-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="general-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx llm" x="30" y="40" width="240" height="80" rx="6"/>
+<text class="t" x="150" y="69.0" text-anchor="middle">Supervisor</text>
+<text class="s" x="150" y="84.0" text-anchor="middle">Claude · call 1</text>
+<text class="s" x="150" y="99.0" text-anchor="middle">route = general</text>
+<rect class="bx llm" x="330" y="40" width="240" height="80" rx="6"/>
+<text class="t" x="450" y="69.0" text-anchor="middle">knowledge_agent</text>
+<text class="s" x="450" y="84.0" text-anchor="middle">gpt-oss · call 2</text>
+<text class="s" x="450" y="99.0" text-anchor="middle">get_glossary only</text>
+<rect class="bx out" x="630" y="40" width="240" height="80" rx="6"/>
+<text class="t" x="750" y="69.0" text-anchor="middle">Answer</text>
+<text class="s" x="750" y="84.0" text-anchor="middle">no SQL, no table,</text>
+<text class="s" x="750" y="99.0" text-anchor="middle">no number check</text>
+<polyline class="ln n" points="270,80 330,80" marker-end="url(#general-ar-n)"/>
+<polyline class="ln n" points="570,80 630,80" marker-end="url(#general-ar-n)"/>
+</svg></div><figcaption><b>General</b> (route <code>general</code>): definitions, standards, how-to. Two model calls, no query. Because there is no data to check against, the answer is the knowledge agent's text as is.</figcaption></figure><p class="note">On every path: SQL goes through <code>sql_guard</code> and the role's domains; every number in the answer must match a tool result; nothing is ever emailed or sent; and a budget stop returns a partial answer, never an empty one.</p></main></body></html>

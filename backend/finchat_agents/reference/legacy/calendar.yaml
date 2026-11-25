@@ -1,0 +1,50 @@
+calendar:
+  year_start_month: 1  # placeholder only; fiscal calendar is not approved
+  named_by: end_year   # placeholder only; fiscal year naming is not approved
+  approval_status: placeholder  # change to approved only when Finance signs off the fiscal calendar
+  default_period: No default period is approved. A question that names no period covers all available data (no time filter);
+    ask for clarification only when a period the user named cannot be resolved
+  working_periods: true  # YTD, MTD, QTD and "last year" resolve as calendar periods until Finance approves a fiscal calendar
+
+  # How the measure_type of a KPI decides what a missing date means.
+  # balance = value at one moment (needs an as-of date); flow = activity over a period (needs a period).
+  measure_type_rules:
+    balance:
+      when_no_date_given: as_of_latest   # use the latest data available (today) and say "as of <date>" in the answer
+      when_period_given: as_of_period_end  # "for Q3" on a balance means as of the last day of Q3
+      never: sum values across dates
+    flow:
+      when_no_date_given: all_available_data  # no time filter, as approved above; the answer must say the period covered
+      when_period_given: between_period_start_and_end
+    snapshot_without_date_column:
+      time_range: null  # table has no date or period column: no period filter, never ask for a date
+      answer_note: "Current snapshot only; past dates cannot be answered from this table."
+
+  # Phrases the planner may use. All resolve as calendar periods until the fiscal calendar is approved.
+  period_phrases:
+    - today
+    - yesterday
+    - mtd
+    - qtd
+    - ytd
+    - last_month
+    - last_quarter
+    - last_year
+    - this_month
+    - this_quarter
+    - this_year
+    - bare_year        # "for 2026" = 1 Jan to 31 Dec of that year
+    - as_of_date       # "as of 31 March 2026", used for balance KPIs
+
+  relative_time_anchor: today  # placeholder: "last month" is counted from the current date; confirm whether Finance wants the latest closed period instead
+  timezone: placeholder        # not approved
+
+  notes: |
+    Fiscal calendar, timezone, reporting completeness, relative-time behavior and default periods require
+    customer approval, so the working definitions are placeholders. Use only documented table date columns.
+    Ask for clarification only when a period the user named is not covered by the working definitions.
+    A bare calendar year ("for 2026") means 1 January to 31 December of that year. A table described as having
+    no date or period column (a snapshot, such as silver.fact_trail_balance_extractions) is not filtered by
+    period: plan its calculations with time_range null and never ask for a date range or confirmation.
+    A KPI with measure_type balance and no date uses the latest data and states the as-of date in the answer.
+    A KPI with measure_type flow and no period covers all available data and states that in the answer.

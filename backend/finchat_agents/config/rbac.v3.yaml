@@ -1,0 +1,58 @@
+# Finance Chat v3 access file: role -> domains. No row-level entity scopes.
+# The real users block (Entra object ids of the test accounts) lives in the company-laptop copy of this file.
+#
+# Resolution order: users (Entra object id) first, then group_roles (Entra group name). No match = no access.
+# A table's domain comes from its knowledge page front matter. A query may only touch tables in the role's domains.
+
+default_role: null
+
+domains:            # every table page must use one of these names
+  recon: ADRA account reconciliation
+  subledger: Fynapse subledger journals
+  fa: Fixed assets
+  ar: Accounts receivable
+  ap: Accounts payable
+  gl: General ledger and period-end close
+  cash: Cash and treasury
+
+roles:
+  finance_all:
+    description: Every silver and gold table
+    domains: ["*"]
+    pii_allowed: false          # TODO(Karthik): confirm who may see person names
+  ar_reader:
+    domains: [ar]
+    pii_allowed: false
+  ap_reader:
+    domains: [ap]
+    pii_allowed: false
+  gl_reader:
+    domains: [gl]
+    pii_allowed: false
+  fa_reader:
+    domains: [fa]
+    pii_allowed: false
+  cash_reader:
+    domains: [cash]
+    pii_allowed: false
+  # TODO(Karthik): should any role other than finance_all see recon (ADRA) or subledger (Fynapse)?
+
+group_roles:
+  # Role labels come from agent_roles(user). The mapping below is the confirmed one (Controller -> gl_reader,
+  # AR analyst -> ar_reader, Treasurer -> cash_reader, Fixed asset analyst -> fa_reader). The same mapping must hold
+  # in the users block: an older file had these four shifted by one line.
+  Admin: finance_all
+  CFO: finance_all
+  Controller: gl_reader
+  AP analyst: ap_reader
+  AR analyst: ar_reader
+  Treasurer: cash_reader
+  Fixed asset analyst: fa_reader
+
+users:
+  # "<entra-object-id>": <role>      # comment with the account name
+  # users are checked BEFORE group_roles, so a role written here overrides the group mapping above.
+  {}
+
+# Service role used by scheduled jobs (summary agent). Cards are filtered by viewer role at display time.
+service_role: finance_all

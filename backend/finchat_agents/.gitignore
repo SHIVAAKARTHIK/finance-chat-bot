@@ -1,0 +1,6 @@
+.env
+traces/
+__pycache__/
+.pytest_cache/
+eval_reports/traces/
+outputs/

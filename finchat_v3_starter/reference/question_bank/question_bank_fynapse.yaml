@@ -1,0 +1,171 @@
+# DEV question bank (Fynapse). Expected values from ground_truth_adra_fynapse_v1.sql (run 2026-11-15).
+# Keys: numbers (each must appear, tolerance_pct), text_contains (all), text_contains_any (one).
+# Paraphrases are separate cases with the same expectation. Never add hold-out questions here.
+split: dev
+area: question_bank
+source: generated_by_pattern
+roles_used: [standard, pii_viewer]
+questions:
+  - id: qb_f01_by_entity
+    domain: subledger
+    pattern: count_and_sum_by_group
+    question: How many Fynapse journal lines and what net reporting amount does each parent entity have?
+    paraphrases: [Fynapse subledger lines and net amount per entity]
+    expect:
+      kind: answer
+      numbers: ['283', '28', '280', '16', '52', '158', '-0.03', '-0.02']
+      tolerance_pct: 0.5
+      ground_truth_sql: F01
+  - id: qb_f02_by_period
+    domain: subledger
+    pattern: count_and_sum_by_group
+    question: Show Fynapse journal line counts and net reporting amount by period.
+    paraphrases: [Fynapse lines per month with net amount]
+    expect:
+      kind: answer
+      numbers: &id001 ['207', '610', '-0.02', '-0.06']
+      tolerance_pct: 0.5
+      ground_truth_sql: F02
+  - id: qb_f03_filter_period_group
+    domain: subledger
+    pattern: count_by_group_filtered
+    question: Which journal types were posted in Fynapse in Sep 26, and how many lines each?
+    paraphrases: [Fynapse line count by journal type for September 2026]
+    expect:
+      kind: answer
+      numbers: ['610']
+      text_contains: [PERM]
+      tolerance_pct: 0.5
+      ground_truth_sql: F03
+    data_note: only one journal type (PERM) in Sep 2026
+  - id: qb_f04_top_n_entity
+    domain: subledger
+    pattern: top_n
+    question: What are the top 5 accounts for UK03 in Fynapse by gross reporting amount?
+    paraphrases: [Largest five UK03 subledger accounts by absolute amount]
+    expect:
+      kind: answer
+      numbers: ['70996898.63', '33241275.30', '24372624.04', '11538461.54', '4409112.86']
+      text_contains: ['199001', '239001', '109035', '105203', '430000']
+      tolerance_pct: 0.5
+      ground_truth_sql: F04
+  - id: qb_f05_by_currency
+    domain: subledger
+    pattern: count_and_sum_by_group
+    question: How many Fynapse lines are there per transaction currency, and what is the transaction amount in each?
+    paraphrases: [Fynapse journal lines and amounts by transaction currency]
+    expect:
+      kind: answer
+      numbers: ['360', '238', '120', '60', '17', '14', '4', '4']
+      text_contains: [USD, GBP, EUR, CAD, SEK, AUD, NOK, ZAR]
+      tolerance_pct: 0.5
+      ground_truth_sql: F05
+    data_note: transaction amounts net to 0.00 per currency (balanced subledger); line counts are the real check
+  - id: qb_f06_single_entity_count
+    domain: subledger
+    pattern: count_lookup
+    question: How many journal lines does UK07 have in Fynapse?
+    paraphrases: [Fynapse line count for entity UK07]
+    expect:
+      kind: answer
+      numbers: ['280']
+      tolerance_pct: 0.5
+      ground_truth_sql: F06
+  - id: qb_f07_entity_period_sum
+    domain: subledger
+    pattern: sum_lookup
+    question: What is UK17's net reporting amount in Fynapse for Aug 2026?
+    paraphrases: ['Net Fynapse reporting amount for UK17, August 2026']
+    expect:
+      kind: answer
+      numbers: ['-0.02']
+      tolerance_pct: 0.5
+      ground_truth_sql: F07
+  - id: qb_f08_count_distinct
+    domain: subledger
+    pattern: count_distinct
+    question: How many distinct Fynapse journals were posted in Sep 26?
+    paraphrases: [Number of unique journals in the Fynapse subledger for September 2026]
+    expect:
+      kind: answer
+      numbers: ['205']
+      tolerance_pct: 0.5
+      ground_truth_sql: F08
+    note: compiler did not support count_distinct earlier; expect a gap here.
+  - id: qb_f09_reversals
+    domain: subledger
+    pattern: count_filtered
+    question: How many Fynapse journal lines are reversals?
+    expect:
+      kind: [answer, clarify]
+      numbers: ['0']
+      tolerance_pct: 0.5
+      ground_truth_sql: F09
+    note: assumed meaning "REVERSES is populated"; needs business confirmation. Clarify is acceptable.
+    data_note: 0 lines have REVERSES populated
+  - id: qb_f10_top_n_group
+    domain: subledger
+    pattern: top_n_by_count
+    question: Which 5 business events have the most Fynapse journal lines?
+    expect:
+      kind: answer
+      numbers: ['433', '214', '170']
+      text_contains: [BROKERAGE ACCOUNTING, ACCRUED_BROKERAGE_ACCOUNTING, CONCUR_EXPENSES]
+      tolerance_pct: 0.5
+      ground_truth_sql: F10
+  - id: qb_f11_share_by_group
+    domain: subledger
+    pattern: share_of_total
+    question: What share of Fynapse journal lines does each parent entity account for?
+    paraphrases: [Percentage of subledger lines by entity]
+    expect:
+      kind: answer
+      numbers: [34.6%, 34.3%, 19.3%, 6.4%, 3.4%, 2.0%]
+      tolerance_pct: 0.5
+      ground_truth_sql: F11
+  - id: qb_f12_null_count
+    domain: subledger
+    pattern: count_filtered
+    question: How many Fynapse journal lines have no child entity?
+    expect:
+      kind: answer
+      numbers: ['384']
+      tolerance_pct: 0.5
+      ground_truth_sql: F12
+  - id: qb_f13_top_n_lob
+    domain: subledger
+    pattern: top_n_by_count
+    question: What are the top 5 lines of business by Fynapse journal line count?
+    expect:
+      kind: [answer, not_found]
+      check: no_invented_categories
+      ground_truth_sql: F13
+      ground_truth_note: LOB is empty (null) on all 817 lines; a correct answer says LOB is not populated
+  - id: qb_f14_compare_periods
+    domain: subledger
+    pattern: compare_periods
+    question: Compare Fynapse journal line counts between Aug 2026 and Sep 2026.
+    paraphrases: ['Did Fynapse volume go up or down from August to September 2026?']
+    expect:
+      kind: answer
+      numbers: *id001
+      tolerance_pct: 0.5
+      ground_truth_sql: F02
+  - id: qb_f15_not_found_entity
+    domain: subledger
+    pattern: not_found
+    question: How many Fynapse journal lines does entity UK99 have?
+    expect:
+      kind: [not_found, access_denied]
+      check: no_unsupported_financial_figure
+  - id: qb_f16_sum_by_currency
+    domain: subledger
+    pattern: sum_by_group
+    question: What is the total functional amount in Fynapse by functional currency?
+    expect:
+      kind: answer
+      numbers: ['0.00', '0.00']
+      text_contains: [EUR, GBP]
+      tolerance_pct: 0.5
+      ground_truth_sql: F16
+    data_note: 'weak test: both functional currencies net to 0.00'

@@ -1,0 +1,158 @@
+# Business domains: the menu the router picks from, and the tables an agent sees once a question is routed to one.
+# A table may be listed under several domains. A `shared` domain's tables are added to every domain's slice.
+# FA / AP / AR / CASH descriptions come from the table inventory (config/catalog_silver/source/table_descriptions.csv).
+# GL, ADRA, SUBLEDGER and CLOSE are drafts written from the table descriptions: confirm the split with Finance.
+#
+# Excluded on purpose, never add to any domain (audit and access data):
+#   audit_extraction_toolkit, audit_soc_report, audit_soc_report_deepplinks,
+#   review_controls, review_controls_access_by_area, review_controls_user_access_report
+#
+# Coverage: 51 tables in domains + 6 excluded = 57 tables in lakehouse_mvpai.silver.
+
+domains:
+  - id: ap
+    name: Accounts Payable
+    description: >
+      Vendor and payable data covering vendor information, invoices, credit notes, payments,
+      purchase orders and settlements. Used to analyze vendor balances, outstanding liabilities,
+      aging, payment status, due dates and payable trends.
+    keywords: [vendor, supplier, payable, payables, invoice, invoices, purchase order, po, payment,
+      vendor payment, payment journal, aging, due, outstanding, settlement, cash discount]
+    tables:
+      - lakehouse_mvpai.silver.dim_vendors
+      - lakehouse_mvpai.silver.fact_kpmg_vend_payment_bi_vend_trans_open
+      - lakehouse_mvpai.silver.fact_purchase_order_headers
+      - lakehouse_mvpai.silver.fact_purchase_order_lines
+      - lakehouse_mvpai.silver.fact_vend_invoice_jour_bi_entities
+      - lakehouse_mvpai.silver.fact_vendor_invoice_headers
+      - lakehouse_mvpai.silver.fact_vendor_invoice_journal_headers
+      - lakehouse_mvpai.silver.fact_vendor_invoice_journal_lines
+      - lakehouse_mvpai.silver.fact_vendor_invoice_lines
+      - lakehouse_mvpai.silver.fact_vendor_payment_journal_headers
+      - lakehouse_mvpai.silver.fact_vendor_payment_journal_lines
+      - lakehouse_mvpai.silver.fact_cash_discounts
+
+  - id: ar
+    name: Accounts Receivable
+    description: >
+      Customer and receivable data covering customer information, invoices, credit notes, receipts,
+      discounts and settlements. Used to analyze customer balances, outstanding receivables, aging,
+      collections, overdue amounts and receivable trends.
+    keywords: [customer, receivable, receivables, collection, collections, overdue, receipt,
+      open invoice, aging, dso, customer payment, cash discount]
+    tables:
+      - lakehouse_mvpai.silver.dim_customers_v3
+      - lakehouse_mvpai.silver.fact_cust_table_bi_entities
+      - lakehouse_mvpai.silver.fact_cust_trans_opens
+      - lakehouse_mvpai.silver.fact_cust_transactions
+      - lakehouse_mvpai.silver.fact_customer_payment_journal_headers
+      - lakehouse_mvpai.silver.fact_customer_payment_journal_lines
+      - lakehouse_mvpai.silver.fact_cash_discounts
+
+  - id: fa
+    name: Fixed Assets
+    description: >
+      Fixed asset lifecycle data covering acquisitions, capitalization, depreciation, transfers,
+      adjustments, retirements and disposals. Used to analyze asset values, depreciation,
+      net book value, asset movements and related financial impact.
+    keywords: [asset, assets, fixed asset, depreciation, acquisition, capitalization, disposal,
+      retirement, net book value, nbv]
+    tables:
+      - lakehouse_mvpai.silver.dim_fixed_asset_books
+      - lakehouse_mvpai.silver.dim_fixed_assets
+      - lakehouse_mvpai.silver.fact_asset_journal
+      - lakehouse_mvpai.silver.fact_asset_master_transactions
+
+  - id: cash
+    name: Cash & Bank
+    description: >
+      Cash and bank data covering bank accounts, balances, receipts, payments, transfers and cash
+      movements. Used to analyze cash positions, inflows, outflows, bank balances, transaction
+      activity and liquidity. Bank account master only; customer receipts and vendor payments
+      are in the ar and ap domains.
+    keywords: [bank, cash, balance, liquidity, overdraft, swift, iban, reconciliation, bank account]
+    tables:
+      - lakehouse_mvpai.silver.dim_bank_account_table_bi_entities
+
+  - id: gl
+    name: General Ledger
+    description: >
+      General ledger journals, postings, trial balance and the chart of accounts. Used to analyze
+      account balances, debits and credits, journal batches and their posting status, and ledger
+      activity by period and legal entity.
+    keywords: [ledger, journal, journals, gl, general ledger, trial balance, tb, account,
+      accounts, chart of accounts, debit, credit, voucher, posting, net income,
+      ebitda, revenue, operating expense, gross margin, operating margin, working capital]
+    tables:
+      - lakehouse_mvpai.silver.dim_main_accounts
+      - lakehouse_mvpai.silver.dim_ledger_bi_entities
+      - lakehouse_mvpai.silver.fact_kpmg_general_journal_account_entries
+      - lakehouse_mvpai.silver.fact_ledger_journal_headers
+      - lakehouse_mvpai.silver.fact_ledger_journal_lines
+      - lakehouse_mvpai.silver.fact_ledger_journal_table_bi_entities
+      - lakehouse_mvpai.silver.fact_ledger_journal_trans_bi_entities
+      - lakehouse_mvpai.silver.fact_trail_balance_extractions
+
+  - id: adra
+    name: Account Reconciliation (ADRA)
+    description: >
+      ADRA account reconciliation data: account master and classification, account balances and
+      reconciliation status per period, legal entities in scope, and the ledger and subledger
+      transactions behind each account. Used to analyze reconciliation status, unidentified
+      balances, preparer and approver workflow, and engagement-level financial activity.
+    keywords: [adra, reconciliation, reconcile, unidentified, preparer, approver, reviewer,
+      engagement, key account]
+    tables:
+      - lakehouse_mvpai.silver.adra_account_dimensions
+      - lakehouse_mvpai.silver.adra_account_facts
+      - lakehouse_mvpai.silver.adra_legal_entity_dimensions
+      - lakehouse_mvpai.silver.adra_transaction_facts
+      - lakehouse_mvpai.silver.adra_engagement_dimensions
+      - lakehouse_mvpai.silver.adra_period_dimensions
+
+  - id: close
+    name: Close Management (ADRA Tasks)
+    description: >
+      Period-close task and checklist tracking: task lists, task instances, preparer and approver
+      assignment, due dates, finalization status and close settings. Used to analyze close
+      progress, overdue tasks and checklist completion. Account balances and reconciliation
+      status are in ADRA.
+    keywords: [close, period close, task, tasks, checklist, task list, due date, overdue,
+      finalized, zero-day]
+    tables:
+      - lakehouse_mvpai.silver.adra_tasks_company_dimension
+      - lakehouse_mvpai.silver.adra_tasks_task_facts
+      - lakehouse_mvpai.silver.adra_tasks_task_list_dimension
+      - lakehouse_mvpai.silver.adra_tasks_task_period_dimension
+      - lakehouse_mvpai.silver.adra_tasks_task_settings_dimension
+      - lakehouse_mvpai.silver.manage_close_recon_account_dims
+      - lakehouse_mvpai.silver.manage_close_recon_account_facts
+      - lakehouse_mvpai.silver.manage_close_task_facts
+      - lakehouse_mvpai.silver.manage_close_task_settings
+
+  - id: subledger
+    name: Subledger (Fynapse)
+    description: >
+      Fynapse subledger journal entries with granular business detail. Used to analyze customer
+      and shipment profitability (revenue, applied and protected cost, SG&A, profit and margin),
+      delivery time of shipments, revenue recognition and transaction amounts by account,
+      cost center, legal entity, client, trade route, shipment or fiscal period. Customer
+      receivable invoices and balances are not here (they are Accounts Receivable).
+    keywords: [subledger, fynapse, revenue recognition, client, trade route, shipment, shipments,
+      cost center, profit, profits, profitability, delivery cycle, delivery time, cost drivers]
+    tables:
+      - lakehouse_mvpai.silver.fact_fynapse_slr_journals
+
+  - id: shared
+    name: Shared master data
+    description: >
+      Legal entity (company) master, the ledger fiscal calendar and exchange rates, used by every
+      other domain to resolve company names, fiscal period status and currency conversion.
+    keywords: [legal entity, company, entity, fiscal period, fiscal calendar, period status,
+      exchange rate, currency, fx]
+    shared: true
+    tables:
+      - lakehouse_mvpai.silver.dim_legal_entities
+      - lakehouse_mvpai.silver.dim_companies
+      - lakehouse_mvpai.silver.dim_ledger_fiscal_periods_v2
+      - lakehouse_mvpai.silver.fact_exchange_rates

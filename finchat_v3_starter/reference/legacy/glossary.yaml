@@ -1,0 +1,66 @@
+# Business glossary for Finance Chat.
+# Purpose: turn the words users type into something the system can act on.
+# Only entries whose term or alias appears in the user's question are given to the planner
+# (never the whole file). Value mappings are applied by code in the plan verifier.
+#
+# Entry types (field "type"):
+#   abbreviation   term -> full words
+#   definition     what a business term means; optional kpi_id as a hint for the planner
+#   value_mapping  a word the user types -> the value stored in a column (applied by code)
+#   clarify        a vague word -> the question to ask back instead of guessing
+#
+# status: draft | approved. Only approved definitions and value mappings are used in production.
+# Abbreviations are safe to approve yourself. Everything else is confirmed by Finance.
+# Do not repeat KPI names or KPI synonyms here: those live in each KPI file.
+
+glossary:
+  # ---- abbreviations -------------------------------------------------------
+  - type: abbreviation
+    term: NBV
+    expands_to: net book value
+    status: approved
+
+  - type: abbreviation
+    term: WIP
+    expands_to: work in progress
+    status: approved
+
+  # ---- definitions (business meaning, Finance confirms) ---------------------
+  - type: definition
+    term: capitalized
+    aliases: [capitalised]
+    definition: Fixed assets whose asset book status is Open.
+    kpi_id: fa_asset_lifecycle_capitalized   # must exist in the KPI folders
+    status: draft
+    owner: Finance
+
+  - type: definition
+    term: in service
+    definition: Fixed asset transactions with status Open that count as actively in service.
+    kpi_id: fa_asset_lifecycle_in_service
+    status: draft
+    owner: Finance
+
+  # ---- value mappings (word typed by the user -> stored value) --------------
+  # Example only: confirm the column, values and tables with the data before approving.
+  - type: value_mapping
+    term: Citi
+    aliases: [Citibank, Citi bank]
+    table: lakehouse_mvpai.silver.dim_bank_account_table_bi_entities
+    column: ACCOUNT_ID
+    value: CITI
+    status: draft
+
+  - type: value_mapping
+    term: JP Morgan
+    aliases: [JPMorgan, JPMC]
+    table: lakehouse_mvpai.silver.dim_bank_account_table_bi_entities
+    column: ACCOUNT_ID
+    value: JPMC
+    status: draft
+
+  # ---- clarify (do not guess) ----------------------------------------------
+  - type: clarify
+    term: performance
+    ask: "Which measure do you mean: revenue, profit margin, or depreciation?"
+    status: approved

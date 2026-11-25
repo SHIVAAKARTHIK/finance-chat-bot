@@ -1,0 +1,78 @@
+# Approved join keys. Only status: approved joins are used by get_join_path; always use the FULL key
+# (partial composite keys multiply rows). Tables are named <schema>.<table>.
+# Sources: reference/semantic_pages/adra/joins.md (ADRA) and the fincore join recipes (fixed assets).
+joins:
+  # ---------------------------------------------------------------- ADRA (recon)
+  - id: account_fact_to_account
+    from: silver.adra_account_facts
+    to: silver.adra_account_dimensions
+    keys: [[ACCOUNT_KEY, ACCOUNT_KEY], [ENGAGEMENT_KEY, ENGAGEMENT_KEY], [LEGAL_ENTITY_KEY, LEGAL_ENTITY_KEY]]
+    cardinality: many_to_one
+    status: approved
+
+  - id: account_fact_to_period
+    from: silver.adra_account_facts
+    to: silver.adra_period_dimensions
+    keys: [[PERIOD_KEY, PERIOD_KEY], [ENGAGEMENT_KEY, ENGAGEMENT_KEY], [LEGAL_ENTITY_KEY, LEGAL_ENTITY_KEY]]
+    cardinality: many_to_one
+    status: approved
+
+  - id: account_fact_to_legal_entity
+    from: silver.adra_account_facts
+    to: silver.adra_legal_entity_dimensions
+    keys: [[LEGAL_ENTITY_KEY, LEGAL_ENTITY_KEY], [ENGAGEMENT_KEY, ENGAGEMENT_KEY]]
+    cardinality: many_to_one
+    status: approved
+
+  - id: transaction_fact_to_account
+    from: silver.adra_transaction_facts
+    to: silver.adra_account_dimensions
+    keys: [[ACCOUNT_KEY, ACCOUNT_KEY], [ENGAGEMENT_KEY, ENGAGEMENT_KEY], [LEGAL_ENTITY_KEY, LEGAL_ENTITY_KEY]]
+    cardinality: many_to_one
+    status: approved
+
+  - id: transaction_fact_to_period
+    from: silver.adra_transaction_facts
+    to: silver.adra_period_dimensions
+    keys: [[PERIOD_KEY, PERIOD_KEY], [ENGAGEMENT_KEY, ENGAGEMENT_KEY], [LEGAL_ENTITY_KEY, LEGAL_ENTITY_KEY]]
+    cardinality: many_to_one
+    status: approved
+
+  - id: transaction_fact_to_legal_entity
+    from: silver.adra_transaction_facts
+    to: silver.adra_legal_entity_dimensions
+    keys: [[LEGAL_ENTITY_KEY, LEGAL_ENTITY_KEY], [ENGAGEMENT_KEY, ENGAGEMENT_KEY]]
+    cardinality: many_to_one
+    status: approved
+
+  - id: legal_entity_to_engagement
+    from: silver.adra_legal_entity_dimensions
+    to: silver.adra_engagement_dimensions
+    keys: [[ENGAGEMENT_KEY, Engagement_Key]]
+    cardinality: many_to_one
+    status: approved
+
+  # ---------------------------------------------------------------- fixed assets (fa)
+  - id: asset_book_to_asset
+    from: silver.dim_fixed_asset_books
+    to: silver.dim_fixed_assets
+    keys: [[DATA_AREA_ID, DATA_AREA_ID], [FIXED_ASSET_NUMBER, FIXED_ASSET_NUMBER]]
+    cardinality: many_to_one
+    status: approved
+    note: Both tables have duplicate loads; check duplicates before trusting counts after the join.
+
+  - id: asset_transaction_to_asset
+    from: silver.fact_asset_master_transactions
+    to: silver.dim_fixed_assets
+    keys: [[ENTITY_ID, DATA_AREA_ID], [ASSET_ID, FIXED_ASSET_NUMBER]]
+    cardinality: many_to_one
+    status: approved
+    note: Both tables have duplicate loads; check duplicates before trusting sums after the join.
+
+  - id: asset_books_by_data_area_only
+    from: silver.dim_fixed_asset_books
+    to: silver.dim_fixed_assets
+    keys: [[DATA_AREA_ID, DATA_AREA_ID]]
+    cardinality: many_to_many
+    status: blocked
+    note: Partial key; every asset would match every asset in the company. Never use.

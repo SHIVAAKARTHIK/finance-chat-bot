@@ -1,0 +1,592 @@
+---
+name: dim_bank_account_table_bi_entities
+schema: silver
+layer: silver
+domain: cash
+type: table
+status: active
+purpose: Bank accounts defined in D365 per company.
+grain: one row per DATA_AREA_ID + ACCOUNT_ID (one bank account of one company)
+primary_key:
+- DATA_AREA_ID
+- ACCOUNT_ID
+entity_column: DATA_AREA_ID
+period_columns: []
+pii_columns:
+- PAGER
+- PHONE
+- EMAIL
+- CONTACT_PERSON
+- MDP_CREATED_BY
+- MDP_MODIFIED_BY
+synonyms: []
+built_from: []
+known_issues:
+- code: empty_column
+  note: PAGER, PHONE, EMAIL, IS_NACHA_FILE_BLOCKED, BANK_RECONCILIATION_ENABLED and many other columns are all null
+row_count: 13
+proposed_fields:
+- grain
+- primary_key
+reviewed: false
+---
+
+# dim_bank_account_table_bi_entities
+
+## Columns
+
+| Column | Type | Meaning | Also called | SQL expression |
+|---|---|---|---|---|
+| `DATA_AREA_ID` | string |  |  | `DATA_AREA_ID` |
+| `ACCOUNT_ID` | string |  |  | `ACCOUNT_ID` |
+| `IS_NACHA_FILE_BLOCKED` | string |  |  | `IS_NACHA_FILE_BLOCKED` |
+| `PAGER` | string |  |  | `PAGER` |
+| `PHONE` | string |  |  | `PHONE` |
+| `BANK_RECONCILIATION_ENABLED` | string |  |  | `BANK_RECONCILIATION_ENABLED` |
+| `BANK_POSITIVE_PAY_FORMAT_NAME` | string |  |  | `BANK_POSITIVE_PAY_FORMAT_NAME` |
+| `EMAIL` | string |  |  | `EMAIL` |
+| `UPII_NAME_IN` | string |  |  | `UPII_NAME_IN` |
+| `POSTING_PROFILE_REMIT_NOTES_IT` | string |  |  | `POSTING_PROFILE_REMIT_NOTES_IT` |
+| `CURRENCY_SELL_ORDER_TEMPLATE_REF_REC_ID_RU` | string |  |  | `CURRENCY_SELL_ORDER_TEMPLATE_REF_REC_ID_RU` |
+| `INVOICE_REMITTANCE_LEDGER_DIMENSION_VALUES_JSON` | string |  |  | `INVOICE_REMITTANCE_LEDGER_DIMENSION_VALUES_JSON` |
+| `SYS_REC_VERSION` | string |  |  | `SYS_REC_VERSION` |
+| `BANK_TRANSFER_CODE` | string |  |  | `BANK_TRANSFER_CODE` |
+| `POSTING_PROFILE_BILLS_REMIT_DISCOUNT_IT` | string |  |  | `POSTING_PROFILE_BILLS_REMIT_DISCOUNT_IT` |
+| `CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION_VALUES_JSON` | string |  |  | `CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION_VALUES_JSON` |
+| `DEBIT_DIRECT_ID` | string |  |  | `DEBIT_DIRECT_ID` |
+| `IFSC_IN` | string |  |  | `IFSC_IN` |
+| `NSF_LEDGER_JOURNAL_NAME` | string |  |  | `NSF_LEDGER_JOURNAL_NAME` |
+| `SMS` | string |  |  | `SMS` |
+| `ACCOUNT_NAME_KANA_JP` | string |  |  | `ACCOUNT_NAME_KANA_JP` |
+| `IS_BANK_PRENOTE` | string |  |  | `IS_BANK_PRENOTE` |
+| `COMPANY_PAYM_ID` | string |  |  | `COMPANY_PAYM_ID` |
+| `DEFAULT_DIMENSION` | string |  |  | `DEFAULT_DIMENSION` |
+| `BANK_SUFFIX` | string |  |  | `BANK_SUFFIX` |
+| `NSF_FEE_MARKUP_GROUP_ID` | string |  |  | `NSF_FEE_MARKUP_GROUP_ID` |
+| `BANK_CLEARING_CODE` | string |  |  | `BANK_CLEARING_CODE` |
+| `BANK_CONSTANT_SYMBOL` | string |  |  | `BANK_CONSTANT_SYMBOL` |
+| `LEDGER_DIMENSION_VALUES_JSON` | string |  |  | `LEDGER_DIMENSION_VALUES_JSON` |
+| `CELLULAR_PHONE` | string |  |  | `CELLULAR_PHONE` |
+| `TEMPLATE_FILE_NAME_RU` | string |  |  | `TEMPLATE_FILE_NAME_RU` |
+| `LV_PAY_ORDER_TYPE` | string |  |  | `LV_PAY_ORDER_TYPE` |
+| `GIRO_CONTRACT_ACCOUNT` | string |  |  | `GIRO_CONTRACT_ACCOUNT` |
+| `BANK_RECONCILIATION_MATCH_RULE_SET` | string |  |  | `BANK_RECONCILIATION_MATCH_RULE_SET` |
+| `NSF_FEE_MARKUP_GROUP_MODULE` | string |  |  | `NSF_FEE_MARKUP_GROUP_MODULE` |
+| `CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION` | string |  |  | `CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION` |
+| `DIVISION_PAYM_ID` | string |  |  | `DIVISION_PAYM_ID` |
+| `CURRENCY_SELL_ORDER_TEMPLATE_NAME_RU` | string |  |  | `CURRENCY_SELL_ORDER_TEMPLATE_NAME_RU` |
+| `BANK_COMPANY_STATEMENT_NAME` | string |  |  | `BANK_COMPANY_STATEMENT_NAME` |
+| `CONTACT_PERSON` | string |  |  | `CONTACT_PERSON` |
+| `TIME_ZONE` | string |  |  | `TIME_ZONE` |
+| `PAYM_FOREIGN_EXPORT_PATH_LT` | string |  |  | `PAYM_FOREIGN_EXPORT_PATH_LT` |
+| `BANK_ACCOUNT_STATUS` | string |  |  | `BANK_ACCOUNT_STATUS` |
+| `INVOICE_REMITTANCE_LEDGER_DIMENSION` | string |  |  | `INVOICE_REMITTANCE_LEDGER_DIMENSION` |
+| `SYS_DATA_AREA_ID` | string |  |  | `SYS_DATA_AREA_ID` |
+| `CFM_BANK_BALANCE_MINIMUM` | string |  |  | `CFM_BANK_BALANCE_MINIMUM` |
+| `PRINT_GIRO_FI` | string |  |  | `PRINT_GIRO_FI` |
+| `PRENOTE_RESPONSE_DAYS` | string |  |  | `PRENOTE_RESPONSE_DAYS` |
+| `REMIT_COLLECTION_AMOUNT` | string |  |  | `REMIT_COLLECTION_AMOUNT` |
+| `LV_DEFAULT_BANK` | string |  |  | `LV_DEFAULT_BANK` |
+| `BANK_STATEMENT_NAME` | string |  |  | `BANK_STATEMENT_NAME` |
+| `TRANS_TYPE_JP` | string |  |  | `TRANS_TYPE_JP` |
+| `BANK_GROUP_ID` | string |  |  | `BANK_GROUP_ID` |
+| `SOURCE_KEY` | string |  |  | `SOURCE_KEY` |
+| `TELEX` | string |  |  | `TELEX` |
+| `POSTING_PROFILE_BILLS_REMIT_COLLECTION_IT` | string |  |  | `POSTING_PROFILE_BILLS_REMIT_COLLECTION_IT` |
+| `BANK_RECON_MATCH_AUTO_AFTER_IMPORT` | string |  |  | `BANK_RECON_MATCH_AUTO_AFTER_IMPORT` |
+| `BANK_DESTINATION_NAME` | string |  |  | `BANK_DESTINATION_NAME` |
+| `BANK_MULTI_CURRENCY` | string |  |  | `BANK_MULTI_CURRENCY` |
+| `PHONE_LOCAL` | string |  |  | `PHONE_LOCAL` |
+| `REGISTRATION_NUM` | string |  |  | `REGISTRATION_NUM` |
+| `OVER_DRAFT_LIMIT` | string |  |  | `OVER_DRAFT_LIMIT` |
+| `INCLUDE_BANK_BAR_CODE_FI` | string |  |  | `INCLUDE_BANK_BAR_CODE_FI` |
+| `RFC_MX` | string |  |  | `RFC_MX` |
+| `SPECIFIC_SYMBOL` | string |  |  | `SPECIFIC_SYMBOL` |
+| `BANK_RECON_ALLOWED_PENNY_DIFFERENCE` | string |  |  | `BANK_RECON_ALLOWED_PENNY_DIFFERENCE` |
+| `URL` | string |  |  | `URL` |
+| `CURRENCY_CODE` | string |  |  | `CURRENCY_CODE` |
+| `UPI_ID_IN` | string |  |  | `UPI_ID_IN` |
+| `BANK_STATEMENT_FORMAT` | string |  |  | `BANK_STATEMENT_FORMAT` |
+| `BANK_CIN` | string |  |  | `BANK_CIN` |
+| `LOCATION` | string |  |  | `LOCATION` |
+| `TELE_FAX` | string |  |  | `TELE_FAX` |
+| `DISC_CREDIT_MAX_MST` | string |  |  | `DISC_CREDIT_MAX_MST` |
+| `FEE_CONTRACT_ACCOUNT` | string |  |  | `FEE_CONTRACT_ACCOUNT` |
+| `BANK_CODE_TYPE` | string |  |  | `BANK_CODE_TYPE` |
+| `SWIFT_NO` | string |  |  | `SWIFT_NO` |
+| `NAME` | string |  |  | `NAME` |
+| `QRIBAN_CH` | string |  |  | `QRIBAN_CH` |
+| `REMITTANCE_COLLECTION_LEDGER_DIMENSION_VALUES_JSON` | string |  |  | `REMITTANCE_COLLECTION_LEDGER_DIMENSION_VALUES_JSON` |
+| `ACTIVE_TO` | string |  |  | `ACTIVE_TO` |
+| `TEMPLATE_REF_REC_ID_RU` | string |  |  | `TEMPLATE_REF_REC_ID_RU` |
+| `IBAN` | string |  |  | `IBAN` |
+| `BANK_POSITIVE_PAY_START_DATE` | string |  |  | `BANK_POSITIVE_PAY_START_DATE` |
+| `BANK_RECONCILIATION_STMT_AS_PAYM_CONFIRM` | string |  |  | `BANK_RECONCILIATION_STMT_AS_PAYM_CONFIRM` |
+| `REMITTANCE_COLLECTION_LEDGER_DIMENSION` | string |  |  | `REMITTANCE_COLLECTION_LEDGER_DIMENSION` |
+| `CURRENCY_ORDER_TEMPLATE_REF_REC_ID_RU` | string |  |  | `CURRENCY_ORDER_TEMPLATE_REF_REC_ID_RU` |
+| `CURRENCY_ORDER_TEMPLATE_NAME_RU` | string |  |  | `CURRENCY_ORDER_TEMPLATE_NAME_RU` |
+| `PAYM_LOCAL_EXPORT_PATH_LT` | string |  |  | `PAYM_LOCAL_EXPORT_PATH_LT` |
+| `REMIT_DISCOUNT_AMOUNT` | string |  |  | `REMIT_DISCOUNT_AMOUNT` |
+| `REVERSE_DEBIT_CREDIT` | string |  |  | `REVERSE_DEBIT_CREDIT` |
+| `GIRO_CONTRACT` | string |  |  | `GIRO_CONTRACT` |
+| `BANK_SORT_CODE` | string |  |  | `BANK_SORT_CODE` |
+| `INVOICE_REMIT_AMOUNT` | string |  |  | `INVOICE_REMIT_AMOUNT` |
+| `BANK_CONTRACT_ACCOUNT` | string |  |  | `BANK_CONTRACT_ACCOUNT` |
+| `ACTIVE_FROM` | string |  |  | `ACTIVE_FROM` |
+| `LEDGER_JOURNAL_NAME_ID` | string |  |  | `LEDGER_JOURNAL_NAME_ID` |
+| `CORR_ACCOUNT_W` | string |  |  | `CORR_ACCOUNT_W` |
+| `LEDGER_DIMENSION` | string |  |  | `LEDGER_DIMENSION` |
+| `REMITTANCE_DISCOUNT_LEDGER_DIMENSION_VALUES_JSON` | string |  |  | `REMITTANCE_DISCOUNT_LEDGER_DIMENSION_VALUES_JSON` |
+| `BANK_INTERBANK_CLEARING_CODE_BE` | string |  |  | `BANK_INTERBANK_CLEARING_CODE_BE` |
+| `TIME_ZONE_PREFERENCE` | string |  |  | `TIME_ZONE_PREFERENCE` |
+| `CUST_PAYM_FEE_POST` | string |  |  | `CUST_PAYM_FEE_POST` |
+| `REMITTANCE_DISCOUNT_LEDGER_DIMENSION` | string |  |  | `REMITTANCE_DISCOUNT_LEDGER_DIMENSION` |
+| `PAYM_ORDER_NUM_SEQ_ID_W` | string |  |  | `PAYM_ORDER_NUM_SEQ_ID_W` |
+| `SOURCE_FILE_NAME` | string |  |  | `SOURCE_FILE_NAME` |
+| `HASH_KEY` | string |  |  | `HASH_KEY` |
+| `MDP_CREATED_BY` | string |  |  | `MDP_CREATED_BY` |
+| `MDP_CREATED_DATE` | timestamp |  |  | `MDP_CREATED_DATE` |
+| `MDP_MODIFIED_BY` | string |  |  | `MDP_MODIFIED_BY` |
+| `MDP_MODIFIED_DATE` | timestamp |  |  | `MDP_MODIFIED_DATE` |
+
+## Values
+
+**ACCOUNT_ID**
+- `IBA E`: 3 rows
+- `IBA G`: 3 rows
+- `IBA U`: 3 rows
+- `IBA C`: 2 rows
+- `IBA A`: 1 rows
+- `IBA S`: 1 rows
+
+**IS_NACHA_FILE_BLOCKED**
+- `None`: 13 rows
+
+**BANK_RECONCILIATION_ENABLED**
+- `None`: 13 rows
+
+**BANK_POSITIVE_PAY_FORMAT_NAME**
+- `None`: 13 rows
+
+**UPII_NAME_IN**
+- `None`: 13 rows
+
+**POSTING_PROFILE_REMIT_NOTES_IT**
+- `None`: 13 rows
+
+**CURRENCY_SELL_ORDER_TEMPLATE_REF_REC_ID_RU**
+- `None`: 13 rows
+
+**INVOICE_REMITTANCE_LEDGER_DIMENSION_VALUES_JSON**
+- `None`: 13 rows
+
+**SYS_REC_VERSION**
+- `None`: 13 rows
+
+**BANK_TRANSFER_CODE**
+- `None`: 13 rows
+
+**POSTING_PROFILE_BILLS_REMIT_DISCOUNT_IT**
+- `None`: 13 rows
+
+**CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION_VALUES_JSON**
+- `None`: 13 rows
+
+**DEBIT_DIRECT_ID**
+- `None`: 13 rows
+
+**IFSC_IN**
+- `None`: 13 rows
+
+**NSF_LEDGER_JOURNAL_NAME**
+- `None`: 13 rows
+
+**SMS**
+- `None`: 13 rows
+
+**ACCOUNT_NAME_KANA_JP**
+- `None`: 13 rows
+
+**IS_BANK_PRENOTE**
+- `None`: 13 rows
+
+**DEFAULT_DIMENSION**
+- `None`: 13 rows
+
+**BANK_SUFFIX**
+- `None`: 13 rows
+
+**NSF_FEE_MARKUP_GROUP_ID**
+- `None`: 13 rows
+
+**BANK_CLEARING_CODE**
+- `None`: 13 rows
+
+**BANK_CONSTANT_SYMBOL**
+- `None`: 13 rows
+
+**LEDGER_DIMENSION_VALUES_JSON**
+- `" '[{""MAINACCOUNT"":""109033""}]"`: 3 rows
+- `" '[{""MAINACCOUNT"":""109035""}]"`: 3 rows
+- `" '[{""MAINACCOUNT"":""109032""}]"`: 3 rows
+- `" '[{""MAINACCOUNT"":""109036""}]"`: 2 rows
+- `" '[{""MAINACCOUNT"":""109039""}]"`: 1 rows
+- `" '[{""MAINACCOUNT"":""109034""}]"`: 1 rows
+
+**CELLULAR_PHONE**
+- `None`: 13 rows
+
+**TEMPLATE_FILE_NAME_RU**
+- `None`: 13 rows
+
+**LV_PAY_ORDER_TYPE**
+- `None`: 13 rows
+
+**GIRO_CONTRACT_ACCOUNT**
+- `None`: 13 rows
+
+**BANK_RECONCILIATION_MATCH_RULE_SET**
+- `None`: 13 rows
+
+**NSF_FEE_MARKUP_GROUP_MODULE**
+- `None`: 13 rows
+
+**CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION**
+- `None`: 13 rows
+
+**DIVISION_PAYM_ID**
+- `None`: 13 rows
+
+**CURRENCY_SELL_ORDER_TEMPLATE_NAME_RU**
+- `None`: 13 rows
+
+**TIME_ZONE**
+- `None`: 13 rows
+
+**PAYM_FOREIGN_EXPORT_PATH_LT**
+- `None`: 13 rows
+
+**BANK_ACCOUNT_STATUS**
+- `None`: 13 rows
+
+**INVOICE_REMITTANCE_LEDGER_DIMENSION**
+- `None`: 13 rows
+
+**CFM_BANK_BALANCE_MINIMUM**
+- `None`: 13 rows
+
+**PRINT_GIRO_FI**
+- `None`: 13 rows
+
+**PRENOTE_RESPONSE_DAYS**
+- `None`: 13 rows
+
+**REMIT_COLLECTION_AMOUNT**
+- `None`: 13 rows
+
+**LV_DEFAULT_BANK**
+- `None`: 13 rows
+
+**BANK_STATEMENT_NAME**
+- `None`: 13 rows
+
+**TRANS_TYPE_JP**
+- `None`: 13 rows
+
+**BANK_GROUP_ID**
+- `None`: 13 rows
+
+**TELEX**
+- `None`: 13 rows
+
+**POSTING_PROFILE_BILLS_REMIT_COLLECTION_IT**
+- `None`: 13 rows
+
+**BANK_RECON_MATCH_AUTO_AFTER_IMPORT**
+- `None`: 13 rows
+
+**BANK_DESTINATION_NAME**
+- `None`: 13 rows
+
+**BANK_MULTI_CURRENCY**
+- `None`: 13 rows
+
+**PHONE_LOCAL**
+- `None`: 13 rows
+
+**REGISTRATION_NUM**
+- `None`: 13 rows
+
+**OVER_DRAFT_LIMIT**
+- `None`: 13 rows
+
+**INCLUDE_BANK_BAR_CODE_FI**
+- `None`: 13 rows
+
+**RFC_MX**
+- `None`: 13 rows
+
+**SPECIFIC_SYMBOL**
+- `None`: 13 rows
+
+**BANK_RECON_ALLOWED_PENNY_DIFFERENCE**
+- `None`: 13 rows
+
+**URL**
+- `None`: 13 rows
+
+**CURRENCY_CODE**
+- `GBP`: 13 rows
+
+**UPI_ID_IN**
+- `None`: 13 rows
+
+**BANK_STATEMENT_FORMAT**
+- `None`: 13 rows
+
+**BANK_CIN**
+- `None`: 13 rows
+
+**LOCATION**
+- `None`: 13 rows
+
+**TELE_FAX**
+- `None`: 13 rows
+
+**DISC_CREDIT_MAX_MST**
+- `None`: 13 rows
+
+**FEE_CONTRACT_ACCOUNT**
+- `None`: 13 rows
+
+**BANK_CODE_TYPE**
+- `None`: 13 rows
+
+**SWIFT_NO**
+- `None`: 13 rows
+
+**NAME**
+- `IBA Bank Account USD`: 3 rows
+- `IBA Bank Account GBP`: 3 rows
+- `IBA Bank Account EUR`: 3 rows
+- `IBA Bank Account CAD`: 2 rows
+- `IBA Bank Account AUD`: 1 rows
+- `IBA Bank Account SEK`: 1 rows
+
+**QRIBAN_CH**
+- `None`: 13 rows
+
+**REMITTANCE_COLLECTION_LEDGER_DIMENSION_VALUES_JSON**
+- `None`: 13 rows
+
+**ACTIVE_TO**
+- `None`: 13 rows
+
+**TEMPLATE_REF_REC_ID_RU**
+- `None`: 13 rows
+
+**IBAN**
+- `None`: 13 rows
+
+**BANK_POSITIVE_PAY_START_DATE**
+- `None`: 13 rows
+
+**BANK_RECONCILIATION_STMT_AS_PAYM_CONFIRM**
+- `None`: 13 rows
+
+**REMITTANCE_COLLECTION_LEDGER_DIMENSION**
+- `None`: 13 rows
+
+**CURRENCY_ORDER_TEMPLATE_REF_REC_ID_RU**
+- `None`: 13 rows
+
+**CURRENCY_ORDER_TEMPLATE_NAME_RU**
+- `None`: 13 rows
+
+**PAYM_LOCAL_EXPORT_PATH_LT**
+- `None`: 13 rows
+
+**REMIT_DISCOUNT_AMOUNT**
+- `None`: 13 rows
+
+**REVERSE_DEBIT_CREDIT**
+- `None`: 13 rows
+
+**GIRO_CONTRACT**
+- `None`: 13 rows
+
+**BANK_SORT_CODE**
+- `None`: 13 rows
+
+**INVOICE_REMIT_AMOUNT**
+- `None`: 13 rows
+
+**BANK_CONTRACT_ACCOUNT**
+- `None`: 13 rows
+
+**ACTIVE_FROM**
+- `None`: 13 rows
+
+**LEDGER_JOURNAL_NAME_ID**
+- `None`: 13 rows
+
+**CORR_ACCOUNT_W**
+- `None`: 13 rows
+
+**LEDGER_DIMENSION**
+- `None`: 13 rows
+
+**REMITTANCE_DISCOUNT_LEDGER_DIMENSION_VALUES_JSON**
+- `None`: 13 rows
+
+**BANK_INTERBANK_CLEARING_CODE_BE**
+- `None`: 13 rows
+
+**TIME_ZONE_PREFERENCE**
+- `None`: 13 rows
+
+**CUST_PAYM_FEE_POST**
+- `None`: 13 rows
+
+**REMITTANCE_DISCOUNT_LEDGER_DIMENSION**
+- `None`: 13 rows
+
+**PAYM_ORDER_NUM_SEQ_ID_W**
+- `None`: 13 rows
+
+**SOURCE_FILE_NAME**
+- `bank_account_table_bi_entities_final.csv`: 13 rows
+
+**MDP_CREATED_DATE**
+- `2026-11-15 13:22:34.470063+00:00`: 13 rows
+
+**MDP_MODIFIED_DATE**
+- `2026-11-15 13:22:34.470063+00:00`: 13 rows
+
+## Profile
+
+Rows in the latest export: 13.
+
+| Column | Type | Distinct (approx) | Nulls | Min | Max |
+|---|---|---|---|---|---|
+| `DATA_AREA_ID` | STRING | 3 | 0 |  |  |
+| `ACCOUNT_ID` | STRING | 6 | 0 | IBA A | IBA U |
+| `IS_NACHA_FILE_BLOCKED` | STRING | 0 | 13 |  |  |
+| `PAGER` | STRING | 0 | 13 |  |  |
+| `PHONE` | STRING | 0 | 13 |  |  |
+| `BANK_RECONCILIATION_ENABLED` | STRING | 0 | 13 |  |  |
+| `BANK_POSITIVE_PAY_FORMAT_NAME` | STRING | 0 | 13 |  |  |
+| `EMAIL` | STRING | 0 | 13 |  |  |
+| `UPII_NAME_IN` | STRING | 0 | 13 |  |  |
+| `POSTING_PROFILE_REMIT_NOTES_IT` | STRING | 0 | 13 |  |  |
+| `CURRENCY_SELL_ORDER_TEMPLATE_REF_REC_ID_RU` | STRING | 0 | 13 |  |  |
+| `INVOICE_REMITTANCE_LEDGER_DIMENSION_VALUES_JSON` | STRING | 0 | 13 |  |  |
+| `SYS_REC_VERSION` | STRING | 0 | 13 |  |  |
+| `BANK_TRANSFER_CODE` | STRING | 0 | 13 |  |  |
+| `POSTING_PROFILE_BILLS_REMIT_DISCOUNT_IT` | STRING | 0 | 13 |  |  |
+| `CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION_VALUES_JSON` | STRING | 0 | 13 |  |  |
+| `DEBIT_DIRECT_ID` | STRING | 0 | 13 |  |  |
+| `IFSC_IN` | STRING | 0 | 13 |  |  |
+| `NSF_LEDGER_JOURNAL_NAME` | STRING | 0 | 13 |  |  |
+| `SMS` | STRING | 0 | 13 |  |  |
+| `ACCOUNT_NAME_KANA_JP` | STRING | 0 | 13 |  |  |
+| `IS_BANK_PRENOTE` | STRING | 0 | 13 |  |  |
+| `COMPANY_PAYM_ID` | STRING | 0 | 13 |  |  |
+| `DEFAULT_DIMENSION` | STRING | 0 | 13 |  |  |
+| `BANK_SUFFIX` | STRING | 0 | 13 |  |  |
+| `NSF_FEE_MARKUP_GROUP_ID` | STRING | 0 | 13 |  |  |
+| `BANK_CLEARING_CODE` | STRING | 0 | 13 |  |  |
+| `BANK_CONSTANT_SYMBOL` | STRING | 0 | 13 |  |  |
+| `LEDGER_DIMENSION_VALUES_JSON` | STRING | 6 | 0 | " '[{""MAINACCOUNT"":""109032""}]" | " '[{""MAINACCOUNT"":""109039""}]" |
+| `CELLULAR_PHONE` | STRING | 0 | 13 |  |  |
+| `TEMPLATE_FILE_NAME_RU` | STRING | 0 | 13 |  |  |
+| `LV_PAY_ORDER_TYPE` | STRING | 0 | 13 |  |  |
+| `GIRO_CONTRACT_ACCOUNT` | STRING | 0 | 13 |  |  |
+| `BANK_RECONCILIATION_MATCH_RULE_SET` | STRING | 0 | 13 |  |  |
+| `NSF_FEE_MARKUP_GROUP_MODULE` | STRING | 0 | 13 |  |  |
+| `CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION` | STRING | 0 | 13 |  |  |
+| `DIVISION_PAYM_ID` | STRING | 0 | 13 |  |  |
+| `CURRENCY_SELL_ORDER_TEMPLATE_NAME_RU` | STRING | 0 | 13 |  |  |
+| `BANK_COMPANY_STATEMENT_NAME` | STRING | 0 | 13 |  |  |
+| `CONTACT_PERSON` | STRING | 0 | 13 |  |  |
+| `TIME_ZONE` | STRING | 0 | 13 |  |  |
+| `PAYM_FOREIGN_EXPORT_PATH_LT` | STRING | 0 | 13 |  |  |
+| `BANK_ACCOUNT_STATUS` | STRING | 0 | 13 |  |  |
+| `INVOICE_REMITTANCE_LEDGER_DIMENSION` | STRING | 0 | 13 |  |  |
+| `SYS_DATA_AREA_ID` | STRING | 0 | 13 |  |  |
+| `CFM_BANK_BALANCE_MINIMUM` | STRING | 0 | 13 |  |  |
+| `PRINT_GIRO_FI` | STRING | 0 | 13 |  |  |
+| `PRENOTE_RESPONSE_DAYS` | STRING | 0 | 13 |  |  |
+| `REMIT_COLLECTION_AMOUNT` | STRING | 0 | 13 |  |  |
+| `LV_DEFAULT_BANK` | STRING | 0 | 13 |  |  |
+| `BANK_STATEMENT_NAME` | STRING | 0 | 13 |  |  |
+| `TRANS_TYPE_JP` | STRING | 0 | 13 |  |  |
+| `BANK_GROUP_ID` | STRING | 0 | 13 |  |  |
+| `SOURCE_KEY` | STRING | 0 | 13 |  |  |
+| `TELEX` | STRING | 0 | 13 |  |  |
+| `POSTING_PROFILE_BILLS_REMIT_COLLECTION_IT` | STRING | 0 | 13 |  |  |
+| `BANK_RECON_MATCH_AUTO_AFTER_IMPORT` | STRING | 0 | 13 |  |  |
+| `BANK_DESTINATION_NAME` | STRING | 0 | 13 |  |  |
+| `BANK_MULTI_CURRENCY` | STRING | 0 | 13 |  |  |
+| `PHONE_LOCAL` | STRING | 0 | 13 |  |  |
+| `REGISTRATION_NUM` | STRING | 0 | 13 |  |  |
+| `OVER_DRAFT_LIMIT` | STRING | 0 | 13 |  |  |
+| `INCLUDE_BANK_BAR_CODE_FI` | STRING | 0 | 13 |  |  |
+| `RFC_MX` | STRING | 0 | 13 |  |  |
+| `SPECIFIC_SYMBOL` | STRING | 0 | 13 |  |  |
+| `BANK_RECON_ALLOWED_PENNY_DIFFERENCE` | STRING | 0 | 13 |  |  |
+| `URL` | STRING | 0 | 13 |  |  |
+| `CURRENCY_CODE` | STRING | 1 | 0 | GBP | GBP |
+| `UPI_ID_IN` | STRING | 0 | 13 |  |  |
+| `BANK_STATEMENT_FORMAT` | STRING | 0 | 13 |  |  |
+| `BANK_CIN` | STRING | 0 | 13 |  |  |
+| `LOCATION` | STRING | 0 | 13 |  |  |
+| `TELE_FAX` | STRING | 0 | 13 |  |  |
+| `DISC_CREDIT_MAX_MST` | STRING | 0 | 13 |  |  |
+| `FEE_CONTRACT_ACCOUNT` | STRING | 0 | 13 |  |  |
+| `BANK_CODE_TYPE` | STRING | 0 | 13 |  |  |
+| `SWIFT_NO` | STRING | 0 | 13 |  |  |
+| `NAME` | STRING | 6 | 0 | IBA Bank Account AUD | IBA Bank Account USD |
+| `QRIBAN_CH` | STRING | 0 | 13 |  |  |
+| `REMITTANCE_COLLECTION_LEDGER_DIMENSION_VALUES_JSON` | STRING | 0 | 13 |  |  |
+| `ACTIVE_TO` | STRING | 0 | 13 |  |  |
+| `TEMPLATE_REF_REC_ID_RU` | STRING | 0 | 13 |  |  |
+| `IBAN` | STRING | 0 | 13 |  |  |
+| `BANK_POSITIVE_PAY_START_DATE` | STRING | 0 | 13 |  |  |
+| `BANK_RECONCILIATION_STMT_AS_PAYM_CONFIRM` | STRING | 0 | 13 |  |  |
+| `REMITTANCE_COLLECTION_LEDGER_DIMENSION` | STRING | 0 | 13 |  |  |
+| `CURRENCY_ORDER_TEMPLATE_REF_REC_ID_RU` | STRING | 0 | 13 |  |  |
+| `CURRENCY_ORDER_TEMPLATE_NAME_RU` | STRING | 0 | 13 |  |  |
+| `PAYM_LOCAL_EXPORT_PATH_LT` | STRING | 0 | 13 |  |  |
+| `REMIT_DISCOUNT_AMOUNT` | STRING | 0 | 13 |  |  |
+| `REVERSE_DEBIT_CREDIT` | STRING | 0 | 13 |  |  |
+| `GIRO_CONTRACT` | STRING | 0 | 13 |  |  |
+| `BANK_SORT_CODE` | STRING | 0 | 13 |  |  |
+| `INVOICE_REMIT_AMOUNT` | STRING | 0 | 13 |  |  |
+| `BANK_CONTRACT_ACCOUNT` | STRING | 0 | 13 |  |  |
+| `ACTIVE_FROM` | STRING | 0 | 13 |  |  |
+| `LEDGER_JOURNAL_NAME_ID` | STRING | 0 | 13 |  |  |
+| `CORR_ACCOUNT_W` | STRING | 0 | 13 |  |  |
+| `LEDGER_DIMENSION` | STRING | 0 | 13 |  |  |
+| `REMITTANCE_DISCOUNT_LEDGER_DIMENSION_VALUES_JSON` | STRING | 0 | 13 |  |  |
+| `BANK_INTERBANK_CLEARING_CODE_BE` | STRING | 0 | 13 |  |  |
+| `TIME_ZONE_PREFERENCE` | STRING | 0 | 13 |  |  |
+| `CUST_PAYM_FEE_POST` | STRING | 0 | 13 |  |  |
+| `REMITTANCE_DISCOUNT_LEDGER_DIMENSION` | STRING | 0 | 13 |  |  |
+| `PAYM_ORDER_NUM_SEQ_ID_W` | STRING | 0 | 13 |  |  |
+| `SOURCE_FILE_NAME` | STRING | 1 | 0 | bank_account_table_bi_entities_final.csv | bank_account_table_bi_entities_final.csv |
+| `HASH_KEY` | STRING | 13 | 0 |  |  |
+| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-15 13:22:34.470000 | 2026-11-15 13:22:34.470000 |
+| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-15 13:22:34.470000 | 2026-11-15 13:22:34.470000 |
+
+## Sample rows
+
+| ACCOUNT_ID | IS_NACHA_FILE_BLOCKED | PAGER | PHONE | BANK_RECONCILIATION_ENABLED | BANK_POSITIVE_PAY_FORMAT_NAME | EMAIL | UPII_NAME_IN | POSTING_PROFILE_REMIT_NOTES_IT | CURRENCY_SELL_ORDER_TEMPLATE_REF_REC_ID_RU | INVOICE_REMITTANCE_LEDGER_DIMENSION_VALUES_JSON | SYS_REC_VERSION | BANK_TRANSFER_CODE | POSTING_PROFILE_BILLS_REMIT_DISCOUNT_IT | CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION_VALUES_JSON | DEBIT_DIRECT_ID | IFSC_IN | NSF_LEDGER_JOURNAL_NAME | SMS | ACCOUNT_NAME_KANA_JP | IS_BANK_PRENOTE | DEFAULT_DIMENSION | BANK_SUFFIX | NSF_FEE_MARKUP_GROUP_ID | BANK_CLEARING_CODE | BANK_CONSTANT_SYMBOL | LEDGER_DIMENSION_VALUES_JSON | CELLULAR_PHONE | TEMPLATE_FILE_NAME_RU | LV_PAY_ORDER_TYPE | GIRO_CONTRACT_ACCOUNT | BANK_RECONCILIATION_MATCH_RULE_SET | NSF_FEE_MARKUP_GROUP_MODULE | CUSTOMER_PAYMENT_FEE_LEDGER_DIMENSION | DIVISION_PAYM_ID | CURRENCY_SELL_ORDER_TEMPLATE_NAME_RU | CONTACT_PERSON | TIME_ZONE | PAYM_FOREIGN_EXPORT_PATH_LT | BANK_ACCOUNT_STATUS | INVOICE_REMITTANCE_LEDGER_DIMENSION | CFM_BANK_BALANCE_MINIMUM | PRINT_GIRO_FI | PRENOTE_RESPONSE_DAYS | REMIT_COLLECTION_AMOUNT | LV_DEFAULT_BANK | BANK_STATEMENT_NAME | TRANS_TYPE_JP | BANK_GROUP_ID | TELEX | POSTING_PROFILE_BILLS_REMIT_COLLECTION_IT | BANK_RECON_MATCH_AUTO_AFTER_IMPORT | BANK_DESTINATION_NAME | BANK_MULTI_CURRENCY | PHONE_LOCAL | REGISTRATION_NUM | OVER_DRAFT_LIMIT | INCLUDE_BANK_BAR_CODE_FI | RFC_MX | SPECIFIC_SYMBOL | BANK_RECON_ALLOWED_PENNY_DIFFERENCE | URL | CURRENCY_CODE | UPI_ID_IN | BANK_STATEMENT_FORMAT | BANK_CIN | LOCATION | TELE_FAX | DISC_CREDIT_MAX_MST | FEE_CONTRACT_ACCOUNT | BANK_CODE_TYPE | SWIFT_NO | NAME | QRIBAN_CH | REMITTANCE_COLLECTION_LEDGER_DIMENSION_VALUES_JSON | ACTIVE_TO | TEMPLATE_REF_REC_ID_RU | IBAN | BANK_POSITIVE_PAY_START_DATE | BANK_RECONCILIATION_STMT_AS_PAYM_CONFIRM | REMITTANCE_COLLECTION_LEDGER_DIMENSION | CURRENCY_ORDER_TEMPLATE_REF_REC_ID_RU | CURRENCY_ORDER_TEMPLATE_NAME_RU | PAYM_LOCAL_EXPORT_PATH_LT | REMIT_DISCOUNT_AMOUNT | REVERSE_DEBIT_CREDIT | GIRO_CONTRACT | BANK_SORT_CODE | INVOICE_REMIT_AMOUNT | BANK_CONTRACT_ACCOUNT | ACTIVE_FROM | LEDGER_JOURNAL_NAME_ID | CORR_ACCOUNT_W | LEDGER_DIMENSION | REMITTANCE_DISCOUNT_LEDGER_DIMENSION_VALUES_JSON | BANK_INTERBANK_CLEARING_CODE_BE | TIME_ZONE_PREFERENCE | CUST_PAYM_FEE_POST | REMITTANCE_DISCOUNT_LEDGER_DIMENSION | PAYM_ORDER_NUM_SEQ_ID_W | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| IBA G | NULL | <masked> | <masked> | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | " '[{""MAINACCOUNT"":""109033""}]" | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | GBP | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | IBA Bank Account GBP | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | bank_account_table_bi_entities_final.csv | <masked> | 2026-11-15 13:22:34.470000 | <masked> | 2026-11-15 13:22:34.470000 |
+| IBA G | NULL | <masked> | <masked> | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | " '[{""MAINACCOUNT"":""109033""}]" | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | GBP | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | IBA Bank Account GBP | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | bank_account_table_bi_entities_final.csv | <masked> | 2026-11-15 13:22:34.470000 | <masked> | 2026-11-15 13:22:34.470000 |
+| IBA G | NULL | <masked> | <masked> | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | " '[{""MAINACCOUNT"":""109033""}]" | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | GBP | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | IBA Bank Account GBP | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | bank_account_table_bi_entities_final.csv | <masked> | 2026-11-15 13:22:34.470000 | <masked> | 2026-11-15 13:22:34.470000 |
+| IBA U | NULL | <masked> | <masked> | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | " '[{""MAINACCOUNT"":""109035""}]" | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | GBP | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | IBA Bank Account USD | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | bank_account_table_bi_entities_final.csv | <masked> | 2026-11-15 13:22:34.470000 | <masked> | 2026-11-15 13:22:34.470000 |
+| IBA U | NULL | <masked> | <masked> | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | " '[{""MAINACCOUNT"":""109035""}]" | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | GBP | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | IBA Bank Account USD | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | bank_account_table_bi_entities_final.csv | <masked> | 2026-11-15 13:22:34.470000 | <masked> | 2026-11-15 13:22:34.470000 |

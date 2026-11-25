@@ -1,0 +1,1004 @@
+---
+name: fact_cust_table_bi_entities
+schema: silver
+layer: silver
+domain: ar
+type: table
+status: active
+purpose: Customer account table extract from D365.
+grain: one row per DATA_AREA_ID (one customer; table has only 1 row)
+primary_key:
+- DATA_AREA_ID
+entity_column: DATA_AREA_ID
+period_columns: []
+pii_columns:
+- CONTACT_PERSON_ID
+- MAIN_CONTACT_WORKER
+- SYS_MODIFIED_BY
+- MDP_CREATED_BY
+- MDP_MODIFIED_BY
+synonyms: []
+built_from: []
+known_issues:
+- code: empty_column
+  note: VENDOR_ACCOUNT, DELIVERY_REASON, SUBSEGMENT_ID all null
+row_count: 1
+proposed_fields:
+- grain
+- primary_key
+reviewed: false
+---
+
+# fact_cust_table_bi_entities
+
+## Columns
+
+| Column | Type | Meaning | Also called | SQL expression |
+|---|---|---|---|---|
+| `DATA_AREA_ID` | string |  |  | `DATA_AREA_ID` |
+| `ACCOUNT_NUM` | string |  |  | `ACCOUNT_NUM` |
+| `VENDOR_ACCOUNT` | string |  |  | `VENDOR_ACCOUNT` |
+| `DELIVERY_REASON` | string |  |  | `DELIVERY_REASON` |
+| `SUBSEGMENT_ID` | string |  |  | `SUBSEGMENT_ID` |
+| `SAT_PURPOSE_MX` | string |  |  | `SAT_PURPOSE_MX` |
+| `MCR_MERGED_ROOT` | string |  |  | `MCR_MERGED_ROOT` |
+| `FED_NON_FED_INDICATOR` | string |  |  | `FED_NON_FED_INDICATOR` |
+| `CONTACT_PERSON_ID` | string |  |  | `CONTACT_PERSON_ID` |
+| `VAT_NUM_REC_ID` | string |  |  | `VAT_NUM_REC_ID` |
+| `ENTRY_CERTIFICATE_REQUIRED_W` | string |  |  | `ENTRY_CERTIFICATE_REQUIRED_W` |
+| `PASSPORT_NO_HU` | string |  |  | `PASSPORT_NO_HU` |
+| `SIMPLIFY_TAX_INTGR_EXPORT_DOC_VALIDATION_CN` | string |  |  | `SIMPLIFY_TAX_INTGR_EXPORT_DOC_VALIDATION_CN` |
+| `INVOICE_ADDRESS` | string |  |  | `INVOICE_ADDRESS` |
+| `INVENT_PROFILE_TYPE_RU` | string |  |  | `INVENT_PROFILE_TYPE_RU` |
+| `DEFAULT_DIRECT_DEBIT_MANDATE` | string |  |  | `DEFAULT_DIRECT_DEBIT_MANDATE` |
+| `INVENT_PROFILE_ID_RU` | string |  |  | `INVENT_PROFILE_ID_RU` |
+| `PARTY` | string |  |  | `PARTY` |
+| `STATE_INSCRIPTION_MX` | string |  |  | `STATE_INSCRIPTION_MX` |
+| `TAX_REGIME_CODE_MX` | string |  |  | `TAX_REGIME_CODE_MX` |
+| `CFDI_TEMPORARY_EXPORT_MX` | string |  |  | `CFDI_TEMPORARY_EXPORT_MX` |
+| `CUST_EXCLUDE_COLLECTION_FEE` | string |  |  | `CUST_EXCLUDE_COLLECTION_FEE` |
+| `SIMPLIFY_TAX_INTGR_EXPORT_TAX_REG_VALIDATION_CN` | string |  |  | `SIMPLIFY_TAX_INTGR_EXPORT_TAX_REG_VALIDATION_CN` |
+| `PRESENCE_TYPE_BR` | string |  |  | `PRESENCE_TYPE_BR` |
+| `MAIN_CONTACT_WORKER` | string |  |  | `MAIN_CONTACT_WORKER` |
+| `AGENCY_LOCATION_CODE` | string |  |  | `AGENCY_LOCATION_CODE` |
+| `SIMPLE_NATIONAL_BR` | string |  |  | `SIMPLE_NATIONAL_BR` |
+| `PAYMENT_REFERENCE_EE` | string |  |  | `PAYMENT_REFERENCE_EE` |
+| `INTER_COMPANY_AUTO_CREATE_ORDERS` | string |  |  | `INTER_COMPANY_AUTO_CREATE_ORDERS` |
+| `GIRO_TYPE_PROJ_INVOICE` | string |  |  | `GIRO_TYPE_PROJ_INVOICE` |
+| `LINE_OF_BUSINESS_ID` | string |  |  | `LINE_OF_BUSINESS_ID` |
+| `CREDIT_CARD_CVC` | string |  |  | `CREDIT_CARD_CVC` |
+| `CUST_TRADING_PARTNER_CODE` | string |  |  | `CUST_TRADING_PARTNER_CODE` |
+| `GIRO_TYPE_ACCOUNT_STATEMENT` | string |  |  | `GIRO_TYPE_ACCOUNT_STATEMENT` |
+| `BIRTH_COUNTY_CODE_IT` | string |  |  | `BIRTH_COUNTY_CODE_IT` |
+| `SALES_DISTRICT_ID` | string |  |  | `SALES_DISTRICT_ID` |
+| `TAX_PERIOD_PAYMENT_CODE_PL` | string |  |  | `TAX_PERIOD_PAYMENT_CODE_PL` |
+| `ORG_ID` | string |  |  | `ORG_ID` |
+| `SYS_DATA_AREA_ID` | string |  |  | `SYS_DATA_AREA_ID` |
+| `DELIVERY_TERM` | string |  |  | `DELIVERY_TERM` |
+| `USUAL_EXPORTER_IT` | string |  |  | `USUAL_EXPORTER_IT` |
+| `INTER_COMPANY_ALLOW_INDIRECT_CREATION` | string |  |  | `INTER_COMPANY_ALLOW_INDIRECT_CREATION` |
+| `PRINT_DYNAMIC_QR_CODE_IN` | string |  |  | `PRINT_DYNAMIC_QR_CODE_IN` |
+| `COMPANY_CHAIN_ID` | string |  |  | `COMPANY_CHAIN_ID` |
+| `EXPORT_SALES_PL` | string |  |  | `EXPORT_SALES_PL` |
+| `GIRO_TYPE_COLLECTION_LETTER` | string |  |  | `GIRO_TYPE_COLLECTION_LETTER` |
+| `BANK_ACCOUNT` | string |  |  | `BANK_ACCOUNT` |
+| `PAYMENT_ID_TYPE` | string |  |  | `PAYMENT_ID_TYPE` |
+| `FINE_CODE_BR` | string |  |  | `FINE_CODE_BR` |
+| `INCL_TAX` | string |  |  | `INCL_TAX` |
+| `PARTY_STATE` | string |  |  | `PARTY_STATE` |
+| `CUST_EXCLUDE_INTEREST_CHARGES` | string |  |  | `CUST_EXCLUDE_INTEREST_CHARGES` |
+| `INVOICE_ACCOUNT` | string |  |  | `INVOICE_ACCOUNT` |
+| `WEB_SALES_ORDER_DISPLAY` | string |  |  | `WEB_SALES_ORDER_DISPLAY` |
+| `TAX_WITHHOLD_CALCULATE_TH` | string |  |  | `TAX_WITHHOLD_CALCULATE_TH` |
+| `CUST_WRITE_OFF_REF_REC_ID` | string |  |  | `CUST_WRITE_OFF_REF_REC_ID` |
+| `COMPANY_TYPE_MX` | string |  |  | `COMPANY_TYPE_MX` |
+| `GIRO_TYPE` | string |  |  | `GIRO_TYPE` |
+| `INTER_COMPANY_DIRECT_DELIVERY` | string |  |  | `INTER_COMPANY_DIRECT_DELIVERY` |
+| `INSSCEI_BR` | string |  |  | `INSSCEI_BR` |
+| `FACTORING_ACCOUNT` | string |  |  | `FACTORING_ACCOUNT` |
+| `BLOCKED` | string |  |  | `BLOCKED` |
+| `TAX_WITHHOLD_GROUP_TH` | string |  |  | `TAX_WITHHOLD_GROUP_TH` |
+| `ORDER_ENTRY_DEADLINE_GROUP_ID` | string |  |  | `ORDER_ENTRY_DEADLINE_GROUP_ID` |
+| `ISSUER_COUNTRY_HU` | string |  |  | `ISSUER_COUNTRY_HU` |
+| `PAYMENT_SPECIFICATION` | string |  |  | `PAYMENT_SPECIFICATION` |
+| `TAX_GST_RELIEF_GROUP_HEADING_MY` | string |  |  | `TAX_GST_RELIEF_GROUP_HEADING_MY` |
+| `CASH_DISCOUNT` | string |  |  | `CASH_DISCOUNT` |
+| `SOURCE_KEY` | string |  |  | `SOURCE_KEY` |
+| `SALES_GROUP` | string |  |  | `SALES_GROUP` |
+| `ACCOUNT_STATEMENT` | string |  |  | `ACCOUNT_STATEMENT` |
+| `PRICE_GROUP` | string |  |  | `PRICE_GROUP` |
+| `IRS_1099_C_INDICATOR` | string |  |  | `IRS_1099_C_INDICATOR` |
+| `BIRTH_PLACE_IT` | string |  |  | `BIRTH_PLACE_IT` |
+| `CURP_MX` | string |  |  | `CURP_MX` |
+| `IS_RESIDENT_LV` | string |  |  | `IS_RESIDENT_LV` |
+| `SHIP_CARRIER_ACCOUNT_CODE` | string |  |  | `SHIP_CARRIER_ACCOUNT_CODE` |
+| `END_DISCOUNT` | string |  |  | `END_DISCOUNT` |
+| `LV_PAYMENT_TRANS_CODES` | string |  |  | `LV_PAYMENT_TRANS_CODES` |
+| `FOREIGN_TAX_REGISTRATION_MX` | string |  |  | `FOREIGN_TAX_REGISTRATION_MX` |
+| `CFDI_SKIP_IEPS_TAXES_MX` | string |  |  | `CFDI_SKIP_IEPS_TAXES_MX` |
+| `CREDIT_MAX` | string |  |  | `CREDIT_MAX` |
+| `SAT_REGISTRATION_NAME_MX` | string |  |  | `SAT_REGISTRATION_NAME_MX` |
+| `FOREIGNER_ID_BR` | string |  |  | `FOREIGNER_ID_BR` |
+| `MEMO` | string |  |  | `MEMO` |
+| `LINE_DISCOUNT` | string |  |  | `LINE_DISCOUNT` |
+| `RFC_MX` | string |  |  | `RFC_MX` |
+| `PACKAGE_DEPOSIT_EXEMPT_PL` | string |  |  | `PACKAGE_DEPOSIT_EXEMPT_PL` |
+| `CUSTOMER_GROUP` | string |  |  | `CUSTOMER_GROUP` |
+| `AUTHORITY_OFFICE_IT` | string |  |  | `AUTHORITY_OFFICE_IT` |
+| `TAX_GROUP` | string |  |  | `TAX_GROUP` |
+| `USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU` | string |  |  | `USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU` |
+| `COMPANY_NAF_CODE` | string |  |  | `COMPANY_NAF_CODE` |
+| `SHIP_CARRIER_ID` | string |  |  | `SHIP_CARRIER_ID` |
+| `PACK_MATERIAL_FEE_LICENSE_NUM` | string |  |  | `PACK_MATERIAL_FEE_LICENSE_NUM` |
+| `CASH_DISCOUNT_BASE_DAYS` | string |  |  | `CASH_DISCOUNT_BASE_DAYS` |
+| `CREDIT_CARD_ADDRESS_VERIFICATION` | string |  |  | `CREDIT_CARD_ADDRESS_VERIFICATION` |
+| `GENERATE_INCOMING_FISCAL_DOCUMENT_BR` | string |  |  | `GENERATE_INCOMING_FISCAL_DOCUMENT_BR` |
+| `DELIVERY_MODE` | string |  |  | `DELIVERY_MODE` |
+| `SYS_REC_VERSION` | string |  |  | `SYS_REC_VERSION` |
+| `UNITED_VAT_INVOICE_LT` | string |  |  | `UNITED_VAT_INVOICE_LT` |
+| `E_INVOICE` | string |  |  | `E_INVOICE` |
+| `IS_EXTERNALLY_MAINTAINED` | string |  |  | `IS_EXTERNALLY_MAINTAINED` |
+| `FISCAL_CODE` | string |  |  | `FISCAL_CODE` |
+| `TAX_LICENSE_NUM` | string |  |  | `TAX_LICENSE_NUM` |
+| `MARKUP_GROUP` | string |  |  | `MARKUP_GROUP` |
+| `SHIP_CARRIER_BLIND_SHIPMENT` | string |  |  | `SHIP_CARRIER_BLIND_SHIPMENT` |
+| `AFFILIATED_RU` | string |  |  | `AFFILIATED_RU` |
+| `BLOCK_FLOOR_LIMIT_USE_IN_CHANNEL` | string |  |  | `BLOCK_FLOOR_LIMIT_USE_IN_CHANNEL` |
+| `SUFRAMA_BR` | string |  |  | `SUFRAMA_BR` |
+| `COMMISSION_GROUP` | string |  |  | `COMMISSION_GROUP` |
+| `INT_BANK_LV` | string |  |  | `INT_BANK_LV` |
+| `E_INVOICE_EAN_NUM` | string |  |  | `E_INVOICE_EAN_NUM` |
+| `NIT_BR` | string |  |  | `NIT_BR` |
+| `SHIP_CARRIER_ACCOUNT` | string |  |  | `SHIP_CARRIER_ACCOUNT` |
+| `FORECAST_DMP_INCLUDE` | string |  |  | `FORECAST_DMP_INCLUDE` |
+| `CCM_NUM_BR` | string |  |  | `CCM_NUM_BR` |
+| `MANDATORY_CREDIT_LIMIT` | string |  |  | `MANDATORY_CREDIT_LIMIT` |
+| `DEFAULT_INVENT_STATUS_ID` | string |  |  | `DEFAULT_INVENT_STATUS_ID` |
+| `PDS_REBATE_TMA_GROUP` | string |  |  | `PDS_REBATE_TMA_GROUP` |
+| `MULTI_LINE_DISCOUNT` | string |  |  | `MULTI_LINE_DISCOUNT` |
+| `FISCAL_DOC_TYPE_PL` | string |  |  | `FISCAL_DOC_TYPE_PL` |
+| `GIRO_TYPE_FREE_TEXT_INVOICE` | string |  |  | `GIRO_TYPE_FREE_TEXT_INVOICE` |
+| `PAYMENT_TERM_ID` | string |  |  | `PAYMENT_TERM_ID` |
+| `FREE_NOTES_GROUP_IT` | string |  |  | `FREE_NOTES_GROUP_IT` |
+| `FOREIGN_RESIDENT_RU` | string |  |  | `FOREIGN_RESIDENT_RU` |
+| `COLLECTION_LETTER_CODE` | string |  |  | `COLLECTION_LETTER_CODE` |
+| `E_INVOICE_ATTACHMENT` | string |  |  | `E_INVOICE_ATTACHMENT` |
+| `CNPJ_CPF_NUM_BR` | string |  |  | `CNPJ_CPF_NUM_BR` |
+| `CREDIT_RATING` | string |  |  | `CREDIT_RATING` |
+| `CFDI_ENABLED_MX` | string |  |  | `CFDI_ENABLED_MX` |
+| `OUR_ACCOUNT_NUM` | string |  |  | `OUR_ACCOUNT_NUM` |
+| `PARTY_COUNTRY` | string |  |  | `PARTY_COUNTRY` |
+| `CNAE_BR` | string |  |  | `CNAE_BR` |
+| `SAT_PAYMENT_METHOD_MX` | string |  |  | `SAT_PAYMENT_METHOD_MX` |
+| `MCR_MERGED_PARENT` | string |  |  | `MCR_MERGED_PARENT` |
+| `ISSUE_OWN_ENTRY_CERTIFICATE_W` | string |  |  | `ISSUE_OWN_ENTRY_CERTIFICATE_W` |
+| `RESIDENCE_FOREIGN_COUNTRY_REGION_ID_IT` | string |  |  | `RESIDENCE_FOREIGN_COUNTRY_REGION_ID_IT` |
+| `NUMBER_SEQUENCE_GROUP` | string |  |  | `NUMBER_SEQUENCE_GROUP` |
+| `INTEREST_CODE_BR` | string |  |  | `INTEREST_CODE_BR` |
+| `SYS_MODIFIED_BY` | string |  |  | `SYS_MODIFIED_BY` |
+| `MANDATORY_VAT_DATE_PL` | string |  |  | `MANDATORY_VAT_DATE_PL` |
+| `PAYMENT_MODE` | string |  |  | `PAYMENT_MODE` |
+| `CUSTOMER_CLASSIFICATION_ID` | string |  |  | `CUSTOMER_CLASSIFICATION_ID` |
+| `FEDERAL_COMMENTS` | string |  |  | `FEDERAL_COMMENTS` |
+| `INVOICE_POSTING_TYPE_RU` | string |  |  | `INVOICE_POSTING_TYPE_RU` |
+| `SALES_CALENDAR_ID` | string |  |  | `SALES_CALENDAR_ID` |
+| `TAX_WITHHOLD_CALCULATE_IN` | string |  |  | `TAX_WITHHOLD_CALCULATE_IN` |
+| `USE_PURCHASE_REQUEST` | string |  |  | `USE_PURCHASE_REQUEST` |
+| `CUSTOMER_ITEM_GROUP_ID` | string |  |  | `CUSTOMER_ITEM_GROUP_ID` |
+| `E_INVOICE_REGISTER_IT` | string |  |  | `E_INVOICE_REGISTER_IT` |
+| `FOREIGN_TRADE_MX` | string |  |  | `FOREIGN_TRADE_MX` |
+| `ONE_TIME_CUSTOMER` | string |  |  | `ONE_TIME_CUSTOMER` |
+| `INVOICE_TYPE_W` | string |  |  | `INVOICE_TYPE_W` |
+| `DESTINATION_CODE_ID` | string |  |  | `DESTINATION_CODE_ID` |
+| `CREDIT_CARD_ADDRESS_VERIFICATION_LEVEL` | string |  |  | `CREDIT_CARD_ADDRESS_VERIFICATION_LEVEL` |
+| `SEGMENT_ID` | string |  |  | `SEGMENT_ID` |
+| `CURRENCY` | string |  |  | `CURRENCY` |
+| `INVENT_LOCATION` | string |  |  | `INVENT_LOCATION` |
+| `SYS_MODIFIED_DATE_TIME` | string |  |  | `SYS_MODIFIED_DATE_TIME` |
+| `CUST_FINAL_USER_BR` | string |  |  | `CUST_FINAL_USER_BR` |
+| `CREATED_DATE_TIME_1` | string |  |  | `CREATED_DATE_TIME_1` |
+| `INVENT_SITE_ID` | string |  |  | `INVENT_SITE_ID` |
+| `FREIGHT_ZONE` | string |  |  | `FREIGHT_ZONE` |
+| `BANK_CENTRAL_BANK_PURPOSE_TEXT` | string |  |  | `BANK_CENTRAL_BANK_PURPOSE_TEXT` |
+| `CONS_DAY_JP` | string |  |  | `CONS_DAY_JP` |
+| `SERVICE_CODE_ON_DLV_ADDRESS_BR` | string |  |  | `SERVICE_CODE_ON_DLV_ADDRESS_BR` |
+| `ICMS_CONTRIBUTOR_BR` | string |  |  | `ICMS_CONTRIBUTOR_BR` |
+| `SHIP_CARRIER_FUEL_SURCHARGE` | string |  |  | `SHIP_CARRIER_FUEL_SURCHARGE` |
+| `CREDIT_CARD_ADDRESS_VERIFICATION_VOID` | string |  |  | `CREDIT_CARD_ADDRESS_VERIFICATION_VOID` |
+| `PAYMENT_DAY_ID` | string |  |  | `PAYMENT_DAY_ID` |
+| `GIRO_TYPE_INTEREST_NOTE` | string |  |  | `GIRO_TYPE_INTEREST_NOTE` |
+| `BANK_CUST_PAYMENT_ID_TABLE` | string |  |  | `BANK_CUST_PAYMENT_ID_TABLE` |
+| `SALES_POOL_ID` | string |  |  | `SALES_POOL_ID` |
+| `CLEARING_PERIOD` | string |  |  | `CLEARING_PERIOD` |
+| `PDS_CUSTOMER_REBATE_GROUP_ID` | string |  |  | `PDS_CUSTOMER_REBATE_GROUP_ID` |
+| `BANK_CENTRAL_BANK_PURPOSE_CODE` | string |  |  | `BANK_CENTRAL_BANK_PURPOSE_CODE` |
+| `IE_NUM_BR` | string |  |  | `IE_NUM_BR` |
+| `IDENTIFICATION_NUMBER` | string |  |  | `IDENTIFICATION_NUMBER` |
+| `IS_PUBLIC_SECTOR_IT` | string |  |  | `IS_PUBLIC_SECTOR_IT` |
+| `WORKFLOW_STATE` | string |  |  | `WORKFLOW_STATE` |
+| `PDS_FREIGHT_ACCRUED` | string |  |  | `PDS_FREIGHT_ACCRUED` |
+| `COMPANY_ID_SIRET` | string |  |  | `COMPANY_ID_SIRET` |
+| `EXPRESS_BILL_OF_LADING` | string |  |  | `EXPRESS_BILL_OF_LADING` |
+| `VAT_NUM` | string |  |  | `VAT_NUM` |
+| `OVERRIDE_SALES_TAX` | string |  |  | `OVERRIDE_SALES_TAX` |
+| `SUFRAMA_NUMBER_BR` | string |  |  | `SUFRAMA_NUMBER_BR` |
+| `CUST_WHT_CONTRIBUTION_TYPE_BR` | string |  |  | `CUST_WHT_CONTRIBUTION_TYPE_BR` |
+| `SUPPLIER_ITEM_GROUP_ID` | string |  |  | `SUPPLIER_ITEM_GROUP_ID` |
+| `PAYMENT_SCHEDULE` | string |  |  | `PAYMENT_SCHEDULE` |
+| `SUFRAMA_PIS_COFINS_BR` | string |  |  | `SUFRAMA_PIS_COFINS_BR` |
+| `STATISTICS_GROUP` | string |  |  | `STATISTICS_GROUP` |
+| `VAT_NUM_TABLE_TYPE` | string |  |  | `VAT_NUM_TABLE_TYPE` |
+| `USE_CASH_DISCOUNT` | string |  |  | `USE_CASH_DISCOUNT` |
+| `SOURCE_FILE_NAME` | string |  |  | `SOURCE_FILE_NAME` |
+| `HASH_KEY` | string |  |  | `HASH_KEY` |
+| `MDP_CREATED_BY` | string |  |  | `MDP_CREATED_BY` |
+| `MDP_CREATED_DATE` | timestamp |  |  | `MDP_CREATED_DATE` |
+| `MDP_MODIFIED_BY` | string |  |  | `MDP_MODIFIED_BY` |
+| `MDP_MODIFIED_DATE` | timestamp |  |  | `MDP_MODIFIED_DATE` |
+
+## Values
+
+**ACCOUNT_NUM**
+- `100-000001`: 1 rows
+
+**VENDOR_ACCOUNT**
+- `None`: 1 rows
+
+**DELIVERY_REASON**
+- `None`: 1 rows
+
+**SUBSEGMENT_ID**
+- `None`: 1 rows
+
+**SAT_PURPOSE_MX**
+- `None`: 1 rows
+
+**MCR_MERGED_ROOT**
+- `None`: 1 rows
+
+**FED_NON_FED_INDICATOR**
+- `None`: 1 rows
+
+**VAT_NUM_REC_ID**
+- `0`: 1 rows
+
+**ENTRY_CERTIFICATE_REQUIRED_W**
+- `No`: 1 rows
+
+**PASSPORT_NO_HU**
+- `None`: 1 rows
+
+**SIMPLIFY_TAX_INTGR_EXPORT_DOC_VALIDATION_CN**
+- `No`: 1 rows
+
+**INVOICE_ADDRESS**
+- `InvoiceAccount`: 1 rows
+
+**INVENT_PROFILE_TYPE_RU**
+- `NotSpecified`: 1 rows
+
+**DEFAULT_DIRECT_DEBIT_MANDATE**
+- `0`: 1 rows
+
+**INVENT_PROFILE_ID_RU**
+- `None`: 1 rows
+
+**PARTY**
+- `5637147856`: 1 rows
+
+**STATE_INSCRIPTION_MX**
+- `None`: 1 rows
+
+**TAX_REGIME_CODE_MX**
+- `None`: 1 rows
+
+**CFDI_TEMPORARY_EXPORT_MX**
+- `No`: 1 rows
+
+**CUST_EXCLUDE_COLLECTION_FEE**
+- `No`: 1 rows
+
+**SIMPLIFY_TAX_INTGR_EXPORT_TAX_REG_VALIDATION_CN**
+- `No`: 1 rows
+
+**PRESENCE_TYPE_BR**
+- `DoesNotApply`: 1 rows
+
+**AGENCY_LOCATION_CODE**
+- `None`: 1 rows
+
+**SIMPLE_NATIONAL_BR**
+- `No`: 1 rows
+
+**PAYMENT_REFERENCE_EE**
+- `None`: 1 rows
+
+**GIRO_TYPE_PROJ_INVOICE**
+- `None`: 1 rows
+
+**LINE_OF_BUSINESS_ID**
+- `None`: 1 rows
+
+**CREDIT_CARD_CVC**
+- `None`: 1 rows
+
+**CUST_TRADING_PARTNER_CODE**
+- `0`: 1 rows
+
+**GIRO_TYPE_ACCOUNT_STATEMENT**
+- `None`: 1 rows
+
+**BIRTH_COUNTY_CODE_IT**
+- `None`: 1 rows
+
+**SALES_DISTRICT_ID**
+- `None`: 1 rows
+
+**TAX_PERIOD_PAYMENT_CODE_PL**
+- `None`: 1 rows
+
+**ORG_ID**
+- `None`: 1 rows
+
+**DELIVERY_TERM**
+- `None`: 1 rows
+
+**USUAL_EXPORTER_IT**
+- `No`: 1 rows
+
+**PRINT_DYNAMIC_QR_CODE_IN**
+- `No`: 1 rows
+
+**EXPORT_SALES_PL**
+- `No`: 1 rows
+
+**GIRO_TYPE_COLLECTION_LETTER**
+- `None`: 1 rows
+
+**BANK_ACCOUNT**
+- `None`: 1 rows
+
+**PAYMENT_ID_TYPE**
+- `None`: 1 rows
+
+**FINE_CODE_BR**
+- `None`: 1 rows
+
+**INCL_TAX**
+- `No`: 1 rows
+
+**PARTY_STATE**
+- `None`: 1 rows
+
+**CUST_EXCLUDE_INTEREST_CHARGES**
+- `No`: 1 rows
+
+**INVOICE_ACCOUNT**
+- `None`: 1 rows
+
+**WEB_SALES_ORDER_DISPLAY**
+- `WebEntered`: 1 rows
+
+**TAX_WITHHOLD_CALCULATE_TH**
+- `No`: 1 rows
+
+**CUST_WRITE_OFF_REF_REC_ID**
+- `0`: 1 rows
+
+**GIRO_TYPE**
+- `None`: 1 rows
+
+**INSSCEI_BR**
+- `None`: 1 rows
+
+**FACTORING_ACCOUNT**
+- `None`: 1 rows
+
+**BLOCKED**
+- `No`: 1 rows
+
+**TAX_WITHHOLD_GROUP_TH**
+- `None`: 1 rows
+
+**ORDER_ENTRY_DEADLINE_GROUP_ID**
+- `None`: 1 rows
+
+**ISSUER_COUNTRY_HU**
+- `None`: 1 rows
+
+**PAYMENT_SPECIFICATION**
+- `None`: 1 rows
+
+**TAX_GST_RELIEF_GROUP_HEADING_MY**
+- `0`: 1 rows
+
+**CASH_DISCOUNT**
+- `None`: 1 rows
+
+**SALES_GROUP**
+- `None`: 1 rows
+
+**ACCOUNT_STATEMENT**
+- `Always`: 1 rows
+
+**PRICE_GROUP**
+- `None`: 1 rows
+
+**IRS_1099_C_INDICATOR**
+- `No`: 1 rows
+
+**BIRTH_PLACE_IT**
+- `None`: 1 rows
+
+**CURP_MX**
+- `None`: 1 rows
+
+**IS_RESIDENT_LV**
+- `No`: 1 rows
+
+**SHIP_CARRIER_ACCOUNT_CODE**
+- `None`: 1 rows
+
+**END_DISCOUNT**
+- `None`: 1 rows
+
+**LV_PAYMENT_TRANS_CODES**
+- `0`: 1 rows
+
+**FOREIGN_TAX_REGISTRATION_MX**
+- `None`: 1 rows
+
+**CFDI_SKIP_IEPS_TAXES_MX**
+- `No`: 1 rows
+
+**CREDIT_MAX**
+- `0`: 1 rows
+
+**SAT_REGISTRATION_NAME_MX**
+- `None`: 1 rows
+
+**FOREIGNER_ID_BR**
+- `None`: 1 rows
+
+**MEMO**
+- `None`: 1 rows
+
+**LINE_DISCOUNT**
+- `None`: 1 rows
+
+**RFC_MX**
+- `None`: 1 rows
+
+**PACKAGE_DEPOSIT_EXEMPT_PL**
+- `No`: 1 rows
+
+**CUSTOMER_GROUP**
+- `Corporate`: 1 rows
+
+**AUTHORITY_OFFICE_IT**
+- `None`: 1 rows
+
+**TAX_GROUP**
+- `None`: 1 rows
+
+**USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU**
+- `No`: 1 rows
+
+**SHIP_CARRIER_ID**
+- `None`: 1 rows
+
+**PACK_MATERIAL_FEE_LICENSE_NUM**
+- `None`: 1 rows
+
+**CASH_DISCOUNT_BASE_DAYS**
+- `0`: 1 rows
+
+**CREDIT_CARD_ADDRESS_VERIFICATION**
+- `None`: 1 rows
+
+**GENERATE_INCOMING_FISCAL_DOCUMENT_BR**
+- `No`: 1 rows
+
+**DELIVERY_MODE**
+- `None`: 1 rows
+
+**SYS_REC_VERSION**
+- `1`: 1 rows
+
+**UNITED_VAT_INVOICE_LT**
+- `No`: 1 rows
+
+**E_INVOICE**
+- `No`: 1 rows
+
+**IS_EXTERNALLY_MAINTAINED**
+- `No`: 1 rows
+
+**FISCAL_CODE**
+- `None`: 1 rows
+
+**TAX_LICENSE_NUM**
+- `None`: 1 rows
+
+**MARKUP_GROUP**
+- `None`: 1 rows
+
+**SHIP_CARRIER_BLIND_SHIPMENT**
+- `No`: 1 rows
+
+**AFFILIATED_RU**
+- `No`: 1 rows
+
+**BLOCK_FLOOR_LIMIT_USE_IN_CHANNEL**
+- `No`: 1 rows
+
+**SUFRAMA_BR**
+- `No`: 1 rows
+
+**COMMISSION_GROUP**
+- `None`: 1 rows
+
+**INT_BANK_LV**
+- `None`: 1 rows
+
+**E_INVOICE_EAN_NUM**
+- `None`: 1 rows
+
+**NIT_BR**
+- `None`: 1 rows
+
+**SHIP_CARRIER_ACCOUNT**
+- `None`: 1 rows
+
+**FORECAST_DMP_INCLUDE**
+- `No`: 1 rows
+
+**CCM_NUM_BR**
+- `None`: 1 rows
+
+**MANDATORY_CREDIT_LIMIT**
+- `No`: 1 rows
+
+**DEFAULT_INVENT_STATUS_ID**
+- `None`: 1 rows
+
+**PDS_REBATE_TMA_GROUP**
+- `None`: 1 rows
+
+**MULTI_LINE_DISCOUNT**
+- `None`: 1 rows
+
+**FISCAL_DOC_TYPE_PL**
+- `Invoice`: 1 rows
+
+**GIRO_TYPE_FREE_TEXT_INVOICE**
+- `None`: 1 rows
+
+**PAYMENT_TERM_ID**
+- `None`: 1 rows
+
+**FREE_NOTES_GROUP_IT**
+- `None`: 1 rows
+
+**FOREIGN_RESIDENT_RU**
+- `No`: 1 rows
+
+**COLLECTION_LETTER_CODE**
+- `None`: 1 rows
+
+**E_INVOICE_ATTACHMENT**
+- `No`: 1 rows
+
+**CNPJ_CPF_NUM_BR**
+- `None`: 1 rows
+
+**CREDIT_RATING**
+- `None`: 1 rows
+
+**CFDI_ENABLED_MX**
+- `No`: 1 rows
+
+**OUR_ACCOUNT_NUM**
+- `None`: 1 rows
+
+**PARTY_COUNTRY**
+- `None`: 1 rows
+
+**CNAE_BR**
+- `None`: 1 rows
+
+**SAT_PAYMENT_METHOD_MX**
+- `None`: 1 rows
+
+**MCR_MERGED_PARENT**
+- `None`: 1 rows
+
+**ISSUE_OWN_ENTRY_CERTIFICATE_W**
+- `No`: 1 rows
+
+**RESIDENCE_FOREIGN_COUNTRY_REGION_ID_IT**
+- `None`: 1 rows
+
+**NUMBER_SEQUENCE_GROUP**
+- `None`: 1 rows
+
+**INTEREST_CODE_BR**
+- `None`: 1 rows
+
+**MANDATORY_VAT_DATE_PL**
+- `No`: 1 rows
+
+**PAYMENT_MODE**
+- `None`: 1 rows
+
+**CUSTOMER_CLASSIFICATION_ID**
+- `None`: 1 rows
+
+**FEDERAL_COMMENTS**
+- `None`: 1 rows
+
+**INVOICE_POSTING_TYPE_RU**
+- `Standard`: 1 rows
+
+**SALES_CALENDAR_ID**
+- `None`: 1 rows
+
+**TAX_WITHHOLD_CALCULATE_IN**
+- `No`: 1 rows
+
+**USE_PURCHASE_REQUEST**
+- `No`: 1 rows
+
+**CUSTOMER_ITEM_GROUP_ID**
+- `None`: 1 rows
+
+**E_INVOICE_REGISTER_IT**
+- `No`: 1 rows
+
+**FOREIGN_TRADE_MX**
+- `No`: 1 rows
+
+**ONE_TIME_CUSTOMER**
+- `No`: 1 rows
+
+**INVOICE_TYPE_W**
+- `TaxInvoice`: 1 rows
+
+**DESTINATION_CODE_ID**
+- `None`: 1 rows
+
+**CREDIT_CARD_ADDRESS_VERIFICATION_LEVEL**
+- `Accept`: 1 rows
+
+**SEGMENT_ID**
+- `None`: 1 rows
+
+**CURRENCY**
+- `USD`: 1 rows
+
+**INVENT_LOCATION**
+- `None`: 1 rows
+
+**SYS_MODIFIED_DATE_TIME**
+- `2026-10-23 12:32:35.0000000 +00:00`: 1 rows
+
+**CUST_FINAL_USER_BR**
+- `No`: 1 rows
+
+**CREATED_DATE_TIME_1**
+- `2026-10-23 12:32:35.0000000 +00:00`: 1 rows
+
+**INVENT_SITE_ID**
+- `None`: 1 rows
+
+**FREIGHT_ZONE**
+- `None`: 1 rows
+
+**BANK_CENTRAL_BANK_PURPOSE_TEXT**
+- `None`: 1 rows
+
+**CONS_DAY_JP**
+- `0`: 1 rows
+
+**SERVICE_CODE_ON_DLV_ADDRESS_BR**
+- `No`: 1 rows
+
+**ICMS_CONTRIBUTOR_BR**
+- `No`: 1 rows
+
+**SHIP_CARRIER_FUEL_SURCHARGE**
+- `No`: 1 rows
+
+**CREDIT_CARD_ADDRESS_VERIFICATION_VOID**
+- `No`: 1 rows
+
+**PAYMENT_DAY_ID**
+- `None`: 1 rows
+
+**GIRO_TYPE_INTEREST_NOTE**
+- `None`: 1 rows
+
+**BANK_CUST_PAYMENT_ID_TABLE**
+- `0`: 1 rows
+
+**SALES_POOL_ID**
+- `None`: 1 rows
+
+**CLEARING_PERIOD**
+- `None`: 1 rows
+
+**PDS_CUSTOMER_REBATE_GROUP_ID**
+- `None`: 1 rows
+
+**BANK_CENTRAL_BANK_PURPOSE_CODE**
+- `None`: 1 rows
+
+**IE_NUM_BR**
+- `None`: 1 rows
+
+**IDENTIFICATION_NUMBER**
+- `None`: 1 rows
+
+**IS_PUBLIC_SECTOR_IT**
+- `No`: 1 rows
+
+**WORKFLOW_STATE**
+- `NotSubmitted`: 1 rows
+
+**PDS_FREIGHT_ACCRUED**
+- `No`: 1 rows
+
+**EXPRESS_BILL_OF_LADING**
+- `No`: 1 rows
+
+**VAT_NUM**
+- `None`: 1 rows
+
+**OVERRIDE_SALES_TAX**
+- `No`: 1 rows
+
+**SUFRAMA_NUMBER_BR**
+- `None`: 1 rows
+
+**CUST_WHT_CONTRIBUTION_TYPE_BR**
+- `Other`: 1 rows
+
+**SUPPLIER_ITEM_GROUP_ID**
+- `None`: 1 rows
+
+**PAYMENT_SCHEDULE**
+- `None`: 1 rows
+
+**SUFRAMA_PIS_COFINS_BR**
+- `No`: 1 rows
+
+**STATISTICS_GROUP**
+- `None`: 1 rows
+
+**VAT_NUM_TABLE_TYPE**
+- `None`: 1 rows
+
+**USE_CASH_DISCOUNT**
+- `Normal`: 1 rows
+
+**SOURCE_FILE_NAME**
+- `custtablebientities__20261116_105417.csv`: 1 rows
+
+**MDP_CREATED_DATE**
+- `2026-11-16 11:43:16.785508+00:00`: 1 rows
+
+**MDP_MODIFIED_DATE**
+- `2026-11-16 11:43:16.785508+00:00`: 1 rows
+
+## Profile
+
+Rows in the latest export: 1.
+
+| Column | Type | Distinct (approx) | Nulls | Min | Max |
+|---|---|---|---|---|---|
+| `DATA_AREA_ID` | STRING | 1 | 0 |  |  |
+| `ACCOUNT_NUM` | STRING | 1 | 0 | 100-000001 | 100-000001 |
+| `VENDOR_ACCOUNT` | STRING | 0 | 1 |  |  |
+| `DELIVERY_REASON` | STRING | 0 | 1 |  |  |
+| `SUBSEGMENT_ID` | STRING | 0 | 1 |  |  |
+| `SAT_PURPOSE_MX` | STRING | 0 | 1 |  |  |
+| `MCR_MERGED_ROOT` | STRING | 0 | 1 |  |  |
+| `FED_NON_FED_INDICATOR` | STRING | 1 | 0 | None | None |
+| `CONTACT_PERSON_ID` | STRING | 0 | 1 |  |  |
+| `VAT_NUM_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `ENTRY_CERTIFICATE_REQUIRED_W` | STRING | 1 | 0 | No | No |
+| `PASSPORT_NO_HU` | STRING | 0 | 1 |  |  |
+| `SIMPLIFY_TAX_INTGR_EXPORT_DOC_VALIDATION_CN` | STRING | 1 | 0 | No | No |
+| `INVOICE_ADDRESS` | STRING | 1 | 0 | InvoiceAccount | InvoiceAccount |
+| `INVENT_PROFILE_TYPE_RU` | STRING | 1 | 0 | NotSpecified | NotSpecified |
+| `DEFAULT_DIRECT_DEBIT_MANDATE` | STRING | 1 | 0 | 0 | 0 |
+| `INVENT_PROFILE_ID_RU` | STRING | 0 | 1 |  |  |
+| `PARTY` | STRING | 1 | 0 | 5637147856 | 5637147856 |
+| `STATE_INSCRIPTION_MX` | STRING | 0 | 1 |  |  |
+| `TAX_REGIME_CODE_MX` | STRING | 0 | 1 |  |  |
+| `CFDI_TEMPORARY_EXPORT_MX` | STRING | 1 | 0 | No | No |
+| `CUST_EXCLUDE_COLLECTION_FEE` | STRING | 1 | 0 | No | No |
+| `SIMPLIFY_TAX_INTGR_EXPORT_TAX_REG_VALIDATION_CN` | STRING | 1 | 0 | No | No |
+| `PRESENCE_TYPE_BR` | STRING | 1 | 0 | DoesNotApply | DoesNotApply |
+| `MAIN_CONTACT_WORKER` | STRING | 1 | 0 |  |  |
+| `AGENCY_LOCATION_CODE` | STRING | 0 | 1 |  |  |
+| `SIMPLE_NATIONAL_BR` | STRING | 1 | 0 | No | No |
+| `PAYMENT_REFERENCE_EE` | STRING | 0 | 1 |  |  |
+| `INTER_COMPANY_AUTO_CREATE_ORDERS` | STRING | 1 | 0 |  |  |
+| `GIRO_TYPE_PROJ_INVOICE` | STRING | 1 | 0 | None | None |
+| `LINE_OF_BUSINESS_ID` | STRING | 0 | 1 |  |  |
+| `CREDIT_CARD_CVC` | STRING | 1 | 0 | None | None |
+| `CUST_TRADING_PARTNER_CODE` | STRING | 1 | 0 | 0 | 0 |
+| `GIRO_TYPE_ACCOUNT_STATEMENT` | STRING | 1 | 0 | None | None |
+| `BIRTH_COUNTY_CODE_IT` | STRING | 0 | 1 |  |  |
+| `SALES_DISTRICT_ID` | STRING | 0 | 1 |  |  |
+| `TAX_PERIOD_PAYMENT_CODE_PL` | STRING | 0 | 1 |  |  |
+| `ORG_ID` | STRING | 0 | 1 |  |  |
+| `SYS_DATA_AREA_ID` | STRING | 1 | 0 |  |  |
+| `DELIVERY_TERM` | STRING | 0 | 1 |  |  |
+| `USUAL_EXPORTER_IT` | STRING | 1 | 0 | No | No |
+| `INTER_COMPANY_ALLOW_INDIRECT_CREATION` | STRING | 1 | 0 |  |  |
+| `PRINT_DYNAMIC_QR_CODE_IN` | STRING | 1 | 0 | No | No |
+| `COMPANY_CHAIN_ID` | STRING | 0 | 1 |  |  |
+| `EXPORT_SALES_PL` | STRING | 1 | 0 | No | No |
+| `GIRO_TYPE_COLLECTION_LETTER` | STRING | 1 | 0 | None | None |
+| `BANK_ACCOUNT` | STRING | 0 | 1 |  |  |
+| `PAYMENT_ID_TYPE` | STRING | 0 | 1 |  |  |
+| `FINE_CODE_BR` | STRING | 0 | 1 |  |  |
+| `INCL_TAX` | STRING | 1 | 0 | No | No |
+| `PARTY_STATE` | STRING | 0 | 1 |  |  |
+| `CUST_EXCLUDE_INTEREST_CHARGES` | STRING | 1 | 0 | No | No |
+| `INVOICE_ACCOUNT` | STRING | 0 | 1 |  |  |
+| `WEB_SALES_ORDER_DISPLAY` | STRING | 1 | 0 | WebEntered | WebEntered |
+| `TAX_WITHHOLD_CALCULATE_TH` | STRING | 1 | 0 | No | No |
+| `CUST_WRITE_OFF_REF_REC_ID` | STRING | 1 | 0 | 0 | 0 |
+| `COMPANY_TYPE_MX` | STRING | 1 | 0 |  |  |
+| `GIRO_TYPE` | STRING | 1 | 0 | None | None |
+| `INTER_COMPANY_DIRECT_DELIVERY` | STRING | 1 | 0 |  |  |
+| `INSSCEI_BR` | STRING | 0 | 1 |  |  |
+| `FACTORING_ACCOUNT` | STRING | 0 | 1 |  |  |
+| `BLOCKED` | STRING | 1 | 0 | No | No |
+| `TAX_WITHHOLD_GROUP_TH` | STRING | 0 | 1 |  |  |
+| `ORDER_ENTRY_DEADLINE_GROUP_ID` | STRING | 0 | 1 |  |  |
+| `ISSUER_COUNTRY_HU` | STRING | 0 | 1 |  |  |
+| `PAYMENT_SPECIFICATION` | STRING | 0 | 1 |  |  |
+| `TAX_GST_RELIEF_GROUP_HEADING_MY` | STRING | 1 | 0 | 0 | 0 |
+| `CASH_DISCOUNT` | STRING | 0 | 1 |  |  |
+| `SOURCE_KEY` | STRING | 1 | 0 |  |  |
+| `SALES_GROUP` | STRING | 0 | 1 |  |  |
+| `ACCOUNT_STATEMENT` | STRING | 1 | 0 | Always | Always |
+| `PRICE_GROUP` | STRING | 0 | 1 |  |  |
+| `IRS_1099_C_INDICATOR` | STRING | 1 | 0 | No | No |
+| `BIRTH_PLACE_IT` | STRING | 0 | 1 |  |  |
+| `CURP_MX` | STRING | 0 | 1 |  |  |
+| `IS_RESIDENT_LV` | STRING | 1 | 0 | No | No |
+| `SHIP_CARRIER_ACCOUNT_CODE` | STRING | 0 | 1 |  |  |
+| `END_DISCOUNT` | STRING | 0 | 1 |  |  |
+| `LV_PAYMENT_TRANS_CODES` | STRING | 1 | 0 | 0 | 0 |
+| `FOREIGN_TAX_REGISTRATION_MX` | STRING | 0 | 1 |  |  |
+| `CFDI_SKIP_IEPS_TAXES_MX` | STRING | 1 | 0 | No | No |
+| `CREDIT_MAX` | STRING | 1 | 0 | 0 | 0 |
+| `SAT_REGISTRATION_NAME_MX` | STRING | 0 | 1 |  |  |
+| `FOREIGNER_ID_BR` | STRING | 0 | 1 |  |  |
+| `MEMO` | STRING | 0 | 1 |  |  |
+| `LINE_DISCOUNT` | STRING | 0 | 1 |  |  |
+| `RFC_MX` | STRING | 0 | 1 |  |  |
+| `PACKAGE_DEPOSIT_EXEMPT_PL` | STRING | 1 | 0 | No | No |
+| `CUSTOMER_GROUP` | STRING | 1 | 0 | Corporate | Corporate |
+| `AUTHORITY_OFFICE_IT` | STRING | 0 | 1 |  |  |
+| `TAX_GROUP` | STRING | 0 | 1 |  |  |
+| `USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU` | STRING | 1 | 0 | No | No |
+| `COMPANY_NAF_CODE` | STRING | 1 | 0 |  |  |
+| `SHIP_CARRIER_ID` | STRING | 0 | 1 |  |  |
+| `PACK_MATERIAL_FEE_LICENSE_NUM` | STRING | 0 | 1 |  |  |
+| `CASH_DISCOUNT_BASE_DAYS` | STRING | 1 | 0 | 0 | 0 |
+| `CREDIT_CARD_ADDRESS_VERIFICATION` | STRING | 1 | 0 | None | None |
+| `GENERATE_INCOMING_FISCAL_DOCUMENT_BR` | STRING | 1 | 0 | No | No |
+| `DELIVERY_MODE` | STRING | 0 | 1 |  |  |
+| `SYS_REC_VERSION` | STRING | 1 | 0 | 1 | 1 |
+| `UNITED_VAT_INVOICE_LT` | STRING | 1 | 0 | No | No |
+| `E_INVOICE` | STRING | 1 | 0 | No | No |
+| `IS_EXTERNALLY_MAINTAINED` | STRING | 1 | 0 | No | No |
+| `FISCAL_CODE` | STRING | 0 | 1 |  |  |
+| `TAX_LICENSE_NUM` | STRING | 0 | 1 |  |  |
+| `MARKUP_GROUP` | STRING | 0 | 1 |  |  |
+| `SHIP_CARRIER_BLIND_SHIPMENT` | STRING | 1 | 0 | No | No |
+| `AFFILIATED_RU` | STRING | 1 | 0 | No | No |
+| `BLOCK_FLOOR_LIMIT_USE_IN_CHANNEL` | STRING | 1 | 0 | No | No |
+| `SUFRAMA_BR` | STRING | 1 | 0 | No | No |
+| `COMMISSION_GROUP` | STRING | 0 | 1 |  |  |
+| `INT_BANK_LV` | STRING | 0 | 1 |  |  |
+| `E_INVOICE_EAN_NUM` | STRING | 0 | 1 |  |  |
+| `NIT_BR` | STRING | 0 | 1 |  |  |
+| `SHIP_CARRIER_ACCOUNT` | STRING | 0 | 1 |  |  |
+| `FORECAST_DMP_INCLUDE` | STRING | 1 | 0 | No | No |
+| `CCM_NUM_BR` | STRING | 0 | 1 |  |  |
+| `MANDATORY_CREDIT_LIMIT` | STRING | 1 | 0 | No | No |
+| `DEFAULT_INVENT_STATUS_ID` | STRING | 0 | 1 |  |  |
+| `PDS_REBATE_TMA_GROUP` | STRING | 0 | 1 |  |  |
+| `MULTI_LINE_DISCOUNT` | STRING | 0 | 1 |  |  |
+| `FISCAL_DOC_TYPE_PL` | STRING | 1 | 0 | Invoice | Invoice |
+| `GIRO_TYPE_FREE_TEXT_INVOICE` | STRING | 1 | 0 | None | None |
+| `PAYMENT_TERM_ID` | STRING | 0 | 1 |  |  |
+| `FREE_NOTES_GROUP_IT` | STRING | 0 | 1 |  |  |
+| `FOREIGN_RESIDENT_RU` | STRING | 1 | 0 | No | No |
+| `COLLECTION_LETTER_CODE` | STRING | 1 | 0 | None | None |
+| `E_INVOICE_ATTACHMENT` | STRING | 1 | 0 | No | No |
+| `CNPJ_CPF_NUM_BR` | STRING | 0 | 1 |  |  |
+| `CREDIT_RATING` | STRING | 0 | 1 |  |  |
+| `CFDI_ENABLED_MX` | STRING | 1 | 0 | No | No |
+| `OUR_ACCOUNT_NUM` | STRING | 0 | 1 |  |  |
+| `PARTY_COUNTRY` | STRING | 0 | 1 |  |  |
+| `CNAE_BR` | STRING | 0 | 1 |  |  |
+| `SAT_PAYMENT_METHOD_MX` | STRING | 0 | 1 |  |  |
+| `MCR_MERGED_PARENT` | STRING | 0 | 1 |  |  |
+| `ISSUE_OWN_ENTRY_CERTIFICATE_W` | STRING | 1 | 0 | No | No |
+| `RESIDENCE_FOREIGN_COUNTRY_REGION_ID_IT` | STRING | 0 | 1 |  |  |
+| `NUMBER_SEQUENCE_GROUP` | STRING | 0 | 1 |  |  |
+| `INTEREST_CODE_BR` | STRING | 0 | 1 |  |  |
+| `SYS_MODIFIED_BY` | STRING | 1 | 0 |  |  |
+| `MANDATORY_VAT_DATE_PL` | STRING | 1 | 0 | No | No |
+| `PAYMENT_MODE` | STRING | 0 | 1 |  |  |
+| `CUSTOMER_CLASSIFICATION_ID` | STRING | 0 | 1 |  |  |
+| `FEDERAL_COMMENTS` | STRING | 0 | 1 |  |  |
+| `INVOICE_POSTING_TYPE_RU` | STRING | 1 | 0 | Standard | Standard |
+| `SALES_CALENDAR_ID` | STRING | 0 | 1 |  |  |
+| `TAX_WITHHOLD_CALCULATE_IN` | STRING | 1 | 0 | No | No |
+| `USE_PURCHASE_REQUEST` | STRING | 1 | 0 | No | No |
+| `CUSTOMER_ITEM_GROUP_ID` | STRING | 0 | 1 |  |  |
+| `E_INVOICE_REGISTER_IT` | STRING | 1 | 0 | No | No |
+| `FOREIGN_TRADE_MX` | STRING | 1 | 0 | No | No |
+| `ONE_TIME_CUSTOMER` | STRING | 1 | 0 | No | No |
+| `INVOICE_TYPE_W` | STRING | 1 | 0 | TaxInvoice | TaxInvoice |
+| `DESTINATION_CODE_ID` | STRING | 0 | 1 |  |  |
+| `CREDIT_CARD_ADDRESS_VERIFICATION_LEVEL` | STRING | 1 | 0 | Accept | Accept |
+| `SEGMENT_ID` | STRING | 0 | 1 |  |  |
+| `CURRENCY` | STRING | 1 | 0 | USD | USD |
+| `INVENT_LOCATION` | STRING | 0 | 1 |  |  |
+| `SYS_MODIFIED_DATE_TIME` | STRING | 1 | 0 | 2026-10-23 12:32:35.0000000 +00:00 | 2026-10-23 12:32:35.0000000 +00:00 |
+| `CUST_FINAL_USER_BR` | STRING | 1 | 0 | No | No |
+| `CREATED_DATE_TIME_1` | STRING | 1 | 0 | 2026-10-23 12:32:35.0000000 +00:00 | 2026-10-23 12:32:35.0000000 +00:00 |
+| `INVENT_SITE_ID` | STRING | 0 | 1 |  |  |
+| `FREIGHT_ZONE` | STRING | 0 | 1 |  |  |
+| `BANK_CENTRAL_BANK_PURPOSE_TEXT` | STRING | 0 | 1 |  |  |
+| `CONS_DAY_JP` | STRING | 1 | 0 | 0 | 0 |
+| `SERVICE_CODE_ON_DLV_ADDRESS_BR` | STRING | 1 | 0 | No | No |
+| `ICMS_CONTRIBUTOR_BR` | STRING | 1 | 0 | No | No |
+| `SHIP_CARRIER_FUEL_SURCHARGE` | STRING | 1 | 0 | No | No |
+| `CREDIT_CARD_ADDRESS_VERIFICATION_VOID` | STRING | 1 | 0 | No | No |
+| `PAYMENT_DAY_ID` | STRING | 0 | 1 |  |  |
+| `GIRO_TYPE_INTEREST_NOTE` | STRING | 1 | 0 | None | None |
+| `BANK_CUST_PAYMENT_ID_TABLE` | STRING | 1 | 0 | 0 | 0 |
+| `SALES_POOL_ID` | STRING | 0 | 1 |  |  |
+| `CLEARING_PERIOD` | STRING | 0 | 1 |  |  |
+| `PDS_CUSTOMER_REBATE_GROUP_ID` | STRING | 0 | 1 |  |  |
+| `BANK_CENTRAL_BANK_PURPOSE_CODE` | STRING | 0 | 1 |  |  |
+| `IE_NUM_BR` | STRING | 0 | 1 |  |  |
+| `IDENTIFICATION_NUMBER` | STRING | 0 | 1 |  |  |
+| `IS_PUBLIC_SECTOR_IT` | STRING | 1 | 0 | No | No |
+| `WORKFLOW_STATE` | STRING | 1 | 0 | NotSubmitted | NotSubmitted |
+| `PDS_FREIGHT_ACCRUED` | STRING | 1 | 0 | No | No |
+| `COMPANY_ID_SIRET` | STRING | 0 | 1 |  |  |
+| `EXPRESS_BILL_OF_LADING` | STRING | 1 | 0 | No | No |
+| `VAT_NUM` | STRING | 0 | 1 |  |  |
+| `OVERRIDE_SALES_TAX` | STRING | 1 | 0 | No | No |
+| `SUFRAMA_NUMBER_BR` | STRING | 0 | 1 |  |  |
+| `CUST_WHT_CONTRIBUTION_TYPE_BR` | STRING | 1 | 0 | Other | Other |
+| `SUPPLIER_ITEM_GROUP_ID` | STRING | 0 | 1 |  |  |
+| `PAYMENT_SCHEDULE` | STRING | 0 | 1 |  |  |
+| `SUFRAMA_PIS_COFINS_BR` | STRING | 1 | 0 | No | No |
+| `STATISTICS_GROUP` | STRING | 0 | 1 |  |  |
+| `VAT_NUM_TABLE_TYPE` | STRING | 1 | 0 | None | None |
+| `USE_CASH_DISCOUNT` | STRING | 1 | 0 | Normal | Normal |
+| `SOURCE_FILE_NAME` | STRING | 1 | 0 | custtablebientities__20261116_105417.csv | custtablebientities__20261116_105417.csv |
+| `HASH_KEY` | STRING | 1 | 0 |  |  |
+| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:16.786000 | 2026-11-16 11:43:16.786000 |
+| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:16.786000 | 2026-11-16 11:43:16.786000 |
+
+## Sample rows
+
+| ACCOUNT_NUM | VENDOR_ACCOUNT | DELIVERY_REASON | SUBSEGMENT_ID | SAT_PURPOSE_MX | MCR_MERGED_ROOT | FED_NON_FED_INDICATOR | CONTACT_PERSON_ID | VAT_NUM_REC_ID | ENTRY_CERTIFICATE_REQUIRED_W | PASSPORT_NO_HU | SIMPLIFY_TAX_INTGR_EXPORT_DOC_VALIDATION_CN | INVOICE_ADDRESS | INVENT_PROFILE_TYPE_RU | DEFAULT_DIRECT_DEBIT_MANDATE | INVENT_PROFILE_ID_RU | PARTY | STATE_INSCRIPTION_MX | TAX_REGIME_CODE_MX | CFDI_TEMPORARY_EXPORT_MX | CUST_EXCLUDE_COLLECTION_FEE | SIMPLIFY_TAX_INTGR_EXPORT_TAX_REG_VALIDATION_CN | PRESENCE_TYPE_BR | MAIN_CONTACT_WORKER | AGENCY_LOCATION_CODE | SIMPLE_NATIONAL_BR | PAYMENT_REFERENCE_EE | GIRO_TYPE_PROJ_INVOICE | LINE_OF_BUSINESS_ID | CREDIT_CARD_CVC | CUST_TRADING_PARTNER_CODE | GIRO_TYPE_ACCOUNT_STATEMENT | BIRTH_COUNTY_CODE_IT | SALES_DISTRICT_ID | TAX_PERIOD_PAYMENT_CODE_PL | ORG_ID | DELIVERY_TERM | USUAL_EXPORTER_IT | PRINT_DYNAMIC_QR_CODE_IN | EXPORT_SALES_PL | GIRO_TYPE_COLLECTION_LETTER | BANK_ACCOUNT | PAYMENT_ID_TYPE | FINE_CODE_BR | INCL_TAX | PARTY_STATE | CUST_EXCLUDE_INTEREST_CHARGES | INVOICE_ACCOUNT | WEB_SALES_ORDER_DISPLAY | TAX_WITHHOLD_CALCULATE_TH | CUST_WRITE_OFF_REF_REC_ID | GIRO_TYPE | INSSCEI_BR | FACTORING_ACCOUNT | BLOCKED | TAX_WITHHOLD_GROUP_TH | ORDER_ENTRY_DEADLINE_GROUP_ID | ISSUER_COUNTRY_HU | PAYMENT_SPECIFICATION | TAX_GST_RELIEF_GROUP_HEADING_MY | CASH_DISCOUNT | SALES_GROUP | ACCOUNT_STATEMENT | PRICE_GROUP | IRS_1099_C_INDICATOR | BIRTH_PLACE_IT | CURP_MX | IS_RESIDENT_LV | SHIP_CARRIER_ACCOUNT_CODE | END_DISCOUNT | LV_PAYMENT_TRANS_CODES | FOREIGN_TAX_REGISTRATION_MX | CFDI_SKIP_IEPS_TAXES_MX | CREDIT_MAX | SAT_REGISTRATION_NAME_MX | FOREIGNER_ID_BR | MEMO | LINE_DISCOUNT | RFC_MX | PACKAGE_DEPOSIT_EXEMPT_PL | CUSTOMER_GROUP | AUTHORITY_OFFICE_IT | TAX_GROUP | USE_ORIGINAL_DOCUMENT_AS_FACTURE_RU | SHIP_CARRIER_ID | PACK_MATERIAL_FEE_LICENSE_NUM | CASH_DISCOUNT_BASE_DAYS | CREDIT_CARD_ADDRESS_VERIFICATION | GENERATE_INCOMING_FISCAL_DOCUMENT_BR | DELIVERY_MODE | SYS_REC_VERSION | UNITED_VAT_INVOICE_LT | E_INVOICE | IS_EXTERNALLY_MAINTAINED | FISCAL_CODE | TAX_LICENSE_NUM | MARKUP_GROUP | SHIP_CARRIER_BLIND_SHIPMENT | AFFILIATED_RU | BLOCK_FLOOR_LIMIT_USE_IN_CHANNEL | SUFRAMA_BR | COMMISSION_GROUP | INT_BANK_LV | E_INVOICE_EAN_NUM | NIT_BR | SHIP_CARRIER_ACCOUNT | FORECAST_DMP_INCLUDE | CCM_NUM_BR | MANDATORY_CREDIT_LIMIT | DEFAULT_INVENT_STATUS_ID | PDS_REBATE_TMA_GROUP | MULTI_LINE_DISCOUNT | FISCAL_DOC_TYPE_PL | GIRO_TYPE_FREE_TEXT_INVOICE | PAYMENT_TERM_ID | FREE_NOTES_GROUP_IT | FOREIGN_RESIDENT_RU | COLLECTION_LETTER_CODE | E_INVOICE_ATTACHMENT | CNPJ_CPF_NUM_BR | CREDIT_RATING | CFDI_ENABLED_MX | OUR_ACCOUNT_NUM | PARTY_COUNTRY | CNAE_BR | SAT_PAYMENT_METHOD_MX | MCR_MERGED_PARENT | ISSUE_OWN_ENTRY_CERTIFICATE_W | RESIDENCE_FOREIGN_COUNTRY_REGION_ID_IT | NUMBER_SEQUENCE_GROUP | INTEREST_CODE_BR | SYS_MODIFIED_BY | MANDATORY_VAT_DATE_PL | PAYMENT_MODE | CUSTOMER_CLASSIFICATION_ID | FEDERAL_COMMENTS | INVOICE_POSTING_TYPE_RU | SALES_CALENDAR_ID | TAX_WITHHOLD_CALCULATE_IN | USE_PURCHASE_REQUEST | CUSTOMER_ITEM_GROUP_ID | E_INVOICE_REGISTER_IT | FOREIGN_TRADE_MX | ONE_TIME_CUSTOMER | INVOICE_TYPE_W | DESTINATION_CODE_ID | CREDIT_CARD_ADDRESS_VERIFICATION_LEVEL | SEGMENT_ID | CURRENCY | INVENT_LOCATION | SYS_MODIFIED_DATE_TIME | CUST_FINAL_USER_BR | CREATED_DATE_TIME_1 | INVENT_SITE_ID | FREIGHT_ZONE | BANK_CENTRAL_BANK_PURPOSE_TEXT | CONS_DAY_JP | SERVICE_CODE_ON_DLV_ADDRESS_BR | ICMS_CONTRIBUTOR_BR | SHIP_CARRIER_FUEL_SURCHARGE | CREDIT_CARD_ADDRESS_VERIFICATION_VOID | PAYMENT_DAY_ID | GIRO_TYPE_INTEREST_NOTE | BANK_CUST_PAYMENT_ID_TABLE | SALES_POOL_ID | CLEARING_PERIOD | PDS_CUSTOMER_REBATE_GROUP_ID | BANK_CENTRAL_BANK_PURPOSE_CODE | IE_NUM_BR | IDENTIFICATION_NUMBER | IS_PUBLIC_SECTOR_IT | WORKFLOW_STATE | PDS_FREIGHT_ACCRUED | EXPRESS_BILL_OF_LADING | VAT_NUM | OVERRIDE_SALES_TAX | SUFRAMA_NUMBER_BR | CUST_WHT_CONTRIBUTION_TYPE_BR | SUPPLIER_ITEM_GROUP_ID | PAYMENT_SCHEDULE | SUFRAMA_PIS_COFINS_BR | STATISTICS_GROUP | VAT_NUM_TABLE_TYPE | USE_CASH_DISCOUNT | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 100-000001 | NULL | NULL | NULL | NULL | NULL | None | <masked> | 0 | No | NULL | No | InvoiceAccount | NotSpecified | 0 | NULL | 5637147856 | NULL | NULL | No | No | No | DoesNotApply | <masked> | NULL | No | NULL | None | NULL | None | 0 | None | NULL | NULL | NULL | NULL | NULL | No | No | No | None | NULL | NULL | NULL | No | NULL | No | NULL | WebEntered | No | 0 | None | NULL | NULL | No | NULL | NULL | NULL | NULL | 0 | NULL | NULL | Always | NULL | No | NULL | NULL | No | NULL | NULL | 0 | NULL | No | 0 | NULL | NULL | NULL | NULL | NULL | No | Corporate | NULL | NULL | No | NULL | NULL | 0 | None | No | NULL | 1 | No | No | No | NULL | NULL | NULL | No | No | No | No | NULL | NULL | NULL | NULL | NULL | No | NULL | No | NULL | NULL | NULL | Invoice | None | NULL | NULL | No | None | No | NULL | NULL | No | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | NULL | <masked> | No | NULL | NULL | NULL | Standard | NULL | No | No | NULL | No | No | No | TaxInvoice | NULL | Accept | NULL | USD | NULL | 2026-10-23 12:32:35.0000000 +00:00 | No | 2026-10-23 12:32:35.0000000 +00:00 | NULL | NULL | NULL | 0 | No | No | No | No | NULL | None | 0 | NULL | NULL | NULL | NULL | NULL | NULL | No | NotSubmitted | No | No | NULL | No | NULL | Other | NULL | NULL | No | NULL | None | Normal | custtablebientities__20261116_105417.csv | <masked> | 2026-11-16 11:43:16.786000 | <masked> | 2026-11-16 11:43:16.786000 |

@@ -1,0 +1,82 @@
+---
+name: vw_managed_coll_early_payment_discounts_filter
+schema: gold
+layer: gold
+domain: ar
+type: view
+status: broken
+purpose: Lists discount-eligible customer invoices with fiscal-period filter fields.
+grain: one row per customer invoice and selected period
+primary_key:
+- invoice_number
+- PERIOD_TYPE
+- PERIOD_YEAR
+- PERIOD_MONTH
+- PERIOD_QUARTER
+entity_column: LEGAL_ENTITY
+period_columns:
+- Invoice_date
+- Due_date
+- PERIOD_START_DATE
+- PERIOD_END_DATE
+pii_columns:
+- email
+synonyms: []
+built_from:
+- fact_cust_transactions
+- fact_cust_trans_opens
+- fact_cash_discounts
+known_issues: []
+row_count: null
+proposed_fields: []
+reviewed: false
+broken_error: the profiling query failed in the catalog export (no row count); the error text is not in the workbook
+---
+
+# vw_managed_coll_early_payment_discounts_filter
+
+## Columns
+
+| Column | Type | Meaning | Also called | SQL expression |
+|---|---|---|---|---|
+| `Reference` | string |  |  | `Reference` |
+| `Customer` | string |  |  | `Customer` |
+| `invoice_number` | string |  |  | `invoice_number` |
+| `Amount` | string |  |  | `Amount` |
+| `Invoice_date` | string |  |  | `Invoice_date` |
+| `Due_date` | string |  |  | `Due_date` |
+| `Discounts` | string |  |  | `Discounts` |
+| `Action` | string |  |  | `Action` |
+| `email` | string |  |  | `email` |
+| `LEGAL_ENTITY` | string |  |  | `LEGAL_ENTITY` |
+| `PERIOD_TYPE` | string |  |  | `PERIOD_TYPE` |
+| `PERIOD_YEAR` | int |  |  | `PERIOD_YEAR` |
+| `PERIOD_MONTH` | int |  |  | `PERIOD_MONTH` |
+| `PERIOD_QUARTER` | int |  |  | `PERIOD_QUARTER` |
+| `PERIOD_NAME` | string |  |  | `PERIOD_NAME` |
+| `PERIOD_START_DATE` | date |  |  | `PERIOD_START_DATE` |
+| `PERIOD_END_DATE` | date |  |  | `PERIOD_END_DATE` |
+
+## Profile
+
+Rows in the latest export: unknown.
+
+| Column | Type | Distinct (approx) | Nulls | Min | Max |
+|---|---|---|---|---|---|
+| `Reference` | STRING |  |  |  |  |
+| `Customer` | STRING |  |  |  |  |
+| `invoice_number` | STRING |  |  |  |  |
+| `Amount` | STRING |  |  |  |  |
+| `Invoice_date` | STRING |  |  |  |  |
+| `Due_date` | STRING |  |  |  |  |
+| `Discounts` | STRING |  |  |  |  |
+| `Action` | STRING |  |  |  |  |
+| `email` | STRING |  |  |  |  |
+| `LEGAL_ENTITY` | STRING |  |  |  |  |
+| `PERIOD_TYPE` | STRING |  |  |  |  |
+| `PERIOD_YEAR` | INT |  |  |  |  |
+| `PERIOD_MONTH` | INT |  |  |  |  |
+| `PERIOD_QUARTER` | INT |  |  |  |  |
+| `PERIOD_NAME` | STRING |  |  |  |  |
+| `PERIOD_START_DATE` | DATE |  |  |  |  |
+| `PERIOD_END_DATE` | DATE |  |  |  |  |

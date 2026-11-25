@@ -1,0 +1,408 @@
+# Verified question -> SQL examples, retrieved by similarity as few-shot examples for the SQL agent.
+# Sources: reference/semantic_pages/*/verified_queries.md and reference/question_bank/ground_truth_adra_fynapse_v1.sql.
+#
+# verified: true  = SQL as run against Databricks (ground truth 2026-11-15).
+# verified: false = rewritten for v3: the old entity-scope filters (internal LEGAL_ENTITY_KEY / ENGAGEMENT_KEY values
+#                   from RBAC) were replaced by the filter the question asks for (entity code + period label through
+#                   the dimension tables). Expected values are from the ground truth; re-run live before trusting.
+# Never add hold-out questions here.
+examples:
+  # ================================================================ ADRA (recon)
+  - id: adra_status_lookup
+    question: What is the reconciliation status of account 103300 for 100-Northwind in Feb 25?
+    tables: [silver.adra_account_facts, silver.adra_account_dimensions, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {text: "Approved (account 103300, WF - Corp Sweep)"}
+    verified: false
+    sql: |
+      SELECT trim(a.ACCOUNT_NUMBER) AS account_number, trim(a.ACCOUNT_NAME) AS account_name,
+             trim(f.ACCOUNT_STATUS) AS account_status
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_account_dimensions a
+        ON f.ACCOUNT_KEY = a.ACCOUNT_KEY AND f.ENGAGEMENT_KEY = a.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = a.LEGAL_ENTITY_KEY
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25' AND trim(a.ACCOUNT_NUMBER) = '103300'
+
+  - id: adra_finalized_flag
+    question: Has account 103300 been finalized for 100-Northwind in Feb 25?
+    tables: [silver.adra_account_facts, silver.adra_account_dimensions, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {text: "No, not finalized (status is Approved, IS_FINALIZED is False)"}
+    verified: false
+    notes: Status and finalized are independent; report both.
+    sql: |
+      SELECT trim(a.ACCOUNT_NUMBER) AS account_number, trim(f.ACCOUNT_STATUS) AS account_status,
+             lower(trim(f.IS_FINALIZED)) = 'true' AS is_finalized
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_account_dimensions a
+        ON f.ACCOUNT_KEY = a.ACCOUNT_KEY AND f.ENGAGEMENT_KEY = a.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = a.LEGAL_ENTITY_KEY
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25' AND trim(a.ACCOUNT_NUMBER) = '103300'
+
+  - id: adra_pending_closure_count
+    question: How many Northwind accounts are pending closure for Feb 2025?
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["38"], text: "38 accounts not finalized (2 of 40 finalized)"}
+    verified: false
+    sql: |
+      SELECT SUM(CASE WHEN lower(trim(f.IS_FINALIZED)) = 'false' THEN 1 ELSE 0 END) AS not_finalized,
+             SUM(CASE WHEN lower(trim(f.IS_FINALIZED)) = 'true' THEN 1 ELSE 0 END) AS finalized,
+             COUNT(*) AS total_accounts
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25'
+
+  - id: adra_unidentified_lookup
+    question: What is the unidentified balance on account 213130 for 561 - Cars USA Shipping, LLC in Oct 26?
+    tables: [silver.adra_account_facts, silver.adra_account_dimensions, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["-455376.16"]}
+    verified: false
+    sql: |
+      SELECT trim(a.ACCOUNT_NUMBER) AS account_number, trim(a.ACCOUNT_NAME) AS account_name,
+             TRY_CAST(f.UNIDENTIFIED_BALANCE AS DECIMAL(38,2)) AS unidentified_balance
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_account_dimensions a
+        ON f.ACCOUNT_KEY = a.ACCOUNT_KEY AND f.ENGAGEMENT_KEY = a.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = a.LEGAL_ENTITY_KEY
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '561' AND trim(p.PERIOD_NAME) = 'Oct 26' AND trim(a.ACCOUNT_NUMBER) = '213130'
+
+  - id: adra_total_unidentified_abs
+    question: What is the total unidentified balance for 561 - Cars USA Shipping, LLC in Oct 26?
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["22831252.26"]}
+    verified: false
+    notes: '"Total" unidentified balance uses the absolute column UNIDENTIFIED_BALANCE_ABS; say so in how_calculated.'
+    sql: |
+      SELECT SUM(TRY_CAST(f.UNIDENTIFIED_BALANCE_ABS AS DECIMAL(38,2))) AS total_unidentified_abs
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '561' AND trim(p.PERIOD_NAME) = 'Oct 26'
+
+  - id: adra_count_by_status
+    question: How many Northwind accounts are in each reconciliation status for Feb 25?
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["7", "24", "9"], text: "Approved, Not prepared, Prepared"}
+    verified: false
+    sql: |
+      SELECT trim(f.ACCOUNT_STATUS) AS account_status, COUNT(*) AS accounts
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25'
+      GROUP BY trim(f.ACCOUNT_STATUS)
+      ORDER BY accounts DESC
+
+  - id: adra_pct_finalized
+    question: What percentage of Cars USA Shipping accounts are finalized in Oct 26?
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["26.1"]}
+    verified: false
+    sql: |
+      SELECT ROUND(100.0 * SUM(CASE WHEN lower(trim(f.IS_FINALIZED)) = 'true' THEN 1 ELSE 0 END) / NULLIF(COUNT(*), 0), 1) AS pct_finalized,
+             SUM(CASE WHEN lower(trim(f.IS_FINALIZED)) = 'true' THEN 1 ELSE 0 END) AS finalized,
+             COUNT(*) AS total_accounts
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE lower(le.ENTITY_NAME) LIKE '%cars usa shipping%' AND trim(p.PERIOD_NAME) = 'Oct 26'
+
+  - id: adra_top_n_abs_balance
+    question: Which 5 accounts have the largest absolute balance for 561 - Cars USA Shipping, LLC in Oct 26?
+    tables: [silver.adra_account_facts, silver.adra_account_dimensions, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["19697737.46", "6294506.33", "2520421.50", "1193073.56", "815070.06"]}
+    verified: false
+    sql: |
+      SELECT trim(a.ACCOUNT_NUMBER) AS account_number, trim(a.ACCOUNT_NAME) AS account_name,
+             TRY_CAST(f.BALANCE_ABS AS DECIMAL(38,2)) AS balance_abs
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_account_dimensions a
+        ON f.ACCOUNT_KEY = a.ACCOUNT_KEY AND f.ENGAGEMENT_KEY = a.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = a.LEGAL_ENTITY_KEY
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '561' AND trim(p.PERIOD_NAME) = 'Oct 26'
+      ORDER BY balance_abs DESC
+      LIMIT 5
+
+  - id: adra_count_by_risk_type
+    question: How many Northwind accounts are there for each risk type in Feb 25?
+    tables: [silver.adra_account_facts, silver.adra_account_dimensions, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["40"], text: "Not set"}
+    verified: false
+    notes: Account attributes live on the account dimension; count the period's fact rows joined to it.
+    sql: |
+      SELECT trim(a.RISK_TYPE) AS risk_type, COUNT(*) AS accounts
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_account_dimensions a
+        ON f.ACCOUNT_KEY = a.ACCOUNT_KEY AND f.ENGAGEMENT_KEY = a.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = a.LEGAL_ENTITY_KEY
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25'
+      GROUP BY trim(a.RISK_TYPE)
+
+  - id: adra_no_documents
+    question: How many Northwind accounts have no supporting documents in Feb 25?
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["40"]}
+    verified: false
+    sql: |
+      SELECT SUM(CASE WHEN coalesce(TRY_CAST(f.NO_OF_DOCUMENTS AS INT), 0) = 0 THEN 1 ELSE 0 END) AS accounts_without_documents
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25'
+
+  - id: adra_approved_not_finalized
+    question: How many Northwind accounts are approved but not yet finalized in Feb 25?
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["5"]}
+    verified: false
+    sql: |
+      SELECT COUNT(*) AS approved_not_finalized
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25'
+        AND lower(trim(f.ACCOUNT_STATUS)) = 'approved' AND lower(trim(f.IS_FINALIZED)) = 'false'
+
+  - id: adra_who_approved
+    question: Who approved account 213130 for Cars USA Shipping in Oct 26, and on what date?
+    tables: [silver.adra_account_facts, silver.adra_account_dimensions, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {text: "Not approved yet: APPROVED_DATE is NULL (status Not prepared); names are masked without PII permission"}
+    verified: false
+    notes: Actual approver = APPROVED_BY_NAME + APPROVED_DATE. NULL APPROVED_DATE means nobody has approved it.
+    sql: |
+      SELECT trim(a.ACCOUNT_NUMBER) AS account_number, trim(f.ACCOUNT_STATUS) AS account_status,
+             f.APPROVED_BY_NAME, TRY_CAST(f.APPROVED_DATE AS TIMESTAMP) AS approved_date, f.APPROVER_NAME
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_account_dimensions a
+        ON f.ACCOUNT_KEY = a.ACCOUNT_KEY AND f.ENGAGEMENT_KEY = a.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = a.LEGAL_ENTITY_KEY
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE lower(le.ENTITY_NAME) LIKE '%cars usa shipping%' AND trim(p.PERIOD_NAME) = 'Oct 26'
+        AND trim(a.ACCOUNT_NUMBER) = '213130'
+
+  - id: adra_latest_period
+    question: What is the latest period with reconciliation data for Cars USA Shipping?
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {text: "Oct 26"}
+    verified: false
+    sql: |
+      SELECT trim(p.PERIOD_NAME) AS period_name, TRY_CAST(p.PERIOD_END AS DATE) AS period_end, COUNT(*) AS accounts
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE lower(le.ENTITY_NAME) LIKE '%cars usa shipping%'
+      GROUP BY trim(p.PERIOD_NAME), TRY_CAST(p.PERIOD_END AS DATE)
+      ORDER BY period_end DESC
+      LIMIT 1
+
+  - id: adra_txn_by_status_for_account
+    question: How many transactions are in each status for account 153300 in Oct 26?
+    tables: [silver.adra_transaction_facts, silver.adra_account_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["2"], text: "Required adjustment: 2"}
+    verified: false
+    sql: |
+      SELECT trim(t.TRANSACTION_STATUS) AS transaction_status, COUNT(*) AS transactions
+      FROM lakehouse_mvpai.silver.adra_transaction_facts t
+      JOIN lakehouse_mvpai.silver.adra_account_dimensions a
+        ON t.ACCOUNT_KEY = a.ACCOUNT_KEY AND t.ENGAGEMENT_KEY = a.ENGAGEMENT_KEY AND t.LEGAL_ENTITY_KEY = a.LEGAL_ENTITY_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON t.PERIOD_KEY = p.PERIOD_KEY AND t.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND t.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(p.PERIOD_NAME) = 'Oct 26' AND trim(a.ACCOUNT_NUMBER) = '153300'
+      GROUP BY trim(t.TRANSACTION_STATUS)
+
+  - id: adra_txn_count_for_account
+    question: How many transactions are recorded on account 222120 for Northwind in Feb 25?
+    tables: [silver.adra_transaction_facts, silver.adra_account_dimensions, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["2"]}
+    verified: false
+    sql: |
+      SELECT COUNT(*) AS transactions
+      FROM lakehouse_mvpai.silver.adra_transaction_facts t
+      JOIN lakehouse_mvpai.silver.adra_account_dimensions a
+        ON t.ACCOUNT_KEY = a.ACCOUNT_KEY AND t.ENGAGEMENT_KEY = a.ENGAGEMENT_KEY AND t.LEGAL_ENTITY_KEY = a.LEGAL_ENTITY_KEY
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON t.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND t.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON t.PERIOD_KEY = p.PERIOD_KEY AND t.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND t.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25' AND trim(a.ACCOUNT_NUMBER) = '222120'
+
+  - id: adra_oldest_txn_age
+    question: What is the oldest transaction age in days across all Northwind accounts in Feb 25?
+    tables: [silver.adra_transaction_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["18"]}
+    verified: false
+    sql: |
+      SELECT MAX(TRY_CAST(t.AGE_DAYS AS INT)) AS max_age_days
+      FROM lakehouse_mvpai.silver.adra_transaction_facts t
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON t.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND t.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON t.PERIOD_KEY = p.PERIOD_KEY AND t.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND t.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_CODE) = '100' AND trim(p.PERIOD_NAME) = 'Feb 25'
+
+  - id: adra_txn_by_age_group
+    question: How are Cars USA Shipping transactions distributed across age groups in Oct 26?
+    tables: [silver.adra_transaction_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    expected: {numbers: ["16"], text: "0-30 Days"}
+    verified: false
+    sql: |
+      SELECT trim(t.AGE_GROUP) AS age_group, COUNT(*) AS transactions,
+             SUM(TRY_CAST(t.AMOUNT_ABS AS DECIMAL(38,2))) AS amount_abs
+      FROM lakehouse_mvpai.silver.adra_transaction_facts t
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON t.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND t.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON t.PERIOD_KEY = p.PERIOD_KEY AND t.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND t.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE lower(le.ENTITY_NAME) LIKE '%cars usa shipping%' AND trim(p.PERIOD_NAME) = 'Oct 26'
+      GROUP BY trim(t.AGE_GROUP)
+      ORDER BY transactions DESC
+
+  # ================================================================ Fynapse (subledger)
+  - id: fynapse_source_system_concentration
+    question: How concentrated is the journal integration workload across source systems, and does the subledger remain balanced?
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {numbers: ["817", "433", "214", "170", "53.0", "26.2", "20.8", "-0.08"]}
+    verified: true
+    sql: |
+      SELECT SOURCE_SYSTEM, COUNT(*) AS journal_lines,
+             ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 1) AS share_pct,
+             SUM(REPORTING_AMOUNT) AS net_reporting_amount
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      GROUP BY SOURCE_SYSTEM
+      ORDER BY journal_lines DESC
+
+  - id: fynapse_lines_by_period
+    question: Show Fynapse journal line counts and net reporting amount by period.
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {numbers: ["207", "610", "-0.02", "-0.06"]}
+    verified: true
+    sql: |
+      SELECT FISCAL_YEAR, PERIOD, MIN(CORE_DATE) AS period_date, COUNT(*) AS journal_lines,
+             SUM(REPORTING_AMOUNT) AS net_reporting_amount
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      GROUP BY FISCAL_YEAR, PERIOD
+      ORDER BY FISCAL_YEAR, PERIOD
+
+  - id: fynapse_journal_types_in_month
+    question: Which journal types were posted in Fynapse in Sep 26, and how many lines each?
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {numbers: ["610"], text: "PERM"}
+    verified: true
+    notes: Sep 26 was mapped to FISCAL_YEAR 2026, PERIOD 9 from CORE_DATE first; check the mapping, do not assume it.
+    sql: |
+      SELECT JOURNAL_TYPE, COUNT(*) AS journal_lines
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      WHERE FISCAL_YEAR = 2026 AND PERIOD = 9
+      GROUP BY JOURNAL_TYPE
+      ORDER BY journal_lines DESC
+
+  - id: fynapse_distinct_journals_in_month
+    question: How many distinct Fynapse journals were posted in Sep 26?
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {numbers: ["205"]}
+    verified: true
+    sql: |
+      SELECT COUNT(DISTINCT JOURNAL_ID) AS journals
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      WHERE FISCAL_YEAR = 2026 AND PERIOD = 9
+
+  - id: fynapse_top_business_events
+    question: Which 5 business events have the most Fynapse journal lines?
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {numbers: ["433", "214", "170"], text: "BROKERAGE ACCOUNTING, ACCRUED_BROKERAGE_ACCOUNTING, CONCUR_EXPENSES"}
+    verified: true
+    sql: |
+      SELECT BUSINESS_EVENT, COUNT(*) AS journal_lines
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      GROUP BY BUSINESS_EVENT
+      ORDER BY journal_lines DESC
+      LIMIT 5
+
+  - id: fynapse_share_by_entity
+    question: What share of Fynapse journal lines does each parent entity account for?
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {text: "One row per current PARENT_ENTITY value with its share in percent"}
+    verified: true
+    sql: |
+      SELECT PARENT_ENTITY, COUNT(*) AS journal_lines,
+             ROUND(100.0 * COUNT(*) / SUM(COUNT(*)) OVER (), 1) AS share_pct
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      GROUP BY PARENT_ENTITY
+      ORDER BY journal_lines DESC
+
+  - id: fynapse_no_child_entity
+    question: How many Fynapse journal lines have no child entity?
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {numbers: ["384"]}
+    verified: true
+    sql: |
+      SELECT SUM(CASE WHEN CHILD_ENTITY IS NULL OR trim(CHILD_ENTITY) = '' THEN 1 ELSE 0 END) AS lines_without_child_entity
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+
+  - id: fynapse_lines_by_currency
+    question: How many Fynapse lines are there per transaction currency, and what is the transaction amount in each?
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {numbers: ["360", "238", "120", "60", "17", "14", "4", "4"]}
+    verified: true
+    sql: |
+      SELECT TRANSACTION_CURRENCY, COUNT(*) AS journal_lines, SUM(TRANSACTION_AMOUNT) AS transaction_amount
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      GROUP BY TRANSACTION_CURRENCY
+      ORDER BY journal_lines DESC
+
+  - id: fynapse_compare_periods
+    question: Compare Fynapse journal line counts between Aug 2026 and Sep 2026.
+    tables: [silver.fact_fynapse_slr_journals]
+    expected: {numbers: ["207", "610"]}
+    verified: true
+    notes: Map both months to FISCAL_YEAR + PERIOD from CORE_DATE first.
+    sql: |
+      SELECT FISCAL_YEAR, PERIOD, COUNT(*) AS journal_lines, SUM(REPORTING_AMOUNT) AS net_reporting_amount
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      WHERE FISCAL_YEAR = 2026 AND PERIOD IN (8, 9)
+      GROUP BY FISCAL_YEAR, PERIOD
+      ORDER BY PERIOD
+
+  # ================================================================ Fixed assets (fa): pattern only
+  - id: fa_assets_by_status_with_duplicate_check
+    question: How many fixed assets are there in each status?
+    tables: [silver.dim_fixed_asset_books]
+    expected: {text: "Counts per STATUS, with raw rows and deduplicated assets side by side"}
+    verified: false
+    notes: Pattern for tables with duplicate loads. Report the raw row count and the deduplicated count, and say which one the answer uses.
+    sql: |
+      SELECT STATUS, COUNT(*) AS book_rows,
+             COUNT(DISTINCT struct(DATA_AREA_ID, FIXED_ASSET_NUMBER, BOOK_ID)) AS distinct_asset_books
+      FROM lakehouse_mvpai.silver.dim_fixed_asset_books
+      GROUP BY STATUS
+      ORDER BY distinct_asset_books DESC

@@ -1,0 +1,122 @@
+# Silver-only golden questions: close / reconciliation (ADRA tables only).
+# Source of expected answers: business team (verified). Reference SQL is added later, per question.
+area: close_recon
+source_of_truth: adra            # adra_* tables; manage_close_* are copies and are NOT used
+# PII policy = MASK. Each question that touches person columns has two expectations:
+#   as_role: pii_viewer  -> real names (business-verified answer)
+#   as_role: standard    -> masked values; dates and counts still returned
+# Entity scope also comes from the user access config (allowed_entity_scopes).
+roles_used: [pii_viewer, standard]
+questions:
+  - id: cr_pending_with_person
+    category: Ownership and Actions
+    question: What actions are currently pending with Marvin Odum
+    tables: [adra_tasks_task_facts]
+    expect:
+      as_role:
+        pii_viewer: {kind: answer, values: {not_started: 44, in_progress: 2}}
+        standard: {kind: pii_restricted, note: "filtering by a person name is not allowed without PII permission; offer the same question by team or role"}
+    expected_text: "Not Started Task: 44 and In-Progress task: 2 are currently pending with Marvin"
+    open_point: "preparer, approver or assignee? confirm which column the business used"
+  - id: cr_mec_progress_vs_prev
+    category: Reconciliation Status and Completeness
+    question: How does Month End Close progress in Oct 26 compare with the previous month for Month End Close
+    tables: [adra_tasks_task_facts, adra_tasks_task_list_dimension, adra_tasks_task_period_dimension]
+    expect: {kind: cannot_compare, values: {pct_finalized: 46.88, status: Open}}
+    expected_text: "Month End Close is 46.88% finalized in Oct 26 and its status is Open. No comparable previous-month record is available, so a month-over-month comparison cannot be made."
+    open_point: "original question was cut off after 'for'; subject assumed to be the Month End Close task list"
+  - id: cr_status_103300_feb25
+    category: Reconciliation Status and Completeness
+    question: What is the reconciliation status of account 103300 for 100-Northwind in Feb 25?
+    tables: [adra_account_facts, adra_account_dimensions, adra_legal_entity_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {account: 103300, entity: 100, period: Feb 25, status: Approved}}
+    expected_text: "Account 103300 (WF - Corp Sweep) is Approved for 100-Northwind in Feb 25."
+  - id: cr_finalized_103300_feb25
+    category: Reconciliation Status and Completeness
+    question: Has account 103300 been finalized for 100-Northwind in Feb 25?
+    tables: [adra_account_facts, adra_account_dimensions, adra_legal_entity_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {is_finalized: false}}
+    expected_text: "No. Account 103300 (WF - Corp Sweep) is not finalized for 100-Northwind in Feb 25."
+    note: "Status is Approved but IsFinalized is false: the two columns mean different things"
+  - id: cr_pending_closure_northwind_feb25
+    category: Reconciliation Status and Completeness
+    question: How many Northwind accounts are pending closure for Feb 2025
+    tables: [adra_account_facts, adra_legal_entity_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {not_finalized: 38}}
+    expected_text: "38 accounts are not finalized for 100-Northwind in Feb 25."
+  - id: cr_unidentified_213130_561_oct26
+    category: Transaction Matching and Exceptions
+    question: What is the unidentified balance on account 213130 for 561 - Cars USA Shipping, LLC in Oct 26?
+    tables: [adra_account_facts, adra_account_dimensions, adra_legal_entity_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {unidentified_balance: -455376.16}, tolerance: 0.01}
+    expected_text: "The unidentified balance for account 213130 (ACCOUNTS RECEIVABLE CREDIT BALANCES) is -455,376.16 for 561 - Cars USA Shipping, LLC in Oct 26."
+  - id: cr_txn_status_153300_oct26
+    category: Transaction Matching and Exceptions
+    question: How many transactions are in each status for account 153300 in Oct 26?
+    tables: [adra_transaction_facts, adra_account_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {"Required adjustment": 2}}
+    expected_text: "Account 153300 has 2 transactions with status Required adjustment in Oct 26."
+  - id: cr_total_unidentified_abs_561_oct26
+    category: Transaction Matching and Exceptions
+    question: What is the total unidentified balance for 561 - Cars USA Shipping, LLC in Oct 26?
+    tables: [adra_account_facts, adra_legal_entity_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {unidentified_balance_abs_total: 22831252.26}, tolerance: 0.01}
+    expected_text: "The total absolute unidentified balance for 561 - Cars USA Shipping, LLC in Oct 26 is 22,831,252.26."
+    note: "answer uses the ABSOLUTE column (UNIDENTIFIED_BALANCE_ABS) although the question says only 'total'"
+  - id: cr_task_list_progress_rockit_oct26
+    category: Month-End Close Progress
+    question: How far through the close are we for October 2026 Rock-IT MEC Tasks in Oct 26?
+    tables: [adra_tasks_task_facts, adra_tasks_task_list_dimension, adra_tasks_task_period_dimension]
+    expect: {kind: answer, values: {pct_finalized: 17.78, status: Open}}
+    expected_text: "October 2026 Rock-IT MEC Tasks is 17.78% finalized and its status is Open in Oct 26."
+  - id: cr_unfinished_tasks_due_before_nov1
+    category: Month-End Close Progress
+    question: How many unfinished tasks in October 2026 Rock-IT MEC Tasks were due before November 1, 2026?
+    tables: [adra_tasks_task_facts, adra_tasks_task_list_dimension]
+    expect: {kind: answer, values: {unfinished_due_before: 2}}
+    expected_text: "2 unfinished tasks were due before November 1, 2026."
+  - id: cr_largest_unreconciled_northwind
+    category: Risk and Controls
+    question: Which accounts have the largest unreconciled differences for Northwind
+    tables: [adra_account_facts, adra_account_dimensions, adra_legal_entity_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {account: 141111, amount: 992715.00}, tolerance: 0.01}
+    expected_text: "Premium Receivable - Current - Direct (account 141111) has the largest unreconciled difference for 100-Northwind in Feb 25, at 992,715.00."
+    open_point: "no period in the question (answer picked Feb 25); which column is 'unreconciled difference'?"
+  - id: cr_finalized_vs_unfinished_northwind_feb25
+    category: Management Summary
+    question: For 100-Northwind in Feb 25, how many reconciliations are finalized and how many remain unfinished?
+    tables: [adra_account_facts, adra_legal_entity_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {finalized: 2, unfinished: 38, total: 40}}
+    expected_text: "2 of 40 accounts are finalized, while 38 remain unfinished for 100-Northwind in Feb 25."
+  - id: cr_oldest_txn_222120_feb25
+    category: Aging and Trend
+    question: What is the oldest transaction age on account 222120 in Feb 25?
+    tables: [adra_transaction_facts, adra_account_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {max_age_days: 18}}
+    expected_text: "The maximum recorded transaction age on account 222120 (Municipal taxes payable) in Feb 25 is 18 days."
+  - id: cr_age_distribution_222120_feb25
+    category: Aging and Trend
+    question: How are the transactions on account 222120 distributed by age in Feb 25?
+    tables: [adra_transaction_facts, adra_account_dimensions, adra_period_dimensions]
+    expect: {kind: answer, values: {"0-30 Days": {count: 2, amount_abs: 9438.00}}, tolerance: 0.01}
+    expected_text: "Account 222120 has 2 transactions in the 0-30 Days age group, totaling 9,438.00 in absolute amount for Feb 25."
+  - id: cr_audit_prepared_approved_103703
+    category: Audit Trail and Evidence
+    question: Who prepared and approved account 103703 in Feb 25, and when?
+    tables: [adra_account_facts, adra_account_dimensions, adra_period_dimensions]
+    expect:
+      as_role:
+        pii_viewer:
+          kind: answer
+          values: {prepared_by: Vishnu MV, prepared_at: "2026-10-25 04:59:14 UTC", approved_by: Sushant Srivastava, approved_at: "2026-10-25 07:25:02 UTC"}
+        standard:
+          kind: answer
+          values: {prepared_by: "<masked>", prepared_at: "2026-10-25 04:59:14 UTC", approved_by: "<masked>", approved_at: "2026-10-25 07:25:02 UTC"}
+    expected_text: "Account 103703 (Mutual Funds (Long Term)) was prepared by Vishnu MV on October 25, 2026 at 04:59:14 UTC and approved by Sushant Srivastava on October 25, 2026 at 07:25:02 UTC."
+  - id: cr_not_found_999999999
+    category: Negative / Anti-Fabrication
+    question: What is the balance of account 999999999 for 100-Northwind in Feb 25?
+    tables: [adra_account_facts, adra_account_dimensions]
+    expect: {kind: not_found}
+    expected_text: "I could not find account 999999999 for 100-Northwind in Feb 25, so I cannot provide a balance."
+    check: no_unsupported_financial_figure   # identifiers and dates from the question (999999999, 100, Feb 25) are allowed

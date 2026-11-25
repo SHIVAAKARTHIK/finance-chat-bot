@@ -1,0 +1,703 @@
+---
+name: fact_ledger_journal_lines
+schema: silver
+layer: silver
+domain: gl
+type: table
+status: active
+purpose: Lines of D365 ledger journals.
+grain: one row per DATA_AREA_ID + JOURNAL_BATCH_NUMBER + LINE_NUMBER (one journal line)
+primary_key: []
+entity_column: DATA_AREA_ID
+period_columns: []
+pii_columns:
+- MDP_CREATED_BY
+- MDP_MODIFIED_BY
+synonyms: []
+built_from: []
+known_issues:
+- code: empty_column
+  note: ITEM_SALES_TAX_GROUP all null; CASH_DISCOUNT_DATE and REVERSE_DATE are the 1900-01-01 placeholder in all rows
+row_count: 184918
+proposed_fields: []
+reviewed: false
+---
+
+# fact_ledger_journal_lines
+
+## Columns
+
+| Column | Type | Meaning | Also called | SQL expression |
+|---|---|---|---|---|
+| `DATA_AREA_ID` | string |  |  | `DATA_AREA_ID` |
+| `JOURNAL_BATCH_NUMBER` | string |  |  | `JOURNAL_BATCH_NUMBER` |
+| `LINE_NUMBER` | string |  |  | `LINE_NUMBER` |
+| `REVERSE_ENTRY` | string |  |  | `REVERSE_ENTRY` |
+| `ITEM_SALES_TAX_GROUP` | string |  |  | `ITEM_SALES_TAX_GROUP` |
+| `CASH_DISCOUNT_DATE` | string |  |  | `CASH_DISCOUNT_DATE` |
+| `VOUCHER` | string |  |  | `VOUCHER` |
+| `TEXT` | string |  |  | `TEXT` |
+| `OFFSET_ACCOUNT_TYPE` | string |  |  | `OFFSET_ACCOUNT_TYPE` |
+| `IS_WITHHOLDING_CALCULATION_ENABLED` | string |  |  | `IS_WITHHOLDING_CALCULATION_ENABLED` |
+| `REVERSE_DATE` | string |  |  | `REVERSE_DATE` |
+| `TRANS_DATE` | string |  |  | `TRANS_DATE` |
+| `DEFAULT_DIMENSION_DISPLAY_VALUE` | string |  |  | `DEFAULT_DIMENSION_DISPLAY_VALUE` |
+| `PAYMENT_REFERENCE` | string |  |  | `PAYMENT_REFERENCE` |
+| `DOCUMENT` | string |  |  | `DOCUMENT` |
+| `CASH_DISCOUNT_AMOUNT` | string |  |  | `CASH_DISCOUNT_AMOUNT` |
+| `EXCHANGE_RATE` | string |  |  | `EXCHANGE_RATE` |
+| `CHINESE_VOUCHER_TYPE` | string |  |  | `CHINESE_VOUCHER_TYPE` |
+| `DEBIT_AMOUNT` | string |  |  | `DEBIT_AMOUNT` |
+| `SALES_TAX_CODE` | string |  |  | `SALES_TAX_CODE` |
+| `DOCUMENT_DATE` | string |  |  | `DOCUMENT_DATE` |
+| `OFFSET_ACCOUNT_DISPLAY_VALUE` | string |  |  | `OFFSET_ACCOUNT_DISPLAY_VALUE` |
+| `ACCOUNT_DISPLAY_VALUE` | string |  |  | `ACCOUNT_DISPLAY_VALUE` |
+| `CASH_DISCOUNT` | string |  |  | `CASH_DISCOUNT` |
+| `OFFSET_DEFAULT_DIMENSION_DISPLAY_VALUE` | string |  |  | `OFFSET_DEFAULT_DIMENSION_DISPLAY_VALUE` |
+| `OFFSET_FIN_TAG_DISPLAY_VALUE` | string |  |  | `OFFSET_FIN_TAG_DISPLAY_VALUE` |
+| `SALES_TAX_GROUP` | string |  |  | `SALES_TAX_GROUP` |
+| `ACCOUNT_TYPE` | string |  |  | `ACCOUNT_TYPE` |
+| `INVOICE` | string |  |  | `INVOICE` |
+| `DUE_DATE` | string |  |  | `DUE_DATE` |
+| `REPORTING_CURRENCY_EXCH_RATE` | string |  |  | `REPORTING_CURRENCY_EXCH_RATE` |
+| `FIN_TAG_DISPLAY_VALUE` | string |  |  | `FIN_TAG_DISPLAY_VALUE` |
+| `PAYMENT_METHOD` | string |  |  | `PAYMENT_METHOD` |
+| `PAYMENT_ID` | string |  |  | `PAYMENT_ID` |
+| `POSTING_PROFILE` | string |  |  | `POSTING_PROFILE` |
+| `EXCHANGE_RATE_SECOND` | string |  |  | `EXCHANGE_RATE_SECOND` |
+| `CREDIT_AMOUNT` | string |  |  | `CREDIT_AMOUNT` |
+| `OVERRIDE_SALES_TAX` | string |  |  | `OVERRIDE_SALES_TAX` |
+| `OFFSET_COMPANY` | string |  |  | `OFFSET_COMPANY` |
+| `QUANTITY` | string |  |  | `QUANTITY` |
+| `ITEM_WITHHOLDING_TAX_GROUP_CODE` | string |  |  | `ITEM_WITHHOLDING_TAX_GROUP_CODE` |
+| `TAX_EXEMPT_NUMBER` | string |  |  | `TAX_EXEMPT_NUMBER` |
+| `REPORTING_CURRENCY_EXCH_RATE_SECONDARY` | string |  |  | `REPORTING_CURRENCY_EXCH_RATE_SECONDARY` |
+| `CURRENCY_CODE` | string |  |  | `CURRENCY_CODE` |
+| `COMPANY` | string |  |  | `COMPANY` |
+| `CHINESE_VOUCHER` | string |  |  | `CHINESE_VOUCHER` |
+| `DISCOUNT_PERCENTAGE` | string |  |  | `DISCOUNT_PERCENTAGE` |
+| `OFFSET_TEXT` | string |  |  | `OFFSET_TEXT` |
+| `KPMG_DELIVERY_CODE` | string |  |  | `KPMG_DELIVERY_CODE` |
+| `KPMG_CUSTOMER_ACCOUNT_NUMBER` | string |  |  | `KPMG_CUSTOMER_ACCOUNT_NUMBER` |
+| `SHIFT_ID` | string |  |  | `SHIFT_ID` |
+| `WITHHOLDING_SET_ID` | string |  |  | `WITHHOLDING_SET_ID` |
+| `LTM_DOCUMENT_DATE` | string |  |  | `LTM_DOCUMENT_DATE` |
+| `LEDGER_JOURNAL_TYPE` | string |  |  | `LEDGER_JOURNAL_TYPE` |
+| `CAICAE_DUE_DATE` | string |  |  | `CAICAE_DUE_DATE` |
+| `LEDGER_JOURNAL_TRANS_ID` | string |  |  | `LEDGER_JOURNAL_TRANS_ID` |
+| `SALES_POINT_PREFIX` | string |  |  | `SALES_POINT_PREFIX` |
+| `COUNTRY_REGION_ID` | string |  |  | `COUNTRY_REGION_ID` |
+| `WITHHOLD_ACCRUED_BASE_MST` | string |  |  | `WITHHOLD_ACCRUED_BASE_MST` |
+| `STATE_DOC_NUM` | string |  |  | `STATE_DOC_NUM` |
+| `LIST_FIELD_CODE_10` | string |  |  | `LIST_FIELD_CODE_10` |
+| `TAX_PAYER_TYPE_ID` | string |  |  | `TAX_PAYER_TYPE_ID` |
+| `BUSSINESS_NAME` | string |  |  | `BUSSINESS_NAME` |
+| `CPD_CUST_POSTING_PROFILE` | string |  |  | `CPD_CUST_POSTING_PROFILE` |
+| `AMOUNT_CUR` | string |  |  | `AMOUNT_CUR` |
+| `WITHHOLDING_EFFECTIVE_RATE` | string |  |  | `WITHHOLDING_EFFECTIVE_RATE` |
+| `TREASURY_ENTER` | string |  |  | `TREASURY_ENTER` |
+| `DOCUMENT_NUM` | string |  |  | `DOCUMENT_NUM` |
+| `CPD_ACTION` | string |  |  | `CPD_ACTION` |
+| `COMPLETE_DOCUMENT_NUM` | string |  |  | `COMPLETE_DOCUMENT_NUM` |
+| `COUNTRY_DOC_TYPE_ID` | string |  |  | `COUNTRY_DOC_TYPE_ID` |
+| `EXCHANGE_RATE_TYPE_ALT` | string |  |  | `EXCHANGE_RATE_TYPE_ALT` |
+| `CONTROL_CODE` | string |  |  | `CONTROL_CODE` |
+| `CONCEPT_1` | string |  |  | `CONCEPT_1` |
+| `CONCEPT_3` | string |  |  | `CONCEPT_3` |
+| `IS_COLLECT_PAYM_DOC` | string |  |  | `IS_COLLECT_PAYM_DOC` |
+| `CONCEPT_2` | string |  |  | `CONCEPT_2` |
+| `LIST_FIELD_10` | string |  |  | `LIST_FIELD_10` |
+| `WITHHOLDING_BASE_MST` | string |  |  | `WITHHOLDING_BASE_MST` |
+| `CPD_TRX_HISTORY_ID` | string |  |  | `CPD_TRX_HISTORY_ID` |
+| `BANK_ACCOUNT_NUM` | string |  |  | `BANK_ACCOUNT_NUM` |
+| `HOLDER_ACCOUNT_NUM` | string |  |  | `HOLDER_ACCOUNT_NUM` |
+| `COUNTRY_DOC_NUM` | string |  |  | `COUNTRY_DOC_NUM` |
+| `WITHHOLD_ACCRUED_AMOUNT_MST` | string |  |  | `WITHHOLD_ACCRUED_AMOUNT_MST` |
+| `AMOUNT_MST` | string |  |  | `AMOUNT_MST` |
+| `LINE_NUM` | string |  |  | `LINE_NUM` |
+| `BENEFICIARY` | string |  |  | `BENEFICIARY` |
+| `SALES_POINT_ID` | string |  |  | `SALES_POINT_ID` |
+| `STATE_ID` | string |  |  | `STATE_ID` |
+| `STATE_DOC_TYPE_ID` | string |  |  | `STATE_DOC_TYPE_ID` |
+| `BANK_GROUP_ID` | string |  |  | `BANK_GROUP_ID` |
+| `DOCUMENT_CLASSIFICATION_ID` | string |  |  | `DOCUMENT_CLASSIFICATION_ID` |
+| `CPD_SOURCE` | string |  |  | `CPD_SOURCE` |
+| `ACCOUNT_NUM` | string |  |  | `ACCOUNT_NUM` |
+| `PAYMENT_TERM_ID` | string |  |  | `PAYMENT_TERM_ID` |
+| `TREASURY_ACTUAL` | string |  |  | `TREASURY_ACTUAL` |
+| `CAICAE` | string |  |  | `CAICAE` |
+| `CPD_TRX_OPEN_ID` | string |  |  | `CPD_TRX_OPEN_ID` |
+| `IS_CONCEPT` | string |  |  | `IS_CONCEPT` |
+| `LIST_FIELD_CODE_08` | string |  |  | `LIST_FIELD_CODE_08` |
+| `LIST_FIELD_CODE_09` | string |  |  | `LIST_FIELD_CODE_09` |
+| `JOURNAL_NUM` | string |  |  | `JOURNAL_NUM` |
+| `LIST_FIELD_CODE_01` | string |  |  | `LIST_FIELD_CODE_01` |
+| `LIST_FIELD_CODE_02` | string |  |  | `LIST_FIELD_CODE_02` |
+| `LIST_FIELD_05` | string |  |  | `LIST_FIELD_05` |
+| `LIST_FIELD_CODE_03` | string |  |  | `LIST_FIELD_CODE_03` |
+| `LIST_FIELD_04` | string |  |  | `LIST_FIELD_04` |
+| `LIST_FIELD_CODE_04` | string |  |  | `LIST_FIELD_CODE_04` |
+| `LIST_FIELD_07` | string |  |  | `LIST_FIELD_07` |
+| `LIST_FIELD_CODE_05` | string |  |  | `LIST_FIELD_CODE_05` |
+| `LIST_FIELD_06` | string |  |  | `LIST_FIELD_06` |
+| `LIST_FIELD_CODE_06` | string |  |  | `LIST_FIELD_CODE_06` |
+| `LIST_FIELD_01` | string |  |  | `LIST_FIELD_01` |
+| `LIST_FIELD_CODE_07` | string |  |  | `LIST_FIELD_CODE_07` |
+| `LIST_FIELD_03` | string |  |  | `LIST_FIELD_03` |
+| `LIST_FIELD_02` | string |  |  | `LIST_FIELD_02` |
+| `BANK_CHEQUE_NUM` | string |  |  | `BANK_CHEQUE_NUM` |
+| `LIST_FIELD_09` | string |  |  | `LIST_FIELD_09` |
+| `LIST_FIELD_08` | string |  |  | `LIST_FIELD_08` |
+| `DUE_DATE_AW` | string |  |  | `DUE_DATE_AW` |
+| `PRESERVE_NUM` | string |  |  | `PRESERVE_NUM` |
+| `ORIG_EXCHANGE_RATE` | string |  |  | `ORIG_EXCHANGE_RATE` |
+| `SOURCE_FILE_NAME` | string |  |  | `SOURCE_FILE_NAME` |
+| `HASH_KEY` | string |  |  | `HASH_KEY` |
+| `MDP_CREATED_BY` | string |  |  | `MDP_CREATED_BY` |
+| `MDP_CREATED_DATE` | timestamp |  |  | `MDP_CREATED_DATE` |
+| `MDP_MODIFIED_BY` | string |  |  | `MDP_MODIFIED_BY` |
+| `MDP_MODIFIED_DATE` | timestamp |  |  | `MDP_MODIFIED_DATE` |
+
+## Values
+
+**REVERSE_ENTRY**
+- `No`: 184918 rows
+
+**ITEM_SALES_TAX_GROUP**
+- `None`: 184918 rows
+
+**CASH_DISCOUNT_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**OFFSET_ACCOUNT_TYPE**
+- `Ledger`: 184065 rows
+- `Bank`: 852 rows
+- `Vend`: 1 rows
+
+**IS_WITHHOLDING_CALCULATION_ENABLED**
+- `No`: 184918 rows
+
+**REVERSE_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**DEFAULT_DIMENSION_DISPLAY_VALUE**
+- `None`: 184816 rows
+- `---------`: 102 rows
+
+**PAYMENT_REFERENCE**
+- `None`: 184918 rows
+
+**DOCUMENT**
+- `None`: 184918 rows
+
+**CASH_DISCOUNT_AMOUNT**
+- `0`: 184918 rows
+
+**EXCHANGE_RATE**
+- `100`: 184198 rows
+- `75.48309178744`: 514 rows
+- `88.347027122537`: 46 rows
+- `85.448175681449`: 45 rows
+- `52.985746834102`: 32 rows
+- `53.126494182649`: 28 rows
+- `8.814300320841`: 15 rows
+- `52.44663554833`: 14 rows
+- `116.84`: 12 rows
+- `1.847783306756`: 4 rows
+- `7.533694448421`: 4 rows
+- `4.593857094294`: 4 rows
+- `117.03`: 2 rows
+
+**CHINESE_VOUCHER_TYPE**
+- `None`: 184918 rows
+
+**SALES_TAX_CODE**
+- `None`: 184918 rows
+
+**CASH_DISCOUNT**
+- `None`: 184918 rows
+
+**OFFSET_DEFAULT_DIMENSION_DISPLAY_VALUE**
+- `None`: 184917 rows
+- `---------`: 1 rows
+
+**OFFSET_FIN_TAG_DISPLAY_VALUE**
+- `None`: 184908 rows
+- `Concur`: 10 rows
+
+**SALES_TAX_GROUP**
+- `None`: 184918 rows
+
+**ACCOUNT_TYPE**
+- `Ledger`: 182827 rows
+- `FixedAssets`: 1980 rows
+- `Vend`: 109 rows
+- `Cust`: 2 rows
+
+**REPORTING_CURRENCY_EXCH_RATE**
+- `100`: 183993 rows
+- `75.48309178744`: 360 rows
+- `132.48`: 244 rows
+- `85.448175681449`: 93 rows
+- `52.985746834102`: 32 rows
+- `70.190215483962`: 29 rows
+- `53.126494182649`: 28 rows
+- `85.587127695995`: 27 rows
+- `113.19`: 27 rows
+- `0`: 15 rows
+- `52.44663554833`: 14 rows
+- `85.4481756814492`: 10 rows
+- `113.9`: 10 rows
+- `7.533694448421`: 9 rows
+- `7.686217842786`: 8 rows
+- `69.48`: 5 rows
+- `6.084390496182`: 4 rows
+- `7.82962730974`: 4 rows
+- `4.593857094294`: 4 rows
+- `9.97695323802`: 2 rows
+
+**FIN_TAG_DISPLAY_VALUE**
+- `MANUAL`: 78146 rows
+- `CLAIMS_ADMIN`: 28406 rows
+- `None`: 27897 rows
+- `POLICY_ADMIN`: 25173 rows
+- `CONCUR`: 7337 rows
+- `PAYROLL`: 6274 rows
+- `CEDED`: 4279 rows
+- `ACTUARIAL`: 2341 rows
+- `AP`: 1536 rows
+- `TREASURY`: 1231 rows
+- `INVESTMENT`: 1208 rows
+- `Novedia`: 509 rows
+- `Concur`: 180 rows
+- `MANUAL|||||||||||`: 180 rows
+- `Novidea`: 138 rows
+- `ACTUARIAL|||||||||||`: 30 rows
+- `CLAIMS_ADMIN|||||||||||`: 25 rows
+- `NVS`: 13 rows
+- `POLICY_ADMIN|||||||||||`: 13 rows
+- `NVS|||||||||||`: 2 rows
+
+**PAYMENT_METHOD**
+- `None`: 184918 rows
+
+**PAYMENT_ID**
+- `None`: 184918 rows
+
+**POSTING_PROFILE**
+- `None`: 183023 rows
+- `FAPP`: 1784 rows
+- `GEN`: 111 rows
+
+**EXCHANGE_RATE_SECOND**
+- `0`: 184918 rows
+
+**OVERRIDE_SALES_TAX**
+- `No`: 184918 rows
+
+**QUANTITY**
+- `0`: 184918 rows
+
+**ITEM_WITHHOLDING_TAX_GROUP_CODE**
+- `None`: 184918 rows
+
+**TAX_EXEMPT_NUMBER**
+- `None`: 184918 rows
+
+**REPORTING_CURRENCY_EXCH_RATE_SECONDARY**
+- `0`: 184918 rows
+
+**CURRENCY_CODE**
+- `USD`: 184115 rows
+- `GBP`: 495 rows
+- `EUR`: 167 rows
+- `CAD`: 89 rows
+- `SEK`: 21 rows
+- `AUD`: 19 rows
+- `ZAR`: 8 rows
+- `NOK`: 4 rows
+
+**CHINESE_VOUCHER**
+- `None`: 184918 rows
+
+**DISCOUNT_PERCENTAGE**
+- `0`: 184918 rows
+
+**OFFSET_TEXT**
+- `None`: 184918 rows
+
+**KPMG_DELIVERY_CODE**
+- `None`: 184918 rows
+
+**KPMG_CUSTOMER_ACCOUNT_NUMBER**
+- `None`: 184918 rows
+
+**SHIFT_ID**
+- `None`: 184918 rows
+
+**WITHHOLDING_SET_ID**
+- `None`: 184918 rows
+
+**LTM_DOCUMENT_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**LEDGER_JOURNAL_TYPE**
+- `Ledger`: 184918 rows
+
+**CAICAE_DUE_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**LEDGER_JOURNAL_TRANS_ID**
+- `0`: 184918 rows
+
+**SALES_POINT_PREFIX**
+- `None`: 184918 rows
+
+**COUNTRY_REGION_ID**
+- `None`: 184918 rows
+
+**WITHHOLD_ACCRUED_BASE_MST**
+- `0`: 184918 rows
+
+**STATE_DOC_NUM**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_10**
+- `None`: 184918 rows
+
+**TAX_PAYER_TYPE_ID**
+- `None`: 184918 rows
+
+**BUSSINESS_NAME**
+- `None`: 184918 rows
+
+**CPD_CUST_POSTING_PROFILE**
+- `None`: 184918 rows
+
+**AMOUNT_CUR**
+- `0`: 184918 rows
+
+**WITHHOLDING_EFFECTIVE_RATE**
+- `0`: 184918 rows
+
+**TREASURY_ENTER**
+- `None`: 184918 rows
+
+**DOCUMENT_NUM**
+- `None`: 184918 rows
+
+**CPD_ACTION**
+- `Entry`: 184918 rows
+
+**COMPLETE_DOCUMENT_NUM**
+- `None`: 184918 rows
+
+**COUNTRY_DOC_TYPE_ID**
+- `None`: 184918 rows
+
+**EXCHANGE_RATE_TYPE_ALT**
+- `0`: 184918 rows
+
+**CONTROL_CODE**
+- `None`: 184918 rows
+
+**CONCEPT_1**
+- `None`: 184918 rows
+
+**CONCEPT_3**
+- `None`: 184918 rows
+
+**IS_COLLECT_PAYM_DOC**
+- `No`: 184918 rows
+
+**CONCEPT_2**
+- `None`: 184918 rows
+
+**LIST_FIELD_10**
+- `None`: 184918 rows
+
+**WITHHOLDING_BASE_MST**
+- `0`: 184918 rows
+
+**CPD_TRX_HISTORY_ID**
+- `0`: 184918 rows
+
+**BANK_ACCOUNT_NUM**
+- `None`: 184918 rows
+
+**HOLDER_ACCOUNT_NUM**
+- `None`: 184918 rows
+
+**COUNTRY_DOC_NUM**
+- `None`: 184918 rows
+
+**WITHHOLD_ACCRUED_AMOUNT_MST**
+- `0`: 184918 rows
+
+**AMOUNT_MST**
+- `0`: 184918 rows
+
+**LINE_NUM**
+- `0`: 184918 rows
+
+**BENEFICIARY**
+- `None`: 184918 rows
+
+**SALES_POINT_ID**
+- `None`: 184918 rows
+
+**STATE_ID**
+- `None`: 184918 rows
+
+**STATE_DOC_TYPE_ID**
+- `None`: 184918 rows
+
+**BANK_GROUP_ID**
+- `None`: 184918 rows
+
+**DOCUMENT_CLASSIFICATION_ID**
+- `None`: 184918 rows
+
+**CPD_SOURCE**
+- `Own`: 184918 rows
+
+**ACCOUNT_NUM**
+- `None`: 184918 rows
+
+**PAYMENT_TERM_ID**
+- `None`: 184918 rows
+
+**TREASURY_ACTUAL**
+- `None`: 184918 rows
+
+**CAICAE**
+- `None`: 184918 rows
+
+**CPD_TRX_OPEN_ID**
+- `0`: 184918 rows
+
+**IS_CONCEPT**
+- `No`: 184918 rows
+
+**LIST_FIELD_CODE_08**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_09**
+- `None`: 184918 rows
+
+**JOURNAL_NUM**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_01**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_02**
+- `None`: 184918 rows
+
+**LIST_FIELD_05**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_03**
+- `None`: 184918 rows
+
+**LIST_FIELD_04**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_04**
+- `None`: 184918 rows
+
+**LIST_FIELD_07**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_05**
+- `None`: 184918 rows
+
+**LIST_FIELD_06**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_06**
+- `None`: 184918 rows
+
+**LIST_FIELD_01**
+- `None`: 184918 rows
+
+**LIST_FIELD_CODE_07**
+- `None`: 184918 rows
+
+**LIST_FIELD_03**
+- `None`: 184918 rows
+
+**LIST_FIELD_02**
+- `None`: 184918 rows
+
+**BANK_CHEQUE_NUM**
+- `None`: 184918 rows
+
+**LIST_FIELD_09**
+- `None`: 184918 rows
+
+**LIST_FIELD_08**
+- `None`: 184918 rows
+
+**DUE_DATE_AW**
+- `1900-01-01 12:00:00.0000000 +00:00`: 184918 rows
+
+**PRESERVE_NUM**
+- `No`: 184918 rows
+
+**ORIG_EXCHANGE_RATE**
+- `0`: 184918 rows
+
+**SOURCE_FILE_NAME**
+- `ledgerjournallines__20261116_105417.csv`: 184918 rows
+
+**MDP_CREATED_DATE**
+- `2026-11-16 11:41:50.326198+00:00`: 184918 rows
+
+**MDP_MODIFIED_DATE**
+- `2026-11-16 11:41:50.326198+00:00`: 184918 rows
+
+## Profile
+
+Rows in the latest export: 184918.
+
+| Column | Type | Distinct (approx) | Nulls | Min | Max |
+|---|---|---|---|---|---|
+| `DATA_AREA_ID` | STRING | 18 | 0 |  |  |
+| `JOURNAL_BATCH_NUMBER` | STRING | 282 | 0 | 100-000001 | UK17-000016 |
+| `LINE_NUMBER` | STRING | 64767 | 0 | -1 | 9999 |
+| `REVERSE_ENTRY` | STRING | 1 | 0 | No | No |
+| `ITEM_SALES_TAX_GROUP` | STRING | 0 | 184918 |  |  |
+| `CASH_DISCOUNT_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `VOUCHER` | STRING | 13838 | 0 | 100-000000001 | YMH957678142 |
+| `TEXT` | STRING | 120737 | 9901 | 000019\|Vys 5660 Lifefpa Mkwfocz Agahqd | soft drink on Monte Carlo business trip |
+| `OFFSET_ACCOUNT_TYPE` | STRING | 3 | 0 | Bank | Vend |
+| `IS_WITHHOLDING_CALCULATION_ENABLED` | STRING | 1 | 0 | No | No |
+| `REVERSE_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `TRANS_DATE` | STRING | 502 | 0 | 2024-12-31 12:00:00.0000000 +00:00 | 2026-11-16 12:00:00.0000000 +00:00 |
+| `DEFAULT_DIMENSION_DISPLAY_VALUE` | STRING | 1 | 184816 | --------- | --------- |
+| `PAYMENT_REFERENCE` | STRING | 0 | 184918 |  |  |
+| `DOCUMENT` | STRING | 0 | 184918 |  |  |
+| `CASH_DISCOUNT_AMOUNT` | STRING | 1 | 0 | 0 | 0 |
+| `EXCHANGE_RATE` | STRING | 13 | 0 | 1.847783306756 | 88.347027122537 |
+| `CHINESE_VOUCHER_TYPE` | STRING | 0 | 184918 |  |  |
+| `DEBIT_AMOUNT` | STRING | 50984 | 0 | -100 | 99997.5 |
+| `SALES_TAX_CODE` | STRING | 0 | 184918 |  |  |
+| `DOCUMENT_DATE` | STRING | 108 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 2026-08-25 12:00:00.0000000 +00:00 |
+| `OFFSET_ACCOUNT_DISPLAY_VALUE` | STRING | 72 | 179432 | 100\-000001 | WellsFargo |
+| `ACCOUNT_DISPLAY_VALUE` | STRING | 4770 | 0 | 100\-000001 | SOFT\-000050 |
+| `CASH_DISCOUNT` | STRING | 0 | 184918 |  |  |
+| `OFFSET_DEFAULT_DIMENSION_DISPLAY_VALUE` | STRING | 1 | 184917 | --------- | --------- |
+| `OFFSET_FIN_TAG_DISPLAY_VALUE` | STRING | 1 | 184908 | Concur | Concur |
+| `SALES_TAX_GROUP` | STRING | 0 | 184918 |  |  |
+| `ACCOUNT_TYPE` | STRING | 4 | 0 | Cust | Vend |
+| `INVOICE` | STRING | 106 | 184816 | INV2001 | INV2102 |
+| `DUE_DATE` | STRING | 130 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 2026-11-03 12:00:00.0000000 +00:00 |
+| `REPORTING_CURRENCY_EXCH_RATE` | STRING | 20 | 0 | 0 | 9.97695323802 |
+| `FIN_TAG_DISPLAY_VALUE` | STRING | 18 | 27897 | ACTUARIAL | TREASURY |
+| `PAYMENT_METHOD` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_ID` | STRING | 0 | 184918 |  |  |
+| `POSTING_PROFILE` | STRING | 2 | 183023 | FAPP | GEN |
+| `EXCHANGE_RATE_SECOND` | STRING | 1 | 0 | 0 | 0 |
+| `CREDIT_AMOUNT` | STRING | 42689 | 0 | -97.2 | 99997.5 |
+| `OVERRIDE_SALES_TAX` | STRING | 1 | 0 | No | No |
+| `OFFSET_COMPANY` | STRING | 20 | 0 |  |  |
+| `QUANTITY` | STRING | 1 | 0 | 0 | 0 |
+| `ITEM_WITHHOLDING_TAX_GROUP_CODE` | STRING | 0 | 184918 |  |  |
+| `TAX_EXEMPT_NUMBER` | STRING | 0 | 184918 |  |  |
+| `REPORTING_CURRENCY_EXCH_RATE_SECONDARY` | STRING | 1 | 0 | 0 | 0 |
+| `CURRENCY_CODE` | STRING | 7 | 0 | AUD | ZAR |
+| `COMPANY` | STRING | 20 | 0 |  |  |
+| `CHINESE_VOUCHER` | STRING | 0 | 184918 |  |  |
+| `DISCOUNT_PERCENTAGE` | STRING | 1 | 0 | 0 | 0 |
+| `OFFSET_TEXT` | STRING | 0 | 184918 |  |  |
+| `KPMG_DELIVERY_CODE` | STRING | 0 | 184918 |  |  |
+| `KPMG_CUSTOMER_ACCOUNT_NUMBER` | STRING | 0 | 184918 |  |  |
+| `SHIFT_ID` | STRING | 0 | 184918 |  |  |
+| `WITHHOLDING_SET_ID` | STRING | 0 | 184918 |  |  |
+| `LTM_DOCUMENT_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `LEDGER_JOURNAL_TYPE` | STRING | 1 | 0 | Ledger | Ledger |
+| `CAICAE_DUE_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `LEDGER_JOURNAL_TRANS_ID` | STRING | 1 | 0 | 0 | 0 |
+| `SALES_POINT_PREFIX` | STRING | 0 | 184918 |  |  |
+| `COUNTRY_REGION_ID` | STRING | 0 | 184918 |  |  |
+| `WITHHOLD_ACCRUED_BASE_MST` | STRING | 1 | 0 | 0 | 0 |
+| `STATE_DOC_NUM` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_10` | STRING | 0 | 184918 |  |  |
+| `TAX_PAYER_TYPE_ID` | STRING | 0 | 184918 |  |  |
+| `BUSSINESS_NAME` | STRING | 0 | 184918 |  |  |
+| `CPD_CUST_POSTING_PROFILE` | STRING | 0 | 184918 |  |  |
+| `AMOUNT_CUR` | STRING | 1 | 0 | 0 | 0 |
+| `WITHHOLDING_EFFECTIVE_RATE` | STRING | 1 | 0 | 0 | 0 |
+| `TREASURY_ENTER` | STRING | 0 | 184918 |  |  |
+| `DOCUMENT_NUM` | STRING | 0 | 184918 |  |  |
+| `CPD_ACTION` | STRING | 1 | 0 | Entry | Entry |
+| `COMPLETE_DOCUMENT_NUM` | STRING | 0 | 184918 |  |  |
+| `COUNTRY_DOC_TYPE_ID` | STRING | 0 | 184918 |  |  |
+| `EXCHANGE_RATE_TYPE_ALT` | STRING | 1 | 0 | 0 | 0 |
+| `CONTROL_CODE` | STRING | 0 | 184918 |  |  |
+| `CONCEPT_1` | STRING | 0 | 184918 |  |  |
+| `CONCEPT_3` | STRING | 0 | 184918 |  |  |
+| `IS_COLLECT_PAYM_DOC` | STRING | 1 | 0 | No | No |
+| `CONCEPT_2` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_10` | STRING | 0 | 184918 |  |  |
+| `WITHHOLDING_BASE_MST` | STRING | 1 | 0 | 0 | 0 |
+| `CPD_TRX_HISTORY_ID` | STRING | 1 | 0 | 0 | 0 |
+| `BANK_ACCOUNT_NUM` | STRING | 0 | 184918 |  |  |
+| `HOLDER_ACCOUNT_NUM` | STRING | 0 | 184918 |  |  |
+| `COUNTRY_DOC_NUM` | STRING | 0 | 184918 |  |  |
+| `WITHHOLD_ACCRUED_AMOUNT_MST` | STRING | 1 | 0 | 0 | 0 |
+| `AMOUNT_MST` | STRING | 1 | 0 | 0 | 0 |
+| `LINE_NUM` | STRING | 1 | 0 | 0 | 0 |
+| `BENEFICIARY` | STRING | 0 | 184918 |  |  |
+| `SALES_POINT_ID` | STRING | 0 | 184918 |  |  |
+| `STATE_ID` | STRING | 0 | 184918 |  |  |
+| `STATE_DOC_TYPE_ID` | STRING | 0 | 184918 |  |  |
+| `BANK_GROUP_ID` | STRING | 0 | 184918 |  |  |
+| `DOCUMENT_CLASSIFICATION_ID` | STRING | 0 | 184918 |  |  |
+| `CPD_SOURCE` | STRING | 1 | 0 | Own | Own |
+| `ACCOUNT_NUM` | STRING | 0 | 184918 |  |  |
+| `PAYMENT_TERM_ID` | STRING | 0 | 184918 |  |  |
+| `TREASURY_ACTUAL` | STRING | 0 | 184918 |  |  |
+| `CAICAE` | STRING | 0 | 184918 |  |  |
+| `CPD_TRX_OPEN_ID` | STRING | 1 | 0 | 0 | 0 |
+| `IS_CONCEPT` | STRING | 1 | 0 | No | No |
+| `LIST_FIELD_CODE_08` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_09` | STRING | 0 | 184918 |  |  |
+| `JOURNAL_NUM` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_01` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_02` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_05` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_03` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_04` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_04` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_07` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_05` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_06` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_06` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_01` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_CODE_07` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_03` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_02` | STRING | 0 | 184918 |  |  |
+| `BANK_CHEQUE_NUM` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_09` | STRING | 0 | 184918 |  |  |
+| `LIST_FIELD_08` | STRING | 0 | 184918 |  |  |
+| `DUE_DATE_AW` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `PRESERVE_NUM` | STRING | 1 | 0 | No | No |
+| `ORIG_EXCHANGE_RATE` | STRING | 1 | 0 | 0 | 0 |
+| `SOURCE_FILE_NAME` | STRING | 1 | 0 | ledgerjournallines__20261116_105417.csv | ledgerjournallines__20261116_105417.csv |
+| `HASH_KEY` | STRING | 195205 | 0 |  |  |
+| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:41:50.326000 | 2026-11-16 11:41:50.326000 |
+| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:41:50.326000 | 2026-11-16 11:41:50.326000 |
+
+## Sample rows
+
+| JOURNAL_BATCH_NUMBER | LINE_NUMBER | REVERSE_ENTRY | ITEM_SALES_TAX_GROUP | CASH_DISCOUNT_DATE | VOUCHER | TEXT | OFFSET_ACCOUNT_TYPE | IS_WITHHOLDING_CALCULATION_ENABLED | REVERSE_DATE | TRANS_DATE | DEFAULT_DIMENSION_DISPLAY_VALUE | PAYMENT_REFERENCE | DOCUMENT | CASH_DISCOUNT_AMOUNT | EXCHANGE_RATE | CHINESE_VOUCHER_TYPE | DEBIT_AMOUNT | SALES_TAX_CODE | DOCUMENT_DATE | OFFSET_ACCOUNT_DISPLAY_VALUE | ACCOUNT_DISPLAY_VALUE | CASH_DISCOUNT | OFFSET_DEFAULT_DIMENSION_DISPLAY_VALUE | OFFSET_FIN_TAG_DISPLAY_VALUE | SALES_TAX_GROUP | ACCOUNT_TYPE | INVOICE | DUE_DATE | REPORTING_CURRENCY_EXCH_RATE | FIN_TAG_DISPLAY_VALUE | PAYMENT_METHOD | PAYMENT_ID | POSTING_PROFILE | EXCHANGE_RATE_SECOND | CREDIT_AMOUNT | OVERRIDE_SALES_TAX | QUANTITY | ITEM_WITHHOLDING_TAX_GROUP_CODE | TAX_EXEMPT_NUMBER | REPORTING_CURRENCY_EXCH_RATE_SECONDARY | CURRENCY_CODE | CHINESE_VOUCHER | DISCOUNT_PERCENTAGE | OFFSET_TEXT | KPMG_DELIVERY_CODE | KPMG_CUSTOMER_ACCOUNT_NUMBER | SHIFT_ID | WITHHOLDING_SET_ID | LTM_DOCUMENT_DATE | LEDGER_JOURNAL_TYPE | CAICAE_DUE_DATE | LEDGER_JOURNAL_TRANS_ID | SALES_POINT_PREFIX | COUNTRY_REGION_ID | WITHHOLD_ACCRUED_BASE_MST | STATE_DOC_NUM | LIST_FIELD_CODE_10 | TAX_PAYER_TYPE_ID | BUSSINESS_NAME | CPD_CUST_POSTING_PROFILE | AMOUNT_CUR | WITHHOLDING_EFFECTIVE_RATE | TREASURY_ENTER | DOCUMENT_NUM | CPD_ACTION | COMPLETE_DOCUMENT_NUM | COUNTRY_DOC_TYPE_ID | EXCHANGE_RATE_TYPE_ALT | CONTROL_CODE | CONCEPT_1 | CONCEPT_3 | IS_COLLECT_PAYM_DOC | CONCEPT_2 | LIST_FIELD_10 | WITHHOLDING_BASE_MST | CPD_TRX_HISTORY_ID | BANK_ACCOUNT_NUM | HOLDER_ACCOUNT_NUM | COUNTRY_DOC_NUM | WITHHOLD_ACCRUED_AMOUNT_MST | AMOUNT_MST | LINE_NUM | BENEFICIARY | SALES_POINT_ID | STATE_ID | STATE_DOC_TYPE_ID | BANK_GROUP_ID | DOCUMENT_CLASSIFICATION_ID | CPD_SOURCE | ACCOUNT_NUM | PAYMENT_TERM_ID | TREASURY_ACTUAL | CAICAE | CPD_TRX_OPEN_ID | IS_CONCEPT | LIST_FIELD_CODE_08 | LIST_FIELD_CODE_09 | JOURNAL_NUM | LIST_FIELD_CODE_01 | LIST_FIELD_CODE_02 | LIST_FIELD_05 | LIST_FIELD_CODE_03 | LIST_FIELD_04 | LIST_FIELD_CODE_04 | LIST_FIELD_07 | LIST_FIELD_CODE_05 | LIST_FIELD_06 | LIST_FIELD_CODE_06 | LIST_FIELD_01 | LIST_FIELD_CODE_07 | LIST_FIELD_03 | LIST_FIELD_02 | BANK_CHEQUE_NUM | LIST_FIELD_09 | LIST_FIELD_08 | DUE_DATE_AW | PRESERVE_NUM | ORIG_EXCHANGE_RATE | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| 100-000001 | 1 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | FYNAPSE-000000001 | NULL | Ledger | No | 1900-01-01 12:00:00.0000000 +00:00 | 2026-08-11 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 0 | 100 | NULL | 0 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 521310--------- | 145100--------- | NULL | NULL | NULL | NULL | Ledger | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 100 | NULL | NULL | NULL | NULL | 0 | 20000 | No | 0 | NULL | NULL | 0 | USD | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | Ledger | 1900-01-01 12:00:00.0000000 +00:00 | 0 | NULL | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 0 | 0 | NULL | NULL | Entry | NULL | NULL | 0 | NULL | NULL | NULL | No | NULL | NULL | 0 | 0 | NULL | NULL | NULL | 0 | 0 | 0 | NULL | NULL | NULL | NULL | NULL | NULL | Own | NULL | NULL | NULL | NULL | 0 | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | ledgerjournallines__20261116_105417.csv | <masked> | 2026-11-16 11:41:50.326000 | <masked> | 2026-11-16 11:41:50.326000 |
+| 100-000001 | 2 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | FYNAPSE-000000002 | NULL | Ledger | No | 1900-01-01 12:00:00.0000000 +00:00 | 2026-08-11 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 0 | 100 | NULL | 0 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 521310--------- | 145100--------- | NULL | NULL | NULL | NULL | Ledger | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 100 | NULL | NULL | NULL | NULL | 0 | 20000 | No | 0 | NULL | NULL | 0 | USD | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | Ledger | 1900-01-01 12:00:00.0000000 +00:00 | 0 | NULL | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 0 | 0 | NULL | NULL | Entry | NULL | NULL | 0 | NULL | NULL | NULL | No | NULL | NULL | 0 | 0 | NULL | NULL | NULL | 0 | 0 | 0 | NULL | NULL | NULL | NULL | NULL | NULL | Own | NULL | NULL | NULL | NULL | 0 | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | ledgerjournallines__20261116_105417.csv | <masked> | 2026-11-16 11:41:50.326000 | <masked> | 2026-11-16 11:41:50.326000 |
+| 100-000001 | 3 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | FYNAPSE-000000003 | NULL | Ledger | No | 1900-01-01 12:00:00.0000000 +00:00 | 2026-08-11 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 0 | 100 | NULL | 0 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 521310--------- | 145100--------- | NULL | NULL | NULL | NULL | Ledger | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 100 | NULL | NULL | NULL | NULL | 0 | 81871 | No | 0 | NULL | NULL | 0 | USD | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | Ledger | 1900-01-01 12:00:00.0000000 +00:00 | 0 | NULL | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 0 | 0 | NULL | NULL | Entry | NULL | NULL | 0 | NULL | NULL | NULL | No | NULL | NULL | 0 | 0 | NULL | NULL | NULL | 0 | 0 | 0 | NULL | NULL | NULL | NULL | NULL | NULL | Own | NULL | NULL | NULL | NULL | 0 | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | ledgerjournallines__20261116_105417.csv | <masked> | 2026-11-16 11:41:50.326000 | <masked> | 2026-11-16 11:41:50.326000 |
+| 100-000001 | 4 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | FYNAPSE-000000004 | NULL | Ledger | No | 1900-01-01 12:00:00.0000000 +00:00 | 2026-08-11 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 0 | 100 | NULL | 0 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 521310--------- | 145100--------- | NULL | NULL | NULL | NULL | Ledger | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 100 | NULL | NULL | NULL | NULL | 0 | 119253 | No | 0 | NULL | NULL | 0 | USD | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | Ledger | 1900-01-01 12:00:00.0000000 +00:00 | 0 | NULL | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 0 | 0 | NULL | NULL | Entry | NULL | NULL | 0 | NULL | NULL | NULL | No | NULL | NULL | 0 | 0 | NULL | NULL | NULL | 0 | 0 | 0 | NULL | NULL | NULL | NULL | NULL | NULL | Own | NULL | NULL | NULL | NULL | 0 | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | ledgerjournallines__20261116_105417.csv | <masked> | 2026-11-16 11:41:50.326000 | <masked> | 2026-11-16 11:41:50.326000 |
+| 100-000001 | 5 | No | NULL | 1900-01-01 12:00:00.0000000 +00:00 | FYNAPSE-000000005 | NULL | Ledger | No | 1900-01-01 12:00:00.0000000 +00:00 | 2026-08-11 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 0 | 100 | NULL | 0 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 521310--------- | 145100--------- | NULL | NULL | NULL | NULL | Ledger | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 100 | NULL | NULL | NULL | NULL | 0 | 46459 | No | 0 | NULL | NULL | 0 | USD | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | Ledger | 1900-01-01 12:00:00.0000000 +00:00 | 0 | NULL | NULL | 0 | NULL | NULL | NULL | NULL | NULL | 0 | 0 | NULL | NULL | Entry | NULL | NULL | 0 | NULL | NULL | NULL | No | NULL | NULL | 0 | 0 | NULL | NULL | NULL | 0 | 0 | 0 | NULL | NULL | NULL | NULL | NULL | NULL | Own | NULL | NULL | NULL | NULL | 0 | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | 0 | ledgerjournallines__20261116_105417.csv | <masked> | 2026-11-16 11:41:50.326000 | <masked> | 2026-11-16 11:41:50.326000 |

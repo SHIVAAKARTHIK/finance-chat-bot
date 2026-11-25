@@ -1,0 +1,17 @@
+# Used automatically by BuildKit for Dockerfile.v3 (paths are relative to the build context, backend/).
+# Keeps secrets, local data, test/eval material and caches out of the image.
+**/.env
+**/.env.*
+!**/.env.example
+.venv
+**/__pycache__
+**/.pytest_cache
+**/*.pyc
+finchat_agents/traces
+finchat_agents/outputs
+finchat_agents/eval_reports
+finchat_agents/tests
+finchat_agents/eval
+finchat_agents/reference
+finchat_agents/docs
+**/.aws

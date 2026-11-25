@@ -1,0 +1,58 @@
+# Finance Chat v3 access file: role -> domains. No row-level entity scopes.
+# Copy to backend/finchat_agents/config/rbac.v3.yaml and fill in the users block from rbac.silver.yaml.
+#
+# Resolution order: users (Entra object id) first, then group_roles (Entra group name). No match = no access.
+# A table's domain comes from its knowledge page front matter. A query may only touch tables in the role's domains.
+
+default_role: null
+
+domains:            # every table page must use one of these names
+  recon: ADRA account reconciliation
+  subledger: Fynapse subledger journals
+  fa: Fixed assets
+  ar: Accounts receivable
+  ap: Accounts payable
+  gl: General ledger and period-end close
+  cash: Cash and treasury
+
+roles:
+  finance_all:
+    description: Every silver and gold table
+    domains: ["*"]
+    pii_allowed: false          # TODO(Karthik): confirm who may see person names
+  ar_reader:
+    domains: [ar]
+    pii_allowed: false
+  ap_reader:
+    domains: [ap]
+    pii_allowed: false
+  gl_reader:
+    domains: [gl]
+    pii_allowed: false
+  fa_reader:
+    domains: [fa]
+    pii_allowed: false
+  cash_reader:
+    domains: [cash]
+    pii_allowed: false
+  # TODO(Karthik): should any role other than finance_all see recon (ADRA) or subledger (Fynapse)?
+
+group_roles:
+  # TODO(Karthik): the current rbac.silver.yaml mapping looks shifted by one line
+  # (Controller -> ar_reader, AR analyst -> gl_reader, Treasurer -> fa_reader, Fixed asset analyst -> cash_reader).
+  # Fix here before go-live. Expected mapping below; confirm.
+  Admin: finance_all
+  CFO: finance_all
+  Controller: gl_reader
+  AP analyst: ap_reader
+  AR analyst: ar_reader
+  Treasurer: cash_reader
+  Fixed asset analyst: fa_reader
+
+users:
+  # Copy the users block from backend/finance_intelligence/config/rbac.silver.yaml:
+  # "<entra-object-id>": <role>      # comment with the account name
+  {}
+
+# Service role used by scheduled jobs (summary agent). Cards are filtered by viewer role at display time.
+service_role: finance_all

@@ -1,0 +1,212 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Low-level architecture</title><style>
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#57534e;--surface:#ffffff;--line:#c4bfb9;--strong:#57534e;
+--accent:#1d4ed8;--accent-tint:#eef3ff;--guard:#b45309;--guard-tint:#fff3e0;--chip:#f1efec}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#151412;--fg:#ecebe9;--muted:#a8a29e;
+--surface:#1f1d1b;--line:#4a4541;--strong:#a8a29e;--accent:#8db3ff;--accent-tint:#1b2538;--guard:#f0b35a;
+--guard-tint:#33261a;--chip:#262320}}
+:root[data-theme="dark"]{--bg:#151412;--fg:#ecebe9;--muted:#a8a29e;--surface:#1f1d1b;--line:#4a4541;--strong:#a8a29e;
+--accent:#8db3ff;--accent-tint:#1b2538;--guard:#f0b35a;--guard-tint:#33261a;--chip:#262320}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{border-bottom:1px solid var(--line);padding:14px 16px}
+nav{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+nav strong{margin-right:8px}
+nav a{color:var(--muted);text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--fg)}
+nav a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+main{max-width:1280px;margin:0 auto;padding:8px 16px 56px}
+h1{font-size:26px;line-height:1.25;margin:28px 0 6px}
+h2{font-size:18px;margin:36px 0 4px}
+p.lead{color:var(--muted);max-width:78ch;margin:0 0 14px}
+.fig{margin:14px 0 8px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:6px}
+svg{display:block;width:100%;height:auto}
+figcaption{color:var(--muted);font-size:13.5px;max-width:92ch;margin:8px 2px 0}
+svg text{font-family:inherit;fill:currentColor}
+.t{font-size:12.5px;font-weight:600}.s{font-size:11px}.s{fill:var(--muted)}
+.l{font-size:11px}.ft{font-size:12px;font-weight:600;fill:var(--muted)}
+.bx{fill:var(--surface);stroke:var(--strong);stroke-width:1.2}
+.bx.llm{fill:var(--accent-tint);stroke:var(--accent)}
+.bx.data{fill:var(--guard-tint);stroke:var(--guard)}
+.bx.ext,.bx.out{stroke-dasharray:5 4}
+.bx.dim{opacity:.5}
+.fr{fill:none;stroke:var(--line);stroke-width:1.2;stroke-dasharray:3 4}
+.ln{fill:none;stroke:var(--strong);stroke-width:1.4}
+.ln.llm{stroke:var(--accent);stroke-width:1.8}
+.ln.data{stroke:var(--guard);stroke-width:2}
+.ln.dash{stroke-dasharray:6 4}
+.mk{fill:var(--strong)}.mk.llm{fill:var(--accent)}.mk.data{fill:var(--guard)}
+.life{stroke:var(--line);stroke-width:1;stroke-dasharray:2 5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;margin:10px 0 4px;font-size:13.5px;color:var(--muted)}
+.sw{display:inline-block;width:26px;height:14px;border-radius:4px;border:1.5px solid var(--strong);background:var(--surface);
+vertical-align:-3px;margin-right:6px}
+.sw.llm{border-color:var(--accent);background:var(--accent-tint)}
+.sw.data{border-color:var(--guard);background:var(--guard-tint)}
+.sw.ext{border-style:dashed}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:10px 0 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+code{background:var(--chip);border-radius:4px;padding:1px 5px;font-size:12.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:14px}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
+.card a{color:var(--accent);font-weight:600;text-decoration:none}
+.card p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--guard);padding:4px 12px;color:var(--muted);max-width:92ch;margin:12px 0}
+@media (max-width:600px){h1{font-size:22px}}
+</style></head><body><header><nav><strong>Finance Chat v3</strong><a href="index.html">Overview</a><a href="01_high_level_architecture.html">High-level</a><a href="02_low_level_architecture.html" aria-current="page">Low-level</a><a href="03_code_flow.html">Code flow</a><a href="04_agentic_workflows.html">Agentic workflows</a><a href="05_all_agent_vs_hybrid.html">All-agent vs hybrid</a></nav></header><main><h1>Low-level architecture</h1><p class="lead">The modules behind the boxes: layers, the three modules that touch the outside, which tools each agent has, and the checks every SQL statement goes through.</p><p class="legend"><span><span class="sw"></span>code step</span><span><span class="sw llm"></span>LLM call (Bedrock)</span><span><span class="sw data"></span>data access, guarded in code</span><span><span class="sw ext"></span>dashed = outside systems or optional paths</span></p><h2>Layers and the three doors</h2><figure class="fig"><div class="scroll"><svg id="ll" viewBox="0 0 1200 700" role="img" aria-label="Six layers from the API down to providers and storage; outside systems are reachable through exactly three modules: the two Bedrock providers, mcp_client for data reads, and storage/aiops.py for writes." style="min-width:900px"><defs><marker id="ll-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="ll-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="ll-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="fr" x="20" y="20" width="1160" height="96" rx="10"/>
+<text class="ft" x="32" y="40">1 · Entry: who calls v3</text>
+<rect class="bx n" x="40" y="50" width="269" height="54" rx="6"/>
+<text class="t" x="174.5" y="73.5" text-anchor="middle">api/router.py</text>
+<text class="s" x="174.5" y="88.5" text-anchor="middle">/v3 chat, stream, cards, files, health</text>
+<rect class="bx n" x="323" y="50" width="269" height="54" rx="6"/>
+<text class="t" x="457.5" y="73.5" text-anchor="middle">api/service.py</text>
+<text class="s" x="457.5" y="88.5" text-anchor="middle">ChatService: role, context, persist</text>
+<rect class="bx n" x="606" y="50" width="269" height="54" rx="6"/>
+<text class="t" x="740.5" y="73.5" text-anchor="middle">integration/</text>
+<text class="s" x="740.5" y="88.5" text-anchor="middle">backend, stream, ui_contract</text>
+<rect class="bx n" x="889" y="50" width="269" height="54" rx="6"/>
+<text class="t" x="1023.5" y="73.5" text-anchor="middle">api/app.py</text>
+<text class="s" x="1023.5" y="88.5" text-anchor="middle">build_service, mount_v3, warm-up</text>
+<rect class="fr" x="20" y="130" width="1160" height="96" rx="10"/>
+<text class="ft" x="32" y="150">2 · Agents: decide what to do</text>
+<rect class="bx llm" x="40" y="160" width="212" height="54" rx="6"/>
+<text class="t" x="146" y="183.5" text-anchor="middle">orchestrator.py</text>
+<text class="s" x="146" y="198.5" text-anchor="middle">route → fast path or ReAct</text>
+<rect class="bx llm" x="266" y="160" width="212" height="54" rx="6"/>
+<text class="t" x="372" y="183.5" text-anchor="middle">supervisor · specialists</text>
+<text class="s" x="372" y="198.5" text-anchor="middle">agents exposed as ask_* tools</text>
+<rect class="bx llm" x="492" y="160" width="212" height="54" rx="6"/>
+<text class="t" x="598" y="183.5" text-anchor="middle">fast_path.py</text>
+<text class="s" x="598" y="198.5" text-anchor="middle">search → SQL → run → 1 repair</text>
+<rect class="bx llm" x="718" y="160" width="212" height="54" rx="6"/>
+<text class="t" x="824" y="183.5" text-anchor="middle">answer · number_check</text>
+<text class="s" x="824" y="198.5" text-anchor="middle">wording; numbers match tools</text>
+<rect class="bx n" x="944" y="160" width="212" height="54" rx="6"/>
+<text class="t" x="1050" y="183.5" text-anchor="middle">memory/ · summary/</text>
+<text class="s" x="1050" y="198.5" text-anchor="middle">summary, habits, scheduled cards</text>
+<rect class="fr" x="20" y="240" width="1160" height="96" rx="10"/>
+<text class="ft" x="32" y="260">3 · Runtime: plain Python, no agent framework</text>
+<rect class="bx n" x="40" y="270" width="269" height="54" rx="6"/>
+<text class="t" x="174.5" y="293.5" text-anchor="middle">runtime/loop.py</text>
+<text class="s" x="174.5" y="308.5" text-anchor="middle">ReAct loop, budgets, partial answers</text>
+<rect class="bx n" x="323" y="270" width="269" height="54" rx="6"/>
+<text class="t" x="457.5" y="293.5" text-anchor="middle">runtime/agent.py · tools.py</text>
+<text class="s" x="457.5" y="308.5" text-anchor="middle">Agent, Tool, RunContext, Budget</text>
+<rect class="bx n" x="606" y="270" width="269" height="54" rx="6"/>
+<text class="t" x="740.5" y="293.5" text-anchor="middle">llm_call.py · retry.py</text>
+<text class="s" x="740.5" y="308.5" text-anchor="middle">traced model call, backoff</text>
+<rect class="bx n" x="889" y="270" width="269" height="54" rx="6"/>
+<text class="t" x="1023.5" y="293.5" text-anchor="middle">tracing/</text>
+<text class="s" x="1023.5" y="308.5" text-anchor="middle">events, tracer, JSONL + aiops sinks</text>
+<rect class="fr" x="20" y="350" width="1160" height="96" rx="10"/>
+<text class="ft" x="32" y="370">4 · Tools: every data touch is guarded</text>
+<rect class="bx data" x="40" y="380" width="212" height="54" rx="6"/>
+<text class="t" x="146" y="403.5" text-anchor="middle">sql_guard.py</text>
+<text class="s" x="146" y="418.5" text-anchor="middle">sqlglot: one SELECT, domains, PII</text>
+<rect class="bx data" x="266" y="380" width="212" height="54" rx="6"/>
+<text class="t" x="372" y="403.5" text-anchor="middle">run_sql.py</text>
+<text class="s" x="372" y="418.5" text-anchor="middle">guard → MCP → numbered result</text>
+<rect class="bx n" x="492" y="380" width="212" height="54" rx="6"/>
+<text class="t" x="598" y="403.5" text-anchor="middle">catalog · resolve</text>
+<text class="s" x="598" y="418.5" text-anchor="middle">tables, joins, period, entity</text>
+<rect class="bx n" x="718" y="380" width="212" height="54" rx="6"/>
+<text class="t" x="824" y="403.5" text-anchor="middle">calculate · actions</text>
+<text class="s" x="824" y="418.5" text-anchor="middle">exact math, Excel, saved reports</text>
+<rect class="bx data ext" x="944" y="380" width="212" height="54" rx="6"/>
+<text class="t" x="1050" y="403.5" text-anchor="middle">mcp_client.py</text>
+<text class="s" x="1050" y="418.5" text-anchor="middle">DOOR: all data reads, read-only</text>
+<rect class="fr" x="20" y="460" width="1160" height="96" rx="10"/>
+<text class="ft" x="32" y="480">5 · Knowledge and access: files, not code</text>
+<rect class="bx n" x="40" y="490" width="212" height="54" rx="6"/>
+<text class="t" x="146" y="513.5" text-anchor="middle">knowledge/tables/*.md</text>
+<text class="s" x="146" y="528.5" text-anchor="middle">143 pages: meaning, grain, keys</text>
+<rect class="bx n" x="266" y="490" width="212" height="54" rx="6"/>
+<text class="t" x="372" y="513.5" text-anchor="middle">joins · glossary · rules</text>
+<text class="s" x="372" y="528.5" text-anchor="middle">approved joins, terms, examples</text>
+<rect class="bx n" x="492" y="490" width="212" height="54" rx="6"/>
+<text class="t" x="598" y="513.5" text-anchor="middle">loader · search</text>
+<text class="s" x="598" y="528.5" text-anchor="middle">validate pages, BM25 search</text>
+<rect class="bx n" x="718" y="490" width="212" height="54" rx="6"/>
+<text class="t" x="824" y="513.5" text-anchor="middle">access/rbac.py</text>
+<text class="s" x="824" y="528.5" text-anchor="middle">role → domains, PII, service role</text>
+<rect class="bx n" x="944" y="490" width="212" height="54" rx="6"/>
+<text class="t" x="1050" y="513.5" text-anchor="middle">config/rbac.v3.yaml</text>
+<text class="s" x="1050" y="528.5" text-anchor="middle">group_roles, users, service_role</text>
+<rect class="fr" x="20" y="570" width="1160" height="96" rx="10"/>
+<text class="ft" x="32" y="590">6 · Providers and storage: the outside world</text>
+<rect class="bx llm ext" x="40" y="600" width="212" height="54" rx="6"/>
+<text class="t" x="146" y="623.5" text-anchor="middle">llm/claude_bedrock.py</text>
+<text class="s" x="146" y="638.5" text-anchor="middle">DOOR: Bedrock, Claude</text>
+<rect class="bx llm ext" x="266" y="600" width="212" height="54" rx="6"/>
+<text class="t" x="372" y="623.5" text-anchor="middle">llm/gpt_oss_bedrock.py</text>
+<text class="s" x="372" y="638.5" text-anchor="middle">DOOR: Bedrock, gpt-oss</text>
+<rect class="bx data ext" x="492" y="600" width="212" height="54" rx="6"/>
+<text class="t" x="598" y="623.5" text-anchor="middle">storage/aiops.py</text>
+<text class="s" x="598" y="638.5" text-anchor="middle">DOOR: writes to aiops only</text>
+<rect class="bx n" x="718" y="600" width="212" height="54" rx="6"/>
+<text class="t" x="824" y="623.5" text-anchor="middle">writer · records · sink</text>
+<text class="s" x="824" y="638.5" text-anchor="middle">background writes, row builders</text>
+<rect class="bx n" x="944" y="600" width="212" height="54" rx="6"/>
+<text class="t" x="1050" y="623.5" text-anchor="middle">summary_store.py</text>
+<text class="s" x="1050" y="638.5" text-anchor="middle">cards and run rows (aiops)</text>
+</svg></div><figcaption><b>Modules, top to bottom.</b> Calls mostly flow downward. Three chips are doors to the outside: <code>llm/*_bedrock.py</code> (the only code that imports an LLM SDK), <code>tools/mcp_client.py</code> (the only data read, read-only tools) and <code>storage/aiops.py</code> (the only writer, aiops schema only; it refuses any other target). Knowledge and access are files (Markdown, YAML), not code, so fixes for wrong answers go there.</figcaption></figure><h2>What each agent may call</h2><p class="lead">Tool sets are fixed in code (<code>agents/specialists.py</code>); an agent cannot call a tool it was not given.</p><table><thead><tr><th>Agent</th><th>Model</th><th>Tools it can call</th><th>Returns</th></tr></thead><tbody><tr><td><b>supervisor</b></td><td>Claude Sonnet 4.5</td><td>route, record_plan, ask_catalog_agent, ask_sql_agent, ask_analyst_agent, ask_knowledge_agent, ask_action_agent, submit_result</td><td>draft: status, result_ids, steps, caveats</td></tr><tr><td><b>catalog_agent</b></td><td>Claude</td><td>search_tables, describe_table, get_join_path, get_column_values, get_glossary</td><td>a plan for the SQL agent</td></tr><tr><td><b>sql_agent</b></td><td>Claude</td><td>describe_table, get_join_path, get_column_values, resolve_period, resolve_entity, run_sql, calculate</td><td>rows, result id, explanation</td></tr><tr><td><b>analyst_agent</b></td><td>Claude</td><td>ask_sql_agent (the SQL agent as a tool), calculate, get_glossary</td><td>multi-step conclusion</td></tr><tr><td><b>knowledge_agent</b></td><td>gpt-oss-120b</td><td>get_glossary</td><td>general answer, no SQL</td></tr><tr><td><b>action_agent</b></td><td>Claude</td><td>export_excel, save_report</td><td>file name + download URL</td></tr><tr><td><b>fast path (code, not an agent)</b></td><td>Claude, 1 call (+1 repair)</td><td>submit_sql from the model; code itself calls search_tables, resolve_entity, resolve_period and run_sql</td><td>success, or the failed attempt</td></tr><tr><td><b>answer_writer</b></td><td>gpt-oss-120b</td><td>none (2 steps at most)</td><td>answer, how calculated, suggestions</td></tr></tbody></table><h2>Inside run_sql</h2><figure class="fig"><div class="scroll"><svg id="guard" viewBox="0 0 1200 290" role="img" aria-label="Every SQL statement passes seven checks in code before the read-only MCP call; any check can refuse, and the refusal text goes back to the agent as a tool error." style="min-width:900px"><defs><marker id="guard-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="guard-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="guard-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx data" x="13" y="30" width="138" height="66" rx="6"/>
+<text class="t" x="82" y="59.5" text-anchor="middle">1 One statement</text>
+<text class="s" x="82" y="74.5" text-anchor="middle">SELECT or WITH only</text>
+<rect class="bx data" x="161" y="30" width="138" height="66" rx="6"/>
+<text class="t" x="230" y="52.0" text-anchor="middle">2 No writes</text>
+<text class="s" x="230" y="67.0" text-anchor="middle">write verbs and DDL</text>
+<text class="s" x="230" y="82.0" text-anchor="middle">are refused</text>
+<rect class="bx data" x="309" y="30" width="138" height="66" rx="6"/>
+<text class="t" x="378" y="52.0" text-anchor="middle">3 Real tables</text>
+<text class="s" x="378" y="67.0" text-anchor="middle">catalog.schema.table</text>
+<text class="s" x="378" y="82.0" text-anchor="middle">and has a page</text>
+<rect class="bx data" x="457" y="30" width="138" height="66" rx="6"/>
+<text class="t" x="526" y="52.0" text-anchor="middle">4 Usable tables</text>
+<text class="s" x="526" y="67.0" text-anchor="middle">broken or superseded</text>
+<text class="s" x="526" y="82.0" text-anchor="middle">tables refused</text>
+<rect class="bx data" x="605" y="30" width="138" height="66" rx="6"/>
+<text class="t" x="674" y="52.0" text-anchor="middle">5 Role domains</text>
+<text class="s" x="674" y="67.0" text-anchor="middle">each table's domain</text>
+<text class="s" x="674" y="82.0" text-anchor="middle">must be in the role</text>
+<rect class="bx data" x="753" y="30" width="138" height="66" rx="6"/>
+<text class="t" x="822" y="52.0" text-anchor="middle">6 PII columns</text>
+<text class="s" x="822" y="67.0" text-anchor="middle">masked in output,</text>
+<text class="s" x="822" y="82.0" text-anchor="middle">not in WHERE/JOIN</text>
+<rect class="bx data" x="901" y="30" width="138" height="66" rx="6"/>
+<text class="t" x="970" y="52.0" text-anchor="middle">7 Row limit</text>
+<text class="s" x="970" y="67.0" text-anchor="middle">LIMIT added or</text>
+<text class="s" x="970" y="82.0" text-anchor="middle">capped at 1000</text>
+<rect class="bx data ext" x="1049" y="30" width="138" height="66" rx="6"/>
+<text class="t" x="1118" y="52.0" text-anchor="middle">MCP, read-only</text>
+<text class="s" x="1118" y="67.0" text-anchor="middle">read-only tool,</text>
+<text class="s" x="1118" y="82.0" text-anchor="middle">polled for rows</text>
+<polyline class="ln data" points="151,63 161,63" marker-end="url(#guard-ar-data)"/>
+<polyline class="ln data" points="299,63 309,63" marker-end="url(#guard-ar-data)"/>
+<polyline class="ln data" points="447,63 457,63" marker-end="url(#guard-ar-data)"/>
+<polyline class="ln data" points="595,63 605,63" marker-end="url(#guard-ar-data)"/>
+<polyline class="ln data" points="743,63 753,63" marker-end="url(#guard-ar-data)"/>
+<polyline class="ln data" points="891,63 901,63" marker-end="url(#guard-ar-data)"/>
+<polyline class="ln data" points="1039,63 1049,63" marker-end="url(#guard-ar-data)"/>
+<line class="ln" x1="82.0" y1="96" x2="82.0" y2="150"/>
+<line class="ln" x1="230.0" y1="96" x2="230.0" y2="150"/>
+<line class="ln" x1="378.0" y1="96" x2="378.0" y2="150"/>
+<line class="ln" x1="526.0" y1="96" x2="526.0" y2="150"/>
+<line class="ln" x1="674.0" y1="96" x2="674.0" y2="150"/>
+<line class="ln" x1="822.0" y1="96" x2="822.0" y2="150"/>
+<line class="ln" x1="970.0" y1="96" x2="970.0" y2="150"/>
+<line class="ln" x1="82.0" y1="150" x2="970.0" y2="150"/>
+<text class="l" x="88.0" y="142" text-anchor="start">each check can refuse</text>
+<polyline class="ln n" points="526.0,150 526.0,188" marker-end="url(#guard-ar-n)"/>
+<rect class="bx data" x="276.0" y="188" width="500" height="72" rx="6"/>
+<text class="t" x="526" y="213.0" text-anchor="middle">Refusal = tool error with the reason</text>
+<text class="s" x="526" y="228.0" text-anchor="middle">the agent reads it, repairs the SQL, or stops;</text>
+<text class="s" x="526" y="243.0" text-anchor="middle">a refused query never reaches Databricks</text>
+<rect class="bx n" x="1029" y="188" width="158" height="72" rx="6"/>
+<text class="t" x="1108" y="213.0" text-anchor="middle">Result r1, r2…</text>
+<text class="s" x="1108" y="228.0" text-anchor="middle">≤1000 rows kept,</text>
+<text class="s" x="1108" y="243.0" text-anchor="middle">50 shown to the model</text>
+<polyline class="ln data" points="1118.0,96 1118.0,188" marker-end="url(#guard-ar-data)"/>
+<text class="l" x="1126.0" y="150" text-anchor="start">rows</text>
+</svg></div><figcaption><b>One tool, seven checks.</b> The model can write any SQL it likes; <code>run_sql</code> runs only what survives all seven checks, then executes it through the read-only MCP tools. A refusal is not an exception to the user: the reason goes back to the agent, which repairs the SQL or stops. The result is stored as <code>r1, r2…</code>; the answer's numbers are later checked against these stored results.</figcaption></figure></main></body></html>

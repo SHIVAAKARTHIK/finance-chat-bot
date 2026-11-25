@@ -1,0 +1,207 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Code flow</title><style>
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#57534e;--surface:#ffffff;--line:#c4bfb9;--strong:#57534e;
+--accent:#1d4ed8;--accent-tint:#eef3ff;--guard:#b45309;--guard-tint:#fff3e0;--chip:#f1efec}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#151412;--fg:#ecebe9;--muted:#a8a29e;
+--surface:#1f1d1b;--line:#4a4541;--strong:#a8a29e;--accent:#8db3ff;--accent-tint:#1b2538;--guard:#f0b35a;
+--guard-tint:#33261a;--chip:#262320}}
+:root[data-theme="dark"]{--bg:#151412;--fg:#ecebe9;--muted:#a8a29e;--surface:#1f1d1b;--line:#4a4541;--strong:#a8a29e;
+--accent:#8db3ff;--accent-tint:#1b2538;--guard:#f0b35a;--guard-tint:#33261a;--chip:#262320}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{border-bottom:1px solid var(--line);padding:14px 16px}
+nav{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+nav strong{margin-right:8px}
+nav a{color:var(--muted);text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--fg)}
+nav a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+main{max-width:1280px;margin:0 auto;padding:8px 16px 56px}
+h1{font-size:26px;line-height:1.25;margin:28px 0 6px}
+h2{font-size:18px;margin:36px 0 4px}
+p.lead{color:var(--muted);max-width:78ch;margin:0 0 14px}
+.fig{margin:14px 0 8px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:6px}
+svg{display:block;width:100%;height:auto}
+figcaption{color:var(--muted);font-size:13.5px;max-width:92ch;margin:8px 2px 0}
+svg text{font-family:inherit;fill:currentColor}
+.t{font-size:12.5px;font-weight:600}.s{font-size:11px}.s{fill:var(--muted)}
+.l{font-size:11px}.ft{font-size:12px;font-weight:600;fill:var(--muted)}
+.bx{fill:var(--surface);stroke:var(--strong);stroke-width:1.2}
+.bx.llm{fill:var(--accent-tint);stroke:var(--accent)}
+.bx.data{fill:var(--guard-tint);stroke:var(--guard)}
+.bx.ext,.bx.out{stroke-dasharray:5 4}
+.bx.dim{opacity:.5}
+.fr{fill:none;stroke:var(--line);stroke-width:1.2;stroke-dasharray:3 4}
+.ln{fill:none;stroke:var(--strong);stroke-width:1.4}
+.ln.llm{stroke:var(--accent);stroke-width:1.8}
+.ln.data{stroke:var(--guard);stroke-width:2}
+.ln.dash{stroke-dasharray:6 4}
+.mk{fill:var(--strong)}.mk.llm{fill:var(--accent)}.mk.data{fill:var(--guard)}
+.life{stroke:var(--line);stroke-width:1;stroke-dasharray:2 5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;margin:10px 0 4px;font-size:13.5px;color:var(--muted)}
+.sw{display:inline-block;width:26px;height:14px;border-radius:4px;border:1.5px solid var(--strong);background:var(--surface);
+vertical-align:-3px;margin-right:6px}
+.sw.llm{border-color:var(--accent);background:var(--accent-tint)}
+.sw.data{border-color:var(--guard);background:var(--guard-tint)}
+.sw.ext{border-style:dashed}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:10px 0 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+code{background:var(--chip);border-radius:4px;padding:1px 5px;font-size:12.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:14px}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
+.card a{color:var(--accent);font-weight:600;text-decoration:none}
+.card p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--guard);padding:4px 12px;color:var(--muted);max-width:92ch;margin:12px 0}
+@media (max-width:600px){h1{font-size:22px}}
+</style></head><body><header><nav><strong>Finance Chat v3</strong><a href="index.html">Overview</a><a href="01_high_level_architecture.html">High-level</a><a href="02_low_level_architecture.html">Low-level</a><a href="03_code_flow.html" aria-current="page">Code flow</a><a href="04_agentic_workflows.html">Agentic workflows</a><a href="05_all_agent_vs_hybrid.html">All-agent vs hybrid</a></nav></header><main><h1>Code flow</h1><p class="lead">Which module handles a request at each step, what talks to Bedrock or Databricks, and what is written afterwards.</p><p class="legend"><span><span class="sw"></span>code step</span><span><span class="sw llm"></span>LLM call (Bedrock)</span><span><span class="sw data"></span>data access, guarded in code</span><span><span class="sw ext"></span>dashed = outside systems or optional paths</span></p><h2>The request, in order</h2><figure class="fig"><div class="scroll"><svg id="seq" viewBox="0 0 1180 950" role="img" aria-label="One chat request in order: the UI posts, the adapter resolves identity, ChatService loads context and starts the orchestrator, one of three paths gathers facts, the writer words the answer and checks its numbers, results are saved in the background, and the stream ends with the UI&#x27;s response object." style="min-width:900px"><defs><marker id="seq-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="seq-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="seq-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx n" x="5" y="10" width="140" height="48" rx="6"/>
+<text class="t" x="75" y="30.5" text-anchor="middle">UI</text>
+<text class="s" x="75" y="45.5" text-anchor="middle">browser</text>
+<line class="life" x1="75" y1="58" x2="75" y2="935"/>
+<rect class="bx n" x="180" y="10" width="140" height="48" rx="6"/>
+<text class="t" x="250" y="30.5" text-anchor="middle">integration/</text>
+<text class="s" x="250" y="45.5" text-anchor="middle">stream_chat</text>
+<line class="life" x1="250" y1="58" x2="250" y2="935"/>
+<rect class="bx n" x="360" y="10" width="140" height="48" rx="6"/>
+<text class="t" x="430" y="30.5" text-anchor="middle">ChatService</text>
+<text class="s" x="430" y="45.5" text-anchor="middle">chat()</text>
+<line class="life" x1="430" y1="58" x2="430" y2="935"/>
+<rect class="bx n" x="540" y="10" width="140" height="48" rx="6"/>
+<text class="t" x="610" y="30.5" text-anchor="middle">Orchestrator</text>
+<text class="s" x="610" y="45.5" text-anchor="middle">answer()</text>
+<line class="life" x1="610" y1="58" x2="610" y2="935"/>
+<rect class="bx n" x="720" y="10" width="140" height="48" rx="6"/>
+<text class="t" x="790" y="30.5" text-anchor="middle">Agents + tools</text>
+<text class="s" x="790" y="45.5" text-anchor="middle">fast path | ReAct</text>
+<line class="life" x1="790" y1="58" x2="790" y2="935"/>
+<rect class="bx llm ext" x="875" y="10" width="140" height="48" rx="6"/>
+<text class="t" x="945" y="30.5" text-anchor="middle">Bedrock</text>
+<text class="s" x="945" y="45.5" text-anchor="middle">Claude · gpt-oss</text>
+<line class="life" x1="945" y1="58" x2="945" y2="935"/>
+<rect class="bx data ext" x="1030" y="10" width="140" height="48" rx="6"/>
+<text class="t" x="1100" y="30.5" text-anchor="middle">Databricks</text>
+<text class="s" x="1100" y="45.5" text-anchor="middle">MCP reads · aiops</text>
+<line class="life" x1="1100" y1="58" x2="1100" y2="935"/>
+<rect class="fr" x="570" y="522" width="580" height="186" rx="10"/>
+<text class="ft" x="1140" y="700" text-anchor="end">one of three paths (next page)</text>
+<polyline class="ln n" points="75,110 250,110" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="83" y="103" text-anchor="start">1  POST …/finance-chat/stream  {query, session_id, conversation_id}</text>
+<polyline class="ln n" points="250,156 292,156 292,180 250,180" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="300" y="172" text-anchor="start">2  get_current_user + agent_roles → Identity(oid, role labels)</text>
+<polyline class="ln n" points="250,222 430,222" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="258" y="215" text-anchor="start">3  service.chat(query, identity), progress sink attached</text>
+<polyline class="ln data" points="430,268 1100,268" marker-end="url(#seq-ar-data)"/>
+<text class="l" x="438" y="261" text-anchor="start">4  reads: the user's conversation, last turns, summary, habits</text>
+<polyline class="ln data dash" points="430,314 1100,314" marker-end="url(#seq-ar-data)"/>
+<text class="l" x="438" y="307" text-anchor="start">5  background write: 'processing' row</text>
+<polyline class="ln n" points="430,360 610,360" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="438" y="353" text-anchor="start">6  answer(question, role, context)</text>
+<polyline class="ln llm" points="610,406 945,406" marker-end="url(#seq-ar-llm)"/>
+<text class="l" x="618" y="399" text-anchor="start">7  supervisor call 1: route(classification, standalone_question)</text>
+<polyline class="ln n dash" points="610,452 250,452" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="258" y="445" text-anchor="start">8  trace events become status stages; keep-alive every 15 s</text>
+<polyline class="ln n dash" points="250,498 75,498" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="83" y="491" text-anchor="start">9  status {stage}: intent, exploration, sql, database, results, answer</text>
+<polyline class="ln n" points="610,544 790,544" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="618" y="537" text-anchor="start">10  branch: general · fast path (simple_data) · ReAct (complex, workflow)</text>
+<polyline class="ln llm" points="790,590 945,590" marker-end="url(#seq-ar-llm)"/>
+<text class="l" x="798" y="583" text-anchor="start">11  a model call for each agent step</text>
+<polyline class="ln data" points="790,636 1100,636" marker-end="url(#seq-ar-data)"/>
+<text class="l" x="798" y="629" text-anchor="start">12  run_sql → sql_guard → read-only MCP; results r1, r2…</text>
+<polyline class="ln n dash" points="790,682 610,682" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="618" y="675" text-anchor="start">13  draft: status, result_ids, explanation, caveats</text>
+<polyline class="ln llm" points="610,728 945,728" marker-end="url(#seq-ar-llm)"/>
+<text class="l" x="618" y="721" text-anchor="start">14  AnswerWriter (gpt-oss) → number check → one rewrite at most</text>
+<polyline class="ln n dash" points="610,774 430,774" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="438" y="767" text-anchor="start">15  AnswerEnvelope (SQL stays in the debug part, for traces only)</text>
+<polyline class="ln data dash" points="430,820 1100,820" marker-end="url(#seq-ar-data)"/>
+<text class="l" x="438" y="813" text-anchor="start">16  background: final message, conversation, events; summary and memory jobs</text>
+<polyline class="ln n dash" points="430,866 250,866" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="258" y="859" text-anchor="start">17  envelope</text>
+<polyline class="ln n" points="250,912 75,912" marker-end="url(#seq-ar-n)"/>
+<text class="l" x="83" y="905" text-anchor="start">18  delta × N (≤64 chars each), then complete: the UI body, no SQL, kpi null</text>
+</svg></div><figcaption><b>One request, start to finish.</b> Blue arrows are model calls, amber arrows are Databricks (reads through the guarded SQL tool or MCP, writes to aiops), dashed arrows are returns and progress. The dashed frame is the part that differs per question; the next page draws it.</figcaption></figure><h2>The loop behind every agent</h2><figure class="fig"><div class="scroll"><svg id="loop" viewBox="0 0 1180 310" role="img" aria-label="The ReAct loop: call the model, run the tool calls it asks for, append the results, repeat, until the finish tool, a plain answer, or a limit." style="min-width:900px"><defs><marker id="loop-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="loop-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="loop-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx llm" x="40" y="70" width="240" height="64" rx="6"/>
+<text class="t" x="160" y="98.5" text-anchor="middle">Model call</text>
+<text class="s" x="160" y="113.5" text-anchor="middle">system + messages + tools</text>
+<rect class="bx n" x="360" y="70" width="240" height="64" rx="6"/>
+<text class="t" x="480" y="91.0" text-anchor="middle">Run the tool calls</text>
+<text class="s" x="480" y="106.0" text-anchor="middle">parallel when safe,</text>
+<text class="s" x="480" y="121.0" text-anchor="middle">errors go back as results</text>
+<rect class="bx n" x="680" y="70" width="240" height="64" rx="6"/>
+<text class="t" x="800" y="91.0" text-anchor="middle">Append results</text>
+<text class="s" x="800" y="106.0" text-anchor="middle">tool results join the</text>
+<text class="s" x="800" y="121.0" text-anchor="middle">message list</text>
+<polyline class="ln n" points="280,102 360,102" marker-end="url(#loop-ar-n)"/>
+<text class="l" x="320" y="94" text-anchor="middle">tool calls</text>
+<polyline class="ln n" points="600,102 680,102" marker-end="url(#loop-ar-n)"/>
+<text class="l" x="640" y="94" text-anchor="middle">results</text>
+<polyline class="ln n" points="800,70 800,36 160,36 160,70" marker-end="url(#loop-ar-n)"/>
+<text class="l" x="480" y="28" text-anchor="middle">next step</text>
+<rect class="bx n" x="20" y="210" width="190" height="64" rx="6"/>
+<text class="t" x="115" y="231.0" text-anchor="middle">Finish tool called</text>
+<text class="s" x="115" y="246.0" text-anchor="middle">submit_result: structured</text>
+<text class="s" x="115" y="261.0" text-anchor="middle">draft + result ids</text>
+<rect class="bx n" x="225" y="210" width="190" height="64" rx="6"/>
+<text class="t" x="320" y="231.0" text-anchor="middle">No tool call</text>
+<text class="s" x="320" y="246.0" text-anchor="middle">plain text is the</text>
+<text class="s" x="320" y="261.0" text-anchor="middle">final answer</text>
+<rect class="bx data" x="560" y="210" width="330" height="64" rx="6"/>
+<text class="t" x="725" y="231.0" text-anchor="middle">Limit reached</text>
+<text class="s" x="725" y="246.0" text-anchor="middle">15 steps · 300 s · model error →</text>
+<text class="s" x="725" y="261.0" text-anchor="middle">partial answer: done vs missing</text>
+<polyline class="ln n" points="90,134 90,210" marker-end="url(#loop-ar-n)"/>
+<polyline class="ln n" points="250,134 250,210" marker-end="url(#loop-ar-n)"/>
+<polyline class="ln data dash" points="270,134 270,180 725,180 725,210" marker-end="url(#loop-ar-data)"/>
+<text class="l" x="500" y="174" text-anchor="middle">checked before every call</text>
+<rect class="bx data ext" x="950" y="190" width="210" height="84" rx="6"/>
+<text class="t" x="1055" y="213.5" text-anchor="middle">SQL budget</text>
+<text class="s" x="1055" y="228.5" text-anchor="middle">the 11th run_sql call</text>
+<text class="s" x="1055" y="243.5" text-anchor="middle">gets an error result:</text>
+<text class="s" x="1055" y="258.5" text-anchor="middle">answer with what you have</text>
+</svg></div><figcaption><b>The loop every agent uses</b> (<code>runtime/loop.py</code>). It ends three ways: the finish tool (<code>submit_result</code>, structured), plain text with no tool call, or a limit (15 steps, 300 s, or a model error). A limit never returns nothing: it returns a partial answer that says what was done and what is missing. The 10-call SQL budget and the deadline are shared by every agent in the same run.</figcaption></figure><h2>How numbers are kept honest</h2><figure class="fig"><div class="scroll"><svg id="num" viewBox="0 0 1180 390" role="img" aria-label="The writer&#x27;s answer is checked: every number must appear in the tool results, the calculations or the question; if not, one rewrite is requested, and if numbers are still unsupported the answer is sent with a notice." style="min-width:900px"><defs><marker id="num-ar-n" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk n" d="M0,0 L10,5 L0,10 z"/></marker><marker id="num-ar-llm" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk llm" d="M0,0 L10,5 L0,10 z"/></marker><marker id="num-ar-data" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path class="mk data" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bx n" x="20" y="40" width="180" height="64" rx="6"/>
+<text class="t" x="110" y="61.0" text-anchor="middle">Facts</text>
+<text class="s" x="110" y="76.0" text-anchor="middle">question, draft,</text>
+<text class="s" x="110" y="91.0" text-anchor="middle">the rows it used</text>
+<rect class="bx llm" x="240" y="40" width="180" height="64" rx="6"/>
+<text class="t" x="330" y="61.0" text-anchor="middle">Writer, call 1</text>
+<text class="s" x="330" y="76.0" text-anchor="middle">gpt-oss writes the</text>
+<text class="s" x="330" y="91.0" text-anchor="middle">answer + how calculated</text>
+<rect class="bx n" x="460" y="40" width="180" height="64" rx="6"/>
+<text class="t" x="550" y="61.0" text-anchor="middle">Extract numbers</text>
+<text class="s" x="550" y="76.0" text-anchor="middle">every number in</text>
+<text class="s" x="550" y="91.0" text-anchor="middle">the answer text</text>
+<rect class="bx n" x="680" y="32" width="200" height="80" rx="6"/>
+<text class="t" x="780" y="53.5" text-anchor="middle">In the allowed set?</text>
+<text class="s" x="780" y="68.5" text-anchor="middle">SQL result values,</text>
+<text class="s" x="780" y="83.5" text-anchor="middle">calculate() results,</text>
+<text class="s" x="780" y="98.5" text-anchor="middle">numbers in the question</text>
+<rect class="bx out" x="930" y="40" width="220" height="64" rx="6"/>
+<text class="t" x="1040" y="68.5" text-anchor="middle">Answer sent</text>
+<text class="s" x="1040" y="83.5" text-anchor="middle">verification: verified</text>
+<polyline class="ln n" points="200,72 240,72" marker-end="url(#num-ar-n)"/>
+<polyline class="ln n" points="420,72 460,72" marker-end="url(#num-ar-n)"/>
+<polyline class="ln n" points="640,72 680,72" marker-end="url(#num-ar-n)"/>
+<polyline class="ln n" points="880,72 930,72" marker-end="url(#num-ar-n)"/>
+<text class="l" x="905" y="64" text-anchor="middle">all found</text>
+<rect class="bx llm" x="680" y="190" width="200" height="64" rx="6"/>
+<text class="t" x="780" y="211.0" text-anchor="middle">Writer, call 2</text>
+<text class="s" x="780" y="226.0" text-anchor="middle">only numbers from the</text>
+<text class="s" x="780" y="241.0" text-anchor="middle">facts; drop the rest</text>
+<polyline class="ln n" points="780,112 780,190" marker-end="url(#num-ar-n)"/>
+<text class="l" x="788" y="156" text-anchor="start">some missing</text>
+<rect class="bx n" x="930" y="190" width="220" height="64" rx="6"/>
+<text class="t" x="1040" y="218.5" text-anchor="middle">Check again</text>
+<text class="s" x="1040" y="233.5" text-anchor="middle">same allowed set</text>
+<polyline class="ln n" points="880,222 930,222" marker-end="url(#num-ar-n)"/>
+<text class="l" x="905" y="214" text-anchor="middle">rewrite</text>
+<polyline class="ln n" points="1040,190 1040,104" marker-end="url(#num-ar-n)"/>
+<text class="l" x="1048" y="150" text-anchor="start">all found</text>
+<rect class="bx data" x="930" y="300" width="220" height="64" rx="6"/>
+<text class="t" x="1040" y="321.0" text-anchor="middle">Sent with a notice</text>
+<text class="s" x="1040" y="336.0" text-anchor="middle">unchecked figures named,</text>
+<text class="s" x="1040" y="351.0" text-anchor="middle">verification: unverified</text>
+<polyline class="ln data" points="1040,254 1040,300" marker-end="url(#num-ar-data)"/>
+<text class="l" x="1048" y="282" text-anchor="start">still missing</text>
+</svg></div><figcaption><b>Numbers come from tools, enforced in code.</b> The model words the answer but cannot introduce a figure: each number is looked up in the allowed set. One rewrite is requested with the offending numbers listed; if some remain, the answer is still sent, with a notice naming them and <code>verification: unverified</code>.</figcaption></figure></main></body></html>

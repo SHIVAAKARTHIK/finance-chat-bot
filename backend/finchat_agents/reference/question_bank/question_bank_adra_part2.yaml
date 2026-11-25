@@ -1,0 +1,133 @@
+# DEV question bank (ADRA part 2 of 2). Expected values from ground_truth_adra_fynapse_v1.sql (run 2026-11-15).
+# Keys: numbers (each must appear, tolerance_pct), text_contains (all), text_contains_any (one).
+# Paraphrases are separate cases with the same expectation. Never add hold-out questions here.
+split: dev
+area: question_bank
+source: generated_by_pattern
+roles_used: [standard, pii_viewer]
+questions:
+  - id: qb_a14_sum_count_column
+    domain: adra
+    pattern: sum_total
+    question: How many rejections have there been in total across Northwind accounts in Feb 25?
+    paraphrases: [Total number of reconciliation rejections for 100-Northwind in February 2025]
+    expect:
+      kind: answer
+      numbers: ['0']
+      tolerance_pct: 0.5
+      ground_truth_sql: A14
+    data_note: 'weak test: zero rejections'
+  - id: qb_a15_txn_count_account
+    domain: adra
+    pattern: count_lookup
+    question: How many transactions are recorded on account 222120 for Northwind in Feb 25?
+    paraphrases: ['Number of transactions on Northwind account 222120, February 2025']
+    expect:
+      kind: answer
+      numbers: ['2']
+      tolerance_pct: 0.5
+      ground_truth_sql: A15
+  - id: qb_a16_txn_sum_account
+    domain: adra
+    pattern: sum_lookup
+    question: What is the total absolute transaction amount on account 153300 for Cars USA Shipping in Oct 26?
+    paraphrases: ['Sum of absolute transaction amounts for 561 account 153300, October 2026']
+    expect:
+      kind: answer
+      numbers: ['913.30']
+      tolerance_pct: 0.5
+      ground_truth_sql: A16
+  - id: qb_a17_txn_by_type
+    domain: adra
+    pattern: count_by_group
+    question: How many transactions of each type are there for 561 - Cars USA Shipping, LLC in Oct 26?
+    paraphrases: ['Transaction count by transaction type, Cars USA Shipping, October 2026']
+    expect:
+      kind: answer
+      numbers: ['8', '8']
+      text_contains: [Ledger transaction, Subledger transaction]
+      tolerance_pct: 0.5
+      ground_truth_sql: A17
+  - id: qb_a18_max
+    domain: adra
+    pattern: max_value
+    question: What is the oldest transaction age in days across all Northwind accounts in Feb 25?
+    paraphrases: [Maximum transaction age for 100-Northwind in February 2025]
+    expect:
+      kind: answer
+      numbers: ['18']
+      tolerance_pct: 0.5
+      ground_truth_sql: A18
+  - id: qb_a19_txn_by_age_group
+    domain: adra
+    pattern: count_by_group
+    question: How are Cars USA Shipping transactions distributed across age groups in Oct 26?
+    paraphrases: [Count of 561 transactions per aging bucket for the latest period]
+    expect:
+      kind: answer
+      numbers: ['16']
+      text_contains: [0-30 Days]
+      tolerance_pct: 0.5
+      ground_truth_sql: A19
+  - id: qb_a20_not_found_period
+    domain: adra
+    pattern: not_found
+    question: What is the balance of account 141111 for 100-Northwind in March 2023?
+    expect:
+      kind: not_found
+      check: no_unsupported_financial_figure
+      reason_should_mention: period
+  - id: qb_a21_not_found_entity
+    domain: adra
+    pattern: not_found_or_no_access
+    question: How many accounts does entity 999 have in Feb 25?
+    expect:
+      kind: [not_found, access_denied]
+      check: no_unsupported_financial_figure
+  - id: qb_a22_pii_lookup
+    domain: adra
+    pattern: pii_masking
+    question: Who is the preparer of account 141111 for Northwind in Feb 25?
+    as_role:
+      standard:
+        kind: [pii_restricted, answer]
+        check: person_names_masked
+      pii_viewer:
+        kind: answer
+        check: person_name_present
+        ground_truth_note: name populated in source (names not exported)
+  - id: qb_a23_pii_lookup_with_date
+    domain: adra
+    pattern: pii_masking
+    question: Who approved account 213130 for Cars USA Shipping in Oct 26, and on what date?
+    as_role:
+      standard:
+        kind: [pii_restricted, answer]
+        check: person_names_masked
+        date_may_show: true
+      pii_viewer:
+        kind: answer
+        check: no_unsupported_financial_figure
+        text_contains_any: [not been approved, not approved, no approval, not yet approved, no value, not available]
+        ground_truth_note: >-
+          Account 213130 is 'Not prepared' and APPROVED_DATE is null, so nobody has approved it yet.
+          APPROVER_NAME (assigned approver) is populated; APPROVED_BY_NAME (actual approver) is empty.
+          A correct answer says it has not been approved (it may name the assigned approver).
+  - id: qb_a24_compare_missing_period
+    domain: adra
+    pattern: compare_periods
+    question: How did the number of finalized Northwind accounts change from Jan 25 to Feb 25?
+    expect:
+      kind: cannot_compare
+      check: no_unsupported_financial_figure
+      reason_should_mention: previous period has no data
+  - id: qb_a25_two_filters
+    domain: adra
+    pattern: count_filtered
+    question: How many Northwind accounts are approved but not yet finalized in Feb 25?
+    paraphrases: ['100-Northwind, February 2025 - approved reconciliations still open']
+    expect:
+      kind: answer
+      numbers: ['5']
+      tolerance_pct: 0.5
+      ground_truth_sql: A25

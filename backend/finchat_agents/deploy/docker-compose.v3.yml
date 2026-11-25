@@ -1,0 +1,38 @@
+# Compose changes for the VM (see docs/DEPLOY.md). Merge into the existing docker-compose.yml, or use as an override:
+#
+#   docker compose -f docker-compose.yml -f docker-compose.v3.yml up -d backend
+#
+# The service name `backend` and the image name are placeholders: use the names already in the VM's compose file.
+# Switching builds = changing BACKEND_IMAGE_TAG in the VM's compose .env:
+#   finance-agentic  -> v3 (this branch)
+#   finance-kpi      -> v2 fallback (feature/finance-kpi build)
+services:
+  backend:
+    image: finchat-backend:${BACKEND_IMAGE_TAG:-finance-agentic}
+    build:
+      context: ./backend
+      # Option A: the existing backend Dockerfile with the v3 lines added. Option B: finchat_agents/deploy/Dockerfile.v3
+      dockerfile: Dockerfile
+    env_file:
+      - ./backend/.env            # values live only on the VM; names are listed in docs/DEPLOY.md
+    environment:
+      RUN_LIVE: "0"
+      WARM_UP_ON_START: "true"
+    volumes:
+      # v3 traces and exported files survive container restarts
+      - finchat_v3_traces:/app/finchat_agents/traces
+      - finchat_v3_outputs:/app/finchat_agents/outputs
+      # access file: edit on the VM without rebuilding (read-only in the container)
+      - ./backend/finchat_agents/config/rbac.v3.yaml:/app/finchat_agents/config/rbac.v3.yaml:ro
+    restart: unless-stopped
+    healthcheck:
+      # liveness only; readiness (MCP / Bedrock / aiops) is GET /v3/health
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:${BACKEND_PORT:-8000}/v3/health/live', timeout=4).status == 200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      start_period: 240s
+      retries: 3
+
+volumes:
+  finchat_v3_traces:
+  finchat_v3_outputs:

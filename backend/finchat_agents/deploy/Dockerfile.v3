@@ -1,0 +1,34 @@
+# Finance Chat v3 image. Build context = backend/ (the folder that holds finchat_agents/):
+#
+#   cd backend
+#   docker build -f finchat_agents/deploy/Dockerfile.v3 -t finchat-backend:finance-agentic .
+#
+# Use it as is when v3 runs as its own container (option B in docs/DEPLOY.md), or copy the marked lines into the
+# existing backend Dockerfile (option A). No secrets are baked in: settings come from the container environment
+# (docker compose env_file) at run time. Files excluded from the image: see Dockerfile.v3.dockerignore.
+FROM python:3.13-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PIP_DISABLE_PIP_VERSION_CHECK=1
+
+WORKDIR /app
+
+# --- v3 lines for the existing backend Dockerfile (option A): start ---------------------------------------------
+COPY finchat_agents/requirements.txt /tmp/finchat_agents-requirements.txt
+RUN pip install -r /tmp/finchat_agents-requirements.txt
+COPY finchat_agents/ /app/finchat_agents/
+# Writable folders for traces and exported files (mount volumes here to keep them across restarts)
+RUN mkdir -p /app/finchat_agents/traces /app/finchat_agents/outputs
+# --- v3 lines: end ------------------------------------------------------------------------------------------------
+
+RUN useradd --create-home --uid 10001 app && chown -R app:app /app/finchat_agents/traces /app/finchat_agents/outputs
+USER app
+
+EXPOSE 8010
+# Liveness only (calls nothing external). Readiness with MCP / Bedrock / aiops is GET /v3/health.
+HEALTHCHECK --interval=30s --timeout=5s --start-period=240s --retries=3 \
+    CMD python -c "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8010/v3/health/live', timeout=4).status == 200 else 1)"
+
+CMD ["uvicorn", "finchat_agents.api.app:app", "--host", "0.0.0.0", "--port", "8010", "--proxy-headers"]

@@ -1,0 +1,56 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Finance Chat v3: architecture</title><style>
+:root{--bg:#fafaf9;--fg:#1c1917;--muted:#57534e;--surface:#ffffff;--line:#c4bfb9;--strong:#57534e;
+--accent:#1d4ed8;--accent-tint:#eef3ff;--guard:#b45309;--guard-tint:#fff3e0;--chip:#f1efec}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#151412;--fg:#ecebe9;--muted:#a8a29e;
+--surface:#1f1d1b;--line:#4a4541;--strong:#a8a29e;--accent:#8db3ff;--accent-tint:#1b2538;--guard:#f0b35a;
+--guard-tint:#33261a;--chip:#262320}}
+:root[data-theme="dark"]{--bg:#151412;--fg:#ecebe9;--muted:#a8a29e;--surface:#1f1d1b;--line:#4a4541;--strong:#a8a29e;
+--accent:#8db3ff;--accent-tint:#1b2538;--guard:#f0b35a;--guard-tint:#33261a;--chip:#262320}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{border-bottom:1px solid var(--line);padding:14px 16px}
+nav{max-width:1280px;margin:0 auto;display:flex;flex-wrap:wrap;gap:6px 18px;align-items:baseline}
+nav strong{margin-right:8px}
+nav a{color:var(--muted);text-decoration:none;padding:2px 0;border-bottom:2px solid transparent}
+nav a:hover{color:var(--fg)}
+nav a[aria-current="page"]{color:var(--fg);border-bottom-color:var(--accent)}
+main{max-width:1280px;margin:0 auto;padding:8px 16px 56px}
+h1{font-size:26px;line-height:1.25;margin:28px 0 6px}
+h2{font-size:18px;margin:36px 0 4px}
+p.lead{color:var(--muted);max-width:78ch;margin:0 0 14px}
+.fig{margin:14px 0 8px}
+.scroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface);padding:6px}
+svg{display:block;width:100%;height:auto}
+figcaption{color:var(--muted);font-size:13.5px;max-width:92ch;margin:8px 2px 0}
+svg text{font-family:inherit;fill:currentColor}
+.t{font-size:12.5px;font-weight:600}.s{font-size:11px}.s{fill:var(--muted)}
+.l{font-size:11px}.ft{font-size:12px;font-weight:600;fill:var(--muted)}
+.bx{fill:var(--surface);stroke:var(--strong);stroke-width:1.2}
+.bx.llm{fill:var(--accent-tint);stroke:var(--accent)}
+.bx.data{fill:var(--guard-tint);stroke:var(--guard)}
+.bx.ext,.bx.out{stroke-dasharray:5 4}
+.bx.dim{opacity:.5}
+.fr{fill:none;stroke:var(--line);stroke-width:1.2;stroke-dasharray:3 4}
+.ln{fill:none;stroke:var(--strong);stroke-width:1.4}
+.ln.llm{stroke:var(--accent);stroke-width:1.8}
+.ln.data{stroke:var(--guard);stroke-width:2}
+.ln.dash{stroke-dasharray:6 4}
+.mk{fill:var(--strong)}.mk.llm{fill:var(--accent)}.mk.data{fill:var(--guard)}
+.life{stroke:var(--line);stroke-width:1;stroke-dasharray:2 5}
+.legend{display:flex;flex-wrap:wrap;gap:6px 22px;align-items:center;margin:10px 0 4px;font-size:13.5px;color:var(--muted)}
+.sw{display:inline-block;width:26px;height:14px;border-radius:4px;border:1.5px solid var(--strong);background:var(--surface);
+vertical-align:-3px;margin-right:6px}
+.sw.llm{border-color:var(--accent);background:var(--accent-tint)}
+.sw.data{border-color:var(--guard);background:var(--guard-tint)}
+.sw.ext{border-style:dashed}
+table{border-collapse:collapse;width:100%;font-size:13.5px;margin:10px 0 0}
+th,td{border:1px solid var(--line);padding:7px 9px;text-align:left;vertical-align:top}
+th{background:var(--chip)}
+code{background:var(--chip);border-radius:4px;padding:1px 5px;font-size:12.5px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:14px}
+.card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--surface)}
+.card a{color:var(--accent);font-weight:600;text-decoration:none}
+.card p{margin:6px 0 0;color:var(--muted);font-size:14px}
+.note{border-left:3px solid var(--guard);padding:4px 12px;color:var(--muted);max-width:92ch;margin:12px 0}
+@media (max-width:600px){h1{font-size:22px}}
+</style></head><body><header><nav><strong>Finance Chat v3</strong><a href="index.html" aria-current="page">Overview</a><a href="01_high_level_architecture.html">High-level</a><a href="02_low_level_architecture.html">Low-level</a><a href="03_code_flow.html">Code flow</a><a href="04_agentic_workflows.html">Agentic workflows</a><a href="05_all_agent_vs_hybrid.html">All-agent vs hybrid</a></nav></header><main><h1>Finance Chat v3: architecture</h1><p class="lead">How the finance agent is built and how a question is answered, drawn from the code in <code>backend/finchat_agents</code>.</p><p class="legend"><span><span class="sw"></span>code step</span><span><span class="sw llm"></span>LLM call (Bedrock)</span><span><span class="sw data"></span>data access, guarded in code</span><span><span class="sw ext"></span>dashed = outside systems or optional paths</span></p><div class="cards"><div class="card"><a href="01_high_level_architecture.html">High-level architecture</a><p>The system, its two doors to the outside (Bedrock and read-only SQL), the scheduled summary path, and how roles limit what a user can see.</p></div><div class="card"><a href="02_low_level_architecture.html">Low-level architecture</a><p>Module layers, the three modules that touch the outside, what each agent may call, and the seven checks inside run_sql.</p></div><div class="card"><a href="03_code_flow.html">Code flow</a><p>One request step by step across the modules, the ReAct loop every agent uses, and how numbers are checked.</p></div><div class="card"><a href="04_agentic_workflows.html">Agentic workflows</a><p>Simple, medium, hard and complex questions: path, model calls, tools and checks for each.</p></div><div class="card"><a href="05_all_agent_vs_hybrid.html">All-agent vs hybrid</a><p>What would change if every step were an agent: the problems, a step-by-step verdict, and why models decide while code guarantees.</p></div></div><p class="note">Colours mean the same on every page: blue is a model call, amber is data access that code guards, plain is ordinary code, dashed is an outside system or an optional path.</p></main></body></html>

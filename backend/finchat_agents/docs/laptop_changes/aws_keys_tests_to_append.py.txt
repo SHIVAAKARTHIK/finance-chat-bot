@@ -1,0 +1,95 @@
+
+# ---------------------------------------------------------------- explicit AWS keys (from backend/.env), fake values only
+
+def test_settings_builds_credentials_only_when_both_keys_are_set_and_never_prints_them():
+    from finchat_agents.config import Settings
+
+    assert Settings(_env_file=None).aws_credentials() is None
+    assert Settings(_env_file=None, aws_access_key_id="AKIAFAKE").aws_credentials() is None  # one key is not enough
+    s = Settings(_env_file=None, aws_access_key_id="AKIAFAKE", aws_secret_access_key="fake-secret", aws_session_token="fake-token")
+    c = s.aws_credentials()
+    assert (c.access_key_id, c.secret_access_key, c.session_token) == ("AKIAFAKE", "fake-secret", "fake-token")
+    assert "fake-secret" not in repr(c) and "AKIAFAKE" not in repr(c)
+    assert "fake-secret" not in repr(s) and "fake-secret" not in str(s.model_dump())
+
+
+def test_keys_in_a_dotenv_file_are_read_without_being_exported(tmp_path, monkeypatch):
+    from finchat_agents.config import Settings
+
+    for name in ("AWS_ACCESS_KEY_ID", "AWS_SECRET_ACCESS_KEY", "AWS_SESSION_TOKEN", "AWS_PROFILE"):
+        monkeypatch.delenv(name, raising=False)
+    env = tmp_path / ".env"
+    env.write_text("AWS_ACCESS_KEY_ID=AKIAFAKE\nAWS_SECRET_ACCESS_KEY=fake-secret\nAWS_SESSION_TOKEN=\nAWS_PROFILE=\n", encoding="utf-8")
+    s = Settings(_env_file=env)
+    assert s.aws_profile is None and s.aws_credentials() == ("AKIAFAKE", "fake-secret", None)
+
+
+def test_claude_provider_passes_explicit_keys_to_the_sdk(monkeypatch):
+    import anthropic
+
+    seen = {}
+
+    class FakeClient:
+        def __init__(self, **kw):
+            seen.update(kw)
+
+    monkeypatch.setattr(anthropic, "AsyncAnthropicBedrock", FakeClient)
+    from finchat_agents.config import AwsCredentials
+    from finchat_agents.llm.claude_bedrock import ClaudeBedrockProvider
+
+    ClaudeBedrockProvider("us-east-1", profile="ignored", credentials=AwsCredentials("AKIAFAKE", "fake-secret", "tok"))._get_client()
+    assert seen["aws_access_key"] == "AKIAFAKE" and seen["aws_secret_key"] == "fake-secret" and seen["aws_session_token"] == "tok"
+    assert "aws_profile" not in seen  # explicit keys win over a profile
+    seen.clear()
+    ClaudeBedrockProvider("us-east-1", profile="myprofile")._get_client()
+    assert seen["aws_profile"] == "myprofile" and "aws_access_key" not in seen  # no keys: the normal AWS chain
+
+
+def test_gpt_oss_provider_passes_explicit_keys_to_boto3(monkeypatch):
+    import boto3
+
+    sessions = []
+
+    class FakeSession:
+        def __init__(self, **kw):
+            sessions.append(kw)
+
+        def client(self, name, **kw):
+            return ("client", name, kw["region_name"])
+
+    monkeypatch.setattr(boto3, "Session", FakeSession)
+    from finchat_agents.config import AwsCredentials
+    from finchat_agents.llm.gpt_oss_bedrock import GptOssBedrockProvider
+
+    p = GptOssBedrockProvider("us-east-1", profile="ignored", credentials=AwsCredentials("AKIAFAKE", "fake-secret"))
+    assert p._boto_client() == ("client", "bedrock-runtime", "us-east-1")
+    assert sessions == [{"aws_access_key_id": "AKIAFAKE", "aws_secret_access_key": "fake-secret", "aws_session_token": None}]
+    sessions.clear()
+    GptOssBedrockProvider("us-east-1", profile="myprofile")._boto_client()
+    assert sessions == [{"profile_name": "myprofile"}]
+
+
+def test_gpt_oss_openai_transport_passes_explicit_keys(monkeypatch):
+    import openai.providers as providers
+
+    seen = {}
+    monkeypatch.setattr(providers, "bedrock", lambda **kw: seen.update(kw) or "provider")
+    import openai
+
+    monkeypatch.setattr(openai, "AsyncOpenAI", lambda **kw: ("openai", kw["provider"]))
+    from finchat_agents.config import AwsCredentials
+    from finchat_agents.llm.gpt_oss_bedrock import GptOssBedrockProvider
+
+    p = GptOssBedrockProvider("us-east-1", credentials=AwsCredentials("AKIAFAKE", "fake-secret", "tok"), transport="openai")
+    assert p._openai_client() == ("openai", "provider")
+    assert seen == {"endpoint": "runtime", "region": "us-east-1", "access_key_id": "AKIAFAKE",
+                    "secret_access_key": "fake-secret", "session_token": "tok"}
+
+
+def test_factory_hands_the_keys_to_both_models():
+    from finchat_agents.config import Settings
+    from finchat_agents.llm.factory import response_model, sql_model
+
+    s = Settings(_env_file=None, aws_region="us-east-1", aws_access_key_id="AKIAFAKE", aws_secret_access_key="fake-secret")
+    assert sql_model(s).provider._credentials == ("AKIAFAKE", "fake-secret", None)
+    assert response_model(s).provider._credentials == ("AKIAFAKE", "fake-secret", None)

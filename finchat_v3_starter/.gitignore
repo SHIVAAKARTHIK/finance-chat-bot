@@ -1,0 +1,4 @@
+# Catalog export files contain real sample values: never commit them
+data/table_catalog/*.xlsx
+data/table_catalog/*.csv
+data/table_catalog/catalog_summary.md

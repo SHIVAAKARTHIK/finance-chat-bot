@@ -1,0 +1,410 @@
+---
+name: dim_fixed_asset_books
+schema: silver
+layer: silver
+domain: fa
+type: dim
+status: active
+purpose: 'Fixed asset books: one row per asset per book with status, acquisition price, asset group and acquisition date.
+  Use for asset counts, invested capital (acquisition price) and asset status.'
+grain: one row per asset per book (DATA_AREA_ID, FIXED_ASSET_NUMBER, BOOK_ID)
+primary_key:
+- DATA_AREA_ID
+- FIXED_ASSET_NUMBER
+- BOOK_ID
+entity_column: DATA_AREA_ID
+period_columns: []
+pii_columns:
+- MDP_CREATED_BY
+- MDP_MODIFIED_BY
+synonyms:
+- assets
+- fixed assets
+- asset books
+- asset book
+- portfolio
+- invested capital
+- acquisition price
+- asset status
+- asset count
+known_issues:
+- code: duplicates
+  note: 'The source is loaded twice (about twice the expected rows). Before counting or summing, check duplicates at the grain:
+    SELECT DATA_AREA_ID, FIXED_ASSET_NUMBER, BOOK_ID, COUNT(*) ... GROUP BY 1,2,3 HAVING COUNT(*) > 1. If duplicates exist,
+    warn the user, and deduplicate on the grain only if the answer says so.'
+reviewed: true
+proposed_fields: []
+row_count: 300
+---
+
+# dim_fixed_asset_books
+
+Fixed asset books: one row per asset per book with status, acquisition price, asset group and acquisition date.
+Use for asset counts, invested capital (acquisition price) and asset status.
+
+> Duplicate loads: see known issues. A deduplicated count is
+> `COUNT(DISTINCT struct(DATA_AREA_ID, FIXED_ASSET_NUMBER, BOOK_ID))`; say in the answer that duplicates were removed.
+
+## Columns
+
+| Column | Type | Meaning | Also called | SQL expression |
+|---|---|---|---|---|
+| `DATA_AREA_ID` | string | Company (data area) the asset belongs to. This is the entity column. | company, data area, legal entity | `DATA_AREA_ID` |
+| `FIXED_ASSET_NUMBER` | string | Asset number. | asset number, asset id, asset | `FIXED_ASSET_NUMBER` |
+| `BOOK_ID` | string | Asset book (e.g. a tax or accounting book). | book | `BOOK_ID` |
+| `STATUS` | string | Asset status in the book. | asset status, status | `STATUS` |
+| `ACQUISITION_PRICE` | decimal | Acquisition price (cost). | acquisition price, acquisition value, invested capital, cost | `ACQUISITION_PRICE` |
+| `FIXED_ASSET_GROUP_ID` | string | Asset group (category). | asset group, asset category, category, group | `FIXED_ASSET_GROUP_ID` |
+| `ACQUISITION_DATE` | date | Date the asset was acquired. | acquisition date, acquired | `ACQUISITION_DATE` |
+| `MDP_MODIFIED_DATE` | timestamp | Load audit timestamp (not a business date). |  | `MDP_MODIFIED_DATE` |
+| `ACQUISITION_METHOD_DESCRIPTION` | string |  |  | `ACQUISITION_METHOD_DESCRIPTION` |
+| `ACQUISITION_METHOD_ID` | string |  |  | `ACQUISITION_METHOD_ID` |
+| `ACQUISITION_PRICE_REPORTING_CURRENCY` | string |  |  | `ACQUISITION_PRICE_REPORTING_CURRENCY` |
+| `ACTUAL_ACQUISITION_DATE` | string |  |  | `ACTUAL_ACQUISITION_DATE` |
+| `ALLOW_DEPRECIATION_WHEN_PLACED_IN_SERVICE_AND_DISPOSAL_ARE_IN_THE_SAME_FISCAL_YEAR` | string |  |  | `ALLOW_DEPRECIATION_WHEN_PLACED_IN_SERVICE_AND_DISPOSAL_ARE_IN_THE_SAME_FISCAL_YEAR` |
+| `ALLOW_NEGATIVE_NET_BOOK_VALUE` | string |  |  | `ALLOW_NEGATIVE_NET_BOOK_VALUE` |
+| `ALLOW_NET_BOOK_VALUE_HIGHER_THAN_ACQUISITION_COSTS` | string |  |  | `ALLOW_NET_BOOK_VALUE_HIGHER_THAN_ACQUISITION_COSTS` |
+| `ALTERNATIVE_DEPRECIATION_PROFILE_ID` | string |  |  | `ALTERNATIVE_DEPRECIATION_PROFILE_ID` |
+| `ASSET_LEASE_LEASE_BOOK_TYPE` | string |  |  | `ASSET_LEASE_LEASE_BOOK_TYPE` |
+| `ASSET_LEASE_LEASE_ID` | string |  |  | `ASSET_LEASE_LEASE_ID` |
+| `CALC_ADJ_IN_RB_DEPRECIATIONS` | string |  |  | `CALC_ADJ_IN_RB_DEPRECIATIONS` |
+| `CALCULATE_DEPRECIATION` | string |  |  | `CALCULATE_DEPRECIATION` |
+| `CONSUMPTION_ESTIMATED` | string |  |  | `CONSUMPTION_ESTIMATED` |
+| `CONSUMPTION_FACTOR_ID` | string |  |  | `CONSUMPTION_FACTOR_ID` |
+| `CONSUMPTION_UNIT_DEPRECIATION` | string |  |  | `CONSUMPTION_UNIT_DEPRECIATION` |
+| `CONSUMPTION_UNIT_DEPRECIATION_REPORTING_CURRENCY` | string |  |  | `CONSUMPTION_UNIT_DEPRECIATION_REPORTING_CURRENCY` |
+| `CONSUMPTION_UNIT_ID` | string |  |  | `CONSUMPTION_UNIT_ID` |
+| `CREATE_DEPRECIATION_ADJUSTMENTS_WITH_BASIS_ADJUSTMENTS` | string |  |  | `CREATE_DEPRECIATION_ADJUSTMENTS_WITH_BASIS_ADJUSTMENTS` |
+| `CUSTOMER_ACCOUNT` | string |  |  | `CUSTOMER_ACCOUNT` |
+| `CUSTOMER_INVOICE` | string |  |  | `CUSTOMER_INVOICE` |
+| `DEPRECIATION_CONVENTION` | string |  |  | `DEPRECIATION_CONVENTION` |
+| `DEPRECIATION_LAST_RUN_DATE` | string |  |  | `DEPRECIATION_LAST_RUN_DATE` |
+| `DEPRECIATION_PERIODS` | string |  |  | `DEPRECIATION_PERIODS` |
+| `DEPRECIATION_PERIODS_REMAINING` | string |  |  | `DEPRECIATION_PERIODS_REMAINING` |
+| `DEPRECIATION_PROFILE_ID` | string |  |  | `DEPRECIATION_PROFILE_ID` |
+| `DEPRECIATION_RUN_DATE` | string |  |  | `DEPRECIATION_RUN_DATE` |
+| `DIMENSION_DISPLAY_VALUE` | string |  |  | `DIMENSION_DISPLAY_VALUE` |
+| `DISPOSAL_DATE` | string |  |  | `DISPOSAL_DATE` |
+| `EXPECTED_SCRAP_VALUE` | string |  |  | `EXPECTED_SCRAP_VALUE` |
+| `EXPECTED_SCRAP_VALUE_REPORTING_CURRENCY` | string |  |  | `EXPECTED_SCRAP_VALUE_REPORTING_CURRENCY` |
+| `EXTRAORDINARY_DEPRECIATION_LAST_RUN_DATE` | string |  |  | `EXTRAORDINARY_DEPRECIATION_LAST_RUN_DATE` |
+| `EXTRAORDINARY_DEPRECIATION_PROFILE_ID` | string |  |  | `EXTRAORDINARY_DEPRECIATION_PROFILE_ID` |
+| `IS_ALLOW_DEPRECIATION_ADJ_SAME_DATE` | string |  |  | `IS_ALLOW_DEPRECIATION_ADJ_SAME_DATE` |
+| `IS_MIGRATED_ASSET` | string |  |  | `IS_MIGRATED_ASSET` |
+| `IS_POSITIVE_DEPRECIATION` | string |  |  | `IS_POSITIVE_DEPRECIATION` |
+| `PLACED_IN_SERVICE` | string |  |  | `PLACED_IN_SERVICE` |
+| `POSTING_PROFILE_ID` | string |  |  | `POSTING_PROFILE_ID` |
+| `PROVISION_TYPE` | string |  |  | `PROVISION_TYPE` |
+| `PURCHASE_ORDER` | string |  |  | `PURCHASE_ORDER` |
+| `REPLACEMENT_DATE` | string |  |  | `REPLACEMENT_DATE` |
+| `SALES_VALUE` | string |  |  | `SALES_VALUE` |
+| `SERVICE_LIFE` | string |  |  | `SERVICE_LIFE` |
+| `SORT_FIELD_1_ID` | string |  |  | `SORT_FIELD_1_ID` |
+| `SORT_FIELD_2_ID` | string |  |  | `SORT_FIELD_2_ID` |
+| `SORT_FIELD_3_ID` | string |  |  | `SORT_FIELD_3_ID` |
+| `VENDOR_ACCOUNT` | string |  |  | `VENDOR_ACCOUNT` |
+| `VENDOR_INVOICE` | string |  |  | `VENDOR_INVOICE` |
+| `SOURCE_FILE_NAME` | string |  |  | `SOURCE_FILE_NAME` |
+| `HASH_KEY` | string |  |  | `HASH_KEY` |
+| `MDP_CREATED_BY` | string |  |  | `MDP_CREATED_BY` |
+| `MDP_CREATED_DATE` | timestamp |  |  | `MDP_CREATED_DATE` |
+| `MDP_MODIFIED_BY` | string |  |  | `MDP_MODIFIED_BY` |
+
+## Values
+
+**STATUS**
+- `NoAcquisition`: not yet financially activated (acquisition price 0)
+- `Open`: active, capitalized
+- `Sold`: inactive, sold
+- `Scrapped`: inactive, scrapped
+- `Closed`: inactive, closed
+
+**BOOK_ID**
+- `GAAP`: 300 rows
+
+**ACQUISITION_DATE**
+- `2026-01-01 12:00:00.0000000 +00:00`: 197 rows
+- `2026-10-16 12:00:00.0000000 +00:00`: 101 rows
+- `2026-10-23 12:00:00.0000000 +00:00`: 1 rows
+- `2026-10-01 12:00:00.0000000 +00:00`: 1 rows
+
+**ACQUISITION_METHOD_DESCRIPTION**
+- `None`: 300 rows
+
+**ACQUISITION_METHOD_ID**
+- `None`: 300 rows
+
+**ACTUAL_ACQUISITION_DATE**
+- `2026-01-01 12:00:00.0000000 +00:00`: 197 rows
+- `2026-10-16 12:00:00.0000000 +00:00`: 101 rows
+- `2026-10-23 12:00:00.0000000 +00:00`: 1 rows
+- `2026-10-01 12:00:00.0000000 +00:00`: 1 rows
+
+**ALLOW_DEPRECIATION_WHEN_PLACED_IN_SERVICE_AND_DISPOSAL_ARE_IN_THE_SAME_FISCAL_YEAR**
+- `Yes`: 300 rows
+
+**ALLOW_NEGATIVE_NET_BOOK_VALUE**
+- `No`: 300 rows
+
+**ALLOW_NET_BOOK_VALUE_HIGHER_THAN_ACQUISITION_COSTS**
+- `No`: 300 rows
+
+**ALTERNATIVE_DEPRECIATION_PROFILE_ID**
+- `None`: 300 rows
+
+**ASSET_LEASE_LEASE_BOOK_TYPE**
+- `None`: 300 rows
+
+**ASSET_LEASE_LEASE_ID**
+- `None`: 300 rows
+
+**CALC_ADJ_IN_RB_DEPRECIATIONS**
+- `No`: 300 rows
+
+**CALCULATE_DEPRECIATION**
+- `Yes`: 300 rows
+
+**CONSUMPTION_ESTIMATED**
+- `0`: 300 rows
+
+**CONSUMPTION_FACTOR_ID**
+- `None`: 300 rows
+
+**CONSUMPTION_UNIT_DEPRECIATION**
+- `0`: 300 rows
+
+**CONSUMPTION_UNIT_DEPRECIATION_REPORTING_CURRENCY**
+- `0`: 300 rows
+
+**CONSUMPTION_UNIT_ID**
+- `None`: 300 rows
+
+**CREATE_DEPRECIATION_ADJUSTMENTS_WITH_BASIS_ADJUSTMENTS**
+- `No`: 300 rows
+
+**CUSTOMER_ACCOUNT**
+- `None`: 300 rows
+
+**CUSTOMER_INVOICE**
+- `None`: 300 rows
+
+**DEPRECIATION_CONVENTION**
+- `FullMonth`: 200 rows
+- `None`: 100 rows
+
+**DEPRECIATION_LAST_RUN_DATE**
+- `2026-09-30 12:00:00.0000000 +00:00`: 179 rows
+- `1900-01-01 12:00:00.0000000 +00:00`: 103 rows
+- `2026-08-31 12:00:00.0000000 +00:00`: 13 rows
+- `2026-10-31 12:00:00.0000000 +00:00`: 3 rows
+- `2026-10-20 12:00:00.0000000 +00:00`: 2 rows
+
+**DEPRECIATION_PERIODS**
+- `1826`: 150 rows
+- `3653`: 51 rows
+- `14245`: 50 rows
+- `3652`: 49 rows
+
+**DEPRECIATION_PERIODS_REMAINING**
+- `1553`: 81 rows
+- `1826`: 51 rows
+- `3653`: 51 rows
+- `13972`: 49 rows
+- `3380`: 49 rows
+- `1583`: 11 rows
+- `1522`: 3 rows
+- `100`: 1 rows
+- `330`: 1 rows
+- `10`: 1 rows
+- `310`: 1 rows
+- `14245`: 1 rows
+
+**DEPRECIATION_PROFILE_ID**
+- `SLM`: 300 rows
+
+**DEPRECIATION_RUN_DATE**
+- `2026-01-01 12:00:00.0000000 +00:00`: 197 rows
+- `2026-10-16 12:00:00.0000000 +00:00`: 101 rows
+- `2026-10-23 12:00:00.0000000 +00:00`: 1 rows
+- `2026-10-01 12:00:00.0000000 +00:00`: 1 rows
+
+**DIMENSION_DISPLAY_VALUE**
+- `None`: 300 rows
+
+**DISPOSAL_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 291 rows
+- `2026-10-20 12:00:00.0000000 +00:00`: 6 rows
+- `2026-10-22 12:00:00.0000000 +00:00`: 3 rows
+
+**EXPECTED_SCRAP_VALUE**
+- `0`: 300 rows
+
+**EXPECTED_SCRAP_VALUE_REPORTING_CURRENCY**
+- `0`: 300 rows
+
+**EXTRAORDINARY_DEPRECIATION_LAST_RUN_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 300 rows
+
+**EXTRAORDINARY_DEPRECIATION_PROFILE_ID**
+- `None`: 300 rows
+
+**FIXED_ASSET_GROUP_ID**
+- `SOFTWARE`: 50 rows
+- `FURNITURE`: 50 rows
+- `COMPUTER`: 50 rows
+- `LHI`: 50 rows
+- `AUTO`: 50 rows
+- `BUILDINGS`: 50 rows
+
+**IS_ALLOW_DEPRECIATION_ADJ_SAME_DATE**
+- `No`: 300 rows
+
+**IS_MIGRATED_ASSET**
+- `No`: 300 rows
+
+**IS_POSITIVE_DEPRECIATION**
+- `No`: 300 rows
+
+**PLACED_IN_SERVICE**
+- `2026-01-01 12:00:00.0000000 +00:00`: 197 rows
+- `2026-10-16 12:00:00.0000000 +00:00`: 96 rows
+- `1900-01-01 12:00:00.0000000 +00:00`: 5 rows
+- `2026-10-23 12:00:00.0000000 +00:00`: 1 rows
+- `2026-10-01 12:00:00.0000000 +00:00`: 1 rows
+
+**POSTING_PROFILE_ID**
+- `FAPP`: 300 rows
+
+**PROVISION_TYPE**
+- `None`: 300 rows
+
+**PURCHASE_ORDER**
+- `None`: 300 rows
+
+**REPLACEMENT_DATE**
+- `1900-01-01 12:00:00.0000000 +00:00`: 300 rows
+
+**SALES_VALUE**
+- `0`: 297 rows
+- `100`: 1 rows
+- `-20000`: 1 rows
+- `-12000`: 1 rows
+
+**SERVICE_LIFE**
+- `5`: 150 rows
+- `10`: 100 rows
+- `39`: 50 rows
+
+**SORT_FIELD_1_ID**
+- `None`: 300 rows
+
+**SORT_FIELD_2_ID**
+- `None`: 300 rows
+
+**SORT_FIELD_3_ID**
+- `None`: 300 rows
+
+**VENDOR_ACCOUNT**
+- `None`: 300 rows
+
+**VENDOR_INVOICE**
+- `None`: 300 rows
+
+**SOURCE_FILE_NAME**
+- `fixedassetbooksv2__20261116_105417.csv`: 300 rows
+
+**MDP_CREATED_DATE**
+- `2026-11-16 11:42:09.396727+00:00`: 300 rows
+
+**MDP_MODIFIED_DATE**
+- `2026-11-16 11:42:09.396727+00:00`: 300 rows
+
+## Joins (approved, use the full key)
+
+| Join | To table | Cardinality |
+|---|---|---|
+| `asset_book_to_asset` | `dim_fixed_assets` | many-to-one |
+
+Never join on DATA_AREA_ID alone (blocked: every asset would match every asset).
+
+## Notes
+
+- "Inactive" assets = STATUS Sold, Scrapped or Closed. "Not financially activated" = STATUS NoAcquisition.
+- Column types other than those listed were not profiled yet; confirm with the catalog export (task 08).
+
+## Profile
+
+Rows in the latest export: 300.
+
+| Column | Type | Distinct (approx) | Nulls | Min | Max |
+|---|---|---|---|---|---|
+| `DATA_AREA_ID` | STRING | 1 | 0 |  |  |
+| `FIXED_ASSET_NUMBER` | STRING | 298 | 0 | AUTO-000001 | SOFT-000050 |
+| `BOOK_ID` | STRING | 1 | 0 | GAAP | GAAP |
+| `ACQUISITION_DATE` | STRING | 4 | 0 | 2026-01-01 12:00:00.0000000 +00:00 | 2026-10-23 12:00:00.0000000 +00:00 |
+| `ACQUISITION_METHOD_DESCRIPTION` | STRING | 0 | 300 |  |  |
+| `ACQUISITION_METHOD_ID` | STRING | 0 | 300 |  |  |
+| `ACQUISITION_PRICE` | STRING | 204 | 0 | 0 | 9900 |
+| `ACQUISITION_PRICE_REPORTING_CURRENCY` | STRING | 204 | 0 | 0 | 9900 |
+| `ACTUAL_ACQUISITION_DATE` | STRING | 4 | 0 | 2026-01-01 12:00:00.0000000 +00:00 | 2026-10-23 12:00:00.0000000 +00:00 |
+| `ALLOW_DEPRECIATION_WHEN_PLACED_IN_SERVICE_AND_DISPOSAL_ARE_IN_THE_SAME_FISCAL_YEAR` | STRING | 1 | 0 | Yes | Yes |
+| `ALLOW_NEGATIVE_NET_BOOK_VALUE` | STRING | 1 | 0 | No | No |
+| `ALLOW_NET_BOOK_VALUE_HIGHER_THAN_ACQUISITION_COSTS` | STRING | 1 | 0 | No | No |
+| `ALTERNATIVE_DEPRECIATION_PROFILE_ID` | STRING | 0 | 300 |  |  |
+| `ASSET_LEASE_LEASE_BOOK_TYPE` | STRING | 0 | 300 |  |  |
+| `ASSET_LEASE_LEASE_ID` | STRING | 0 | 300 |  |  |
+| `CALC_ADJ_IN_RB_DEPRECIATIONS` | STRING | 1 | 0 | No | No |
+| `CALCULATE_DEPRECIATION` | STRING | 1 | 0 | Yes | Yes |
+| `CONSUMPTION_ESTIMATED` | STRING | 1 | 0 | 0 | 0 |
+| `CONSUMPTION_FACTOR_ID` | STRING | 0 | 300 |  |  |
+| `CONSUMPTION_UNIT_DEPRECIATION` | STRING | 1 | 0 | 0 | 0 |
+| `CONSUMPTION_UNIT_DEPRECIATION_REPORTING_CURRENCY` | STRING | 1 | 0 | 0 | 0 |
+| `CONSUMPTION_UNIT_ID` | STRING | 0 | 300 |  |  |
+| `CREATE_DEPRECIATION_ADJUSTMENTS_WITH_BASIS_ADJUSTMENTS` | STRING | 1 | 0 | No | No |
+| `CUSTOMER_ACCOUNT` | STRING | 0 | 300 |  |  |
+| `CUSTOMER_INVOICE` | STRING | 0 | 300 |  |  |
+| `DEPRECIATION_CONVENTION` | STRING | 2 | 0 | FullMonth | None |
+| `DEPRECIATION_LAST_RUN_DATE` | STRING | 5 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 2026-10-31 12:00:00.0000000 +00:00 |
+| `DEPRECIATION_PERIODS` | STRING | 4 | 0 | 14245 | 3653 |
+| `DEPRECIATION_PERIODS_REMAINING` | STRING | 12 | 0 | 10 | 3653 |
+| `DEPRECIATION_PROFILE_ID` | STRING | 1 | 0 | SLM | SLM |
+| `DEPRECIATION_RUN_DATE` | STRING | 4 | 0 | 2026-01-01 12:00:00.0000000 +00:00 | 2026-10-23 12:00:00.0000000 +00:00 |
+| `DIMENSION_DISPLAY_VALUE` | STRING | 0 | 300 |  |  |
+| `DISPOSAL_DATE` | STRING | 3 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 2026-10-22 12:00:00.0000000 +00:00 |
+| `EXPECTED_SCRAP_VALUE` | STRING | 1 | 0 | 0 | 0 |
+| `EXPECTED_SCRAP_VALUE_REPORTING_CURRENCY` | STRING | 1 | 0 | 0 | 0 |
+| `EXTRAORDINARY_DEPRECIATION_LAST_RUN_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `EXTRAORDINARY_DEPRECIATION_PROFILE_ID` | STRING | 0 | 300 |  |  |
+| `FIXED_ASSET_GROUP_ID` | STRING | 6 | 0 | AUTO | SOFTWARE |
+| `IS_ALLOW_DEPRECIATION_ADJ_SAME_DATE` | STRING | 1 | 0 | No | No |
+| `IS_MIGRATED_ASSET` | STRING | 1 | 0 | No | No |
+| `IS_POSITIVE_DEPRECIATION` | STRING | 1 | 0 | No | No |
+| `PLACED_IN_SERVICE` | STRING | 5 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 2026-10-23 12:00:00.0000000 +00:00 |
+| `POSTING_PROFILE_ID` | STRING | 1 | 0 | FAPP | FAPP |
+| `PROVISION_TYPE` | STRING | 0 | 300 |  |  |
+| `PURCHASE_ORDER` | STRING | 0 | 300 |  |  |
+| `REPLACEMENT_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `SALES_VALUE` | STRING | 4 | 0 | -12000 | 100 |
+| `SERVICE_LIFE` | STRING | 3 | 0 | 10 | 5 |
+| `SORT_FIELD_1_ID` | STRING | 0 | 300 |  |  |
+| `SORT_FIELD_2_ID` | STRING | 0 | 300 |  |  |
+| `SORT_FIELD_3_ID` | STRING | 0 | 300 |  |  |
+| `STATUS` | STRING | 5 | 0 | Closed | Sold |
+| `VENDOR_ACCOUNT` | STRING | 0 | 300 |  |  |
+| `VENDOR_INVOICE` | STRING | 0 | 300 |  |  |
+| `SOURCE_FILE_NAME` | STRING | 1 | 0 | fixedassetbooksv2__20261116_105417.csv | fixedassetbooksv2__20261116_105417.csv |
+| `HASH_KEY` | STRING | 284 | 0 |  |  |
+| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:42:09.397000 | 2026-11-16 11:42:09.397000 |
+| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
+| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:42:09.397000 | 2026-11-16 11:42:09.397000 |
+
+## Sample rows
+
+| FIXED_ASSET_NUMBER | BOOK_ID | ACQUISITION_DATE | ACQUISITION_METHOD_DESCRIPTION | ACQUISITION_METHOD_ID | ACQUISITION_PRICE | ACQUISITION_PRICE_REPORTING_CURRENCY | ACTUAL_ACQUISITION_DATE | ALLOW_DEPRECIATION_WHEN_PLACED_IN_SERVICE_AND_DISPOSAL_ARE_IN_THE_SAME_FISCAL_YEAR | ALLOW_NEGATIVE_NET_BOOK_VALUE | ALLOW_NET_BOOK_VALUE_HIGHER_THAN_ACQUISITION_COSTS | ALTERNATIVE_DEPRECIATION_PROFILE_ID | ASSET_LEASE_LEASE_BOOK_TYPE | ASSET_LEASE_LEASE_ID | CALC_ADJ_IN_RB_DEPRECIATIONS | CALCULATE_DEPRECIATION | CONSUMPTION_ESTIMATED | CONSUMPTION_FACTOR_ID | CONSUMPTION_UNIT_DEPRECIATION | CONSUMPTION_UNIT_DEPRECIATION_REPORTING_CURRENCY | CONSUMPTION_UNIT_ID | CREATE_DEPRECIATION_ADJUSTMENTS_WITH_BASIS_ADJUSTMENTS | CUSTOMER_ACCOUNT | CUSTOMER_INVOICE | DEPRECIATION_CONVENTION | DEPRECIATION_LAST_RUN_DATE | DEPRECIATION_PERIODS | DEPRECIATION_PERIODS_REMAINING | DEPRECIATION_PROFILE_ID | DEPRECIATION_RUN_DATE | DIMENSION_DISPLAY_VALUE | DISPOSAL_DATE | EXPECTED_SCRAP_VALUE | EXPECTED_SCRAP_VALUE_REPORTING_CURRENCY | EXTRAORDINARY_DEPRECIATION_LAST_RUN_DATE | EXTRAORDINARY_DEPRECIATION_PROFILE_ID | FIXED_ASSET_GROUP_ID | IS_ALLOW_DEPRECIATION_ADJ_SAME_DATE | IS_MIGRATED_ASSET | IS_POSITIVE_DEPRECIATION | PLACED_IN_SERVICE | POSTING_PROFILE_ID | PROVISION_TYPE | PURCHASE_ORDER | REPLACEMENT_DATE | SALES_VALUE | SERVICE_LIFE | SORT_FIELD_1_ID | SORT_FIELD_2_ID | SORT_FIELD_3_ID | STATUS | VENDOR_ACCOUNT | VENDOR_INVOICE | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| AUTO-000001 | GAAP | 2026-01-01 12:00:00.0000000 +00:00 | NULL | NULL | 1000 | 1000 | 2026-01-01 12:00:00.0000000 +00:00 | Yes | No | No | NULL | NULL | NULL | No | Yes | 0 | NULL | 0 | 0 | NULL | No | NULL | NULL | FullMonth | 2026-08-31 12:00:00.0000000 +00:00 | 1826 | 1583 | SLM | 2026-01-01 12:00:00.0000000 +00:00 | NULL | 2026-10-20 12:00:00.0000000 +00:00 | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | AUTO | No | No | No | 2026-01-01 12:00:00.0000000 +00:00 | FAPP | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 100 | 5 | NULL | NULL | NULL | Scrapped | NULL | NULL | fixedassetbooksv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:09.397000 | <masked> | 2026-11-16 11:42:09.397000 |
+| BUILD-000001 | GAAP | 2026-10-16 12:00:00.0000000 +00:00 | NULL | NULL | 0 | 0 | 2026-10-16 12:00:00.0000000 +00:00 | Yes | No | No | NULL | NULL | NULL | No | Yes | 0 | NULL | 0 | 0 | NULL | No | NULL | NULL | FullMonth | 1900-01-01 12:00:00.0000000 +00:00 | 14245 | 14245 | SLM | 2026-10-16 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | BUILDINGS | No | No | No | 1900-01-01 12:00:00.0000000 +00:00 | FAPP | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 39 | NULL | NULL | NULL | NoAcquisition | NULL | NULL | fixedassetbooksv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:09.397000 | <masked> | 2026-11-16 11:42:09.397000 |
+| COMP-000001 | GAAP | 2026-10-16 12:00:00.0000000 +00:00 | NULL | NULL | 0 | 0 | 2026-10-16 12:00:00.0000000 +00:00 | Yes | No | No | NULL | NULL | NULL | No | Yes | 0 | NULL | 0 | 0 | NULL | No | NULL | NULL | FullMonth | 1900-01-01 12:00:00.0000000 +00:00 | 1826 | 1826 | SLM | 2026-10-16 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | COMPUTER | No | No | No | 1900-01-01 12:00:00.0000000 +00:00 | FAPP | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 5 | NULL | NULL | NULL | NoAcquisition | NULL | NULL | fixedassetbooksv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:09.397000 | <masked> | 2026-11-16 11:42:09.397000 |
+| FUR-000001 | GAAP | 2026-10-16 12:00:00.0000000 +00:00 | NULL | NULL | 0 | 0 | 2026-10-16 12:00:00.0000000 +00:00 | Yes | No | No | NULL | NULL | NULL | No | Yes | 0 | NULL | 0 | 0 | NULL | No | NULL | NULL | None | 1900-01-01 12:00:00.0000000 +00:00 | 3653 | 3653 | SLM | 2026-10-16 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | FURNITURE | No | No | No | 1900-01-01 12:00:00.0000000 +00:00 | FAPP | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 10 | NULL | NULL | NULL | NoAcquisition | NULL | NULL | fixedassetbooksv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:09.397000 | <masked> | 2026-11-16 11:42:09.397000 |
+| LHI-000000001 | GAAP | 2026-10-16 12:00:00.0000000 +00:00 | NULL | NULL | 0 | 0 | 2026-10-16 12:00:00.0000000 +00:00 | Yes | No | No | NULL | NULL | NULL | No | Yes | 0 | NULL | 0 | 0 | NULL | No | NULL | NULL | FullMonth | 1900-01-01 12:00:00.0000000 +00:00 | 3653 | 3653 | SLM | 2026-10-16 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | LHI | No | No | No | 1900-01-01 12:00:00.0000000 +00:00 | FAPP | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 10 | NULL | NULL | NULL | NoAcquisition | NULL | NULL | fixedassetbooksv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:09.397000 | <masked> | 2026-11-16 11:42:09.397000 |

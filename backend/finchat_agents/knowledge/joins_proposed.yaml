@@ -1,0 +1,1616 @@
+# Proposed joins from the catalog export (knowledge/review.py). Not used by get_join_path.
+# Approve: move an entry to joins.yaml and set status: approved (check cardinality and the full key).
+joins:
+- id: access_screen_dim_role__access_screen_dim_application__application_id
+  from: silver.access_screen_dim_role
+  to: silver.access_screen_dim_application
+  keys:
+  - - application_id
+    - application_id
+  cardinality: many_to_one
+  status: proposed
+  note: declared foreign key
+- id: access_screen_fact_certification_line__access_screen_fact_certification__certification_id
+  from: silver.access_screen_fact_certification_line
+  to: silver.access_screen_fact_certification
+  keys:
+  - - certification_id
+    - certification_id
+  cardinality: many_to_one
+  status: proposed
+  note: declared foreign key
+- id: access_screen_fact_certification_line__access_screen_fact_employee_access__access_id
+  from: silver.access_screen_fact_certification_line
+  to: silver.access_screen_fact_employee_access
+  keys:
+  - - access_id
+    - access_id
+  cardinality: many_to_one
+  status: proposed
+  note: declared foreign key
+- id: access_screen_fact_employee_access__access_screen_dim_employee__employee_email_effective_from
+  from: silver.access_screen_fact_employee_access
+  to: silver.access_screen_dim_employee
+  keys:
+  - - employee_email
+    - employee_email
+  - - effective_from
+    - effective_from
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.access_screen_dim_employee'
+- id: access_screen_fact_employee_access__access_screen_dim_legal_entity__legal_entity_id
+  from: silver.access_screen_fact_employee_access
+  to: silver.access_screen_dim_legal_entity
+  keys:
+  - - legal_entity_id
+    - legal_entity_id
+  cardinality: many_to_one
+  status: proposed
+  note: declared foreign key
+- id: access_screen_fact_employee_access__access_screen_dim_role__role_id
+  from: silver.access_screen_fact_employee_access
+  to: silver.access_screen_dim_role
+  keys:
+  - - role_id
+    - role_id
+  cardinality: many_to_one
+  status: proposed
+  note: declared foreign key
+- id: access_screen_fact_employee_access__dim_legal_entities__legal_entity_id
+  from: silver.access_screen_fact_employee_access
+  to: silver.dim_legal_entities
+  keys:
+  - - legal_entity_id
+    - legal_entity_id
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.dim_legal_entities'
+- id: adra_account_dimensions__adra_engagement_dimensions__engagement_key
+  from: silver.adra_account_dimensions
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_account_dimensions__adra_legal_entity_dimensions__legal_entity_key_engagement_key
+  from: silver.adra_account_dimensions
+  to: silver.adra_legal_entity_dimensions
+  keys:
+  - - LEGAL_ENTITY_KEY
+    - LEGAL_ENTITY_KEY
+  - - ENGAGEMENT_KEY
+    - ENGAGEMENT_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_legal_entity_dimensions'
+- id: adra_account_facts__adra_engagement_dimensions__engagement_key
+  from: silver.adra_account_facts
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_account_facts__adra_tasks_task_period_dimension__period_key
+  from: silver.adra_account_facts
+  to: silver.adra_tasks_task_period_dimension
+  keys:
+  - - PERIOD_KEY
+    - PERIOD_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_tasks_task_period_dimension'
+- id: adra_period_dimensions__adra_engagement_dimensions__engagement_key
+  from: silver.adra_period_dimensions
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_period_dimensions__adra_legal_entity_dimensions__legal_entity_key_engagement_key
+  from: silver.adra_period_dimensions
+  to: silver.adra_legal_entity_dimensions
+  keys:
+  - - LEGAL_ENTITY_KEY
+    - LEGAL_ENTITY_KEY
+  - - ENGAGEMENT_KEY
+    - ENGAGEMENT_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_legal_entity_dimensions'
+- id: adra_period_dimensions__adra_tasks_task_period_dimension__period_key
+  from: silver.adra_period_dimensions
+  to: silver.adra_tasks_task_period_dimension
+  keys:
+  - - PERIOD_KEY
+    - PERIOD_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_tasks_task_period_dimension'
+- id: adra_tasks_company_dimension__adra_engagement_dimensions__engagement_key
+  from: silver.adra_tasks_company_dimension
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_tasks_task_facts__adra_engagement_dimensions__engagement_key
+  from: silver.adra_tasks_task_facts
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_tasks_task_facts__adra_tasks_company_dimension__company_key
+  from: silver.adra_tasks_task_facts
+  to: silver.adra_tasks_company_dimension
+  keys:
+  - - COMPANY_KEY
+    - COMPANY_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_tasks_company_dimension'
+- id: adra_tasks_task_facts__adra_tasks_task_list_dimension__task_list_key
+  from: silver.adra_tasks_task_facts
+  to: silver.adra_tasks_task_list_dimension
+  keys:
+  - - TASK_LIST_KEY
+    - TASK_LIST_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_tasks_task_list_dimension'
+- id: adra_tasks_task_list_dimension__adra_engagement_dimensions__engagement_key
+  from: silver.adra_tasks_task_list_dimension
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_tasks_task_list_dimension__adra_tasks_task_period_dimension__period_key
+  from: silver.adra_tasks_task_list_dimension
+  to: silver.adra_tasks_task_period_dimension
+  keys:
+  - - PERIOD_KEY
+    - PERIOD_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_tasks_task_period_dimension'
+- id: adra_tasks_task_period_dimension__adra_engagement_dimensions__engagement_key
+  from: silver.adra_tasks_task_period_dimension
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_tasks_task_settings_dimension__adra_engagement_dimensions__engagement_key
+  from: silver.adra_tasks_task_settings_dimension
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_transaction_facts__adra_engagement_dimensions__engagement_key
+  from: silver.adra_transaction_facts
+  to: silver.adra_engagement_dimensions
+  keys:
+  - - ENGAGEMENT_KEY
+    - Engagement_Key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_engagement_dimensions'
+- id: adra_transaction_facts__adra_tasks_task_period_dimension__period_key
+  from: silver.adra_transaction_facts
+  to: silver.adra_tasks_task_period_dimension
+  keys:
+  - - PERIOD_KEY
+    - PERIOD_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_tasks_task_period_dimension'
+- id: audit_soc_report__manage_bus_report_lists__report
+  from: silver.audit_soc_report
+  to: gold.manage_bus_report_lists
+  keys:
+  - - Report
+    - REPORT
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.manage_bus_report_lists'
+- id: audit_soc_report__vw_audit_soc_report__period_covered_issued
+  from: silver.audit_soc_report
+  to: gold.vw_audit_soc_report
+  keys:
+  - - Period_covered
+    - Period_covered
+  - - Issued
+    - Issued
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_audit_soc_report'
+- id: capitalization_workbench__depreciation_workbench__journal_id_asset_id
+  from: gold.capitalization_workbench
+  to: gold.depreciation_workbench
+  keys:
+  - - JOURNAL_ID
+    - JOURNAL_ID
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.depreciation_workbench'
+- id: capitalization_workbench__vw_kpi_pipeline_success__legal_entity
+  from: gold.capitalization_workbench
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: capitalization_workbench__vw_legal_entities__legal_entity
+  from: gold.capitalization_workbench
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: depreciation_workbench__capitalization_workbench__asset_id
+  from: gold.depreciation_workbench
+  to: gold.capitalization_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.capitalization_workbench'
+- id: depreciation_workbench__disposal_workbench__asset_id
+  from: gold.depreciation_workbench
+  to: gold.disposal_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.disposal_workbench'
+- id: depreciation_workbench__fa_asset_register__asset_id
+  from: gold.depreciation_workbench
+  to: gold.fa_asset_register
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_asset_register'
+- id: depreciation_workbench__vw_kpi_pipeline_success__legal_entity
+  from: gold.depreciation_workbench
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: depreciation_workbench__vw_legal_entities__legal_entity
+  from: gold.depreciation_workbench
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: dim_bank_account_table_bi_entities__dim_ledger_bi_entities__source_key
+  from: silver.dim_bank_account_table_bi_entities
+  to: silver.dim_ledger_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - source_key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.dim_ledger_bi_entities'
+- id: dim_bank_account_table_bi_entities__fact_cust_table_bi_entities__data_area_id
+  from: silver.dim_bank_account_table_bi_entities
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: dim_bank_account_table_bi_entities__fact_cust_trans_opens__data_area_id
+  from: silver.dim_bank_account_table_bi_entities
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: dim_bank_account_table_bi_entities__fact_ledger_journal_trans_bi_entities__source_key
+  from: silver.dim_bank_account_table_bi_entities
+  to: silver.fact_ledger_journal_trans_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - SOURCE_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_ledger_journal_trans_bi_entities'
+- id: dim_bank_account_table_bi_entities__fact_vend_invoice_jour_bi_entities__source_key
+  from: silver.dim_bank_account_table_bi_entities
+  to: silver.fact_vend_invoice_jour_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - SOURCE_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_vend_invoice_jour_bi_entities'
+- id: dim_fixed_asset_books__fa_capitalized_value_trend__fixed_asset_number
+  from: silver.dim_fixed_asset_books
+  to: gold.fa_capitalized_value_trend
+  keys:
+  - - FIXED_ASSET_NUMBER
+    - FIXED_ASSET_NUMBER
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_capitalized_value_trend'
+- id: dim_fixed_asset_books__fact_cust_table_bi_entities__data_area_id
+  from: silver.dim_fixed_asset_books
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: dim_fixed_asset_books__fact_cust_trans_opens__data_area_id
+  from: silver.dim_fixed_asset_books
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: dim_fixed_assets__fa_capitalized_value_trend__fixed_asset_number
+  from: silver.dim_fixed_assets
+  to: gold.fa_capitalized_value_trend
+  keys:
+  - - FIXED_ASSET_NUMBER
+    - FIXED_ASSET_NUMBER
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_capitalized_value_trend'
+- id: dim_fixed_assets__fact_cust_table_bi_entities__data_area_id
+  from: silver.dim_fixed_assets
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: dim_fixed_assets__fact_cust_trans_opens__data_area_id
+  from: silver.dim_fixed_assets
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: dim_ledger_fiscal_periods_v2__access_screen_dim_legal_entity__legal_entity_id
+  from: silver.dim_ledger_fiscal_periods_v2
+  to: silver.access_screen_dim_legal_entity
+  keys:
+  - - LEGAL_ENTITY_ID
+    - legal_entity_id
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.access_screen_dim_legal_entity'
+- id: dim_ledger_fiscal_periods_v2__dim_legal_entities__legal_entity_id
+  from: silver.dim_ledger_fiscal_periods_v2
+  to: silver.dim_legal_entities
+  keys:
+  - - LEGAL_ENTITY_ID
+    - legal_entity_id
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.dim_legal_entities'
+- id: dim_legal_entities__access_screen_dim_legal_entity__legal_entity_id
+  from: silver.dim_legal_entities
+  to: silver.access_screen_dim_legal_entity
+  keys:
+  - - legal_entity_id
+    - legal_entity_id
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: disposal_workbench__capitalization_workbench__asset_id
+  from: gold.disposal_workbench
+  to: gold.capitalization_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: disposal_workbench__depreciation_workbench__journal_id_asset_id
+  from: gold.disposal_workbench
+  to: gold.depreciation_workbench
+  keys:
+  - - JOURNAL_ID
+    - JOURNAL_ID
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.depreciation_workbench'
+- id: disposal_workbench__vw_kpi_pipeline_success__legal_entity
+  from: gold.disposal_workbench
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: disposal_workbench__vw_legal_entities__legal_entity
+  from: gold.disposal_workbench
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: fa_asset_register__capitalization_workbench__asset_id
+  from: gold.fa_asset_register
+  to: gold.capitalization_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: fa_asset_register__disposal_workbench__asset_id
+  from: gold.fa_asset_register
+  to: gold.disposal_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: fa_asset_register__vw_kpi_pipeline_success__legal_entity
+  from: gold.fa_asset_register
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: fa_asset_register__vw_legal_entities__legal_entity
+  from: gold.fa_asset_register
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: fa_capitalized_value_trend__vw_kpi_pipeline_success__legal_entity
+  from: gold.fa_capitalized_value_trend
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: fa_capitalized_value_trend__vw_legal_entities__legal_entity
+  from: gold.fa_capitalized_value_trend
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: fa_disposal_trends__vw_kpi_pipeline_success__legal_entity
+  from: gold.fa_disposal_trends
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: fa_disposal_trends__vw_legal_entities__legal_entity
+  from: gold.fa_disposal_trends
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: fa_kpi__managed_coll_kpi__section_kpi_legal_entity
+  from: gold.fa_kpi
+  to: gold.managed_coll_kpi
+  keys:
+  - - SECTION
+    - Section
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_kpi'
+- id: fa_kpi__mc_kpi__section_kpi_legal_entity
+  from: gold.fa_kpi
+  to: gold.mc_kpi
+  keys:
+  - - SECTION
+    - SECTION
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.mc_kpi'
+- id: fa_kpi__vw_kpi_pipeline_success__legal_entity
+  from: gold.fa_kpi
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: fa_kpi__vw_kpi_system_and_data_status__kpi
+  from: gold.fa_kpi
+  to: gold.vw_kpi_system_and_data_status
+  keys:
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_system_and_data_status'
+- id: fa_kpi__vw_legal_entities__legal_entity
+  from: gold.fa_kpi
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: fa_kpi__vw_manage_close_journal_entry_kpi__kpi_legal_entity
+  from: gold.fa_kpi
+  to: gold.vw_manage_close_journal_entry_kpi
+  keys:
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_manage_close_journal_entry_kpi'
+- id: fa_monthly_depreciation_trend__vw_kpi_pipeline_success__legal_entity
+  from: gold.fa_monthly_depreciation_trend
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: fa_monthly_depreciation_trend__vw_legal_entities__legal_entity
+  from: gold.fa_monthly_depreciation_trend
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: fact_ap_invoices__vw_kpi_pipeline_success__legal_entity
+  from: gold.fact_ap_invoices
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: fact_ap_invoices__vw_legal_entities__legal_entity
+  from: gold.fact_ap_invoices
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: fact_asset_journal__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_asset_journal
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_asset_journal__fact_cust_trans_opens__data_area_id
+  from: silver.fact_asset_journal
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_asset_master_transactions__capitalization_workbench__asset_id
+  from: silver.fact_asset_master_transactions
+  to: gold.capitalization_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.capitalization_workbench'
+- id: fact_asset_master_transactions__disposal_workbench__asset_id
+  from: silver.fact_asset_master_transactions
+  to: gold.disposal_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.disposal_workbench'
+- id: fact_asset_master_transactions__fa_asset_register__asset_id
+  from: silver.fact_asset_master_transactions
+  to: gold.fa_asset_register
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_asset_register'
+- id: fact_cash_discounts__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_cash_discounts
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_cash_discounts__fact_cust_trans_opens__data_area_id
+  from: silver.fact_cash_discounts
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_cust_table_bi_entities__dim_ledger_bi_entities__source_key
+  from: silver.fact_cust_table_bi_entities
+  to: silver.dim_ledger_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - source_key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.dim_ledger_bi_entities'
+- id: fact_cust_table_bi_entities__fact_ledger_journal_trans_bi_entities__source_key
+  from: silver.fact_cust_table_bi_entities
+  to: silver.fact_ledger_journal_trans_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - SOURCE_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_ledger_journal_trans_bi_entities'
+- id: fact_cust_table_bi_entities__fact_vend_invoice_jour_bi_entities__source_key
+  from: silver.fact_cust_table_bi_entities
+  to: silver.fact_vend_invoice_jour_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - SOURCE_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_vend_invoice_jour_bi_entities'
+- id: fact_cust_trans_opens__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_cust_trans_opens
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: fact_cust_trans_opens__fact_kpmg_vend_payment_bi_vend_trans_open__ref_rec_id
+  from: silver.fact_cust_trans_opens
+  to: silver.fact_kpmg_vend_payment_bi_vend_trans_open
+  keys:
+  - - REF_REC_ID
+    - REF_REC_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_kpmg_vend_payment_bi_vend_trans_open'
+- id: fact_fynapse_slr_journals__managed_coll_due_soon_accounts__invoice_number
+  from: silver.fact_fynapse_slr_journals
+  to: gold.managed_coll_due_soon_accounts
+  keys:
+  - - INVOICE_NUMBER
+    - invoice_number
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_due_soon_accounts'
+- id: fact_fynapse_slr_journals__managed_coll_early_payment_discounts__invoice_number
+  from: silver.fact_fynapse_slr_journals
+  to: gold.managed_coll_early_payment_discounts
+  keys:
+  - - INVOICE_NUMBER
+    - invoice_number
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_early_payment_discounts'
+- id: fact_fynapse_slr_journals__managed_coll_overdue__invoice_number
+  from: silver.fact_fynapse_slr_journals
+  to: gold.managed_coll_overdue
+  keys:
+  - - INVOICE_NUMBER
+    - INVOICE_NUMBER
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_overdue'
+- id: fact_fynapse_slr_journals__vw_fact_fynapse_slr_journals__journal_line_id
+  from: silver.fact_fynapse_slr_journals
+  to: gold.vw_fact_fynapse_slr_journals
+  keys:
+  - - JOURNAL_LINE_ID
+    - JOURNAL_LINE_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: fact_kpmg_general_journal_account_entries__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_kpmg_general_journal_account_entries
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_kpmg_general_journal_account_entries__fact_cust_trans_opens__data_area_id
+  from: silver.fact_kpmg_general_journal_account_entries
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_kpmg_general_journal_account_entries__vw_fact_kpmg_general_journals_entries__general_journal_account_entry_rec_id
+  from: silver.fact_kpmg_general_journal_account_entries
+  to: gold.vw_fact_kpmg_general_journals_entries
+  keys:
+  - - GENERAL_JOURNAL_ACCOUNT_ENTRY_REC_ID
+    - GENERAL_JOURNAL_ACCOUNT_ENTRY_REC_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: fact_kpmg_vend_payment_bi_vend_trans_open__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_kpmg_vend_payment_bi_vend_trans_open
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_kpmg_vend_payment_bi_vend_trans_open__fact_cust_trans_opens__data_area_id
+  from: silver.fact_kpmg_vend_payment_bi_vend_trans_open
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_ledger_journal_headers__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_ledger_journal_headers
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_ledger_journal_headers__fact_cust_trans_opens__data_area_id
+  from: silver.fact_ledger_journal_headers
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_ledger_journal_lines__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_ledger_journal_lines
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_ledger_journal_lines__fact_cust_trans_opens__data_area_id
+  from: silver.fact_ledger_journal_lines
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_ledger_journal_table_bi_entities__dim_ledger_bi_entities__source_key
+  from: silver.fact_ledger_journal_table_bi_entities
+  to: silver.dim_ledger_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - source_key
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.dim_ledger_bi_entities'
+- id: fact_ledger_journal_table_bi_entities__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_ledger_journal_table_bi_entities
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_ledger_journal_table_bi_entities__fact_cust_trans_opens__data_area_id
+  from: silver.fact_ledger_journal_table_bi_entities
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_ledger_journal_table_bi_entities__fact_ledger_journal_trans_bi_entities__source_key
+  from: silver.fact_ledger_journal_table_bi_entities
+  to: silver.fact_ledger_journal_trans_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - SOURCE_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_ledger_journal_trans_bi_entities'
+- id: fact_ledger_journal_table_bi_entities__fact_vend_invoice_jour_bi_entities__source_key
+  from: silver.fact_ledger_journal_table_bi_entities
+  to: silver.fact_vend_invoice_jour_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - SOURCE_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_vend_invoice_jour_bi_entities'
+- id: fact_ledger_journal_trans_bi_entities__dim_ledger_bi_entities__source_key
+  from: silver.fact_ledger_journal_trans_bi_entities
+  to: silver.dim_ledger_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - source_key
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: fact_ledger_journal_trans_bi_entities__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_ledger_journal_trans_bi_entities
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_ledger_journal_trans_bi_entities__fact_cust_trans_opens__data_area_id
+  from: silver.fact_ledger_journal_trans_bi_entities
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_purchase_order_headers__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_purchase_order_headers
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_purchase_order_headers__fact_cust_trans_opens__data_area_id
+  from: silver.fact_purchase_order_headers
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_purchase_order_lines__dim_fixed_assets__data_area_id_fixed_asset_number
+  from: silver.fact_purchase_order_lines
+  to: silver.dim_fixed_assets
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  - - FIXED_ASSET_NUMBER
+    - FIXED_ASSET_NUMBER
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.dim_fixed_assets'
+- id: fact_purchase_order_lines__fa_capitalized_value_trend__fixed_asset_number
+  from: silver.fact_purchase_order_lines
+  to: gold.fa_capitalized_value_trend
+  keys:
+  - - FIXED_ASSET_NUMBER
+    - FIXED_ASSET_NUMBER
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_capitalized_value_trend'
+- id: fact_purchase_order_lines__fact_cust_table_bi_entities__data_area_id
+  from: silver.fact_purchase_order_lines
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: fact_purchase_order_lines__fact_cust_trans_opens__data_area_id
+  from: silver.fact_purchase_order_lines
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: fact_trail_balance_extractions__vw_kpi_pipeline_success__legal_entity
+  from: gold.fact_trail_balance_extractions
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: fact_trail_balance_extractions__vw_legal_entities__legal_entity
+  from: gold.fact_trail_balance_extractions
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: fact_vend_invoice_jour_bi_entities__dim_ledger_bi_entities__source_key
+  from: silver.fact_vend_invoice_jour_bi_entities
+  to: silver.dim_ledger_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - source_key
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: fact_vend_invoice_jour_bi_entities__fact_ledger_journal_trans_bi_entities__source_key
+  from: silver.fact_vend_invoice_jour_bi_entities
+  to: silver.fact_ledger_journal_trans_bi_entities
+  keys:
+  - - SOURCE_KEY
+    - SOURCE_KEY
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: fact_vendor_invoice_headers__managed_coll_due_soon_accounts__invoice_number
+  from: silver.fact_vendor_invoice_headers
+  to: gold.managed_coll_due_soon_accounts
+  keys:
+  - - INVOICE_NUMBER
+    - invoice_number
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_due_soon_accounts'
+- id: fact_vendor_invoice_headers__managed_coll_early_payment_discounts__invoice_number
+  from: silver.fact_vendor_invoice_headers
+  to: gold.managed_coll_early_payment_discounts
+  keys:
+  - - INVOICE_NUMBER
+    - invoice_number
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_early_payment_discounts'
+- id: fact_vendor_invoice_headers__managed_coll_overdue__invoice_number
+  from: silver.fact_vendor_invoice_headers
+  to: gold.managed_coll_overdue
+  keys:
+  - - INVOICE_NUMBER
+    - INVOICE_NUMBER
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_overdue'
+- id: fact_vendor_invoice_journal_lines__capitalization_workbench__asset_id
+  from: silver.fact_vendor_invoice_journal_lines
+  to: gold.capitalization_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.capitalization_workbench'
+- id: fact_vendor_invoice_journal_lines__disposal_workbench__asset_id
+  from: silver.fact_vendor_invoice_journal_lines
+  to: gold.disposal_workbench
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.disposal_workbench'
+- id: fact_vendor_invoice_journal_lines__fa_asset_register__asset_id
+  from: silver.fact_vendor_invoice_journal_lines
+  to: gold.fa_asset_register
+  keys:
+  - - ASSET_ID
+    - ASSET_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_asset_register'
+- id: fact_vendor_invoice_journal_lines__fact_trail_balance_extractions__company_description
+  from: silver.fact_vendor_invoice_journal_lines
+  to: gold.fact_trail_balance_extractions
+  keys:
+  - - COMPANY
+    - COMPANY
+  - - DESCRIPTION
+    - DESCRIPTION
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fact_trail_balance_extractions'
+- id: manage_bus_kpi__fa_kpi__section_kpi
+  from: gold.manage_bus_kpi
+  to: gold.fa_kpi
+  keys:
+  - - SECTION
+    - SECTION
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_kpi'
+- id: manage_bus_kpi__managed_coll_kpi__section_kpi_legal_entity
+  from: gold.manage_bus_kpi
+  to: gold.managed_coll_kpi
+  keys:
+  - - SECTION
+    - Section
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_kpi'
+- id: manage_bus_kpi__mc_kpi__section_kpi_legal_entity
+  from: gold.manage_bus_kpi
+  to: gold.mc_kpi
+  keys:
+  - - SECTION
+    - SECTION
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.mc_kpi'
+- id: manage_bus_kpi__mc_kpi_new__section_kpi
+  from: gold.manage_bus_kpi
+  to: gold.mc_kpi_new
+  keys:
+  - - SECTION
+    - SECTION
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.mc_kpi_new'
+- id: manage_bus_kpi__vw_kpi_pipeline_success__legal_entity
+  from: gold.manage_bus_kpi
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: manage_bus_kpi__vw_kpi_system_and_data_status__kpi
+  from: gold.manage_bus_kpi
+  to: gold.vw_kpi_system_and_data_status
+  keys:
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_system_and_data_status'
+- id: manage_bus_kpi__vw_legal_entities__legal_entity
+  from: gold.manage_bus_kpi
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: manage_bus_kpi__vw_manage_close_journal_entry_kpi__kpi_legal_entity
+  from: gold.manage_bus_kpi
+  to: gold.vw_manage_close_journal_entry_kpi
+  keys:
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_manage_close_journal_entry_kpi'
+- id: manage_bus_report_lists__vw_kpi_pipeline_success__legal_entity
+  from: gold.manage_bus_report_lists
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: manage_bus_report_lists__vw_legal_entities__legal_entity
+  from: gold.manage_bus_report_lists
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: manage_close_journal_entries__vw_kpi_pipeline_success__legal_entity
+  from: gold.manage_close_journal_entries
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: manage_close_journal_entries__vw_legal_entities__legal_entity
+  from: gold.manage_close_journal_entries
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: managed_coll_due_soon_accounts__vw_kpi_pipeline_success__legal_entity
+  from: gold.managed_coll_due_soon_accounts
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: managed_coll_due_soon_accounts__vw_legal_entities__legal_entity
+  from: gold.managed_coll_due_soon_accounts
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: managed_coll_early_payment_discounts__managed_coll_due_soon_accounts__invoice_number
+  from: gold.managed_coll_early_payment_discounts
+  to: gold.managed_coll_due_soon_accounts
+  keys:
+  - - invoice_number
+    - invoice_number
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: managed_coll_early_payment_discounts__vw_kpi_pipeline_success__legal_entity
+  from: gold.managed_coll_early_payment_discounts
+  to: gold.vw_kpi_pipeline_success
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_pipeline_success'
+- id: managed_coll_early_payment_discounts__vw_legal_entities__legal_entity
+  from: gold.managed_coll_early_payment_discounts
+  to: gold.vw_legal_entities
+  keys:
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_legal_entities'
+- id: managed_coll_kpi__fa_kpi__section_kpi
+  from: gold.managed_coll_kpi
+  to: gold.fa_kpi
+  keys:
+  - - Section
+    - SECTION
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_kpi'
+- id: managed_coll_kpi__mc_kpi_new__section_kpi
+  from: gold.managed_coll_kpi
+  to: gold.mc_kpi_new
+  keys:
+  - - Section
+    - SECTION
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.mc_kpi_new'
+- id: managed_coll_kpi__vw_kpi_system_and_data_status__kpi
+  from: gold.managed_coll_kpi
+  to: gold.vw_kpi_system_and_data_status
+  keys:
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_system_and_data_status'
+- id: managed_coll_kpi__vw_manage_close_journal_entry_kpi__kpi_legal_entity
+  from: gold.managed_coll_kpi
+  to: gold.vw_manage_close_journal_entry_kpi
+  keys:
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_manage_close_journal_entry_kpi'
+- id: managed_coll_overdue__managed_coll_due_soon_accounts__invoice_number
+  from: gold.managed_coll_overdue
+  to: gold.managed_coll_due_soon_accounts
+  keys:
+  - - INVOICE_NUMBER
+    - invoice_number
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: managed_coll_overdue__managed_coll_early_payment_discounts__invoice_number
+  from: gold.managed_coll_overdue
+  to: gold.managed_coll_early_payment_discounts
+  keys:
+  - - INVOICE_NUMBER
+    - invoice_number
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: mc_kpi__fa_kpi__section_kpi
+  from: gold.mc_kpi
+  to: gold.fa_kpi
+  keys:
+  - - SECTION
+    - SECTION
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.fa_kpi'
+- id: mc_kpi__managed_coll_kpi__section_kpi_legal_entity
+  from: gold.mc_kpi
+  to: gold.managed_coll_kpi
+  keys:
+  - - SECTION
+    - Section
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: mc_kpi__mc_kpi_new__section_kpi
+  from: gold.mc_kpi
+  to: gold.mc_kpi_new
+  keys:
+  - - SECTION
+    - SECTION
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.mc_kpi_new'
+- id: mc_kpi__vw_kpi_system_and_data_status__kpi
+  from: gold.mc_kpi
+  to: gold.vw_kpi_system_and_data_status
+  keys:
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_system_and_data_status'
+- id: mc_kpi__vw_manage_close_journal_entry_kpi__kpi_legal_entity
+  from: gold.mc_kpi
+  to: gold.vw_manage_close_journal_entry_kpi
+  keys:
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_manage_close_journal_entry_kpi'
+- id: mc_kpi_new__fa_kpi__section_kpi
+  from: gold.mc_kpi_new
+  to: gold.fa_kpi
+  keys:
+  - - SECTION
+    - SECTION
+  - - KPI
+    - KPI
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: mc_kpi_new__managed_coll_kpi__section_kpi_legal_entity
+  from: gold.mc_kpi_new
+  to: gold.managed_coll_kpi
+  keys:
+  - - SECTION
+    - Section
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_kpi'
+- id: mc_kpi_new__mc_kpi__section_kpi_legal_entity
+  from: gold.mc_kpi_new
+  to: gold.mc_kpi
+  keys:
+  - - SECTION
+    - SECTION
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.mc_kpi'
+- id: mc_kpi_new__vw_kpi_system_and_data_status__kpi
+  from: gold.mc_kpi_new
+  to: gold.vw_kpi_system_and_data_status
+  keys:
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_system_and_data_status'
+- id: mc_kpi_new__vw_manage_close_journal_entry_kpi__kpi_legal_entity
+  from: gold.mc_kpi_new
+  to: gold.vw_manage_close_journal_entry_kpi
+  keys:
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_manage_close_journal_entry_kpi'
+- id: mc_liquidity__mc_investment_portfolio__company_main_account_id
+  from: gold.mc_liquidity
+  to: gold.mc_investment_portfolio
+  keys:
+  - - COMPANY
+    - COMPANY
+  - - MAIN_ACCOUNT_ID
+    - MAIN_ACCOUNT_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: vw_audit_soc_report__manage_bus_report_lists__report
+  from: gold.vw_audit_soc_report
+  to: gold.manage_bus_report_lists
+  keys:
+  - - Report
+    - REPORT
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.manage_bus_report_lists'
+- id: vw_commissions_analysis__adra_tasks_task_period_dimension__period_key
+  from: gold.vw_commissions_analysis
+  to: silver.adra_tasks_task_period_dimension
+  keys:
+  - - PERIOD_KEY
+    - PERIOD_KEY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.adra_tasks_task_period_dimension'
+- id: vw_fact_fynapse_slr_journals__managed_coll_due_soon_accounts__invoice_number
+  from: gold.vw_fact_fynapse_slr_journals
+  to: gold.managed_coll_due_soon_accounts
+  keys:
+  - - INVOICE_NUMBER
+    - invoice_number
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_due_soon_accounts'
+- id: vw_fact_fynapse_slr_journals__managed_coll_early_payment_discounts__invoice_number
+  from: gold.vw_fact_fynapse_slr_journals
+  to: gold.managed_coll_early_payment_discounts
+  keys:
+  - - INVOICE_NUMBER
+    - invoice_number
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_early_payment_discounts'
+- id: vw_fact_fynapse_slr_journals__managed_coll_overdue__invoice_number
+  from: gold.vw_fact_fynapse_slr_journals
+  to: gold.managed_coll_overdue
+  keys:
+  - - INVOICE_NUMBER
+    - INVOICE_NUMBER
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.managed_coll_overdue'
+- id: vw_fact_kpmg_general_journals_entries__fact_cust_table_bi_entities__data_area_id
+  from: gold.vw_fact_kpmg_general_journals_entries
+  to: silver.fact_cust_table_bi_entities
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_table_bi_entities'
+- id: vw_fact_kpmg_general_journals_entries__fact_cust_trans_opens__data_area_id
+  from: gold.vw_fact_kpmg_general_journals_entries
+  to: silver.fact_cust_trans_opens
+  keys:
+  - - DATA_AREA_ID
+    - DATA_AREA_ID
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of silver.fact_cust_trans_opens'
+- id: vw_income_statement__vw_expense_analysis__entry_rec_id
+  from: gold.vw_income_statement
+  to: gold.vw_expense_analysis
+  keys:
+  - - ENTRY_REC_ID
+    - ENTRY_REC_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: vw_income_statement_logistics__vw_expense_analysis__entry_rec_id
+  from: gold.vw_income_statement_logistics
+  to: gold.vw_expense_analysis
+  keys:
+  - - ENTRY_REC_ID
+    - ENTRY_REC_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: vw_income_statement_logistics__vw_income_statement__entry_rec_id
+  from: gold.vw_income_statement_logistics
+  to: gold.vw_income_statement
+  keys:
+  - - ENTRY_REC_ID
+    - ENTRY_REC_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: vw_investment_analytics__vw_expense_analysis__entry_rec_id
+  from: gold.vw_investment_analytics
+  to: gold.vw_expense_analysis
+  keys:
+  - - ENTRY_REC_ID
+    - ENTRY_REC_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: vw_investment_analytics__vw_income_statement__entry_rec_id
+  from: gold.vw_investment_analytics
+  to: gold.vw_income_statement
+  keys:
+  - - ENTRY_REC_ID
+    - ENTRY_REC_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: vw_investment_analytics__vw_income_statement_logistics__entry_rec_id
+  from: gold.vw_investment_analytics
+  to: gold.vw_income_statement_logistics
+  keys:
+  - - ENTRY_REC_ID
+    - ENTRY_REC_ID
+  cardinality: one_to_one
+  status: proposed
+  note: 'key-name match: same primary key'
+- id: vw_kpi_pipeline_success__vw_kpi_system_and_data_status__kpi
+  from: gold.vw_kpi_pipeline_success
+  to: gold.vw_kpi_system_and_data_status
+  keys:
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_system_and_data_status'
+- id: vw_kpi_pipeline_success__vw_manage_close_journal_entry_kpi__kpi_legal_entity
+  from: gold.vw_kpi_pipeline_success
+  to: gold.vw_manage_close_journal_entry_kpi
+  keys:
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_manage_close_journal_entry_kpi'
+- id: vw_kpi_system_and_data_status__vw_manage_close_journal_entry_kpi__kpi_legal_entity
+  from: gold.vw_kpi_system_and_data_status
+  to: gold.vw_manage_close_journal_entry_kpi
+  keys:
+  - - KPI
+    - KPI
+  - - LEGAL_ENTITY
+    - LEGAL_ENTITY
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_manage_close_journal_entry_kpi'
+- id: vw_manage_close_journal_entry_kpi__vw_kpi_system_and_data_status__kpi
+  from: gold.vw_manage_close_journal_entry_kpi
+  to: gold.vw_kpi_system_and_data_status
+  keys:
+  - - KPI
+    - KPI
+  cardinality: many_to_one
+  status: proposed
+  note: 'key-name match: holds the full key of gold.vw_kpi_system_and_data_status'

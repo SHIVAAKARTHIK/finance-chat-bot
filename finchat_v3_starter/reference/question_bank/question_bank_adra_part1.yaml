@@ -1,0 +1,147 @@
+# DEV question bank (ADRA part 1 of 2). Expected values from ground_truth_adra_fynapse_v1.sql (run 2026-11-15).
+# Keys: numbers (each must appear, tolerance_pct), text_contains (all), text_contains_any (one).
+# Paraphrases are separate cases with the same expectation. Never add hold-out questions here.
+split: dev
+area: question_bank
+source: generated_by_pattern
+roles_used: [standard, pii_viewer]
+questions:
+  - id: qb_a01_balance_lookup
+    domain: adra
+    pattern: lookup_value
+    question: What is the balance of account 141111 for 100-Northwind in Feb 25?
+    paraphrases: [Show me the February 2025 balance for Northwind account 141111., 'Account 141111 balance, Northwind, Feb 2025']
+    expect:
+      kind: answer
+      numbers: ['1981646.00']
+      tolerance_pct: 0.5
+      ground_truth_sql: A01
+  - id: qb_a02_status_lookup
+    domain: adra
+    pattern: lookup_status
+    question: What is the reconciliation status of account 213130 for 561 - Cars USA Shipping, LLC in Oct 26?
+    paraphrases: ['Is account 213130 at Cars USA Shipping approved for October 2026?']
+    expect:
+      kind: answer
+      text_contains: [Not prepared]
+      tolerance_pct: 0.5
+      ground_truth_sql: A02
+  - id: qb_a03_finalized_flag
+    domain: adra
+    pattern: lookup_flag
+    question: Is account 141111 finalized for Northwind in February 2025?
+    paraphrases: ['Has the Feb 25 reconciliation for account 141111 at 100-Northwind been closed?']
+    expect:
+      kind: answer
+      text_contains_any: [not finalized, 'No', 'False']
+      tolerance_pct: 0.5
+      ground_truth_sql: A03
+      ground_truth_note: IS_FINALIZED = False
+  - id: qb_a04_count_by_status_100
+    domain: adra
+    pattern: count_by_group
+    question: How many Northwind accounts are in each reconciliation status for Feb 25?
+    paraphrases: [Break down 100-Northwind accounts by status for February 2025.]
+    expect:
+      kind: answer
+      numbers: ['7', '24', '9']
+      text_contains: [Approved, Not prepared, Prepared]
+      tolerance_pct: 0.5
+      ground_truth_sql: A04
+  - id: qb_a05_count_by_status_561
+    domain: adra
+    pattern: count_by_group
+    question: Give me the account count per reconciliation status for Cars USA Shipping in Oct 26.
+    paraphrases: ['How many 561 accounts are in each status for the latest period?']
+    expect:
+      kind: answer
+      numbers: ['6', '11', '6']
+      text_contains: [Approved, Not prepared, Prepared]
+      tolerance_pct: 0.5
+      ground_truth_sql: A05
+  - id: qb_a06_count_filtered
+    domain: adra
+    pattern: count_filtered
+    question: How many accounts are finalized for 561 - Cars USA Shipping, LLC in Oct 26?
+    paraphrases: [Number of finalized reconciliations for entity 561 in October 2026]
+    expect:
+      kind: answer
+      numbers: ['6']
+      tolerance_pct: 0.5
+      ground_truth_sql: A06
+  - id: qb_a07_share
+    domain: adra
+    pattern: share_of_total
+    question: What percentage of Cars USA Shipping accounts are finalized in Oct 26?
+    paraphrases: ['What share of 561''s reconciliations were closed in October 2026?']
+    expect:
+      kind: answer
+      numbers: [26.1%]
+      tolerance_pct: 0.5
+      ground_truth_sql: A07
+  - id: qb_a08_sum_entity
+    domain: adra
+    pattern: sum_total
+    question: What is the total balance across all Northwind accounts in Feb 25?
+    paraphrases: ['Sum of account balances for 100-Northwind, February 2025']
+    expect:
+      kind: answer
+      numbers: ['2143711.00']
+      tolerance_pct: 0.5
+      ground_truth_sql: A08
+  - id: qb_a09_sum_abs_unidentified_100
+    domain: adra
+    pattern: sum_total
+    question: What is the total absolute unidentified balance for 100-Northwind in Feb 25?
+    paraphrases: ['How much unidentified balance (absolute) does Northwind have in February 2025?']
+    expect:
+      kind: answer
+      numbers: ['3940448.00']
+      tolerance_pct: 0.5
+      ground_truth_sql: A09
+  - id: qb_a10_top_n
+    domain: adra
+    pattern: top_n
+    question: Which 5 accounts have the largest absolute balance for 561 - Cars USA Shipping, LLC in Oct 26?
+    paraphrases: ['Top five Cars USA Shipping accounts by absolute balance, October 2026']
+    expect:
+      kind: answer
+      numbers: ['19697737.46', '6294506.33', '2520421.50', '1193073.56', '815070.06']
+      text_contains: ['213230', '122400', '161100', '213440', '162600']
+      tolerance_pct: 0.5
+      ground_truth_sql: A10
+  - id: qb_a11_count_by_dim_attribute
+    domain: adra
+    pattern: count_by_dimension
+    question: How many Northwind accounts are there for each risk type in Feb 25?
+    paraphrases: [Split 100-Northwind accounts by risk type for February 2025.]
+    expect:
+      kind: answer
+      numbers: ['40']
+      text_contains: [Not set]
+      tolerance_pct: 0.5
+      ground_truth_sql: A11
+    data_note: 'weak test: all 40 accounts have risk type "Not set"'
+  - id: qb_a12_sum_by_dim_attribute
+    domain: adra
+    pattern: sum_by_dimension
+    question: What is the absolute unidentified balance by reconciliation type for Cars USA Shipping in Oct 26?
+    paraphrases: ['For 561 in October 2026, total unidentified balance (absolute) per reconciliation type']
+    expect:
+      kind: answer
+      numbers: ['22831252.26']
+      text_contains: [Bank]
+      tolerance_pct: 0.5
+      ground_truth_sql: A12
+    data_note: 'weak test: single reconciliation type (Bank); total matches business answer 22,831,252.26'
+  - id: qb_a13_count_condition
+    domain: adra
+    pattern: count_filtered
+    question: How many Northwind accounts have no supporting documents in Feb 25?
+    paraphrases: ['Count of 100-Northwind reconciliations without any documents attached, February 2025']
+    expect:
+      kind: answer
+      numbers: ['40']
+      tolerance_pct: 0.5
+      ground_truth_sql: A13
+    data_note: 'weak test: all 40 accounts have no documents'

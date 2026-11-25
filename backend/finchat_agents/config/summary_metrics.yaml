@@ -1,0 +1,126 @@
+# Summary agent metrics (task 09). Used only by the scheduled summary agent, never by chat answers.
+#
+# period_sets: one SQL per set returning the periods with data, newest first per scope:
+#   columns: scope (optional: e.g. the entity; each scope gets its own current/previous period), label, sort_key,
+#   plus any columns the metric SQL needs as placeholders ({label}, {scope}, {FISCAL_YEAR} ...).
+# metrics: SQL template run once for the current and once for the previous period. It returns `value` (one row) or
+#   `grp, value` (one fact per group). Placeholders are filled with safely quoted literals from the period row.
+#   All SQL goes through run_sql (guardrails) with the service role.
+# thresholds: a fact becomes a card when |change_pct| >= min_change_pct and |change_abs| >= min_abs;
+#   it is flagged (investigator) when |change_pct| >= flag_change_pct.
+defaults:
+  min_change_pct: 10
+  flag_change_pct: 25
+  min_abs: 1
+  top_n: 5
+
+period_sets:
+  adra_entity_periods:
+    sql: |
+      SELECT DISTINCT trim(le.ENTITY_NAME) AS scope, trim(p.PERIOD_NAME) AS label,
+             TRY_CAST(p.PERIOD_END AS DATE) AS sort_key
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+  fynapse_periods:
+    sql: |
+      SELECT FISCAL_YEAR, PERIOD, concat('FY', CAST(FISCAL_YEAR AS STRING), ' P', CAST(PERIOD AS STRING)) AS label,
+             MAX(CORE_DATE) AS sort_key
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      WHERE FISCAL_YEAR IS NOT NULL AND PERIOD IS NOT NULL
+      GROUP BY FISCAL_YEAR, PERIOD
+  fa_posting_months:
+    sql: |
+      SELECT CAST(date_trunc('MONTH', POSTING_DATE) AS DATE) AS month_start,
+             date_format(date_trunc('MONTH', POSTING_DATE), 'MMM yy') AS label,
+             CAST(date_trunc('MONTH', POSTING_DATE) AS DATE) AS sort_key
+      FROM lakehouse_mvpai.silver.fact_asset_master_transactions
+      WHERE POSTING_DATE IS NOT NULL
+      GROUP BY CAST(date_trunc('MONTH', POSTING_DATE) AS DATE), date_format(date_trunc('MONTH', POSTING_DATE), 'MMM yy')
+
+metrics:
+  # ------------------------------------------------------------------ recon (ADRA)
+  - id: recon_not_finalized
+    domain: recon
+    name: Reconciliations not finalized
+    periods: adra_entity_periods
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    min_abs: 1
+    sql: |
+      SELECT SUM(CASE WHEN lower(trim(f.IS_FINALIZED)) = 'false' THEN 1 ELSE 0 END) AS value
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_NAME) = {scope} AND trim(p.PERIOD_NAME) = {label}
+
+  - id: recon_unidentified_abs
+    domain: recon
+    name: Total absolute unreconciled difference
+    periods: adra_entity_periods
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    min_abs: 1000
+    sql: |
+      SELECT SUM(TRY_CAST(f.UNIDENTIFIED_BALANCE_ABS AS DECIMAL(38,2))) AS value
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_NAME) = {scope} AND trim(p.PERIOD_NAME) = {label}
+
+  - id: recon_status_counts
+    domain: recon
+    name: Reconciliations by approval status
+    periods: adra_entity_periods
+    tables: [silver.adra_account_facts, silver.adra_legal_entity_dimensions, silver.adra_period_dimensions]
+    min_abs: 1
+    sql: |
+      SELECT trim(f.ACCOUNT_STATUS) AS grp, COUNT(*) AS value
+      FROM lakehouse_mvpai.silver.adra_account_facts f
+      JOIN lakehouse_mvpai.silver.adra_legal_entity_dimensions le
+        ON f.LEGAL_ENTITY_KEY = le.LEGAL_ENTITY_KEY AND f.ENGAGEMENT_KEY = le.ENGAGEMENT_KEY
+      JOIN lakehouse_mvpai.silver.adra_period_dimensions p
+        ON f.PERIOD_KEY = p.PERIOD_KEY AND f.ENGAGEMENT_KEY = p.ENGAGEMENT_KEY AND f.LEGAL_ENTITY_KEY = p.LEGAL_ENTITY_KEY
+      WHERE trim(le.ENTITY_NAME) = {scope} AND trim(p.PERIOD_NAME) = {label}
+      GROUP BY trim(f.ACCOUNT_STATUS)
+
+  # ------------------------------------------------------------------ subledger (Fynapse)
+  - id: subledger_lines_by_source
+    domain: subledger
+    name: Journal lines by source system
+    periods: fynapse_periods
+    tables: [silver.fact_fynapse_slr_journals]
+    min_abs: 10
+    sql: |
+      SELECT SOURCE_SYSTEM AS grp, COUNT(*) AS value
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      WHERE FISCAL_YEAR = {FISCAL_YEAR} AND PERIOD = {PERIOD}
+      GROUP BY SOURCE_SYSTEM
+
+  - id: subledger_net_amount
+    domain: subledger
+    name: Net reporting amount
+    periods: fynapse_periods
+    tables: [silver.fact_fynapse_slr_journals]
+    min_abs: 1000
+    sql: |
+      SELECT SUM(REPORTING_AMOUNT) AS value
+      FROM lakehouse_mvpai.silver.fact_fynapse_slr_journals
+      WHERE FISCAL_YEAR = {FISCAL_YEAR} AND PERIOD = {PERIOD}
+
+  # ------------------------------------------------------------------ fixed assets (duplicate warning comes from run_sql)
+  - id: fa_transactions_by_type
+    domain: fa
+    name: Fixed-asset transactions by type
+    periods: fa_posting_months
+    tables: [silver.fact_asset_master_transactions]
+    min_abs: 5
+    sql: |
+      SELECT TRANSACTION_TYPE AS grp, COUNT(*) AS value
+      FROM lakehouse_mvpai.silver.fact_asset_master_transactions
+      WHERE CAST(date_trunc('MONTH', POSTING_DATE) AS DATE) = CAST({month_start} AS DATE)
+      GROUP BY TRANSACTION_TYPE
