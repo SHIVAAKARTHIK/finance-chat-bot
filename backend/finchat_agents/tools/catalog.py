@@ -8,7 +8,7 @@ from typing import Any
 from ..access.rbac import UserAccess
 from ..knowledge.models import TablePage
 from ..llm.types import ToolSpec
-from ..runtime.tools import Tool, ToolContext, ToolError
+from ..runtime.tools import GuardrailRefusal, Tool, ToolContext, ToolError
 from .deps import DataDeps, access_of
 from .run_sql import execute_guarded
 
@@ -58,7 +58,7 @@ def visible_table(deps: DataDeps, access: UserAccess, name: str) -> TablePage:
         hint = f" Similar tables: {', '.join(h.fqn for h in hits)}." if hits else " Use search_tables to find tables."
         raise ToolError(f"Table '{name}' is not in the catalog.{hint}")
     if not access.role.allows_domain(page.meta.domain):  # type: ignore[union-attr]
-        raise ToolError(f"Access denied: {page.meta.fqn} is outside this user's domains. Tell the user it is not available to them.")
+        raise GuardrailRefusal(f"Access denied: {page.meta.fqn} is outside this user's domains. Tell the user it is not available to them.")
     if page.meta.superseded_by:
         targets = ", ".join(deps.kb.tables[t].meta.fqn for t in page.meta.superseded_by if t in deps.kb.tables)
         raise ToolError(f"{page.meta.fqn} is a copy; use the source of truth {targets} instead.")

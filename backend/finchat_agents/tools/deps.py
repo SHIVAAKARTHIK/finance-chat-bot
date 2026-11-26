@@ -8,7 +8,7 @@ from typing import Any, Callable
 from ..access.rbac import UserAccess
 from ..config import Settings
 from ..knowledge.loader import Knowledge
-from ..runtime.tools import ToolContext, ToolError
+from ..runtime.tools import GuardrailRefusal, ToolContext, ToolError
 from .mcp_client import DatabricksMcpClient, EntraTokenProvider
 
 
@@ -47,7 +47,7 @@ class DataDeps:
 def access_of(tctx: ToolContext) -> UserAccess:
     user = tctx.run.user
     if not isinstance(user, UserAccess) or not user.has_access:
-        raise ToolError("Access denied: this user has no data access configured. Tell the user to ask an administrator for a role.")
+        raise GuardrailRefusal("Access denied: this user has no data access configured. Tell the user to ask an administrator for a role.")
     return user
 
 

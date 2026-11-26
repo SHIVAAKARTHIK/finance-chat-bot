@@ -28,7 +28,7 @@ from ..llm.types import (
 from ..tracing.events import utcnow
 from ..tracing.tracer import preview
 from .llm_call import traced_complete
-from .tools import RunContext, Tool, ToolContext, ToolError
+from .tools import GuardrailRefusal, RunContext, Tool, ToolContext, ToolError
 
 log = logging.getLogger(__name__)
 
@@ -128,6 +128,10 @@ async def execute_tool(call: ToolCall, step_no: int, *, tool_map: dict[str, Tool
             output = serialize_output(raw)
         except ToolError as exc:
             is_error, output = True, str(exc)
+            if isinstance(exc, GuardrailRefusal):
+                from ..guardrails.audit import log_decision  # imported here: audit itself uses the runtime
+
+                await log_decision(ctx, "data_check", "block", "data_access", str(exc))
         except (TimeoutError, asyncio.TimeoutError):
             is_error, output = True, f"Tool '{call.name}' did not finish within the time limit."
         except Exception as exc:  # unexpected tool failure becomes a readable error for the model

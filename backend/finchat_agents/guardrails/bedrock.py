@@ -5,7 +5,7 @@ from __future__ import annotations
 import asyncio
 from typing import Any
 
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 
 class ContentFilterError(RuntimeError):
@@ -16,6 +16,7 @@ class FilterResult(BaseModel):
     blocked: bool = False
     changed: bool = False  # the guardrail masked something and let the rest through
     text: str = ""  # blocked: the guardrail's own message; changed: the masked text; otherwise the original
+    categories: list[str] = Field(default_factory=list)  # what it acted on, for the audit trail (never the text)
 
 
 def _has_blocked(node: Any) -> bool:
@@ -26,13 +27,28 @@ def _has_blocked(node: Any) -> bool:
     return False
 
 
+def _categories(node: Any) -> list[str]:
+    """Names of the filters that acted: their type or name, never the matched text."""
+    found: list[str] = []
+    if isinstance(node, dict):
+        if node.get("action") in ("BLOCKED", "ANONYMIZED"):
+            found.append(str(node.get("type") or node.get("name") or "word filter"))
+        for value in node.values():
+            found += _categories(value)
+    elif isinstance(node, list):
+        for value in node:
+            found += _categories(value)
+    return list(dict.fromkeys(found))
+
+
 def parse_response(response: dict[str, Any], original: str) -> FilterResult:
     if response.get("action") != "GUARDRAIL_INTERVENED":
         return FilterResult(text=original)
     output = "".join(str(o.get("text") or "") for o in response.get("outputs") or [])
+    categories = _categories(response.get("assessments"))
     if _has_blocked(response.get("assessments")) or not output:
-        return FilterResult(blocked=True, text=output)
-    return FilterResult(changed=True, text=output)
+        return FilterResult(blocked=True, text=output, categories=categories)
+    return FilterResult(changed=True, text=output, categories=categories)
 
 
 class BedrockContentFilter:

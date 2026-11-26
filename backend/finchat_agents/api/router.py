@@ -25,6 +25,7 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
 from ..agents.orchestrator import AnswerEnvelope
+from ..guardrails.audit import log_request
 from ..tracing.events import TraceEvent
 from .service import ChatService, Identity
 
@@ -84,6 +85,7 @@ def create_router(service: ChatService, identity: IdentityProvider = body_identi
         if auth is not None:  # the verified login always wins over anything in the request
             return auth
         if not trust_request:
+            log_request("login", "block", "verified_login", "request without a verified login", user_id)
             raise HTTPException(status_code=401, detail="A verified login is required")
         if not user_id:
             raise HTTPException(status_code=401, detail="user_id is required (no authenticated identity on the request)")
@@ -139,9 +141,15 @@ def create_router(service: ChatService, identity: IdentityProvider = body_identi
         identity_ = caller(auth, user_id)
         who = identity_.user_id
         if not service.access.user_access(who, identity_.groups).has_access:
+            log_request("file_download", "block", "role_access", f"no role; asked for {file_name}", who)
             raise not_found()
         settings = service.orchestrator.settings
-        path = resolve_file(settings.resolve_path(settings.output_dir), conversation, file_name, who)
+        try:
+            path = resolve_file(settings.resolve_path(settings.output_dir), conversation, file_name, who)
+        except HTTPException:
+            log_request("file_download", "block", "own_files_only", f"not the owner, or no such file: {file_name}", who)
+            raise
+        log_request("file_download", "allow", "own_files_only", file_name, who)
         return file_response(path)
 
     @router.get("/cards")

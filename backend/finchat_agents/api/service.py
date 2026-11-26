@@ -12,7 +12,7 @@ from pydantic import BaseModel, Field
 
 from ..access.rbac import AccessConfig, Role, UserAccess
 from ..agents.orchestrator import AnswerEnvelope, ConversationContext, Orchestrator, Turn
-from ..guardrails.audit import log_check
+from ..guardrails.audit import log_decision, log_request
 from ..guardrails.input_checks.redact import redact_question, redaction_notice
 from ..memory.context import select_recent, topic_label, topic_states
 from ..memory.summary import ConversationSummarizer, TurnRecord, fallback_seed, needs_summary, turns_from_rows
@@ -111,6 +111,8 @@ class ChatService:
                 return LoadedContext(conversation_id=conversation_id, context=ConversationContext(conversation_id=conversation_id))
             if str(conv.get("user_id")) != user_id:  # never continue (or reveal) someone else's conversation
                 log.warning("conversation %s belongs to another user; starting a new one", conversation_id)
+                log_request("conversation_access", "block", "own_conversations_only",
+                            f"asked to continue another user's conversation {conversation_id}", user_id)
                 return LoadedContext(conversation_id=str(uuid.uuid4()), context=ConversationContext())
         except Exception:
             log.exception("could not load conversation %s; answering without history", conversation_id)
@@ -218,9 +220,10 @@ class ChatService:
         await Tracer(sinks, message_id=message_id).emit(
             "tool_call", agent="chat_service", name="load_context", started_at=context_started, ended_at=context_ended,
             payload={"context_ms": round(context_ms, 1), "has_history": not loaded.is_new})
-        if removed:
-            audit = RunContext(tracer=Tracer(sinks, message_id=message_id))
-            await log_check(audit, "input_redaction", "removed: " + ", ".join(removed))
+        if getattr(self.orchestrator, "guardrails", None) is not None:
+            audit = RunContext(tracer=Tracer([*self.orchestrator.sinks, *sinks], message_id=message_id))
+            await log_decision(audit, "input_redaction", "change" if removed else "allow", "sensitive_data",
+                               ("removed: " + ", ".join(removed)) if removed else "nothing to remove")
         env = await self.orchestrator.answer(message, user, loaded.context, conversation_id=conv_id, message_id=message_id,
                                              extra_sinks=sinks)
         env.debug.context_ms = round(context_ms, 1)
@@ -284,6 +287,8 @@ class ChatService:
         if conv is None:  # nothing asked yet: nothing to clear
             return {"conversation_id": conversation_id, "cleared": True, "context_start_turn": 0, "message": CLEARED_TEXT}
         if str(conv.get("user_id")) != identity.user_id:
+            log_request("conversation_access", "block", "own_conversations_only",
+                        f"asked to clear another user's conversation {conversation_id}", identity.user_id)
             raise PermissionError("This conversation belongs to another user.")
         turn = int(conv.get("turn_count") or 0)
         await self.store.set_context_start(conversation_id, turn)

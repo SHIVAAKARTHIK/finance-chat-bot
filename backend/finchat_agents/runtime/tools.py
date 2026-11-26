@@ -76,6 +76,10 @@ class ToolError(Exception):
     """Raise from a tool handler for a plain, fixable message the model should read (guardrail refusals etc.)."""
 
 
+class GuardrailRefusal(ToolError):
+    """A data guardrail refused (read-only, allowed tables, business area, personal data, no access): audited."""
+
+
 ToolHandler = Callable[[dict[str, Any], ToolContext], Awaitable[Any]]
 
 

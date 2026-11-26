@@ -51,7 +51,46 @@ model judges it; Prompt = an instruction to the model (weakest).
 |---|---|---|---|---|
 | A1 | Verified login required; users see only their own conversations and files | App | Code | `api/router.py`, `api/service.py`, `api/files.py` |
 | A2 | Request rate limit (10 per minute) | Company backend | Code | backend `slowapi` decorator |
-| A3 | Model calls, tool calls and guardrail decisions logged | App | Code | `tracing/`, `guardrails/audit.py` |
+| A3 | Model calls, tool calls and every guardrail decision logged (see Audit log) | App | Code | `tracing/`, `guardrails/audit.py` |
+
+## Audit log
+
+Every check records a decision (`allow`, `block`, `change` or `error`) with its rule and reason. Removed content itself is
+never recorded.
+
+| Check (`step_name`) | Records |
+|---|---|
+| `input_redaction` | Sensitive data removed from the question, or nothing |
+| `access_check` | Whether the user has a role |
+| `input_check` | The input check verdict; a switched-off rule is recorded as allowed |
+| `scope_check` | The routing step's in-scope or refusal decision |
+| `data_check` | Each user query: allowed (tables, masked values) or refused |
+| `number_check` | Numbers compared with the data |
+| `answer_check` | The assistant declined while answering |
+| `output_check` | Answer unchanged, changed or replaced |
+| `content_filter_input`, `content_filter_output` | AWS content filter, when configured |
+
+Stored in `lakehouse_mvpai.aiops.finance_chat_message_events` (also in `traces/events.jsonl`):
+
+```sql
+SELECT m.created_at, m.user_id, m.conversation_id, m.message_id, m.question_text, e.step_name AS check_name,
+       get_json_object(e.output_payload, '$.decision') AS decision,
+       get_json_object(e.output_payload, '$.rule')     AS rule,
+       get_json_object(e.output_payload, '$.reason')   AS reason
+FROM lakehouse_mvpai.aiops.finance_chat_message_events e
+JOIN lakehouse_mvpai.aiops.finance_chat_messages m ON m.message_id = e.message_id
+WHERE get_json_object(e.output_payload, '$.decision') IS NOT NULL
+ORDER BY m.created_at DESC, e.step_order;
+```
+
+Add `AND get_json_object(e.output_payload, '$.decision') = 'block'` for refusals only.
+
+Requests with no chat message (missing login, file download, another user's conversation) are written to the application
+log, logger `finchat_agents.audit` (`guardrail decision=... check=... rule=... user=... reason=...`). Keeping that log
+is a platform setting. The request rate limit is the backend's and is not logged here.
+
+**Limits:** audit rows are written in the background; a failed write is reported in the application log and
+`/v3/health` (`write_failures`), and that entry is not retried. Without aiops storage only the trace file is written.
 
 ## Switches
 

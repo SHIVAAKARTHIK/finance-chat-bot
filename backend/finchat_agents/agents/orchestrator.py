@@ -20,6 +20,7 @@ from pydantic import BaseModel, Field
 
 from ..access.rbac import UserAccess
 from ..config import Settings
+from ..guardrails.audit import log_decision
 from ..guardrails.input_checks.intent import Verdict, check_input
 from ..guardrails.output_checks.answer import check_output
 from ..guardrails.output_checks.filters import Scrubber
@@ -285,9 +286,11 @@ class Orchestrator:
     async def _answer(self, message: str, user: UserAccess, conversation: ConversationContext | None,
                       ctx: RunContext, env: AnswerEnvelope) -> None:
         if not user.has_access:
+            await log_decision(ctx, "access_check", "block", "role_access", "no role is assigned to this user")
             env.status, env.debug.mode = "declined", "declined"
             env.answer = "You do not have access to Finance Chat data yet. Please ask an administrator to assign you a role."
             return
+        await log_decision(ctx, "access_check", "allow", "role_access", f"role {user.role.name}")
         task = supervisor_input(message, conversation)
         sup = self.supervisor
         specs = [t.spec for t in sup.tools] + ([sup.finish_tool] if sup.finish_tool else [])
@@ -316,8 +319,11 @@ class Orchestrator:
         await ctx.tracer.emit("route", agent="supervisor", step=1, payload=route.model_dump())
         question = route.standalone_question
 
-        if self.guardrails is not None and route.refusal:  # the scope check that sees the conversation
-            message_text = refusal_message(self.guardrails, route.refusal)
+        if self.guardrails is not None:  # the scope check that sees the conversation
+            message_text = refusal_message(self.guardrails, route.refusal) if route.refusal else ""
+            await log_decision(ctx, "scope_check", "block" if message_text else "allow",
+                               route.refusal if message_text else "in_scope",
+                               route.reason or f"routed as {route.classification}")
             if message_text:
                 _refuse(env, Verdict(verdict=route.refusal, message=message_text))
                 return
@@ -363,8 +369,15 @@ class Orchestrator:
             env.options = [a for a in draft.alternatives if a][:5]
         if draft.status == "declined":
             env.answer = draft.answer or "This request is outside what you can access or what the assistant may do."
+            await log_decision(ctx, "answer_check", "block", "assistant_declined", env.answer)
             return
         written = await self.writer.write(question, draft, ctx)
+        if written.unsupported:
+            reason = "numbers not found in the data, shown with a caveat: " + ", ".join(written.unsupported)
+        else:
+            reason = "rewritten to remove numbers not in the data" if written.rewrites else "all numbers found in the data"
+        await log_decision(ctx, "number_check", "change" if written.rewrites or written.unsupported else "allow",
+                           "numbers_from_data", reason)
         env.answer = written.answer or draft.answer
         steps_text = format_steps(draft, ctx.extras.get(PLAN_KEY))
         if steps_text:

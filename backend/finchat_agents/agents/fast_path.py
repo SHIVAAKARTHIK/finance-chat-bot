@@ -13,10 +13,11 @@ from pydantic import BaseModel, Field
 from ..access.rbac import UserAccess
 from ..llm.types import LLMError, LLMResult, Message, ModelHandle, ToolResultBlock, ToolSpec
 from ..runtime.llm_call import traced_complete
-from ..runtime.tools import RunContext, ToolError
+from ..runtime.tools import GuardrailRefusal, RunContext, ToolError
 from ..tools.deps import DataDeps
 from ..tools.resolve import resolve_entity, resolve_period
-from ..tools.run_sql import SqlResult, execute_guarded, register_result
+from ..guardrails.audit import log_decision
+from ..tools.run_sql import SqlResult, audit_query, execute_guarded, register_result
 from ..tracing.events import utcnow
 from ..tracing.tracer import preview
 from .specialists import format_examples, load_prompt, with_rules
@@ -132,7 +133,10 @@ async def _run(sql: str, deps: DataDeps, access: UserAccess, ctx: RunContext, st
     except ToolError as exc:
         await ctx.tracer.emit("tool_call", agent=AGENT, step=step, name="run_sql", status="error", started_at=started,
                               ended_at=utcnow(), payload={"input": preview(sql, 2000), "output": preview(str(exc), 1000)})
+        if isinstance(exc, GuardrailRefusal):
+            await log_decision(ctx, "data_check", "block", "data_access", str(exc))
         raise
+    await audit_query(ctx, result)
     register_result(ctx, result)
     await ctx.tracer.emit("tool_call", agent=AGENT, step=step, name="run_sql", started_at=started, ended_at=utcnow(),
                           payload={"input": preview(sql, 2000), "output": preview(json.dumps(result.for_model(), default=str), 1000)})

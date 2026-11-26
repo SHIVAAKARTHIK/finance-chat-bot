@@ -108,7 +108,9 @@ async def test_harmful_and_support_replies_need_no_company_pack(kb, folder, kind
 # ---------------------------------------------------------------- Bedrock Guardrail
 
 def test_bedrock_response_parsing():
-    assert parse_response({"action": "NONE"}, "t").model_dump() == {"blocked": False, "changed": False, "text": "t"}
+    assert parse_response({"action": "NONE"}, "t").model_dump() == {"blocked": False, "changed": False, "text": "t",
+                                                                    "categories": []}
+    assert parse_response(intervened("No."), "t").categories == ["HATE"]
     assert parse_response(intervened("No."), "t").blocked
     masked = parse_response(intervened("hi {NAME}", "ANONYMIZED"), "hi Bob")
     assert masked.changed and not masked.blocked and masked.text == "hi {NAME}"
@@ -155,7 +157,8 @@ async def test_answer_is_blocked_or_masked_by_the_filter(kb, folder):
     with_filter(orch, FakeBedrock(OUTPUT=intervened("Masked text.", "ANONYMIZED")))
     env = await orch.answer(QUESTION, ALL)
     assert env.status == "answered" and env.answer == "Masked text."
-    assert any(e.name == "content_filter_output" and e.payload["output"] == "masked" for e in sink.events)
+    assert any(e.name == "content_filter_output" and e.payload["decision"] == "change"
+               and e.payload["reason"] == "masked: HATE" for e in sink.events)
 
 
 def test_bedrock_settings(folder):

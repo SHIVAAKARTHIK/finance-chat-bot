@@ -194,7 +194,7 @@ async def test_blocked_message_gets_the_fixed_reply_and_nothing_runs(kb, folder,
     assert (env.status, env.answer, env.debug.mode) == ("declined", reply, "declined")
     assert server.queries == [] and resp_p.calls == [] and env.tables == [] and env.debug.sql == []
     event = next(e for e in sink.events if e.name == "input_check")
-    assert event.agent == "guardrails" and event.payload["output"].startswith(kind)
+    assert event.agent == "guardrails" and (event.payload["decision"], event.payload["rule"]) == ("block", kind)
 
 
 async def test_input_check_sees_only_the_current_message(kb, folder):

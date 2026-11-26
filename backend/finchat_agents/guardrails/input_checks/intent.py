@@ -9,7 +9,7 @@ from pydantic import BaseModel
 from ...llm.types import LLMError, Message, ModelHandle, ToolSpec
 from ...runtime.llm_call import traced_complete
 from ...runtime.tools import RunContext
-from ..audit import log_check
+from ..audit import log_decision
 from ..bedrock import ContentFilterError
 from ..loader import Guardrails
 from ..replies import REFUSALS, refusal_message
@@ -22,8 +22,8 @@ VERDICT_SPEC = ToolSpec(
     input_schema={
         "type": "object",
         "properties": {"verdict": {"type": "string", "enum": VERDICTS},
-                       "reason": {"type": "string", "description": "A few words."}},
-        "required": ["verdict"],
+                       "reason": {"type": "string", "description": "Why, in a few words (kept for audit)."}},
+        "required": ["verdict", "reason"],
     },
 )
 
@@ -57,16 +57,18 @@ async def _intent(message: str, guardrails: Guardrails, llm: ModelHandle, ctx: R
             llm, ctx, agent="guardrails", step=1, system=f"{system}\n\n---\n\n{rules}" if rules else system,
             messages=[Message.user(f"<user_message>\n{message}\n</user_message>")], tools=[VERDICT_SPEC], max_tokens=300)
     except (LLMError, TimeoutError, asyncio.TimeoutError) as exc:
-        await log_check(ctx, "input_check", f"failed: {type(exc).__name__}", "error")
+        await log_decision(ctx, "input_check", "error", "model_check", f"check failed: {type(exc).__name__}")
         return Verdict(failed=True, reason=type(exc).__name__)
     call = next((c for c in result.tool_calls if c.name == VERDICT_TOOL), None)
     kind = str(call.input.get("verdict") or "") if call else _from_text(guardrails, result.text or "")
     if kind != "allow" and kind not in REFUSALS:
-        await log_check(ctx, "input_check", "failed: no verdict", "error")
+        await log_decision(ctx, "input_check", "error", "model_check", "the check returned no verdict")
         return Verdict(failed=True, reason="no verdict")
-    reason = str(call.input.get("reason") or "") if call else ""
-    await log_check(ctx, "input_check", f"{kind}: {reason}".rstrip(": "))
-    return Verdict(verdict=kind, reason=reason, message=refusal_message(guardrails, kind))
+    reason = str(call.input.get("reason") or "") if call else "the model replied with the fixed message"
+    message = refusal_message(guardrails, kind)
+    note = " (this rule is switched off)" if kind != "allow" and not message else ""
+    await log_decision(ctx, "input_check", "block" if message else "allow", kind, (reason or "no reason given") + note)
+    return Verdict(verdict=kind, reason=reason, message=message)
 
 
 async def _content(message: str, guardrails: Guardrails, ctx: RunContext) -> Verdict | None:
@@ -75,9 +77,10 @@ async def _content(message: str, guardrails: Guardrails, ctx: RunContext) -> Ver
     try:
         result = await guardrails.content_filter.apply(message, "INPUT")
     except ContentFilterError as exc:
-        await log_check(ctx, "content_filter_input", f"failed: {exc}", "error")
+        await log_decision(ctx, "content_filter_input", "error", "bedrock_guardrail", f"check failed: {exc}")
         return Verdict(failed=True, reason=f"content filter {exc}")
-    await log_check(ctx, "content_filter_input", "blocked" if result.blocked else "allow")
+    await log_decision(ctx, "content_filter_input", "block" if result.blocked else "allow", "bedrock_guardrail",
+                       ", ".join(result.categories) or ("intervened" if result.blocked else "nothing found"))
     if not result.blocked:
         return Verdict()
     return Verdict(verdict="harmful", message=result.text or refusal_message(guardrails, "harmful"))

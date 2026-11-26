@@ -6,8 +6,9 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 from ..access.rbac import UserAccess
+from ..guardrails.audit import log_decision
 from ..guardrails.output_checks.filters import Scrubber
-from ..runtime.tools import RunContext, Tool, ToolContext, ToolError
+from ..runtime.tools import GuardrailRefusal, RunContext, Tool, ToolContext, ToolError
 from .deps import DataDeps, access_of
 from .mcp_client import McpError, McpQueryError, McpTimeout
 from .sql_guard import GuardError, guard_sql
@@ -62,7 +63,7 @@ async def execute_guarded(sql: str, deps: DataDeps, access: UserAccess | None) -
     try:
         guarded = guard_sql(sql, deps.kb, access, s.sql_row_limit)
     except GuardError as exc:
-        raise ToolError(str(exc)) from exc
+        raise GuardrailRefusal(str(exc)) from exc
     try:
         qr = await deps.mcp.query(guarded.sql, timeout_s=s.sql_timeout_seconds)
     except McpQueryError as exc:
@@ -116,6 +117,13 @@ def register_result(run: RunContext, result: SqlResult) -> SqlResult:
     return result
 
 
+async def audit_query(run: RunContext, result: SqlResult) -> None:
+    """The data guardrails let this query through: record what it read and what was masked or removed."""
+    guarded = [n for n in result.notes if "masked" in n or "removed" in n]
+    await log_decision(run, "data_check", "change" if guarded else "allow", "data_access",
+                       " ".join([f"read-only query on {', '.join(result.tables) or 'no table'}.", *guarded]))
+
+
 def make_run_sql_tool(deps: DataDeps) -> Tool:
     from ..llm.types import ToolSpec
 
@@ -142,6 +150,7 @@ def make_run_sql_tool(deps: DataDeps) -> Tool:
         if not sql:
             raise ToolError("Provide the SQL to run in the 'sql' argument.")
         result = await execute_guarded(sql, deps, access_of(tctx))
+        await audit_query(tctx.run, result)
         return register_result(tctx.run, result)
 
     return Tool(spec=spec, handler=handler, counts_as_sql=True)

@@ -128,7 +128,10 @@ def event_row(event: TraceEvent, *, conversation_id: str, step_order: int) -> di
         output_payload = {k: payload.get(k) for k in ("stop_reason", "text", "tool_calls") if k in payload}
     else:
         input_payload = {"agent": event.agent, "step": event.step, "call_id": payload.get("call_id"), "input": payload.get("input")}
-        output_payload = {"output": payload.get("output")}
+        if event.agent == "guardrails" and "decision" in payload:  # the audit trail: queryable fields
+            output_payload = {k: payload.get(k) for k in ("decision", "rule", "reason")}
+        else:
+            output_payload = {"output": payload.get("output")}
     return {
         "event_id": event.event_id,
         "message_id": event.message_id,

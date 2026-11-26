@@ -7,7 +7,7 @@ import asyncio
 from typing import Any
 
 from ...runtime.tools import RunContext
-from ..audit import log_check
+from ..audit import log_decision
 from ..bedrock import ContentFilterError
 from ..loader import Guardrails
 from ..replies import COULD_NOT_ANSWER_TEXT, UNAVAILABLE_TEXT, refusal_message
@@ -21,13 +21,16 @@ def _norm(text: str) -> str:
 
 
 async def check_output(env: Any, guardrails: Guardrails, scrubber: Scrubber, ctx: RunContext) -> None:
+    if env.debug.mode == "declined":  # refused before any answer was written: the text is a fixed reply
+        await log_decision(ctx, "output_check", "allow", "fixed_reply", "refused earlier; only the fixed reply is shown")
+        return
     actions: list[str] = []
     answer = _norm(env.answer or "")
     for kind in ("confidential", "out_of_scope", "disallowed"):
         message = refusal_message(guardrails, kind)
         if message and _norm(message) in answer:
             _decline(env, message)
-            await log_check(ctx, "output_check", f"fixed reply: {kind}")
+            await log_decision(ctx, "output_check", "block", kind, "the answer contained the fixed refusal reply")
             return
 
     marker = guardrails.value("COULD_NOT_ANSWER_MARKER")
@@ -60,8 +63,8 @@ async def check_output(env: Any, guardrails: Guardrails, scrubber: Scrubber, ctx
             removed.add("table_value")
     if removed:
         actions.append("removed: " + ", ".join(sorted(removed)))
-    if actions:
-        await log_check(ctx, "output_check", "; ".join(actions))
+    await log_decision(ctx, "output_check", "change" if actions else "allow", "output_filters",
+                       "; ".join(actions) or "nothing removed")
     await _content(env, guardrails, ctx)
 
 
@@ -75,17 +78,21 @@ async def _content(env: Any, guardrails: Guardrails, ctx: RunContext) -> None:
     except ContentFilterError as exc:
         _decline(env, UNAVAILABLE_TEXT)
         env.status = "failed"
-        await log_check(ctx, "content_filter_output", f"failed: {exc}", "error")
+        await log_decision(ctx, "content_filter_output", "error", "bedrock_guardrail", f"check failed: {exc}")
         return
     blocked = next((r for r in results if r.blocked), None)
     if blocked is not None:
         _decline(env, blocked.text or refusal_message(guardrails, "harmful"))
-        await log_check(ctx, "content_filter_output", "blocked")
+        await log_decision(ctx, "content_filter_output", "block", "bedrock_guardrail",
+                           ", ".join(blocked.categories) or "intervened")
         return
     for name, result in zip(fields, results):
         if result.changed:
             setattr(env, name, result.text)
-    await log_check(ctx, "content_filter_output", "masked" if any(r.changed for r in results) else "allow")
+    changed = [c for r in results if r.changed for c in r.categories]
+    masked = any(r.changed for r in results)
+    await log_decision(ctx, "content_filter_output", "change" if masked else "allow", "bedrock_guardrail",
+                       ("masked: " + ", ".join(dict.fromkeys(changed))) if masked else "nothing found")
 
 
 def _decline(env: Any, message: str) -> None:

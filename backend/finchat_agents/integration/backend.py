@@ -23,6 +23,7 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
 from ..api.service import ChatService, Identity
+from ..guardrails.audit import log_request
 from .stream import stream_chat
 from .ui_contract import to_ui_body
 
@@ -73,6 +74,7 @@ def identity_from_user(user: dict[str, Any], agent_roles: Callable[[dict[str, An
     """Entra object id (oid, else sub) + the backend's resolved role labels."""
     user_id = str(user.get("oid") or user.get("sub") or "")
     if not user_id:
+        log_request("login", "block", "verified_login", "no user identity on the request")
         raise HTTPException(status_code=401, detail="No user identity on the request")
     roles = agent_roles(user) or []
     return Identity(user_id=user_id, groups=[str(r) for r in roles])

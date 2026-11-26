@@ -17,7 +17,7 @@ from typing import Any
 from ..access.rbac import UserAccess
 from ..knowledge.models import TablePage
 from ..llm.types import ToolSpec
-from ..runtime.tools import Tool, ToolContext, ToolError
+from ..runtime.tools import GuardrailRefusal, Tool, ToolContext, ToolError
 from .catalog import column_values, visible_table
 from .deps import DataDeps, access_of
 from .run_sql import execute_guarded
@@ -224,7 +224,7 @@ async def resolve_period(deps: DataDeps, access: UserAccess, text: str, table: s
     page = visible_table(deps, access, table)
     ptable = _period_table(deps, page)
     if not access.role.allows_domain(ptable.meta.domain):  # type: ignore[union-attr]
-        raise ToolError(f"Access denied: period labels live in {ptable.meta.fqn}, outside this user's domains.")
+        raise GuardrailRefusal(f"Access denied: period labels live in {ptable.meta.fqn}, outside this user's domains.")
     today = deps.today() if deps.today else dt.date.today()
     spec = parse_period(text, today)
     rows = await _period_rows(deps, access, ptable)
