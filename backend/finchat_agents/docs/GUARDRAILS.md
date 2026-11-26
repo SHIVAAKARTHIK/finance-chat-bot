@@ -58,7 +58,7 @@ model judges it; Prompt = an instruction to the model (weakest).
 | Setting | Default | Effect |
 |---|---|---|
 | `GUARDRAILS_ENABLED` | true | false turns off I2-I10, D5, O1, O2 marker, O4-O7 |
-| `GUARDRAILS_DIR` | guardrails_local | Company packs and values (not in the repository) |
+| `GUARDRAILS_DIR` | guardrails | Folder with `guardrail.yaml`, `packs/` (added by hand), `overrides/`, notes |
 | `BEDROCK_GUARDRAIL_ID`, `BEDROCK_GUARDRAIL_VERSION` | empty | Turn on I10 and O7 |
 | `ALLOW_REQUEST_IDENTITY` | false | true weakens A1: local testing only |
 

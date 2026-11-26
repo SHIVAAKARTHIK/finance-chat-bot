@@ -2,11 +2,14 @@
 replies, the optional Bedrock Guardrail and the attack-test runner. Fake models and a fake AWS client only."""
 from __future__ import annotations
 
+import shutil
+
 import pytest
+import yaml
 
 from finchat_agents.api.service import ChatService, Identity
-from finchat_agents.config import Settings
-from finchat_agents.guardrails import GuardrailError, load_from_settings
+from finchat_agents.config import PACKAGE_DIR, Settings
+from finchat_agents.guardrails import GuardrailError, Guardrails, load_from_settings
 from finchat_agents.guardrails.bedrock import BedrockContentFilter, ContentFilterError, parse_response
 from finchat_agents.guardrails.evaluate import DEFAULT_CASES, Case, load_cases, main as evaluate_main, report, run_cases
 from finchat_agents.guardrails.input_checks.redact import redact_question
@@ -188,3 +191,24 @@ def test_runner_refuses_to_run_without_run_live(monkeypatch, capsys):
     monkeypatch.setenv("RUN_LIVE", "0")
     assert evaluate_main([]) == 2 and "RUN_LIVE=1" in capsys.readouterr().out
     assert fake  # fake models only in this file
+
+
+# ---------------------------------------------------------------- the shipped folder
+
+
+def test_default_folder_is_the_guardrails_package():
+    settings = Settings(_env_file=None)
+    assert settings.resolve_path(settings.guardrails_dir) == PACKAGE_DIR / "guardrails"
+
+
+def test_shipped_overrides_and_notes_load_and_replace_company_packs(tmp_path):
+    root = make_folder(tmp_path / "g")  # made-up company packs
+    shutil.copytree(PACKAGE_DIR / "guardrails" / "overrides", root / "overrides")
+    shutil.copy(PACKAGE_DIR / "guardrails" / "application_notes.md", root)
+    config = yaml.safe_load((root / "guardrail.yaml").read_text(encoding="utf-8"))
+    config["lists"]["LIST_DISALLOWED_CAPABILITIES"] = ["Widget deletion"]
+    (root / "guardrail.yaml").write_text(yaml.safe_dump(config, allow_unicode=True), encoding="utf-8")
+    g = Guardrails.load(root)
+    rules = g.prompt_for("knowledge_agent")
+    assert "- Widget deletion" in rules and "General knowledge:" in rules and "GROUNDED original" not in rules
+    assert "NO-CAPS" not in rules and g.notes

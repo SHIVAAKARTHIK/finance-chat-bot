@@ -31,3 +31,5 @@ Thumbs.db
 
 # Company guardrail packs and values: never commit (public repository)
 guardrails_local/
+backend/finchat_agents/guardrails/packs/
+backend/finchat_agents/guardrails/guardrail*.yaml

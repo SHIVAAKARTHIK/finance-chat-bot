@@ -7,15 +7,15 @@ tests use made-up packs, so run the check command below on the laptop first.
 
 ## Setup on the laptop (needed before the app will start)
 
-Create `finchat_agents/guardrails_local/`:
+Since 2026-11-29 everything lives in `finchat_agents/guardrails/` (the default `GUARDRAILS_DIR`). Add the two company
+items; the rest comes with the code:
 
 | Path | Where it comes from |
 |---|---|
 | `guardrail.yaml` | Company guardrails repo: your project's yaml from `examples/`, copied and renamed |
 | `packs/` | Company guardrails repo, the whole `packs/` folder, unchanged |
-| `overrides/40_disallowed_capabilities.md` | Finance version, sent in chat (needs owner approval) |
-| `overrides/50_grounded_answering.md` | Finance version, sent in chat (needs owner approval) |
-| `application_notes.md` | Sent in chat (needs owner approval) |
+| `overrides/` | Comes with the code: finance versions of packs 40 and 50 (need owner approval) |
+| `application_notes.md` | Comes with the code (needs owner approval) |
 
 Then check it (no model or database calls):
 
@@ -30,7 +30,7 @@ It lists the loaded packs and which part of the assistant gets each one, or says
 | Setting | Default | Meaning |
 |---|---|---|
 | `GUARDRAILS_ENABLED` | true | false = no company guardrails (a warning is logged) |
-| `GUARDRAILS_DIR` | guardrails_local | Folder above; relative to the package, or a full path |
+| `GUARDRAILS_DIR` | guardrails | Folder above; relative to the package, or a full path |
 
 **With the default, a missing or incomplete folder stops the start.** If the backend calls `install_backend` in its
 own `main.py`, that error stops the whole backend, not only the chat routes.

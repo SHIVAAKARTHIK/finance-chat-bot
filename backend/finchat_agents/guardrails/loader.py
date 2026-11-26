@@ -1,6 +1,6 @@
 """Reads the guardrail folder and turns the enabled packs into prompt text.
 
-Folder layout (GUARDRAILS_DIR):
+Folder layout (GUARDRAILS_DIR, by default this `guardrails/` package folder):
     guardrail.yaml          project values: `packs`, `guardrails` (on/off), `values`, `lists`
     packs/<group>/*.md      the company packs, unchanged (YAML front matter + text with {PLACEHOLDERS})
     overrides/*.md          optional project versions; a file replaces the pack with the same `id`
@@ -102,8 +102,8 @@ class Guardrails:
         directory = Path(directory)
         config_path = directory / CONFIG_FILE
         if not config_path.is_file():
-            raise GuardrailError(f"guardrail config not found: {config_path}. Set up the guardrail folder "
-                                 "(docs/reports/guardrails_report.md) or set GUARDRAILS_ENABLED=false.")
+            raise GuardrailError(f"guardrail config not found: {config_path}. Add guardrail.yaml and packs/ "
+                                 "(guardrails/README.md) or set GUARDRAILS_ENABLED=false.")
         try:
             config = yaml.safe_load(config_path.read_text(encoding="utf-8-sig")) or {}
         except yaml.YAMLError as exc:
