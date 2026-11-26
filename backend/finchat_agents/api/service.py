@@ -12,6 +12,8 @@ from pydantic import BaseModel, Field
 
 from ..access.rbac import AccessConfig, Role, UserAccess
 from ..agents.orchestrator import AnswerEnvelope, ConversationContext, Orchestrator, Turn
+from ..guardrails.audit import log_check
+from ..guardrails.input_checks.redact import redact_question, redaction_notice
 from ..memory.context import select_recent, topic_label, topic_states
 from ..memory.summary import ConversationSummarizer, TurnRecord, fallback_seed, needs_summary, turns_from_rows
 from ..memory.user_memory import UserMemory, assumed_entity_notice, build_memory, memory_hint, memory_row
@@ -22,6 +24,7 @@ from ..storage.writer import BackgroundWriter
 from ..tracing.sinks import TraceSink
 from ..tools.resolve import prewarm_lookups
 from ..tracing.tracer import Tracer
+from ..runtime.tools import RunContext
 
 log = logging.getLogger(__name__)
 
@@ -179,6 +182,10 @@ class ChatService:
     ) -> AnswerEnvelope:
         if message.strip().lower() in CLEAR_COMMANDS:
             return await self._clear_command(identity, conversation_id)
+        removed: list[str] = []
+        if getattr(self.orchestrator, "guardrails", None) is not None:
+            # before anything else: the title, the stored question, the traces and the models get the redacted text
+            message, removed = redact_question(message)
         user = self.access.user_access(identity.user_id, identity.groups)
         context_started, t0 = utcnow(), time.monotonic()
         # The conversation reads and the user-memory read are independent: run them together.
@@ -211,12 +218,16 @@ class ChatService:
         await Tracer(sinks, message_id=message_id).emit(
             "tool_call", agent="chat_service", name="load_context", started_at=context_started, ended_at=context_ended,
             payload={"context_ms": round(context_ms, 1), "has_history": not loaded.is_new})
+        if removed:
+            audit = RunContext(tracer=Tracer(sinks, message_id=message_id))
+            await log_check(audit, "input_redaction", "removed: " + ", ".join(removed))
         env = await self.orchestrator.answer(message, user, loaded.context, conversation_id=conv_id, message_id=message_id,
                                              extra_sinks=sinks)
         env.debug.context_ms = round(context_ms, 1)
 
         assumed = assumed_entity_notice(mem, env.debug.filters.get("entities", []), message)
-        env.notices = [*loaded.notices, *([assumed] if assumed else []), *env.notices]
+        env.notices = [*([redaction_notice(removed)] if removed else []), *loaded.notices,
+                       *([assumed] if assumed else []), *env.notices]
         if self.question_limit > 0 and turn_index >= self.question_limit:
             env.notices.append(limit_reached_notice(self.question_limit))
 

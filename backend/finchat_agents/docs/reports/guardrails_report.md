@@ -68,7 +68,7 @@ The data guardrails from SPEC section 4 are unchanged.
 
 ## Files
 
-- New: `guardrails/` (`loader.py`, `filters.py`, `checks.py`, `check.py`), `agents/prompts/input_guard.md`,
+- Layout (2026-11-28): see `guardrails/__init__.py` and the index `docs/GUARDRAILS.md`. The earlier `filters.py` and\n  `checks.py` moved into `output_checks/` and `input_checks/`.\n- New: `guardrails/`, `agents/prompts/input_guard.md`,
   `tests/test_guardrails.py` (24 tests).
 - Changed: `config.py`, `.env.example` (also corrected to the memory defaults), `agents/orchestrator.py`,
   `agents/supervisor.py`, `api/app.py`, `api/router.py`, `api/service.py`, `tools/deps.py`, `tools/run_sql.py`,
@@ -76,7 +76,7 @@ The data guardrails from SPEC section 4 are unchanged.
 
 ## Tests
 
-`pytest finchat_agents/tests`: 406 passed, 30 skipped (live tests).
+`pytest finchat_agents/tests`: 433 passed, 30 skipped (live tests).
 
 ## Gaps outside the packs (fixed 2026-11-27)
 
@@ -105,3 +105,16 @@ Removing the data from the files does not remove it from earlier commits.
 | "Export that to Excel" | A file, as before |
 | "Delete last month's journals" | The disallowed reply |
 | "Show failed data pipeline runs" | A normal data answer, not a refusal |
+
+## AWS Bedrock Guardrail (optional, off by default)
+
+Ask the AWS team for a guardrail with content filters (hate, insults, sexual, violence, misconduct, prompt attack), its
+**ID** and **version**, and the `bedrock:ApplyGuardrail` permission for the identity the app uses. Then set
+`BEDROCK_GUARDRAIL_ID` and `BEDROCK_GUARDRAIL_VERSION`. It is called once per question and once or twice per answer
+(extra cost and some latency). If a call fails, nothing is processed or shown.
+
+## Attack tests (live)
+
+With `RUN_LIVE=1`: `python -m finchat_agents.guardrails.evaluate`. It runs `guardrails/evals/attacks.yaml` (blocked and
+must-not-block cases) through the input checks and lists every failure. Use `--cases` for your company's cases in the
+same format.

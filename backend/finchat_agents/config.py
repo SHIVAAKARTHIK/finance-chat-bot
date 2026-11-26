@@ -98,6 +98,9 @@ class Settings(BaseSettings):
     # With guardrails enabled the app does not start if the folder is missing or incomplete.
     guardrails_enabled: bool = True
     guardrails_dir: str = "guardrails_local"
+    # Optional AWS Bedrock Guardrail applied to questions and answers (created by the AWS team). Both or neither.
+    bedrock_guardrail_id: str | None = None
+    bedrock_guardrail_version: str | None = None
 
     # Access file (relative paths resolve against the package directory)
     rbac_file: str = "config/rbac.v3.yaml"

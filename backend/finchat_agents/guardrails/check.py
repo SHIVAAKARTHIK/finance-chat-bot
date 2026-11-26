@@ -13,13 +13,10 @@ from .loader import AUDIENCE, GuardrailError, Guardrails
 
 def main(argv: list[str] | None = None) -> int:
     args = sys.argv[1:] if argv is None else argv
-    if args:
-        folder = Path(args[0])
-    else:
-        from ..config import Settings
+    from ..config import Settings
 
-        settings = Settings()
-        folder = settings.resolve_path(settings.guardrails_dir)
+    settings = Settings()
+    folder = Path(args[0]) if args else settings.resolve_path(settings.guardrails_dir)
     try:
         guardrails = Guardrails.load(folder)
     except GuardrailError as exc:
@@ -31,6 +28,10 @@ def main(argv: list[str] | None = None) -> int:
     for audience in AUDIENCE:
         print(f"  {audience}: {', '.join(guardrails.packs_for(audience)) or '-'}")
     print("  application notes:", "yes" if guardrails.notes else "no")
+    if settings.bedrock_guardrail_id:
+        print("  Bedrock content filter: configured, version", settings.bedrock_guardrail_version or "MISSING")
+    else:
+        print("  Bedrock content filter: off (BEDROCK_GUARDRAIL_ID not set)")
     return 0
 
 

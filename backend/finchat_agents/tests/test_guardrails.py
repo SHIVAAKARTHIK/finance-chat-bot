@@ -14,8 +14,9 @@ from finchat_agents.api.service import ChatService
 from finchat_agents.config import Settings
 from finchat_agents.guardrails import GuardrailError, Guardrails, load_from_settings
 from finchat_agents.guardrails.check import main as check_main
-from finchat_agents.guardrails.checks import COULD_NOT_ANSWER_TEXT
-from finchat_agents.guardrails.filters import REMOVED, Scrubber
+from finchat_agents.guardrails.output_checks.filters import Scrubber
+from finchat_agents.guardrails.patterns import REMOVED
+from finchat_agents.guardrails.replies import COULD_NOT_ANSWER_TEXT
 from finchat_agents.knowledge.loader import Knowledge
 from finchat_agents.llm import fake
 from finchat_agents.llm.fake import FakeProvider

@@ -6,7 +6,7 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 from ..access.rbac import UserAccess
-from ..guardrails.filters import Scrubber
+from ..guardrails.output_checks.filters import Scrubber
 from ..runtime.tools import RunContext, Tool, ToolContext, ToolError
 from .deps import DataDeps, access_of
 from .mcp_client import McpError, McpQueryError, McpTimeout

@@ -19,6 +19,8 @@ from typing import Any
 import yaml
 from pydantic import BaseModel, Field
 
+from .bedrock import BedrockContentFilter
+
 log = logging.getLogger(__name__)
 
 CONFIG_FILE = "guardrail.yaml"
@@ -89,6 +91,7 @@ class Guardrails:
         self.values = {k: str(v).strip() for k, v in (values or {}).items() if v is not None}
         self.lists = {k: [str(i).strip() for i in v] for k, v in (lists or {}).items() if v}
         self.notes = notes.strip()
+        self.content_filter: Any = None  # optional Bedrock Guardrail (bedrock.BedrockContentFilter)
         self.packs = sorted(packs, key=lambda p: (p.order, p.id))
         self._rendered = {p.id: self._render(p) for p in self.packs}
 
@@ -191,5 +194,12 @@ def load_from_settings(settings: Any) -> Guardrails | None:
         log.warning("GUARDRAILS_ENABLED=false: company guardrails are NOT applied")
         return None
     guardrails = Guardrails.load(settings.resolve_path(settings.guardrails_dir))
-    log.info("guardrails loaded: %s", ", ".join(guardrails.ids))
+    if settings.bedrock_guardrail_id:
+        if not settings.bedrock_guardrail_version:
+            raise GuardrailError("BEDROCK_GUARDRAIL_ID is set: also set BEDROCK_GUARDRAIL_VERSION (a number, or DRAFT)")
+        guardrails.content_filter = BedrockContentFilter(
+            settings.aws_region, settings.bedrock_guardrail_id, settings.bedrock_guardrail_version,
+            profile=settings.aws_profile, credentials=settings.aws_credentials())
+    log.info("guardrails loaded: %s; Bedrock content filter: %s", ", ".join(guardrails.ids),
+             "on" if guardrails.content_filter else "off")
     return guardrails
