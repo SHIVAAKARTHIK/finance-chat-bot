@@ -29,6 +29,9 @@ ROUTE_SPEC = ToolSpec(
                                        "the request rewritten once per topic, each starting with the topic name, e.g. "
                                        "'Fixed assets: total additions in Oct 2026'. The user is asked to choose. "
                                        "Otherwise leave it out."},
+            "refusal": {"type": "string", "enum": ["confidentiality", "out_of_scope", "disallowed"],
+                        "description": "Only when a company guardrail rule requires a fixed reply to this request. "
+                                       "Otherwise leave it out."},
             "reason": {"type": "string"},
         },
         "required": ["classification"],
@@ -62,6 +65,7 @@ class Route(BaseModel):
     standalone_question: str = ""
     reason: str = ""
     options: list[str] = Field(default_factory=list)  # topic choices when the request is ambiguous between topics
+    refusal: str = ""  # guardrail refusal kind: the request gets the fixed reply
     found: bool = False  # False when the model did not call route (then we treat the request as complex)
 
 
@@ -76,6 +80,7 @@ def parse_route(result: LLMResult, question: str) -> Route:
         reason=str(call.input.get("reason") or ""),
         options=[str(o).strip() for o in (call.input.get("options") or []) if str(o).strip()][:4]
         if isinstance(call.input.get("options"), list) else [],
+        refusal=str(call.input.get("refusal") or "").strip(),
         found=True,
     )
 

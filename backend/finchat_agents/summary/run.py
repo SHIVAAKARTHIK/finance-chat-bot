@@ -18,6 +18,7 @@ from ..config import get_settings
 async def main_async(args: argparse.Namespace) -> int:
     from ..access.rbac import AccessConfig
     from ..agents.specialists import build_sql_agent
+    from ..guardrails import load_from_settings
     from ..knowledge.loader import Knowledge
     from ..llm.factory import response_model, sql_model
     from ..storage.aiops import build_store
@@ -30,7 +31,8 @@ async def main_async(args: argparse.Namespace) -> int:
     s = get_settings()
     cfg = load_config(s.resolve_path(s.summary_metrics_file))
     kb = Knowledge.load()
-    deps = DataDeps(kb=kb, mcp=build_mcp_client(s), settings=s, cache=TTLCache(s.column_values_cache_seconds))
+    deps = DataDeps(kb=kb, mcp=build_mcp_client(s), settings=s, cache=TTLCache(s.column_values_cache_seconds),
+                    guardrails=load_from_settings(s))
     access = AccessConfig.load(s.resolve_path(s.rbac_file)).service_access()
     if not access.has_access:
         print("The access file has no service_role; the summary agent cannot read data.", file=sys.stderr)

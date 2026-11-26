@@ -79,6 +79,11 @@ class ChatService:
         self.labels: dict[str, str] = dict(getattr(orchestrator.kb, "domains", {}) or {})  # domain -> business name
         self.summarizer = summarizer or ConversationSummarizer(orchestrator.response_llm, self.labels)
         self.context_timeout_s = context_timeout_s
+        guardrails = getattr(orchestrator, "guardrails", None)
+        if guardrails is not None and hasattr(self.summarizer, "system"):
+            rules = guardrails.prompt_for("summarizer")
+            if rules:
+                self.summarizer.system = f"{self.summarizer.system}\n\n---\n\n{rules}"
         settings = orchestrator.settings
         self.question_limit = settings.conversation_question_limit  # 0 = no limit
         self.summary_threshold = settings.summary_token_threshold

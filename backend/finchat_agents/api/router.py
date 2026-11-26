@@ -53,10 +53,12 @@ def _identity(req: ChatRequest, auth: Identity | None) -> Identity:
 
 
 class QueueSink:
-    """Trace sink feeding the SSE stream. Only a safe subset of each event is sent (no payloads, no SQL)."""
+    """Trace sink feeding the SSE stream. Only a safe subset of each event is sent (no payloads, no SQL). With
+    `hide_internals` (company guardrails: no pipeline details) agent and tool names are not sent either."""
 
-    def __init__(self) -> None:
+    def __init__(self, hide_internals: bool = False) -> None:
         self.queue: asyncio.Queue[dict[str, Any]] = asyncio.Queue()
+        self.hide_internals = hide_internals
 
     async def write(self, event: TraceEvent) -> None:
         if event.type in ("agent_start", "agent_end", "llm_call", "tool_call", "route", "answer"):
@@ -67,6 +69,8 @@ class QueueSink:
                 step["classification"] = event.payload.get("classification")
             if event.duration_ms is not None:
                 step["duration_ms"] = event.duration_ms
+            if self.hide_internals:
+                step = {k: v for k, v in step.items() if k in ("type", "status", "duration_ms")}
             await self.queue.put(step)
 
 
@@ -98,7 +102,7 @@ def create_router(service: ChatService, identity: IdentityProvider = body_identi
     @router.post("/chat/stream")
     async def chat_stream(req: ChatRequest, request: Request, auth: Identity | None = Depends(identity)) -> StreamingResponse:
         who = _identity(req, auth)
-        sink = QueueSink()
+        sink = QueueSink(hide_internals=getattr(service.orchestrator, "guardrails", None) is not None)
 
         async def events() -> AsyncIterator[str]:
             task = asyncio.create_task(service.chat(req.message, who, conversation_id=req.conversation_id, extra_sinks=[sink]))

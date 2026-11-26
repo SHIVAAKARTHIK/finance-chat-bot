@@ -28,3 +28,6 @@ finchat_v3_starter/data/table_catalog/catalog_summary.md
 Thumbs.db
 .vscode/
 .idea/
+
+# Company guardrail packs and values: never commit (public repository)
+guardrails_local/

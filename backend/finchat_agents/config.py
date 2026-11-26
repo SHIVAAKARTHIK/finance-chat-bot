@@ -90,6 +90,11 @@ class Settings(BaseSettings):
     # The rolling summary is rewritten when the turns not yet in it pass this many tokens.
     summary_token_threshold: int = 3000
 
+    # Company guardrails: pack text and project values are read from this folder (not part of the repository).
+    # With guardrails enabled the app does not start if the folder is missing or incomplete.
+    guardrails_enabled: bool = True
+    guardrails_dir: str = "guardrails_local"
+
     # Access file (relative paths resolve against the package directory)
     rbac_file: str = "config/rbac.v3.yaml"
 

@@ -41,6 +41,7 @@ class DataDeps:
     settings: Settings
     cache: TTLCache = field(default_factory=lambda: TTLCache(3600))
     today: Callable[[], Any] | None = None  # date provider for relative periods (tests inject one)
+    guardrails: Any = None  # guardrails.Guardrails, or None when switched off
 
 
 def access_of(tctx: ToolContext) -> UserAccess:

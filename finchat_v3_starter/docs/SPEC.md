@@ -86,6 +86,10 @@ Record per answer which mode ran (`fast` / `react` / `fast->react`) in the trace
    otherwise rewrite once, then add a caveat.
 7. Errors are returned to the agent as plain, fixable messages ("table X is not in the catalog; did you mean Y?").
 8. Audit: every LLM call and tool call is an event row in `finance_chat_message_events`.
+9. Company guardrails (2026-11-26): packs and values are read from `GUARDRAILS_DIR` (not in the repository); the app does not
+   start without them unless `GUARDRAILS_ENABLED=false`. Applied as prompt rules, an input check on the current message only,
+   and code checks on query results and answers. Decided: general finance knowledge, calculations and Excel/report files stay
+   (project versions of two packs, pending the guardrails owner's approval).
 
 ## 5. Knowledge layer
 

@@ -10,6 +10,8 @@ Flow (plain Python, no framework):
 """
 from __future__ import annotations
 
+import asyncio
+import contextlib
 import time
 import uuid
 from typing import Any, Literal
@@ -18,6 +20,8 @@ from pydantic import BaseModel, Field
 
 from ..access.rbac import UserAccess
 from ..config import Settings
+from ..guardrails.checks import Verdict, check_input, check_output, refusal_message
+from ..guardrails.filters import Scrubber
 from ..knowledge.loader import Knowledge
 from ..llm.types import LLMError, Message, ModelHandle
 from ..runtime.llm_call import traced_complete
@@ -33,6 +37,7 @@ from ..memory.filters import extract_filters
 from ..tools.actions import CONVERSATION_KEY, FILES_KEY, QUESTION_KEY, make_action_tools
 from .specialists import build_action_agent, build_analyst_agent
 from .specialists import KNOWLEDGE_KEY, build_catalog_agent, build_knowledge_agent, build_sql_agent, knowledge_tool
+from .specialists import load_prompt
 from .supervisor import PLAN_KEY, SupervisorDraft, build_supervisor, parse_route
 
 Mode = Literal["general", "fast", "react", "fast->react", "clarify", "declined", "failed"]
@@ -160,6 +165,20 @@ def answer_context(env: AnswerEnvelope, conversation: ConversationContext | None
                          periods=env.debug.filters.get("periods", [])[:5], other_topics=others[:5])
 
 
+async def _discard(task: "asyncio.Task[Any]") -> None:
+    task.cancel()
+    with contextlib.suppress(asyncio.CancelledError, Exception):
+        await task
+
+
+def _refuse(env: AnswerEnvelope, verdict: Verdict) -> None:
+    if verdict.failed:
+        env.status, env.debug.mode, env.debug.error = "failed", "failed", f"input check: {verdict.reason}"
+        env.answer = "The assistant is not available right now. Please try again in a moment."
+        return
+    env.status, env.debug.mode, env.answer = "declined", "declined", verdict.message
+
+
 def supervisor_input(message: str, conversation: ConversationContext | None) -> str:
     history = conversation.as_text() if conversation else ""
     if not history:
@@ -175,6 +194,7 @@ class Orchestrator:
         sql_llm: ModelHandle,
         response_llm: ModelHandle,
         sinks: list[TraceSink] | None = None,
+        guard_llm: ModelHandle | None = None,
     ):
         self.deps = deps
         self.kb: Knowledge = deps.kb
@@ -193,6 +213,16 @@ class Orchestrator:
             knowledge_tool(self.knowledge_agent), self.action_agent.as_tool(),
         ])
         self.writer = AnswerWriter(response_llm)
+        # company guardrails: rules added to the prompts, an input check and an output check
+        self.guardrails = deps.guardrails
+        self.guard_llm = guard_llm or sql_llm
+        if self.guardrails is not None:
+            self.scrubber = Scrubber(self.kb.tables)
+            self.guard_system = load_prompt("input_guard")
+            for agent in (self.supervisor, self.knowledge_agent, self.action_agent, self.writer.agent):
+                rules = self.guardrails.prompt_for(agent.name)
+                if rules:
+                    agent.system_prompt = f"{agent.system_prompt}\n\n---\n\n{rules}"
 
     async def answer(
         self,
@@ -220,6 +250,8 @@ class Orchestrator:
             env.status, env.answer = "failed", "Sorry, something went wrong while answering. Please try again."
             env.debug.mode, env.debug.error = "failed", f"{type(exc).__name__}: {str(exc)[:300]}"
             await tracer.emit("error", agent="orchestrator", status="error", payload={"error": env.debug.error})
+        if self.guardrails is not None:
+            await check_output(env, self.guardrails, self.scrubber, ctx)
         results = list(ctx.extras.get(RESULTS_KEY, {}).values())
         env.debug.sql = [r.sql for r in results]
         env.debug.tables_used = sorted({t for r in results for t in r.tables})
@@ -257,9 +289,22 @@ class Orchestrator:
         task = supervisor_input(message, conversation)
         sup = self.supervisor
         specs = [t.spec for t in sup.tools] + ([sup.finish_tool] if sup.finish_tool else [])
+        routing = asyncio.create_task(traced_complete(
+            self.sql_llm, ctx, agent="supervisor", step=1, system=sup.system_prompt, messages=[Message.user(task)],
+            tools=specs, max_tokens=sup.max_tokens))
         try:
-            first = await traced_complete(self.sql_llm, ctx, agent="supervisor", step=1, system=sup.system_prompt,
-                                          messages=[Message.user(task)], tools=specs, max_tokens=sup.max_tokens)
+            if self.guardrails is not None:
+                # runs alongside the routing call; nothing else (no tool, no data) happens before its verdict
+                try:
+                    verdict = await check_input(message, self.guardrails, self.guard_llm, ctx, self.guard_system)
+                except BaseException:
+                    await _discard(routing)
+                    raise
+                if verdict.blocked:
+                    await _discard(routing)
+                    _refuse(env, verdict)
+                    return
+            first = await routing
         except (LLMError, TimeoutError) as exc:
             env.status, env.debug.mode, env.debug.error = "failed", "failed", f"supervisor: {exc}"
             env.answer = "The assistant is not available right now. Please try again in a moment."
@@ -268,6 +313,12 @@ class Orchestrator:
         env.debug.classification, env.debug.standalone_question = route.classification, route.standalone_question
         await ctx.tracer.emit("route", agent="supervisor", step=1, payload=route.model_dump())
         question = route.standalone_question
+
+        if self.guardrails is not None and route.refusal:  # the scope check that sees the conversation
+            message_text = refusal_message(self.guardrails, route.refusal)
+            if message_text:
+                _refuse(env, Verdict(verdict=route.refusal, message=message_text))
+                return
 
         if len(route.options) >= 2:  # the request could belong to more than one earlier topic: let the user choose
             env.status, env.debug.mode = "clarification", "clarify"

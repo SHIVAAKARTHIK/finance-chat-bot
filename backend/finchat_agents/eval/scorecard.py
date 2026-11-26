@@ -134,13 +134,15 @@ def to_markdown(results: list[CaseResult], summary: dict[str, Any], title: str) 
 def build_live_orchestrator() -> tuple[Any, Any]:
     from ..access import Role, UserAccess
     from ..config import Settings
+    from ..guardrails import load_from_settings
     from ..knowledge.loader import Knowledge
     from ..llm.factory import response_model, sql_model
     from ..tools import DataDeps, TTLCache, build_mcp_client
     from ..agents.orchestrator import Orchestrator
 
     s = Settings()
-    deps = DataDeps(kb=Knowledge.load(), mcp=build_mcp_client(s), settings=s, cache=TTLCache(s.column_values_cache_seconds))
+    deps = DataDeps(kb=Knowledge.load(), mcp=build_mcp_client(s), settings=s, cache=TTLCache(s.column_values_cache_seconds),
+                    guardrails=load_from_settings(s))
     orch = Orchestrator(deps=deps, sql_llm=sql_model(s), response_llm=response_model(s))
     user = UserAccess(user_id="scorecard", role=Role(name="finance_all", domains=["*"], pii_allowed=False))
     return orch, user

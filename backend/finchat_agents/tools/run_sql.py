@@ -6,6 +6,7 @@ from typing import Any
 from pydantic import BaseModel, Field
 
 from ..access.rbac import UserAccess
+from ..guardrails.filters import Scrubber
 from ..runtime.tools import RunContext, Tool, ToolContext, ToolError
 from .deps import DataDeps, access_of
 from .mcp_client import McpError, McpQueryError, McpTimeout
@@ -79,6 +80,9 @@ async def execute_guarded(sql: str, deps: DataDeps, access: UserAccess | None) -
             if r[i] is not None:
                 r[i] = MASK
     notes: list[str] = []
+    # company content safety: contact details, credentials and storage paths never reach the model, tables or files
+    if deps.guardrails is not None and deps.guardrails.enabled("content_safety") and Scrubber().rows(columns, rows):
+        notes.append("Some contact details or internal values were removed from the results.")
     if masked_idx:
         notes.append(f"Personal data in {', '.join(columns[i] for i in masked_idx)} is masked for this user's role.")
     for page in guarded.tables:

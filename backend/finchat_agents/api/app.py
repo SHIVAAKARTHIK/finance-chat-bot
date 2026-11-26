@@ -18,6 +18,7 @@ from fastapi import FastAPI
 from ..access.rbac import AccessConfig
 from ..agents.orchestrator import Orchestrator
 from ..config import Settings, get_settings
+from ..guardrails import load_from_settings
 from ..knowledge.loader import Knowledge
 from ..llm.factory import response_model, sql_model
 from ..storage.aiops import build_store
@@ -32,7 +33,9 @@ log = logging.getLogger(__name__)
 
 def build_service(settings: Settings | None = None) -> ChatService:
     s = settings or get_settings()
-    deps = DataDeps(kb=Knowledge.load(), mcp=build_mcp_client(s), settings=s, cache=TTLCache(s.column_values_cache_seconds))
+    guardrails = load_from_settings(s)  # first: a missing or incomplete guardrail folder stops the start
+    deps = DataDeps(kb=Knowledge.load(), mcp=build_mcp_client(s), settings=s, cache=TTLCache(s.column_values_cache_seconds),
+                    guardrails=guardrails)
     sinks = [JsonlFileSink(s.resolve_path(s.trace_dir) / "events.jsonl")]
     orch = Orchestrator(deps=deps, sql_llm=sql_model(s), response_llm=response_model(s), sinks=sinks)
     store = build_store(s)
