@@ -31,7 +31,6 @@ known_issues:
     the user and deduplicate only if the answer says so.
 reviewed: true
 proposed_fields: []
-row_count: 301
 ---
 
 # dim_fixed_assets
@@ -115,186 +114,190 @@ Fixed asset master: one row per asset per company with asset name, asset group a
 ## Values
 
 **ACTIVITY_CODE**
-- `None`: 301 rows
+- `None`
 
 **AGENT**
-- `None`: 301 rows
+- `None`
 
 **ASSET_CONDITION_ID**
-- `None`: 301 rows
+- `None`
 
 **ASSET_LEASE_LEASE_ID**
-- `None`: 301 rows
+- `None`
 
 **ASSET_LOCATION_ID**
-- `HQ`: 297 rows
-- `None`: 4 rows
+- `HQ`
+- `None`
 
 **BAR_CODE**
-- `None`: 301 rows
+- `None`
 
 **COMMENTS**
-- `None`: 301 rows
+- `None`
 
 **DEPARTMENT_OPERATING_UNIT_NUMBER**
-- `None`: 301 rows
+- `None`
 
 **DEPARTMENT_SEARCH_NAME**
-- `None`: 301 rows
+- `None`
 
 **DISPOSAL_RESTRICTIONS**
-- `None`: 301 rows
+- `None`
 
 **DOCUMENT_LOCATION**
-- `None`: 301 rows
+- `None`
 
 **FIXED_ASSET_GROUP_ID**
-- `SOFTWARE`: 50 rows
-- `BUILDINGS`: 50 rows
-- `COMPUTER`: 50 rows
-- `LHI`: 50 rows
-- `AUTO`: 50 rows
-- `FURNITURE`: 50 rows
-- `None`: 1 rows
+- `SOFTWARE`
+- `BUILDINGS`
+- `COMPUTER`
+- `LHI`
+- `AUTO`
+- `FURNITURE`
+- `None`
 
 **GIS_REFERENCE_NUMBER**
-- `None`: 301 rows
+- `None`
 
 **GUARANTEE_DATE**
-- `1900-01-01 12:00:00.0000000 +00:00`: 301 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **INFORMATION_1**
-- `None`: 301 rows
+- `None`
 
 **INFORMATION_2**
-- `None`: 301 rows
+- `None`
 
 **INFORMATION_3**
-- `None`: 301 rows
+- `None`
 
 **INSURANCE_DATE_1**
-- `1900-01-01 12:00:00.0000000 +00:00`: 301 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **INSURANCE_DATE_2**
-- `1900-01-01 12:00:00.0000000 +00:00`: 301 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **INSURANCE_VENDOR**
-- `None`: 301 rows
+- `None`
 
 **INSURED_AT_FAIR_MARKET_VALUE**
-- `No`: 301 rows
+- `No`
 
 **INSURED_VALUE**
-- `0`: 301 rows
+- `0`
 
 **LAST_MAINTENANCE**
-- `1900-01-01 12:00:00.0000000 +00:00`: 301 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **LAST_PERIODIC_VALUE_COST_UPDATE**
-- `1900-01-01 12:00:00.0000000 +00:00`: 301 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **LEASE_NOTE**
-- `None`: 301 rows
+- `None`
 
 **LOCATION_MEMO**
-- `None`: 301 rows
+- `None`
 
 **MAIN_ASSET_ID**
-- `None`: 301 rows
+- `None`
 
 **MAJOR_TYPE_ID**
-- `None`: 301 rows
+- `None`
 
 **MAKE**
-- `None`: 301 rows
+- `None`
 
 **MISSING_ASSET**
-- `No`: 301 rows
+- `No`
 
 **MODEL**
-- `None`: 301 rows
+- `None`
 
 **MODEL_YEAR**
-- `None`: 301 rows
+- `None`
 
 **NEXT_MAINTENANCE**
-- `1900-01-01 12:00:00.0000000 +00:00`: 301 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **PARCEL_ID**
-- `None`: 301 rows
+- `None`
 
 **PHYSICAL_INVENTORY**
-- `1900-01-01 12:00:00.0000000 +00:00`: 301 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **POLICY_AMOUNT**
-- `0`: 301 rows
+- `0`
 
 **POLICY_EXPIRATION_DATE**
-- `1900-01-01 12:00:00.0000000 +00:00`: 301 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **POLICY_NUMBER**
-- `None`: 301 rows
+- `None`
 
 **PROPERTY_GROUP_ID**
-- `None`: 301 rows
+- `None`
 
 **PROPERTY_TYPE**
-- `FixedAsset`: 301 rows
+- `FixedAsset`
 
 **QUANTITY**
-- `0`: 295 rows
-- `1`: 6 rows
+- `0`
+- `1`
 
 **REFERENCE**
-- `None`: 301 rows
+- `None`
 
 **REPLACEMENT_COST**
-- `0`: 301 rows
+- `0`
 
 **ROOM_NUMBER**
-- `None`: 301 rows
+- `None`
 
 **SERIAL_NUMBER**
-- `None`: 301 rows
+- `None`
 
 **SORT_FIELD_1_ID**
-- `None`: 301 rows
+- `None`
 
 **SORT_FIELD_2_ID**
-- `None`: 301 rows
+- `None`
 
 **SORT_FIELD_3_ID**
-- `None`: 301 rows
+- `None`
 
 **TECHNICAL_INFORMATION_1**
-- `None`: 301 rows
+- `None`
 
 **TECHNICAL_INFORMATION_2**
-- `None`: 301 rows
+- `None`
 
 **TECHNICAL_INFORMATION_3**
-- `None`: 301 rows
+- `None`
 
 **TITLE_HOLDER**
-- `None`: 301 rows
+- `None`
 
 **ASSET_TYPE**
-- `Tangible`: 301 rows
+- `Tangible`
 
 **UNIT_COST**
-- `0`: 301 rows
+- `0`
 
 **UNIT_OF_MEASURE**
-- `None`: 301 rows
+- `None`
 
 **SOURCE_FILE_NAME**
-- `fixedassetsv2__20261116_105417.csv`: 301 rows
+- `fixedassetsv2__20261116_105417.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 11:42:01.917258+00:00`: 301 rows
+- `2026-11-16 11:42:01.917258+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 11:42:01.917258+00:00`: 301 rows
+- `2026-11-16 11:42:01.917258+00:00`
+
+## Empty columns
+
+Empty in every row: `ACTIVITY_CODE`, `AGENT`, `ASSET_CONDITION_ID`, `ASSET_LEASE_LEASE_ID`, `BAR_CODE`, `COMMENTS`, `CONTACT_NAME`, `CONTACT_PERSONNEL_NUMBER`, `DEPARTMENT_OPERATING_UNIT_NUMBER`, `DEPARTMENT_SEARCH_NAME`, `DISPOSAL_RESTRICTIONS`, `DOCUMENT_LOCATION`, `GIS_REFERENCE_NUMBER`, `INFORMATION_1`, `INFORMATION_2`, `INFORMATION_3`, `INSURANCE_VENDOR`, `LEASE_NOTE`, `LOCATION_MEMO`, `MAIN_ASSET_ID`, `MAJOR_TYPE_ID`, `MAKE`, `MODEL`, `MODEL_YEAR`, `PARCEL_ID`, `POLICY_NUMBER`, `PROPERTY_GROUP_ID`, `REFERENCE`, `RESPONSIBLE_NAME`, `RESPONSIBLE_PERSONNEL_NUMBER`, `ROOM_NUMBER`, `SERIAL_NUMBER`, `SORT_FIELD_1_ID`, `SORT_FIELD_2_ID`, `SORT_FIELD_3_ID`, `TECHNICAL_INFORMATION_1`, `TECHNICAL_INFORMATION_2`, `TECHNICAL_INFORMATION_3`, `TITLE_HOLDER`, `UNIT_OF_MEASURE`. Do not filter or group on them.
 
 ## Joins (approved, use the full key)
 
@@ -302,89 +305,3 @@ Fixed asset master: one row per asset per company with asset name, asset group a
 |---|---|---|
 | `asset_book_to_asset` | `dim_fixed_asset_books` | many-to-one (from the book) |
 | `asset_transaction_to_asset` | `fact_asset_master_transactions` | many-to-one (from the transaction) |
-
-## Profile
-
-Rows in the latest export: 301.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `DATA_AREA_ID` | STRING | 2 | 0 |  |  |
-| `FIXED_ASSET_NUMBER` | STRING | 300 | 0 | AUT000024 | SOFT-000050 |
-| `ACTIVITY_CODE` | STRING | 0 | 301 |  |  |
-| `AGENT` | STRING | 0 | 301 |  |  |
-| `ASSET_CONDITION_ID` | STRING | 0 | 301 |  |  |
-| `ASSET_LEASE_LEASE_ID` | STRING | 0 | 301 |  |  |
-| `ASSET_LOCATION_ID` | STRING | 1 | 4 | HQ | HQ |
-| `BAR_CODE` | STRING | 0 | 301 |  |  |
-| `COMMENTS` | STRING | 0 | 301 |  |  |
-| `CONTACT_NAME` | STRING | 0 | 301 |  |  |
-| `CONTACT_PERSONNEL_NUMBER` | STRING | 0 | 301 |  |  |
-| `DEPARTMENT_OPERATING_UNIT_NUMBER` | STRING | 0 | 301 |  |  |
-| `DEPARTMENT_SEARCH_NAME` | STRING | 0 | 301 |  |  |
-| `DISPOSAL_RESTRICTIONS` | STRING | 0 | 301 |  |  |
-| `DOCUMENT_LOCATION` | STRING | 0 | 301 |  |  |
-| `FIXED_ASSET_GROUP_ID` | STRING | 6 | 1 | AUTO | SOFTWARE |
-| `GIS_REFERENCE_NUMBER` | STRING | 0 | 301 |  |  |
-| `GUARANTEE_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `INFORMATION_1` | STRING | 0 | 301 |  |  |
-| `INFORMATION_2` | STRING | 0 | 301 |  |  |
-| `INFORMATION_3` | STRING | 0 | 301 |  |  |
-| `INSURANCE_DATE_1` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `INSURANCE_DATE_2` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `INSURANCE_VENDOR` | STRING | 0 | 301 |  |  |
-| `INSURED_AT_FAIR_MARKET_VALUE` | STRING | 1 | 0 | No | No |
-| `INSURED_VALUE` | STRING | 1 | 0 | 0 | 0 |
-| `LAST_MAINTENANCE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `LAST_PERIODIC_VALUE_COST_UPDATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `LEASE_NOTE` | STRING | 0 | 301 |  |  |
-| `LOCATION_MEMO` | STRING | 0 | 301 |  |  |
-| `MAIN_ASSET_ID` | STRING | 0 | 301 |  |  |
-| `MAJOR_TYPE_ID` | STRING | 0 | 301 |  |  |
-| `MAKE` | STRING | 0 | 301 |  |  |
-| `MISSING_ASSET` | STRING | 1 | 0 | No | No |
-| `MODEL` | STRING | 0 | 301 |  |  |
-| `MODEL_YEAR` | STRING | 0 | 301 |  |  |
-| `ASSET_NAME` | STRING | 315 | 1 | Accounts Payable Automation Suite | Workflow Automation Suite |
-| `NEXT_MAINTENANCE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `PARCEL_ID` | STRING | 0 | 301 |  |  |
-| `PHYSICAL_INVENTORY` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `POLICY_AMOUNT` | STRING | 1 | 0 | 0 | 0 |
-| `POLICY_EXPIRATION_DATE` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `POLICY_NUMBER` | STRING | 0 | 301 |  |  |
-| `PROPERTY_GROUP_ID` | STRING | 0 | 301 |  |  |
-| `PROPERTY_TYPE` | STRING | 1 | 0 | FixedAsset | FixedAsset |
-| `QUANTITY` | STRING | 2 | 0 | 0 | 1 |
-| `REFERENCE` | STRING | 0 | 301 |  |  |
-| `REPLACEMENT_COST` | STRING | 1 | 0 | 0 | 0 |
-| `RESPONSIBLE_NAME` | STRING | 0 | 301 |  |  |
-| `RESPONSIBLE_PERSONNEL_NUMBER` | STRING | 0 | 301 |  |  |
-| `ROOM_NUMBER` | STRING | 0 | 301 |  |  |
-| `SEARCH_NAME` | STRING | 293 | 1 | ACCOUNTS_PAYABLE_AUT | WORKFLOW_AUTOMATION_ |
-| `SERIAL_NUMBER` | STRING | 0 | 301 |  |  |
-| `SORT_FIELD_1_ID` | STRING | 0 | 301 |  |  |
-| `SORT_FIELD_2_ID` | STRING | 0 | 301 |  |  |
-| `SORT_FIELD_3_ID` | STRING | 0 | 301 |  |  |
-| `TECHNICAL_INFORMATION_1` | STRING | 0 | 301 |  |  |
-| `TECHNICAL_INFORMATION_2` | STRING | 0 | 301 |  |  |
-| `TECHNICAL_INFORMATION_3` | STRING | 0 | 301 |  |  |
-| `TITLE_HOLDER` | STRING | 0 | 301 |  |  |
-| `ASSET_TYPE` | STRING | 1 | 0 | Tangible | Tangible |
-| `UNIT_COST` | STRING | 1 | 0 | 0 | 0 |
-| `UNIT_OF_MEASURE` | STRING | 0 | 301 |  |  |
-| `SOURCE_FILE_NAME` | STRING | 1 | 0 | fixedassetsv2__20261116_105417.csv | fixedassetsv2__20261116_105417.csv |
-| `HASH_KEY` | STRING | 296 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:42:01.917000 | 2026-11-16 11:42:01.917000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:42:01.917000 | 2026-11-16 11:42:01.917000 |
-
-## Sample rows
-
-| FIXED_ASSET_NUMBER | ACTIVITY_CODE | AGENT | ASSET_CONDITION_ID | ASSET_LEASE_LEASE_ID | ASSET_LOCATION_ID | BAR_CODE | COMMENTS | CONTACT_NAME | CONTACT_PERSONNEL_NUMBER | DEPARTMENT_OPERATING_UNIT_NUMBER | DEPARTMENT_SEARCH_NAME | DISPOSAL_RESTRICTIONS | DOCUMENT_LOCATION | FIXED_ASSET_GROUP_ID | GIS_REFERENCE_NUMBER | GUARANTEE_DATE | INFORMATION_1 | INFORMATION_2 | INFORMATION_3 | INSURANCE_DATE_1 | INSURANCE_DATE_2 | INSURANCE_VENDOR | INSURED_AT_FAIR_MARKET_VALUE | INSURED_VALUE | LAST_MAINTENANCE | LAST_PERIODIC_VALUE_COST_UPDATE | LEASE_NOTE | LOCATION_MEMO | MAIN_ASSET_ID | MAJOR_TYPE_ID | MAKE | MISSING_ASSET | MODEL | MODEL_YEAR | ASSET_NAME | NEXT_MAINTENANCE | PARCEL_ID | PHYSICAL_INVENTORY | POLICY_AMOUNT | POLICY_EXPIRATION_DATE | POLICY_NUMBER | PROPERTY_GROUP_ID | PROPERTY_TYPE | QUANTITY | REFERENCE | REPLACEMENT_COST | RESPONSIBLE_NAME | RESPONSIBLE_PERSONNEL_NUMBER | ROOM_NUMBER | SEARCH_NAME | SERIAL_NUMBER | SORT_FIELD_1_ID | SORT_FIELD_2_ID | SORT_FIELD_3_ID | TECHNICAL_INFORMATION_1 | TECHNICAL_INFORMATION_2 | TECHNICAL_INFORMATION_3 | TITLE_HOLDER | ASSET_TYPE | UNIT_COST | UNIT_OF_MEASURE | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| BUILD-000039 | NULL | NULL | NULL | NULL | HQ | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | BUILDINGS | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | Phoenix Training Academy Building | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | FixedAsset | 0 | NULL | 0 | <masked> | NULL | NULL | PHOENIX_TRAINING_ACA | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Tangible | 0 | NULL | fixedassetsv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:01.917000 | <masked> | 2026-11-16 11:42:01.917000 |
-| BUILD-000040 | NULL | NULL | NULL | NULL | HQ | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | BUILDINGS | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | Phoenix Records Storage Facility | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | FixedAsset | 0 | NULL | 0 | <masked> | NULL | NULL | PHOENIX_RECORDS_STOR | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Tangible | 0 | NULL | fixedassetsv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:01.917000 | <masked> | 2026-11-16 11:42:01.917000 |
-| BUILD-000041 | NULL | NULL | NULL | NULL | HQ | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | BUILDINGS | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | Los Angeles Corporate Office Building | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | FixedAsset | 0 | NULL | 0 | <masked> | NULL | NULL | LOS_ANGELES_CORPORAT | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Tangible | 0 | NULL | fixedassetsv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:01.917000 | <masked> | 2026-11-16 11:42:01.917000 |
-| BUILD-000042 | NULL | NULL | NULL | NULL | HQ | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | BUILDINGS | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | Los Angeles Claims Operations Center | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | FixedAsset | 0 | NULL | 0 | <masked> | NULL | NULL | LOS_ANGELES_CLAIMS_O | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Tangible | 0 | NULL | fixedassetsv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:01.917000 | <masked> | 2026-11-16 11:42:01.917000 |
-| BUILD-000043 | NULL | NULL | NULL | NULL | HQ | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | BUILDINGS | NULL | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | No | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | Los Angeles Regional Administration B... | 1900-01-01 12:00:00.0000000 +00:00 | NULL | 1900-01-01 12:00:00.0000000 +00:00 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | FixedAsset | 0 | NULL | 0 | <masked> | NULL | NULL | LOS_ANGELES_REGIONAL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | Tangible | 0 | NULL | fixedassetsv2__20261116_105417.csv | <masked> | 2026-11-16 11:42:01.917000 | <masked> | 2026-11-16 11:42:01.917000 |

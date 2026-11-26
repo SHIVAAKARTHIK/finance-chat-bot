@@ -35,7 +35,6 @@ synonyms: []
 built_from:
 - adra_account_facts (likely)
 known_issues: []
-row_count: 1
 proposed_fields:
 - grain
 - primary_key
@@ -123,206 +122,131 @@ superseded_by:
 ## Values
 
 **AccountStatus**
-- `Not prepared`: 1 rows
+- `Not prepared`
 
 **AccountStatusReason**
-- `None`: 1 rows
+- `None`
 
 **IsFinalized**
-- `False`: 1 rows
+- `False`
 
 **IsCarriedForward**
-- `False`: 1 rows
+- `False`
 
 **BalancerAccountUrl**
-- `https://balancer.adra.com/engagements/y2WelBZytUyYQEvBOKGSGw/accountperiods/16481111`: 1 rows
+- `https://balancer.adra.com/engagements/y2WelBZytUyYQEvBOKGSGw/accountperiods/16481111`
 
 **AccountCreatedInPeriod**
-- `2026-10-18 09:40:39.816853+00:00`: 1 rows
+- `2026-10-18 09:40:39.816853+00:00`
 
 **NoOfDocuments**
-- `0`: 1 rows
+- `0`
 
 **NoOfPreparers**
-- `1`: 1 rows
+- `1`
 
 **NoOfApprovers**
-- `1`: 1 rows
+- `1`
 
 **NoOfReviewers**
-- `1`: 1 rows
+- `1`
 
 **Balance**
-- `30890`: 1 rows
+- `30890`
 
 **BalanceAbs**
-- `30890`: 1 rows
+- `30890`
 
 **UnidentifiedBalance**
-- `0`: 1 rows
+- `0`
 
 **UnIdentifiedBalanceAbs**
-- `0`: 1 rows
+- `0`
 
 **BalanceEngagement**
-- `30890`: 1 rows
+- `30890`
 
 **BalanceEngagementAbs**
-- `30890`: 1 rows
+- `30890`
 
 **UnidentifiedBalanceEngagement**
-- `0`: 1 rows
+- `0`
 
 **UnIdentifiedBalanceEngagementAbs**
-- `0`: 1 rows
+- `0`
 
 **StatusComment**
-- `Account Period Created`: 1 rows
+- `Account Period Created`
 
 **AccountPurpose**
-- `None`: 1 rows
+- `None`
 
 **AccountProcedure**
-- `None`: 1 rows
+- `None`
 
 **ExtraField01**
-- `None`: 1 rows
+- `None`
 
 **ExtraField02**
-- `None`: 1 rows
+- `None`
 
 **ExtraField03**
-- `None`: 1 rows
+- `None`
 
 **ExtraField04**
-- `None`: 1 rows
+- `None`
 
 **ExtraField05**
-- `None`: 1 rows
+- `None`
 
 **ExtraField06**
-- `None`: 1 rows
+- `None`
 
 **ExtraField07**
-- `None`: 1 rows
+- `None`
 
 **ExtraField08**
-- `None`: 1 rows
+- `None`
 
 **ExtraField09**
-- `None`: 1 rows
+- `None`
 
 **ExtraField10**
-- `None`: 1 rows
+- `None`
 
 **NoOfRejects**
-- `0`: 1 rows
+- `0`
 
 **PreparedDate**
-- `None`: 1 rows
+- `None`
 
 **ApprovedDate**
-- `None`: 1 rows
+- `None`
 
 **ReviewedDate**
-- `None`: 1 rows
+- `None`
 
 **RejectedDate**
-- `None`: 1 rows
+- `None`
 
 **BalanceUpdatedDate**
-- `2026-10-18 09:40:48.373333+00:00`: 1 rows
+- `2026-10-18 09:40:48.373333+00:00`
 
 **AccountStatusComments**
-- `None`: 1 rows
+- `None`
 
 **AccountStatusReasonText**
-- `None`: 1 rows
+- `None`
 
 **ReviewComment**
-- `None`: 1 rows
+- `None`
 
 **MDP_CREATED_DATE**
-- `2026-10-23 10:52:15.044854+00:00`: 1 rows
+- `2026-10-23 10:52:15.044854+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-10-23 10:52:15.044854+00:00`: 1 rows
+- `2026-10-23 10:52:15.044854+00:00`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 1.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `Account_Key` | LONG | 1 | 0 |  |  |
-| `Engagement_Key` | INT | 1 | 0 |  |  |
-| `LegalEntity_Key` | INT | 1 | 0 |  |  |
-| `Period_Key` | LONG | 1 | 0 |  |  |
-| `FiscalYearPeriod_Key` | INT | 1 | 0 |  |  |
-| `PreparerUsername` | STRING | 1 | 0 |  |  |
-| `PreparerName` | STRING | 1 | 0 |  |  |
-| `ApproverUsername` | STRING | 1 | 0 |  |  |
-| `ApproverName` | STRING | 1 | 0 |  |  |
-| `ReviewerUsername` | STRING | 1 | 0 |  |  |
-| `ReviewerName` | STRING | 1 | 0 |  |  |
-| `AssignedToUsername` | STRING | 1 | 0 |  |  |
-| `AssignedToName` | STRING | 1 | 0 |  |  |
-| `AccountStatus` | STRING | 1 | 0 | Not prepared | Not prepared |
-| `AccountStatusReason` | STRING | 1 | 0 | None | None |
-| `IsFinalized` | BOOLEAN | 1 | 0 | False | False |
-| `IsCarriedForward` | BOOLEAN | 1 | 0 | False | False |
-| `BalancerAccountUrl` | STRING | 1 | 0 | https://balancer.adra.com/engagements... | https://balancer.adra.com/engagements... |
-| `AccountCreatedInPeriod` | TIMESTAMP | 1 | 0 | 2026-10-18 09:40:39.817000 | 2026-10-18 09:40:39.817000 |
-| `NoOfDocuments` | INT | 1 | 0 | 0 | 0 |
-| `NoOfPreparers` | INT | 1 | 0 | 1 | 1 |
-| `NoOfApprovers` | INT | 1 | 0 | 1 | 1 |
-| `NoOfReviewers` | INT | 1 | 0 | 1 | 1 |
-| `Balance` | DECIMAL | 1 | 0 | 30890 | 30890 |
-| `BalanceAbs` | DECIMAL | 1 | 0 | 30890 | 30890 |
-| `UnidentifiedBalance` | DECIMAL | 1 | 0 | 0 | 0 |
-| `UnIdentifiedBalanceAbs` | DECIMAL | 1 | 0 | 0 | 0 |
-| `BalanceEngagement` | DECIMAL | 1 | 0 | 30890 | 30890 |
-| `BalanceEngagementAbs` | DECIMAL | 1 | 0 | 30890 | 30890 |
-| `UnidentifiedBalanceEngagement` | DECIMAL | 1 | 0 | 0 | 0 |
-| `UnIdentifiedBalanceEngagementAbs` | DECIMAL | 1 | 0 | 0 | 0 |
-| `StatusComment` | STRING | 1 | 0 | Account Period Created | Account Period Created |
-| `AccountPurpose` | STRING | 0 | 1 |  |  |
-| `AccountProcedure` | STRING | 0 | 1 |  |  |
-| `ExtraField01` | STRING | 0 | 1 |  |  |
-| `ExtraField02` | STRING | 0 | 1 |  |  |
-| `ExtraField03` | STRING | 0 | 1 |  |  |
-| `ExtraField04` | STRING | 0 | 1 |  |  |
-| `ExtraField05` | STRING | 0 | 1 |  |  |
-| `ExtraField06` | STRING | 0 | 1 |  |  |
-| `ExtraField07` | STRING | 0 | 1 |  |  |
-| `ExtraField08` | STRING | 0 | 1 |  |  |
-| `ExtraField09` | STRING | 0 | 1 |  |  |
-| `ExtraField10` | STRING | 0 | 1 |  |  |
-| `NoOfRejects` | INT | 1 | 0 | 0 | 0 |
-| `AccountPeriodComment_Key` | LONG | 1 | 0 |  |  |
-| `AccountPeriodTransaction_Key` | LONG | 1 | 0 |  |  |
-| `PreparedByName` | STRING | 0 | 1 |  |  |
-| `PreparedByUsername` | STRING | 0 | 1 |  |  |
-| `ApprovedByName` | STRING | 0 | 1 |  |  |
-| `ApprovedByUsername` | STRING | 0 | 1 |  |  |
-| `ReviewedByName` | STRING | 0 | 1 |  |  |
-| `ReviewedByUsername` | STRING | 0 | 1 |  |  |
-| `PreparedDate` | TIMESTAMP | 0 | 1 |  |  |
-| `ApprovedDate` | TIMESTAMP | 0 | 1 |  |  |
-| `ReviewedDate` | TIMESTAMP | 0 | 1 |  |  |
-| `RejectedDate` | TIMESTAMP | 0 | 1 |  |  |
-| `BalanceUpdatedDate` | TIMESTAMP | 1 | 0 | 2026-10-18 09:40:48.373000 | 2026-10-18 09:40:48.373000 |
-| `AccountStatusComments` | STRING | 0 | 1 |  |  |
-| `AccountStatusReasonText` | STRING | 0 | 1 |  |  |
-| `ReviewComment` | STRING | 0 | 1 |  |  |
-| `HASH_KEY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-10-23 10:52:15.045000 | 2026-10-23 10:52:15.045000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-10-23 10:52:15.045000 | 2026-10-23 10:52:15.045000 |
-
-## Sample rows
-
-| PreparerUsername | PreparerName | ApproverUsername | ApproverName | ReviewerUsername | ReviewerName | AssignedToUsername | AssignedToName | AccountStatus | AccountStatusReason | IsFinalized | IsCarriedForward | BalancerAccountUrl | AccountCreatedInPeriod | NoOfDocuments | NoOfPreparers | NoOfApprovers | NoOfReviewers | Balance | BalanceAbs | UnidentifiedBalance | UnIdentifiedBalanceAbs | BalanceEngagement | BalanceEngagementAbs | UnidentifiedBalanceEngagement | UnIdentifiedBalanceEngagementAbs | StatusComment | AccountPurpose | AccountProcedure | ExtraField01 | ExtraField02 | ExtraField03 | ExtraField04 | ExtraField05 | ExtraField06 | ExtraField07 | ExtraField08 | ExtraField09 | ExtraField10 | NoOfRejects | PreparedByName | PreparedByUsername | ApprovedByName | ApprovedByUsername | ReviewedByName | ReviewedByUsername | PreparedDate | ApprovedDate | ReviewedDate | RejectedDate | BalanceUpdatedDate | AccountStatusComments | AccountStatusReasonText | ReviewComment | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | Not prepared | None | False | False | https://balancer.adra.com/engagements... | 2026-10-18 09:40:39.817000 | 0 | 1 | 1 | 1 | 30890 | 30890 | 0 | 0 | 30890 | 30890 | 0 | 0 | Account Period Created | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 0 | NULL | <masked> | NULL | <masked> | NULL | <masked> | NULL | NULL | NULL | NULL | 2026-10-18 09:40:48.373000 | NULL | NULL | NULL | <masked> | 2026-10-23 10:52:15.045000 | <masked> | 2026-10-23 10:52:15.045000 |
+Empty in every row: `AccountPurpose`, `AccountProcedure`, `ExtraField01`, `ExtraField02`, `ExtraField03`, `ExtraField04`, `ExtraField05`, `ExtraField06`, `ExtraField07`, `ExtraField08`, `ExtraField09`, `ExtraField10`, `PreparedByName`, `PreparedByUsername`, `ApprovedByName`, `ApprovedByUsername`, `ReviewedByName`, `ReviewedByUsername`, `PreparedDate`, `ApprovedDate`, `ReviewedDate`, `RejectedDate`, `AccountStatusComments`, `AccountStatusReasonText`, `ReviewComment`. Do not filter or group on them.

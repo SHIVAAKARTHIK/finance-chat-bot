@@ -35,7 +35,6 @@ built_from: []
 known_issues:
 - code: empty_column
   note: AddressBrazilianCNPJOrCPF, SalesTaxGroup all null
-row_count: 3
 proposed_fields:
 - grain
 - primary_key
@@ -368,1320 +367,993 @@ reviewed: false
 ## Values
 
 **CustomerAccount**
-- `100-000001`: 1 rows
-- `None`: 1 rows
-- `TX 75207`: 1 rows
+- `100-000001`
+- `None`
+- `TX 75207`
 
 **AddressBrazilianCNPJOrCPF**
-- `None`: 3 rows
+- `None`
 
 **PartyType**
-- `Organization`: 1 rows
-- `No`: 1 rows
-- `None`: 1 rows
+- `Organization`
+- `No`
+- `None`
 
 **PrimaryContactFaxExtension**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **IsFuelSurchargeApplied**
-- `None`: 1 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **SalesTaxGroup**
-- `None`: 3 rows
+- `None`
 
 **AddressCountryRegionId**
-- `None`: 2 rows
-- `USA`: 1 rows
+- `None`
+- `USA`
 
 **CustomerPaymentFineCode**
-- `None`: 3 rows
+- `None`
 
 **BirthCountyCode**
-- `None`: 2 rows
-- `1447`: 1 rows
+- `None`
+- `1447`
 
 **InvoiceAddress**
-- `None`: 2 rows
-- `InvoiceAccount`: 1 rows
+- `None`
+- `InvoiceAccount`
 
 **PackingMaterialFeeLicenseNumber**
-- `None`: 3 rows
+- `None`
 
 **TransactionPresenceType**
-- `None`: 2 rows
-- `DoesNotApply`: 1 rows
+- `None`
+- `DoesNotApply`
 
 **PrimaryContactTwitter**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressCity**
-- `None`: 2 rows
-- `1309`: 1 rows
+- `None`
+- `1309`
 
 **IsFinalUser**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **DeliveryAddressCounty**
-- `None`: 2 rows
+- `None`
 
 **HasSuframaDiscountPISandCOFINS**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **InvoiceAddressStreet**
-- `None`: 3 rows
+- `None`
 
 **CURPNumber**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactLinkedInDescription**
-- `None`: 3 rows
+- `None`
 
 **DeliveryAddressCountryRegionId**
-- `None`: 3 rows
+- `None`
 
 **ItemCustomerGroupId**
-- `None`: 3 rows
+- `None`
 
 **PersonProfessionalTitle**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **SalesSegmentId**
-- `None`: 3 rows
+- `None`
 
 **IsServiceDeliveryAddressBased**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PrimaryContactTelexDescription**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **InvoiceAddressDistrictName**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressTimeZone**
-- `None`: 2 rows
-- `Always`: 1 rows
+- `None`
+- `Always`
 
 **SalesAccountNumber**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactFacebookDescription**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PrimaryContactPhoneIsMobile**
-- `No`: 2 rows
-- `None`: 1 rows
+- `No`
+- `None`
 
 **PrimaryContactFaxRecordId**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **TCSGroup**
-- `None`: 3 rows
+- `None`
 
 **DeliveryAddressLocationId**
-- `None`: 3 rows
+- `None`
 
 **AddressZipCode**
-- `75207`: 1 rows
-- `None`: 1 rows
-- `11`: 1 rows
+- `75207`
+- `None`
+- `11`
 
 **GiroTypeProjInvoice**
-- `0`: 1 rows
-- `None`: 1 rows
+- `0`
+- `None`
 
 **LineOfBusinessId**
-- `None`: 3 rows
+- `None`
 
 **OrganizationPhoneticName**
-- `None`: 3 rows
+- `None`
 
 **CreditCardCVC**
-- `None`: 2 rows
+- `None`
 
 **DeliveryAddressCountryRegionISOCode**
-- `None`: 3 rows
+- `None`
 
 **DeliveryAddressValidFrom**
-- `0`: 1 rows
-- `1900-01-01 00:00:00.0000000 +00:00`: 1 rows
-- `None`: 1 rows
+- `0`
+- `1900-01-01 00:00:00.0000000 +00:00`
+- `None`
 
 **GiroTypeAccountStatement**
-- `None`: 2 rows
+- `None`
 
 **CalculateWithholdingTax**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **ElectronicInvoiceEAN**
-- `None`: 3 rows
+- `None`
 
 **DeliveryFreightZone**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactFax**
-- `None`: 2 rows
-- `USD`: 1 rows
+- `None`
+- `USD`
 
 **TaxExemptNumber**
-- `None`: 2 rows
-- `AllocationPriority10`: 1 rows
+- `None`
+- `AllocationPriority10`
 
 **DeliveryAddressDescription**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **DeliveryAddressLongitude**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **BirthPlace**
-- `None`: 3 rows
+- `None`
 
 **AddressCity**
-- `None`: 2 rows
-- `DALLAS`: 1 rows
+- `None`
+- `DALLAS`
 
 **PersonInitials**
-- `None`: 3 rows
+- `None`
 
 **DefaultECommerceOperator**
-- `None`: 3 rows
+- `None`
 
 **CentralBankPurposeCode**
-- `None`: 3 rows
+- `None`
 
 **GiroTypeCollectionletter**
-- `None`: 2 rows
+- `None`
 
 **FullPrimaryAddress**
-- `None`: 2 rows
-- `1950 N STEMMONS FWY SUITE 5010`: 1 rows
+- `None`
+- `1950 N STEMMONS FWY SUITE 5010`
 
 **OrderEntryDeadline**
-- `None`: 3 rows
+- `None`
 
 **ForeignerId**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **WarehouseIsASNGenerated**
-- `None`: 3 rows
+- `None`
 
 **AddressLongitude**
-- `None`: 3 rows
+- `None`
 
 **CustomerType**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PrimaryContactLinkedIn**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactURL**
-- `None`: 2 rows
-- `5637146371`: 1 rows
+- `None`
+- `5637146371`
 
 **IsFreightAccrued**
-- `None`: 3 rows
+- `None`
 
 **PartyState**
-- `None`: 3 rows
+- `None`
 
 **PartyNumber**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAccount**
-- `None`: 3 rows
+- `None`
 
 **CentralBankPurposeNotes**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **AddressBuildingComplement**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PersonMaritalStatus**
-- `None`: 3 rows
+- `None`
 
 **AddressLocationId**
-- `None`: 2 rows
-- `TX`: 1 rows
+- `None`
+- `TX`
 
 **PaymentSchedule**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PrimaryContactTwitterPurpose**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **GiroType**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressDescription**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **AddressDistrictName**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **DeliveryTerms**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **NumberSequenceGroup**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **PersonChildrenNames**
-- `None`: 3 rows
+- `None`
 
 **PaymentMethod**
-- `None`: 2 rows
-- `MICROSOFT CORPORATION`: 1 rows
+- `None`
+- `MICROSOFT CORPORATION`
 
 **ForeignResident**
-- `None`: 3 rows
+- `None`
 
 **DeliveryMode**
-- `None`: 3 rows
+- `None`
 
 **PersonProfessionalSuffix**
-- `None`: 3 rows
+- `None`
 
 **OnHoldStatus**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **WarehouseId**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **AccountStatement**
-- `None`: 2 rows
-- `RetailEx3`: 1 rows
+- `None`
+- `RetailEx3`
 
 **DestinationCode**
-- `None`: 3 rows
+- `None`
 
 **EInvoiceRegister**
-- `None`: 2 rows
+- `None`
 
 **IRS1099CIndicator**
-- `None`: 3 rows
+- `None`
 
 **FrenchSiret**
-- `None`: 3 rows
+- `None`
 
 **PaymentDay**
-- `None`: 3 rows
+- `None`
 
 **BrazilianNIT**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **FederalIndicator**
-- `None`: 3 rows
+- `None`
 
 **PersonAnniversaryYear**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **DefaultInventoryStatusId**
-- `None`: 3 rows
+- `None`
 
 **AddressTimeZone**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactPhone**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactPhoneRecordId**
-- `None`: 3 rows
+- `None`
 
 **DeliveryAddressCity**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressCounty**
-- `None`: 3 rows
+- `None`
 
 **PANReferenceNumber**
-- `None`: 2 rows
-- `Other`: 1 rows
+- `None`
+- `Other`
 
 **DeliveryAddressStreet**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **SalesCurrencyCode**
-- `None`: 3 rows
+- `None`
 
 **Priority**
-- `None`: 2 rows
+- `None`
 
 **IsSalesTaxIncludedInPrices**
-- `None`: 2 rows
-- `1900-01-01 00:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 00:00:00.0000000 +00:00`
 
 **BrazilianCNPJOrCPF**
-- `None`: 3 rows
+- `None`
 
 **PaymentFactoringAccount**
-- `None`: 2 rows
+- `None`
 
 **PANNumber**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactTwitterDescription**
-- `None`: 3 rows
+- `None`
 
 **BrazilianCCM**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **TDSGroup**
-- `None`: 3 rows
+- `None`
 
 **MultiLineDiscountCode**
-- `None`: 2 rows
-- `Business`: 1 rows
+- `None`
+- `Business`
 
 **PersonAnniversaryDay**
-- `None`: 3 rows
+- `None`
 
 **DefaultDimensionDisplayValue**
-- `None`: 2 rows
+- `None`
 
 **SupplementaryItemGroupId**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **IsWithholdingTaxCalculated**
-- `None`: 3 rows
+- `None`
 
 **PaymentSpecification**
-- `None`: 3 rows
+- `None`
 
 **AddressRecordId**
-- `None`: 3 rows
+- `None`
 
 **AddressBooks**
-- `None`: 3 rows
+- `None`
 
 **FulfillmentPolicyName**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **SalesDistrict**
-- `None`: 3 rows
+- `None`
 
 **ConsolidationDay**
-- `None`: 3 rows
+- `None`
 
 **IsExpressBillOfLadingAccepted**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **CreditCardAddressVerification**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **InvoiceAddressBuildingComplement**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **AddressState**
-- `None`: 3 rows
+- `None`
 
 **AllowOnAccount**
-- `None`: 3 rows
+- `None`
 
 **IsExcludedFromCollectionFeeCalculation**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **CustomerPaymentFinancialInterestCode**
-- `None`: 3 rows
+- `None`
 
 **IsTransactionPostedAsShipment**
-- `None`: 3 rows
+- `None`
 
 **IsExternallyMaintained**
-- `None`: 2 rows
-- `MICROSOFT CORPORATION`: 1 rows
+- `None`
+- `MICROSOFT CORPORATION`
 
 **CreditLimitIsMandatory**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PaymentTermsBaseDays**
-- `None`: 3 rows
+- `None`
 
 **FiscalCode**
-- `None`: 2 rows
-- `2154-12-31 23:59:59.0000000 +00:00`: 1 rows
+- `None`
+- `2154-12-31 23:59:59.0000000 +00:00`
 
 **KnownAs**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactTelex**
-- `None`: 2 rows
-- `Unknown`: 1 rows
+- `None`
+- `Unknown`
 
 **PaymentBankAccount**
-- `None`: 3 rows
+- `None`
 
 **BrazilianIE**
-- `None`: 3 rows
+- `None`
 
 **PreferentialCustomer**
-- `None`: 3 rows
+- `None`
 
 **ReceiptOption**
-- `None`: 3 rows
+- `None`
 
 **AddressBrazilianIE**
-- `None`: 3 rows
+- `None`
 
 **PersonAnniversaryMonth**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactPhoneExtension**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **InvoiceAddressStreetNumber**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PrimaryContactPhonePurpose**
-- `None`: 2 rows
-- `1900-01-01 00:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 00:00:00.0000000 +00:00`
 
 **ExportSale**
-- `None`: 3 rows
+- `None`
 
 **OrganizationNumber**
-- `None`: 2 rows
-- `1900-01-01 00:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 00:00:00.0000000 +00:00`
 
 **InvoicePostingType**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **CreditCardAddressVerificationIsAuthorizationVoidedOnFailure**
-- `None`: 2 rows
-- `Accept`: 1 rows
+- `None`
+- `Accept`
 
 **InvoiceAddressState**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **ReceiptCalendar**
-- `None`: 3 rows
+- `None`
 
 **DeliveryAddressState**
-- `None`: 3 rows
+- `None`
 
 **StateInscription**
-- `None`: 3 rows
+- `None`
 
 **SalesReturnTaxGroup**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PrimaryContactURLDescription**
-- `None`: 3 rows
+- `None`
 
 **CustomerWithholdingContributionType**
-- `None`: 3 rows
+- `None`
 
 **IsElectronicInvoice**
-- `None`: 2 rows
-- `NotAvailable`: 1 rows
+- `None`
+- `NotAvailable`
 
 **FederalAgencyLocationCode**
-- `None`: 3 rows
+- `None`
 
 **GiroTypeFreeTextInvoice**
-- `None`: 2 rows
-- `MICROSOFT CORPORATIO`: 1 rows
+- `None`
+- `MICROSOFT CORPORATIO`
 
 **DeliveryAddressValidTo**
-- `None`: 3 rows
+- `None`
 
 **OrganizationABCCode**
-- `None`: 3 rows
+- `None`
 
 **BrazilianCNAE**
-- `None`: 3 rows
+- `None`
 
 **WithholdingTaxGroupCode**
-- `None`: 3 rows
+- `None`
 
 **NAFCode**
-- `None`: 2 rows
-- `US`: 1 rows
+- `None`
+- `US`
 
 **AddressLatitude**
-- `None`: 3 rows
+- `None`
 
 **TotalDiscountCode**
-- `None`: 3 rows
+- `None`
 
 **PaymentCashDiscount**
-- `None`: 3 rows
+- `None`
 
 **AddressLocationRoles**
-- `None`: 3 rows
+- `None`
 
 **DeliveryAddressDistrictName**
-- `None`: 3 rows
+- `None`
 
 **CollectionLetterCode**
-- `None`: 3 rows
+- `None`
 
 **EInvoiceAttachment**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **MerchantID**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **CreditRating**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactFacebook**
-- `None`: 2 rows
-- `2025-06-25 10:29:08.0000000 +00:00`: 1 rows
+- `None`
+- `2025-06-25 10:29:08.0000000 +00:00`
 
 **DeliveryAddressBuildingComplement**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **DeliveryAddressStreetNumber**
-- `None`: 2 rows
-- `Blank`: 1 rows
+- `None`
+- `Blank`
 
 **InvoiceAddressLongitude**
-- `None`: 2 rows
-- `Corporate`: 1 rows
+- `None`
+- `Corporate`
 
 **LineDiscountCode**
-- `None`: 2 rows
+- `None`
 
 **PartyCountry**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressLatitude**
-- `None`: 3 rows
+- `None`
 
 **IsInSuframaRegion**
-- `None`: 3 rows
+- `None`
 
 **IsIncomingFiscalDocumentGenerated**
-- `None`: 2 rows
-- `Normal`: 1 rows
+- `None`
+- `Normal`
 
 **SalesMemo**
-- `None`: 3 rows
+- `None`
 
 **ReliefGroupId**
-- `None`: 2 rows
-- `MICROSOFT CORPORATION`: 1 rows
+- `None`
+- `MICROSOFT CORPORATION`
 
 **IsExcludedFromInterestChargeCalculation**
-- `None`: 3 rows
+- `None`
 
 **StatisticsGroupId**
-- `None`: 3 rows
+- `None`
 
 **SalesOrderPoolId**
-- `None`: 3 rows
+- `None`
 
 **OrganizationName**
-- `None`: 3 rows
+- `None`
 
 **IsOrderNumberReferenceUsed**
-- `None`: 3 rows
+- `None`
 
 **CustClassificationId**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **AddressValidTo**
-- `None`: 3 rows
+- `None`
 
 **FederalComments**
-- `None`: 3 rows
+- `None`
 
 **PersonGender**
-- `None`: 3 rows
+- `None`
 
 **PaymentTerms**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **PrimaryContactPhoneDescription**
-- `None`: 3 rows
+- `None`
 
 **AddressPostbox**
-- `None`: 3 rows
+- `None`
 
 **SalesSubsegmentId**
-- `None`: 3 rows
+- `None`
 
 **CustomerRebateGroupId**
-- `None`: 2 rows
-- `Company`: 1 rows
+- `None`
+- `Company`
 
 **WarehouseOutboundShipmentProcessingPolicyName**
-- `None`: 3 rows
+- `None`
 
 **AddressCounty**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactURLRecordId**
-- `None`: 3 rows
+- `None`
 
 **IsICMSContributor**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressValidTo**
-- `None`: 2 rows
-- `en-US`: 1 rows
+- `None`
+- `en-US`
 
 **DeliveryAddressTimeZone**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **InvoiceAddressValidFrom**
-- `None`: 2 rows
-- `1950 N STEMMONS FWY SUITE 5010`: 1 rows
+- `None`
+- `1950 N STEMMONS FWY SUITE 5010`
 
 **CreditLimit**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **CreditCardAddressVerificationLevel**
-- `None`: 3 rows
+- `None`
 
 **WarehouseIsEntireShipmentFilled**
-- `None`: 3 rows
+- `None`
 
 **PackingDutyLicense**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **NationalRegistryNumber**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **SiteId**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **InvoiceAddressCountryRegionISOCode**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **IsAllowCreateIndirectOrderLines**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactURLPurpose**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **ChargesGroupId**
-- `None`: 3 rows
+- `None`
 
 **PanStatus**
-- `None`: 2 rows
-- `0`: 1 rows
+- `None`
+- `0`
 
 **CommissionSalesGroupId**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **NameAlias**
-- `None`: 2 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **PrimaryContactFaxPurpose**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **AddressStreetNumber**
-- `None`: 2 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **PaymentIdType**
-- `None`: 2 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **VendorAccount**
-- `None`: 2 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **AddressCountryRegionISOCode**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **ResidenceForeignCountryRegionId**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **RFCNumber**
-- `None`: 2 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **PersonHobbies**
-- `None`: 3 rows
+- `None`
 
 **ElectronicLocationId**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressZipCode**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactLinkedInPurpose**
-- `None`: 3 rows
+- `None`
 
 **IsOneTimeCustomer**
-- `None`: 2 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **ForeignCustomer**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **CustomerTMAGroupId**
-- `None`: 3 rows
+- `None`
 
 **AddressValidFrom**
-- `None`: 2 rows
-- `No`: 1 rows
+- `None`
+- `No`
 
 **OrganizationNumberOfEmployees**
-- `None`: 3 rows
+- `None`
 
 **CustomerGroupId**
-- `None`: 3 rows
+- `None`
 
 **GiroTypeInterestNote**
-- `None`: 3 rows
+- `None`
 
 **DeliveryAddressZipCode**
-- `None`: 3 rows
+- `None`
 
 **DeliveryReason**
-- `None`: 3 rows
+- `None`
 
 **TaxRegistrationId**
-- `None`: 3 rows
+- `None`
 
 **PaymentUseCashDiscount**
-- `None`: 3 rows
+- `None`
 
 **DiscountPriceGroupId**
-- `None`: 3 rows
+- `None`
 
 **AddressDescription**
-- `None`: 3 rows
+- `None`
 
 **SuframaNumber**
-- `None`: 3 rows
+- `None`
 
 **IdentificationNumber**
-- `None`: 3 rows
+- `None`
 
 **AuthorityOffice**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactTelexPurpose**
-- `None`: 3 rows
+- `None`
 
 **DeliveryAddressLatitude**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressCountryRegionId**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactFacebookPurpose**
-- `None`: 3 rows
+- `None`
 
 **OverrideSalesTax**
-- `None`: 3 rows
+- `None`
 
 **BrazilianINSSCEI**
-- `None`: 3 rows
+- `None`
 
 **CommissionCustomerGroupId**
-- `None`: 3 rows
+- `None`
 
 **PrimaryContactFaxDescription**
-- `None`: 3 rows
+- `None`
 
 **NatureOfAssessee**
-- `None`: 3 rows
+- `None`
 
 **WriteoffReason**
-- `None`: 3 rows
+- `None`
 
 **InvoiceAddressLocationId**
-- `None`: 3 rows
+- `None`
 
 **LanguageId**
-- `None`: 3 rows
+- `None`
 
 **IsPurchRequestUsed**
-- `None`: 3 rows
+- `None`
 
 **AddressStreet**
-- `None`: 3 rows
+- `None`
 
 **IsPublicSector_IT**
-- `None`: 3 rows
+- `None`
 
 **SATRegistrationName_MX**
-- `None`: 3 rows
+- `None`
 
 **TaxRegimeCode_MX**
-- `None`: 3 rows
+- `None`
 
 **CFDITemporaryExport_MX**
-- `None`: 3 rows
+- `None`
 
 **IsSimplifiedPrimaryAddress**
-- `None`: 3 rows
+- `None`
 
 **IsSimplifiedDeliveryAddress**
-- `None`: 3 rows
+- `None`
 
 **IsSimplifiedInvoiceAddress**
-- `None`: 3 rows
+- `None`
 
 **CredManEligibleCreditLimitCurrency**
-- `None`: 3 rows
+- `None`
 
 **CredManCustCreditMaxAlt**
-- `None`: 3 rows
+- `None`
 
 **CredManStatusReasonId**
-- `None`: 3 rows
+- `None`
 
 **CredManEligibleCreditMax**
-- `None`: 3 rows
+- `None`
 
 **CredManCustUnlimitedCredit**
-- `None`: 3 rows
+- `None`
 
 **CredManEligibleCreditLimitDate**
-- `None`: 3 rows
+- `None`
 
 **CredManWithAgency**
-- `None`: 3 rows
+- `None`
 
 **CredManCreditLimitDate**
-- `None`: 3 rows
+- `None`
 
 **CredManNextSchedReviewDate**
-- `None`: 3 rows
+- `None`
 
 **CredManLastReviewDate**
-- `None`: 3 rows
+- `None`
 
 **CredManCustomerSince**
-- `None`: 3 rows
+- `None`
 
 **CredManTitleHeld**
-- `None`: 3 rows
+- `None`
 
 **CredManExclude**
-- `None`: 3 rows
+- `None`
 
 **CredManBusinessStarted**
-- `None`: 3 rows
+- `None`
 
 **CredManNotes**
-- `None`: 3 rows
+- `None`
 
 **CredManCollectionGroupId**
-- `None`: 3 rows
+- `None`
 
 **CredManGroupId**
-- `None`: 3 rows
+- `None`
 
 **CredManAccountStatusId**
-- `None`: 3 rows
+- `None`
 
 **CredManCreditLimitExpiryDate**
-- `None`: 3 rows
+- `None`
 
 **KPFNettingActive**
-- `None`: 3 rows
+- `None`
 
 **QMSApprovedCustomerGroupId**
-- `None`: 3 rows
+- `None`
 
 **QMSWillPrintCustomerSpecificCertificateOfAnalysis**
-- `None`: 3 rows
+- `None`
 
 **QMSCertificateOfAnalysisCustomerGroupId**
-- `None`: 3 rows
+- `None`
 
 **QMSApprovedCustomerListCheckMethod**
-- `None`: 3 rows
+- `None`
 
 **source_file_name**
-- `customersv3__20261116_105417.csv`: 3 rows
+- `customersv3__20261116_105417.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 11:43:19.958440+00:00`: 3 rows
+- `2026-11-16 11:43:19.958440+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 11:43:19.958440+00:00`: 3 rows
+- `2026-11-16 11:43:19.958440+00:00`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 3.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `dataAreaId` | STRING | 3 | 0 |  |  |
-| `CustomerAccount` | STRING | 2 | 1 | TX 75207 | 100-000001 |
-| `AddressBrazilianCNPJOrCPF` | STRING | 0 | 3 |  |  |
-| `PartyType` | STRING | 2 | 1 | No | Organization |
-| `PrimaryContactFaxExtension` | STRING | 1 | 2 | 0 | 0 |
-| `IsFuelSurchargeApplied` | STRING | 2 | 1 | No | None |
-| `SalesTaxGroup` | STRING | 0 | 3 |  |  |
-| `AddressCountryRegionId` | STRING | 1 | 2 | USA | USA |
-| `ContactPersonId` | STRING | 1 | 2 |  |  |
-| `CustomerPaymentFineCode` | STRING | 0 | 3 |  |  |
-| `BirthCountyCode` | STRING | 1 | 2 | 1447 | 1447 |
-| `InvoiceAddress` | STRING | 1 | 2 | InvoiceAccount | InvoiceAccount |
-| `PackingMaterialFeeLicenseNumber` | STRING | 0 | 3 |  |  |
-| `TransactionPresenceType` | STRING | 1 | 2 | DoesNotApply | DoesNotApply |
-| `PrimaryContactTwitter` | STRING | 0 | 3 |  |  |
-| `PrimaryContactEmailIsIM` | STRING | 2 | 1 |  |  |
-| `InvoiceAddressCity` | STRING | 1 | 2 | 1309 | 1309 |
-| `IsFinalUser` | STRING | 1 | 2 | No | No |
-| `PrimaryContactEmail` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressCounty` | STRING | 1 | 2 | None | None |
-| `HasSuframaDiscountPISandCOFINS` | STRING | 1 | 2 | No | No |
-| `InvoiceAddressStreet` | STRING | 0 | 3 |  |  |
-| `CURPNumber` | STRING | 0 | 3 |  |  |
-| `PrimaryContactLinkedInDescription` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressCountryRegionId` | STRING | 0 | 3 |  |  |
-| `ItemCustomerGroupId` | STRING | 0 | 3 |  |  |
-| `PersonProfessionalTitle` | STRING | 1 | 2 | No | No |
-| `SalesSegmentId` | STRING | 0 | 3 |  |  |
-| `IsServiceDeliveryAddressBased` | STRING | 1 | 2 | No | No |
-| `PrimaryContactTelexDescription` | STRING | 1 | 2 | No | No |
-| `InvoiceAddressDistrictName` | STRING | 0 | 3 |  |  |
-| `InvoiceAddressTimeZone` | STRING | 1 | 2 | Always | Always |
-| `SalesAccountNumber` | STRING | 0 | 3 |  |  |
-| `PrimaryContactFacebookDescription` | STRING | 1 | 2 | No | No |
-| `PrimaryContactPhoneIsMobile` | STRING | 1 | 1 | No | No |
-| `PrimaryContactFaxRecordId` | STRING | 1 | 2 | 0 | 0 |
-| `TCSGroup` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressLocationId` | STRING | 0 | 3 |  |  |
-| `InterCompanyAutoCreateOrders` | STRING | 2 | 1 |  |  |
-| `AddressZipCode` | STRING | 2 | 1 | 11 | 75207 |
-| `GiroTypeProjInvoice` | STRING | 2 | 1 | 0 | None |
-| `LineOfBusinessId` | STRING | 0 | 3 |  |  |
-| `OrganizationPhoneticName` | STRING | 0 | 3 |  |  |
-| `CreditCardCVC` | STRING | 1 | 2 | None | None |
-| `DeliveryAddressCountryRegionISOCode` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressValidFrom` | STRING | 2 | 1 | 0 | 1900-01-01 00:00:00.0000000 +00:00 |
-| `GiroTypeAccountStatement` | STRING | 1 | 2 | None | None |
-| `CalculateWithholdingTax` | STRING | 1 | 2 | No | No |
-| `ElectronicInvoiceEAN` | STRING | 0 | 3 |  |  |
-| `DeliveryFreightZone` | STRING | 0 | 3 |  |  |
-| `PrimaryContactFax` | STRING | 1 | 2 | USD | USD |
-| `TaxExemptNumber` | STRING | 1 | 2 | AllocationPriority10 | AllocationPriority10 |
-| `DeliveryAddressDescription` | STRING | 1 | 2 | No | No |
-| `DeliveryAddressLongitude` | STRING | 1 | 2 | 0 | 0 |
-| `BirthPlace` | STRING | 0 | 3 |  |  |
-| `AddressCity` | STRING | 1 | 2 | DALLAS | DALLAS |
-| `PersonInitials` | STRING | 0 | 3 |  |  |
-| `DefaultECommerceOperator` | STRING | 0 | 3 |  |  |
-| `CentralBankPurposeCode` | STRING | 0 | 3 |  |  |
-| `GiroTypeCollectionletter` | STRING | 1 | 2 | None | None |
-| `FullPrimaryAddress` | STRING | 1 | 2 | 1950 N STEMMONS FWY SUITE 5010 | 1950 N STEMMONS FWY SUITE 5010 |
-| `OrderEntryDeadline` | STRING | 0 | 3 |  |  |
-| `ForeignerId` | STRING | 1 | 2 | 0 | 0 |
-| `WarehouseIsASNGenerated` | STRING | 0 | 3 |  |  |
-| `AddressLongitude` | STRING | 0 | 3 |  |  |
-| `CustomerType` | STRING | 1 | 2 | No | No |
-| `PrimaryContactLinkedIn` | STRING | 0 | 3 |  |  |
-| `PrimaryContactURL` | STRING | 1 | 2 | 5637146371 | 5637146371 |
-| `IsFreightAccrued` | STRING | 0 | 3 |  |  |
-| `PartyState` | STRING | 0 | 3 |  |  |
-| `PartyNumber` | STRING | 0 | 3 |  |  |
-| `InvoiceAccount` | STRING | 0 | 3 |  |  |
-| `CentralBankPurposeNotes` | STRING | 1 | 2 | 0 | 0 |
-| `AddressBuildingComplement` | STRING | 1 | 2 | No | No |
-| `CollectionsContactPersonId` | STRING | 1 | 2 |  |  |
-| `PersonMaritalStatus` | STRING | 0 | 3 |  |  |
-| `AddressLocationId` | STRING | 1 | 2 | TX | TX |
-| `PaymentSchedule` | STRING | 1 | 2 | No | No |
-| `PrimaryContactTwitterPurpose` | STRING | 1 | 2 | No | No |
-| `GiroType` | STRING | 0 | 3 |  |  |
-| `InvoiceAddressDescription` | STRING | 1 | 2 | No | No |
-| `AddressDistrictName` | STRING | 1 | 2 | No | No |
-| `DeliveryTerms` | STRING | 1 | 2 | No | No |
-| `NumberSequenceGroup` | STRING | 1 | 2 | 0 | 0 |
-| `PersonChildrenNames` | STRING | 0 | 3 |  |  |
-| `PaymentMethod` | STRING | 1 | 2 | MICROSOFT CORPORATION | MICROSOFT CORPORATION |
-| `ForeignResident` | STRING | 0 | 3 |  |  |
-| `DeliveryMode` | STRING | 0 | 3 |  |  |
-| `PersonProfessionalSuffix` | STRING | 0 | 3 |  |  |
-| `OnHoldStatus` | STRING | 1 | 2 | 0 | 0 |
-| `WarehouseId` | STRING | 1 | 2 | No | No |
-| `AccountStatement` | STRING | 1 | 2 | RetailEx3 | RetailEx3 |
-| `DestinationCode` | STRING | 0 | 3 |  |  |
-| `EInvoiceRegister` | STRING | 1 | 2 | None | None |
-| `IRS1099CIndicator` | STRING | 0 | 3 |  |  |
-| `FrenchSiret` | STRING | 0 | 3 |  |  |
-| `PaymentDay` | STRING | 0 | 3 |  |  |
-| `BrazilianNIT` | STRING | 1 | 2 | No | No |
-| `FederalIndicator` | STRING | 0 | 3 |  |  |
-| `EmployeeResponsibleNumber` | STRING | 1 | 2 |  |  |
-| `PersonAnniversaryYear` | STRING | 1 | 2 | No | No |
-| `DefaultInventoryStatusId` | STRING | 0 | 3 |  |  |
-| `PrimaryContactEmailDescription` | STRING | 0 | 3 |  |  |
-| `AddressTimeZone` | STRING | 0 | 3 |  |  |
-| `PrimaryContactPhone` | STRING | 0 | 3 |  |  |
-| `PrimaryContactPhoneRecordId` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressCity` | STRING | 0 | 3 |  |  |
-| `InvoiceAddressCounty` | STRING | 0 | 3 |  |  |
-| `PANReferenceNumber` | STRING | 1 | 2 | Other | Other |
-| `DeliveryAddressStreet` | STRING | 1 | 2 | No | No |
-| `SalesCurrencyCode` | STRING | 0 | 3 |  |  |
-| `Priority` | STRING | 1 | 2 | None | None |
-| `IsSalesTaxIncludedInPrices` | STRING | 1 | 2 | 1900-01-01 00:00:00.0000000 +00:00 | 1900-01-01 00:00:00.0000000 +00:00 |
-| `BrazilianCNPJOrCPF` | STRING | 0 | 3 |  |  |
-| `PaymentFactoringAccount` | STRING | 1 | 2 | None | None |
-| `PANNumber` | STRING | 0 | 3 |  |  |
-| `PrimaryContactTwitterDescription` | STRING | 0 | 3 |  |  |
-| `PersonFirstName` | STRING | 0 | 3 |  |  |
-| `BrazilianCCM` | STRING | 1 | 2 | 0 | 0 |
-| `ReceiptEmail` | STRING | 0 | 3 |  |  |
-| `TDSGroup` | STRING | 0 | 3 |  |  |
-| `MultiLineDiscountCode` | STRING | 1 | 2 | Business | Business |
-| `PersonAnniversaryDay` | STRING | 0 | 3 |  |  |
-| `DefaultDimensionDisplayValue` | STRING | 1 | 2 | None | None |
-| `SupplementaryItemGroupId` | STRING | 1 | 2 | No | No |
-| `IsWithholdingTaxCalculated` | STRING | 0 | 3 |  |  |
-| `PaymentSpecification` | STRING | 0 | 3 |  |  |
-| `AddressRecordId` | STRING | 0 | 3 |  |  |
-| `AddressBooks` | STRING | 0 | 3 |  |  |
-| `PrimaryContactEmailPurpose` | STRING | 0 | 3 |  |  |
-| `FulfillmentPolicyName` | STRING | 1 | 2 | 0 | 0 |
-| `SalesDistrict` | STRING | 0 | 3 |  |  |
-| `ConsolidationDay` | STRING | 0 | 3 |  |  |
-| `IsExpressBillOfLadingAccepted` | STRING | 1 | 2 | 0 | 0 |
-| `CreditCardAddressVerification` | STRING | 1 | 2 | No | No |
-| `InvoiceAddressBuildingComplement` | STRING | 1 | 2 | No | No |
-| `AddressState` | STRING | 0 | 3 |  |  |
-| `AllowOnAccount` | STRING | 0 | 3 |  |  |
-| `IsExcludedFromCollectionFeeCalculation` | STRING | 1 | 2 | No | No |
-| `CustomerPaymentFinancialInterestCode` | STRING | 0 | 3 |  |  |
-| `IsTransactionPostedAsShipment` | STRING | 0 | 3 |  |  |
-| `IsExternallyMaintained` | STRING | 1 | 2 | MICROSOFT CORPORATION | MICROSOFT CORPORATION |
-| `CreditLimitIsMandatory` | STRING | 1 | 2 | No | No |
-| `PaymentTermsBaseDays` | STRING | 0 | 3 |  |  |
-| `FiscalCode` | STRING | 1 | 2 | 2154-12-31 23:59:59.0000000 +00:00 | 2154-12-31 23:59:59.0000000 +00:00 |
-| `KnownAs` | STRING | 0 | 3 |  |  |
-| `PrimaryContactTelex` | STRING | 1 | 2 | Unknown | Unknown |
-| `PaymentBankAccount` | STRING | 0 | 3 |  |  |
-| `BrazilianIE` | STRING | 0 | 3 |  |  |
-| `PrimaryContactEmailRecordId` | STRING | 0 | 3 |  |  |
-| `PreferentialCustomer` | STRING | 0 | 3 |  |  |
-| `ReceiptOption` | STRING | 0 | 3 |  |  |
-| `AddressBrazilianIE` | STRING | 0 | 3 |  |  |
-| `PersonAnniversaryMonth` | STRING | 0 | 3 |  |  |
-| `PrimaryContactPhoneExtension` | STRING | 1 | 2 | 0 | 0 |
-| `InvoiceAddressStreetNumber` | STRING | 1 | 2 | No | No |
-| `PrimaryContactPhonePurpose` | STRING | 1 | 2 | 1900-01-01 00:00:00.0000000 +00:00 | 1900-01-01 00:00:00.0000000 +00:00 |
-| `ExportSale` | STRING | 0 | 3 |  |  |
-| `OrganizationNumber` | STRING | 1 | 2 | 1900-01-01 00:00:00.0000000 +00:00 | 1900-01-01 00:00:00.0000000 +00:00 |
-| `InvoicePostingType` | STRING | 1 | 2 | 0 | 0 |
-| `CreditCardAddressVerificationIsAuthorizationVoidedOnFailure` | STRING | 1 | 2 | Accept | Accept |
-| `InvoiceAddressState` | STRING | 1 | 2 | No | No |
-| `ReceiptCalendar` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressState` | STRING | 0 | 3 |  |  |
-| `StateInscription` | STRING | 0 | 3 |  |  |
-| `PersonLastNamePrefix` | STRING | 0 | 3 |  |  |
-| `SalesReturnTaxGroup` | STRING | 1 | 2 | No | No |
-| `PrimaryContactURLDescription` | STRING | 0 | 3 |  |  |
-| `CustomerWithholdingContributionType` | STRING | 0 | 3 |  |  |
-| `IsElectronicInvoice` | STRING | 1 | 2 | NotAvailable | NotAvailable |
-| `FederalAgencyLocationCode` | STRING | 0 | 3 |  |  |
-| `GiroTypeFreeTextInvoice` | STRING | 1 | 2 | MICROSOFT CORPORATIO | MICROSOFT CORPORATIO |
-| `DeliveryAddressValidTo` | STRING | 0 | 3 |  |  |
-| `PersonPhoneticMiddleName` | STRING | 1 | 2 |  |  |
-| `OrganizationABCCode` | STRING | 0 | 3 |  |  |
-| `BrazilianCNAE` | STRING | 0 | 3 |  |  |
-| `WithholdingTaxGroupCode` | STRING | 0 | 3 |  |  |
-| `NAFCode` | STRING | 1 | 2 | US | US |
-| `AddressLatitude` | STRING | 0 | 3 |  |  |
-| `TotalDiscountCode` | STRING | 0 | 3 |  |  |
-| `PaymentCashDiscount` | STRING | 0 | 3 |  |  |
-| `AddressLocationRoles` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressDistrictName` | STRING | 0 | 3 |  |  |
-| `CollectionLetterCode` | STRING | 0 | 3 |  |  |
-| `EInvoiceAttachment` | STRING | 1 | 2 | No | No |
-| `MerchantID` | STRING | 1 | 2 | No | No |
-| `CreditRating` | STRING | 0 | 3 |  |  |
-| `PrimaryContactFacebook` | STRING | 1 | 2 | 2025-06-25 10:29:08.0000000 +00:00 | 2025-06-25 10:29:08.0000000 +00:00 |
-| `DeliveryAddressBuildingComplement` | STRING | 1 | 2 | 0 | 0 |
-| `DeliveryAddressStreetNumber` | STRING | 1 | 2 | Blank | Blank |
-| `InvoiceAddressLongitude` | STRING | 1 | 2 | Corporate | Corporate |
-| `LineDiscountCode` | STRING | 1 | 2 | None | None |
-| `PartyCountry` | STRING | 0 | 3 |  |  |
-| `InvoiceAddressLatitude` | STRING | 0 | 3 |  |  |
-| `IsInSuframaRegion` | STRING | 0 | 3 |  |  |
-| `IsIncomingFiscalDocumentGenerated` | STRING | 1 | 2 | Normal | Normal |
-| `SalesMemo` | STRING | 0 | 3 |  |  |
-| `ReliefGroupId` | STRING | 1 | 2 | MICROSOFT CORPORATION | MICROSOFT CORPORATION |
-| `IsExcludedFromInterestChargeCalculation` | STRING | 0 | 3 |  |  |
-| `StatisticsGroupId` | STRING | 0 | 3 |  |  |
-| `SalesOrderPoolId` | STRING | 0 | 3 |  |  |
-| `OrganizationName` | STRING | 0 | 3 |  |  |
-| `IsOrderNumberReferenceUsed` | STRING | 0 | 3 |  |  |
-| `CustClassificationId` | STRING | 1 | 2 | 0 | 0 |
-| `AddressValidTo` | STRING | 0 | 3 |  |  |
-| `FederalComments` | STRING | 0 | 3 |  |  |
-| `PersonGender` | STRING | 0 | 3 |  |  |
-| `PaymentTerms` | STRING | 1 | 2 | No | No |
-| `PrimaryContactPhoneDescription` | STRING | 0 | 3 |  |  |
-| `AddressPostbox` | STRING | 0 | 3 |  |  |
-| `SalesSubsegmentId` | STRING | 0 | 3 |  |  |
-| `CustomerRebateGroupId` | STRING | 1 | 2 | Company | Company |
-| `WarehouseOutboundShipmentProcessingPolicyName` | STRING | 0 | 3 |  |  |
-| `AddressCounty` | STRING | 0 | 3 |  |  |
-| `PrimaryContactURLRecordId` | STRING | 0 | 3 |  |  |
-| `IsICMSContributor` | STRING | 0 | 3 |  |  |
-| `InvoiceAddressValidTo` | STRING | 1 | 2 | en-US | en-US |
-| `DeliveryAddressTimeZone` | STRING | 1 | 2 | No | No |
-| `InvoiceAddressValidFrom` | STRING | 1 | 2 | 1950 N STEMMONS FWY SUITE 5010 | 1950 N STEMMONS FWY SUITE 5010 |
-| `CreditLimit` | STRING | 1 | 2 | No | No |
-| `CreditCardAddressVerificationLevel` | STRING | 0 | 3 |  |  |
-| `WarehouseIsEntireShipmentFilled` | STRING | 0 | 3 |  |  |
-| `PackingDutyLicense` | STRING | 1 | 2 | No | No |
-| `NationalRegistryNumber` | STRING | 1 | 2 | No | No |
-| `SiteId` | STRING | 1 | 2 | No | No |
-| `InvoiceAddressCountryRegionISOCode` | STRING | 1 | 2 | No | No |
-| `IsAllowCreateIndirectOrderLines` | STRING | 0 | 3 |  |  |
-| `PrimaryContactURLPurpose` | STRING | 1 | 2 | 0 | 0 |
-| `ChargesGroupId` | STRING | 0 | 3 |  |  |
-| `PanStatus` | STRING | 1 | 2 | 0 | 0 |
-| `CommissionSalesGroupId` | STRING | 1 | 2 | No | No |
-| `NameAlias` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `PrimaryContactFaxPurpose` | STRING | 1 | 2 | No | No |
-| `AddressStreetNumber` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `PersonLastName` | STRING | 1 | 2 |  |  |
-| `PaymentIdType` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `VendorAccount` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `AddressCountryRegionISOCode` | STRING | 1 | 2 | No | No |
-| `ResidenceForeignCountryRegionId` | STRING | 1 | 2 | No | No |
-| `RFCNumber` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `PersonHobbies` | STRING | 0 | 3 |  |  |
-| `ElectronicLocationId` | STRING | 0 | 3 |  |  |
-| `InvoiceAddressZipCode` | STRING | 0 | 3 |  |  |
-| `PrimaryContactLinkedInPurpose` | STRING | 0 | 3 |  |  |
-| `IsOneTimeCustomer` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `ForeignCustomer` | STRING | 1 | 2 | No | No |
-| `CustomerTMAGroupId` | STRING | 0 | 3 |  |  |
-| `AddressValidFrom` | STRING | 1 | 2 | No | No |
-| `OrganizationNumberOfEmployees` | STRING | 0 | 3 |  |  |
-| `CompanyType` | STRING | 1 | 2 |  |  |
-| `CustomerGroupId` | STRING | 0 | 3 |  |  |
-| `GiroTypeInterestNote` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressZipCode` | STRING | 0 | 3 |  |  |
-| `DeliveryReason` | STRING | 0 | 3 |  |  |
-| `TaxRegistrationId` | STRING | 0 | 3 |  |  |
-| `PaymentUseCashDiscount` | STRING | 0 | 3 |  |  |
-| `DiscountPriceGroupId` | STRING | 0 | 3 |  |  |
-| `AddressDescription` | STRING | 0 | 3 |  |  |
-| `SuframaNumber` | STRING | 0 | 3 |  |  |
-| `IdentificationNumber` | STRING | 0 | 3 |  |  |
-| `AuthorityOffice` | STRING | 0 | 3 |  |  |
-| `PersonPhoneticFirstName` | STRING | 0 | 3 |  |  |
-| `PrimaryContactTelexPurpose` | STRING | 0 | 3 |  |  |
-| `DeliveryAddressLatitude` | STRING | 0 | 3 |  |  |
-| `InvoiceAddressCountryRegionId` | STRING | 0 | 3 |  |  |
-| `PrimaryContactFacebookPurpose` | STRING | 0 | 3 |  |  |
-| `CompanyChain` | STRING | 0 | 3 |  |  |
-| `OverrideSalesTax` | STRING | 0 | 3 |  |  |
-| `BrazilianINSSCEI` | STRING | 0 | 3 |  |  |
-| `CommissionCustomerGroupId` | STRING | 0 | 3 |  |  |
-| `PrimaryContactFaxDescription` | STRING | 0 | 3 |  |  |
-| `NatureOfAssessee` | STRING | 0 | 3 |  |  |
-| `WriteoffReason` | STRING | 0 | 3 |  |  |
-| `PersonMiddleName` | STRING | 0 | 3 |  |  |
-| `InvoiceAddressLocationId` | STRING | 0 | 3 |  |  |
-| `PersonPhoneticLastName` | STRING | 0 | 3 |  |  |
-| `LanguageId` | STRING | 0 | 3 |  |  |
-| `IsPurchRequestUsed` | STRING | 0 | 3 |  |  |
-| `AddressStreet` | STRING | 0 | 3 |  |  |
-| `IsPublicSector_IT` | STRING | 0 | 3 |  |  |
-| `SATRegistrationName_MX` | STRING | 0 | 3 |  |  |
-| `TaxRegimeCode_MX` | STRING | 0 | 3 |  |  |
-| `CFDITemporaryExport_MX` | STRING | 0 | 3 |  |  |
-| `IsSimplifiedPrimaryAddress` | STRING | 0 | 3 |  |  |
-| `IsSimplifiedDeliveryAddress` | STRING | 0 | 3 |  |  |
-| `IsSimplifiedInvoiceAddress` | STRING | 0 | 3 |  |  |
-| `CredManEligibleCreditLimitCurrency` | STRING | 0 | 3 |  |  |
-| `CredManCustCreditMaxAlt` | STRING | 0 | 3 |  |  |
-| `CredManStatusReasonId` | STRING | 0 | 3 |  |  |
-| `CredManEligibleCreditMax` | STRING | 0 | 3 |  |  |
-| `CredManCustUnlimitedCredit` | STRING | 0 | 3 |  |  |
-| `CredManEligibleCreditLimitDate` | STRING | 0 | 3 |  |  |
-| `CredManWithAgency` | STRING | 0 | 3 |  |  |
-| `CredManCreditLimitDate` | STRING | 0 | 3 |  |  |
-| `CredManNextSchedReviewDate` | STRING | 0 | 3 |  |  |
-| `CredManLastReviewDate` | STRING | 0 | 3 |  |  |
-| `CredManCustomerSince` | STRING | 0 | 3 |  |  |
-| `CredManTitleHeld` | STRING | 0 | 3 |  |  |
-| `CredManExclude` | STRING | 0 | 3 |  |  |
-| `CredManBusinessStarted` | STRING | 0 | 3 |  |  |
-| `CredManNotes` | STRING | 0 | 3 |  |  |
-| `CredManCollectionGroupId` | STRING | 0 | 3 |  |  |
-| `CredManGroupId` | STRING | 0 | 3 |  |  |
-| `CredManAccountStatusId` | STRING | 0 | 3 |  |  |
-| `CredManCreditLimitExpiryDate` | STRING | 0 | 3 |  |  |
-| `KPFNettingActive` | STRING | 0 | 3 |  |  |
-| `QMSApprovedCustomerGroupId` | STRING | 0 | 3 |  |  |
-| `QMSWillPrintCustomerSpecificCertificateOfAnalysis` | STRING | 0 | 3 |  |  |
-| `QMSCertificateOfAnalysisCustomerGroupId` | STRING | 0 | 3 |  |  |
-| `QMSApprovedCustomerListCheckMethod` | STRING | 0 | 3 |  |  |
-| `source_file_name` | STRING | 1 | 0 | customersv3__20261116_105417.csv | customersv3__20261116_105417.csv |
-| `HASH_KEY` | STRING | 3 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:19.958000 | 2026-11-16 11:43:19.958000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:19.958000 | 2026-11-16 11:43:19.958000 |
-
-## Sample rows
-
-| CustomerAccount | AddressBrazilianCNPJOrCPF | PartyType | PrimaryContactFaxExtension | IsFuelSurchargeApplied | SalesTaxGroup | AddressCountryRegionId | ContactPersonId | CustomerPaymentFineCode | BirthCountyCode | InvoiceAddress | PackingMaterialFeeLicenseNumber | TransactionPresenceType | PrimaryContactTwitter | PrimaryContactEmailIsIM | InvoiceAddressCity | IsFinalUser | PrimaryContactEmail | DeliveryAddressCounty | HasSuframaDiscountPISandCOFINS | InvoiceAddressStreet | CURPNumber | PrimaryContactLinkedInDescription | DeliveryAddressCountryRegionId | ItemCustomerGroupId | PersonProfessionalTitle | SalesSegmentId | IsServiceDeliveryAddressBased | PrimaryContactTelexDescription | InvoiceAddressDistrictName | InvoiceAddressTimeZone | SalesAccountNumber | PrimaryContactFacebookDescription | PrimaryContactPhoneIsMobile | PrimaryContactFaxRecordId | TCSGroup | DeliveryAddressLocationId | AddressZipCode | GiroTypeProjInvoice | LineOfBusinessId | OrganizationPhoneticName | CreditCardCVC | DeliveryAddressCountryRegionISOCode | DeliveryAddressValidFrom | GiroTypeAccountStatement | CalculateWithholdingTax | ElectronicInvoiceEAN | DeliveryFreightZone | PrimaryContactFax | TaxExemptNumber | DeliveryAddressDescription | DeliveryAddressLongitude | BirthPlace | AddressCity | PersonInitials | DefaultECommerceOperator | CentralBankPurposeCode | GiroTypeCollectionletter | FullPrimaryAddress | OrderEntryDeadline | ForeignerId | WarehouseIsASNGenerated | AddressLongitude | CustomerType | PrimaryContactLinkedIn | PrimaryContactURL | IsFreightAccrued | PartyState | PartyNumber | InvoiceAccount | CentralBankPurposeNotes | AddressBuildingComplement | CollectionsContactPersonId | PersonMaritalStatus | AddressLocationId | PaymentSchedule | PrimaryContactTwitterPurpose | GiroType | InvoiceAddressDescription | AddressDistrictName | DeliveryTerms | NumberSequenceGroup | PersonChildrenNames | PaymentMethod | ForeignResident | DeliveryMode | PersonProfessionalSuffix | OnHoldStatus | WarehouseId | AccountStatement | DestinationCode | EInvoiceRegister | IRS1099CIndicator | FrenchSiret | PaymentDay | BrazilianNIT | FederalIndicator | EmployeeResponsibleNumber | PersonAnniversaryYear | DefaultInventoryStatusId | PrimaryContactEmailDescription | AddressTimeZone | PrimaryContactPhone | PrimaryContactPhoneRecordId | DeliveryAddressCity | InvoiceAddressCounty | PANReferenceNumber | DeliveryAddressStreet | SalesCurrencyCode | Priority | IsSalesTaxIncludedInPrices | BrazilianCNPJOrCPF | PaymentFactoringAccount | PANNumber | PrimaryContactTwitterDescription | PersonFirstName | BrazilianCCM | ReceiptEmail | TDSGroup | MultiLineDiscountCode | PersonAnniversaryDay | DefaultDimensionDisplayValue | SupplementaryItemGroupId | IsWithholdingTaxCalculated | PaymentSpecification | AddressRecordId | AddressBooks | PrimaryContactEmailPurpose | FulfillmentPolicyName | SalesDistrict | ConsolidationDay | IsExpressBillOfLadingAccepted | CreditCardAddressVerification | InvoiceAddressBuildingComplement | AddressState | AllowOnAccount | IsExcludedFromCollectionFeeCalculation | CustomerPaymentFinancialInterestCode | IsTransactionPostedAsShipment | IsExternallyMaintained | CreditLimitIsMandatory | PaymentTermsBaseDays | FiscalCode | KnownAs | PrimaryContactTelex | PaymentBankAccount | BrazilianIE | PrimaryContactEmailRecordId | PreferentialCustomer | ReceiptOption | AddressBrazilianIE | PersonAnniversaryMonth | PrimaryContactPhoneExtension | InvoiceAddressStreetNumber | PrimaryContactPhonePurpose | ExportSale | OrganizationNumber | InvoicePostingType | CreditCardAddressVerificationIsAuthorizationVoidedOnFailure | InvoiceAddressState | ReceiptCalendar | DeliveryAddressState | StateInscription | PersonLastNamePrefix | SalesReturnTaxGroup | PrimaryContactURLDescription | CustomerWithholdingContributionType | IsElectronicInvoice | FederalAgencyLocationCode | GiroTypeFreeTextInvoice | DeliveryAddressValidTo | PersonPhoneticMiddleName | OrganizationABCCode | BrazilianCNAE | WithholdingTaxGroupCode | NAFCode | AddressLatitude | TotalDiscountCode | PaymentCashDiscount | AddressLocationRoles | DeliveryAddressDistrictName | CollectionLetterCode | EInvoiceAttachment | MerchantID | CreditRating | PrimaryContactFacebook | DeliveryAddressBuildingComplement | DeliveryAddressStreetNumber | InvoiceAddressLongitude | LineDiscountCode | PartyCountry | InvoiceAddressLatitude | IsInSuframaRegion | IsIncomingFiscalDocumentGenerated | SalesMemo | ReliefGroupId | IsExcludedFromInterestChargeCalculation | StatisticsGroupId | SalesOrderPoolId | OrganizationName | IsOrderNumberReferenceUsed | CustClassificationId | AddressValidTo | FederalComments | PersonGender | PaymentTerms | PrimaryContactPhoneDescription | AddressPostbox | SalesSubsegmentId | CustomerRebateGroupId | WarehouseOutboundShipmentProcessingPolicyName | AddressCounty | PrimaryContactURLRecordId | IsICMSContributor | InvoiceAddressValidTo | DeliveryAddressTimeZone | InvoiceAddressValidFrom | CreditLimit | CreditCardAddressVerificationLevel | WarehouseIsEntireShipmentFilled | PackingDutyLicense | NationalRegistryNumber | SiteId | InvoiceAddressCountryRegionISOCode | IsAllowCreateIndirectOrderLines | PrimaryContactURLPurpose | ChargesGroupId | PanStatus | CommissionSalesGroupId | NameAlias | PrimaryContactFaxPurpose | AddressStreetNumber | PersonLastName | PaymentIdType | VendorAccount | AddressCountryRegionISOCode | ResidenceForeignCountryRegionId | RFCNumber | PersonHobbies | ElectronicLocationId | InvoiceAddressZipCode | PrimaryContactLinkedInPurpose | IsOneTimeCustomer | ForeignCustomer | CustomerTMAGroupId | AddressValidFrom | OrganizationNumberOfEmployees | CustomerGroupId | GiroTypeInterestNote | DeliveryAddressZipCode | DeliveryReason | TaxRegistrationId | PaymentUseCashDiscount | DiscountPriceGroupId | AddressDescription | SuframaNumber | IdentificationNumber | AuthorityOffice | PersonPhoneticFirstName | PrimaryContactTelexPurpose | DeliveryAddressLatitude | InvoiceAddressCountryRegionId | PrimaryContactFacebookPurpose | OverrideSalesTax | BrazilianINSSCEI | CommissionCustomerGroupId | PrimaryContactFaxDescription | NatureOfAssessee | WriteoffReason | PersonMiddleName | InvoiceAddressLocationId | PersonPhoneticLastName | LanguageId | IsPurchRequestUsed | AddressStreet | IsPublicSector_IT | SATRegistrationName_MX | TaxRegimeCode_MX | CFDITemporaryExport_MX | IsSimplifiedPrimaryAddress | IsSimplifiedDeliveryAddress | IsSimplifiedInvoiceAddress | CredManEligibleCreditLimitCurrency | CredManCustCreditMaxAlt | CredManStatusReasonId | CredManEligibleCreditMax | CredManCustUnlimitedCredit | CredManEligibleCreditLimitDate | CredManWithAgency | CredManCreditLimitDate | CredManNextSchedReviewDate | CredManLastReviewDate | CredManCustomerSince | CredManTitleHeld | CredManExclude | CredManBusinessStarted | CredManNotes | CredManCollectionGroupId | CredManGroupId | CredManAccountStatusId | CredManCreditLimitExpiryDate | KPFNettingActive | QMSApprovedCustomerGroupId | QMSWillPrintCustomerSpecificCertificateOfAnalysis | QMSCertificateOfAnalysisCustomerGroupId | QMSApprovedCustomerListCheckMethod | source_file_name | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 100-000001 | NULL | Organization | NULL | No | NULL | USA | NULL | NULL | NULL | InvoiceAccount | NULL | DoesNotApply | NULL | <masked> | NULL | No | <masked> | NULL | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | NULL | NULL | NULL | No | 0 | NULL | NULL | 75207 | None | NULL | NULL | None | NULL | 1900-01-01 00:00:00.0000000 +00:00 | None | No | NULL | NULL | NULL | NULL | NULL | 0 | NULL | DALLAS | NULL | NULL | NULL | None | 1950 N STEMMONS FWY SUITE 5010 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | customersv3__20261116_105417.csv | <masked> | 2026-11-16 11:43:19.958000 | <masked> | 2026-11-16 11:43:19.958000 |
-| TX 75207 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | customersv3__20261116_105417.csv | <masked> | 2026-11-16 11:43:19.958000 | <masked> | 2026-11-16 11:43:19.958000 |
-| NULL | NULL | No | 0 | None | NULL | NULL | <masked> | NULL | 1447 | NULL | NULL | NULL | NULL | <masked> | 1309 | NULL | <masked> | None | NULL | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | No | NULL | Always | NULL | No | No | NULL | NULL | NULL | 11 | 0 | NULL | NULL | NULL | NULL | 0 | NULL | NULL | NULL | NULL | USD | AllocationPriority10 | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 0 | NULL | NULL | No | NULL | 5637146371 | NULL | NULL | NULL | NULL | 0 | No | <masked> | NULL | TX | No | No | NULL | No | No | No | 0 | NULL | MICROSOFT CORPORATION | NULL | NULL | NULL | 0 | No | RetailEx3 | NULL | None | NULL | NULL | NULL | No | NULL | <masked> | No | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | Other | No | NULL | None | 1900-01-01 00:00:00.0000000 +00:00 | NULL | None | NULL | NULL | NULL | 0 | <masked> | NULL | Business | NULL | None | No | NULL | NULL | NULL | NULL | <masked> | 0 | NULL | NULL | 0 | No | No | NULL | NULL | No | NULL | NULL | MICROSOFT CORPORATION | No | NULL | 2154-12-31 23:59:59.0000000 +00:00 | NULL | Unknown | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | 0 | No | 1900-01-01 00:00:00.0000000 +00:00 | NULL | 1900-01-01 00:00:00.0000000 +00:00 | 0 | Accept | No | NULL | NULL | NULL | NULL | No | NULL | NULL | NotAvailable | NULL | MICROSOFT CORPORATIO | NULL | <masked> | NULL | NULL | NULL | US | NULL | NULL | NULL | NULL | NULL | NULL | No | No | NULL | 2025-06-25 10:29:08.0000000 +00:00 | 0 | Blank | Corporate | None | NULL | NULL | NULL | Normal | NULL | MICROSOFT CORPORATION | NULL | NULL | NULL | NULL | NULL | 0 | NULL | NULL | NULL | No | NULL | NULL | NULL | Company | NULL | NULL | NULL | NULL | en-US | No | 1950 N STEMMONS FWY SUITE 5010 | No | NULL | NULL | No | No | No | No | NULL | 0 | NULL | 0 | No | 1900-01-01 12:00:00.0000000 +00:00 | No | 1900-01-01 12:00:00.0000000 +00:00 | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | No | No | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | NULL | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | customersv3__20261116_105417.csv | <masked> | 2026-11-16 11:43:19.958000 | <masked> | 2026-11-16 11:43:19.958000 |
+Empty in every row: `AddressBrazilianCNPJOrCPF`, `SalesTaxGroup`, `CustomerPaymentFineCode`, `PackingMaterialFeeLicenseNumber`, `PrimaryContactTwitter`, `PrimaryContactEmail`, `InvoiceAddressStreet`, `CURPNumber`, `PrimaryContactLinkedInDescription`, `DeliveryAddressCountryRegionId`, `ItemCustomerGroupId`, `SalesSegmentId`, `InvoiceAddressDistrictName`, `SalesAccountNumber`, `TCSGroup`, `DeliveryAddressLocationId`, `LineOfBusinessId`, `OrganizationPhoneticName`, `DeliveryAddressCountryRegionISOCode`, `ElectronicInvoiceEAN`, `DeliveryFreightZone`, `BirthPlace`, `PersonInitials`, `DefaultECommerceOperator`, `CentralBankPurposeCode`, `OrderEntryDeadline`, `WarehouseIsASNGenerated`, `AddressLongitude`, `PrimaryContactLinkedIn`, `IsFreightAccrued`, `PartyState`, `PartyNumber`, `InvoiceAccount`, `PersonMaritalStatus`, `GiroType`, `PersonChildrenNames`, `ForeignResident`, `DeliveryMode`, `PersonProfessionalSuffix`, `DestinationCode`, `IRS1099CIndicator`, `FrenchSiret`, `PaymentDay`, `FederalIndicator`, `DefaultInventoryStatusId`, `PrimaryContactEmailDescription`, `AddressTimeZone`, `PrimaryContactPhone`, `PrimaryContactPhoneRecordId`, `DeliveryAddressCity`, `InvoiceAddressCounty`, `SalesCurrencyCode`, `BrazilianCNPJOrCPF`, `PANNumber`, `PrimaryContactTwitterDescription`, `PersonFirstName`, `ReceiptEmail`, `TDSGroup`, `PersonAnniversaryDay`, `IsWithholdingTaxCalculated`, `PaymentSpecification`, `AddressRecordId`, `AddressBooks`, `PrimaryContactEmailPurpose`, `SalesDistrict`, `ConsolidationDay`, `AddressState`, `AllowOnAccount`, `CustomerPaymentFinancialInterestCode`, `IsTransactionPostedAsShipment`, `PaymentTermsBaseDays`, `KnownAs`, `PaymentBankAccount`, `BrazilianIE`, `PrimaryContactEmailRecordId`, `PreferentialCustomer`, `ReceiptOption`, `AddressBrazilianIE`, `PersonAnniversaryMonth`, `ExportSale`, `ReceiptCalendar`, `DeliveryAddressState`, `StateInscription`, `PersonLastNamePrefix`, `PrimaryContactURLDescription`, `CustomerWithholdingContributionType`, `FederalAgencyLocationCode`, `DeliveryAddressValidTo`, `OrganizationABCCode`, `BrazilianCNAE`, `WithholdingTaxGroupCode`, `AddressLatitude`, `TotalDiscountCode`, `PaymentCashDiscount`, `AddressLocationRoles`, `DeliveryAddressDistrictName`, `CollectionLetterCode`, `CreditRating`, `PartyCountry`, `InvoiceAddressLatitude`, `IsInSuframaRegion`, `SalesMemo`, `IsExcludedFromInterestChargeCalculation`, `StatisticsGroupId`, `SalesOrderPoolId`, `OrganizationName`, `IsOrderNumberReferenceUsed`, `AddressValidTo`, `FederalComments`, `PersonGender`, `PrimaryContactPhoneDescription`, `AddressPostbox`, `SalesSubsegmentId`, `WarehouseOutboundShipmentProcessingPolicyName`, `AddressCounty`, `PrimaryContactURLRecordId`, `IsICMSContributor`, `CreditCardAddressVerificationLevel`, `WarehouseIsEntireShipmentFilled`, `IsAllowCreateIndirectOrderLines`, `ChargesGroupId`, `PersonHobbies`, `ElectronicLocationId`, `InvoiceAddressZipCode`, `PrimaryContactLinkedInPurpose`, `CustomerTMAGroupId`, `OrganizationNumberOfEmployees`, `CustomerGroupId`, `GiroTypeInterestNote`, `DeliveryAddressZipCode`, `DeliveryReason`, `TaxRegistrationId`, `PaymentUseCashDiscount`, `DiscountPriceGroupId`, `AddressDescription`, `SuframaNumber`, `IdentificationNumber`, `AuthorityOffice`, `PersonPhoneticFirstName`, `PrimaryContactTelexPurpose`, `DeliveryAddressLatitude`, `InvoiceAddressCountryRegionId`, `PrimaryContactFacebookPurpose`, `CompanyChain`, `OverrideSalesTax`, `BrazilianINSSCEI`, `CommissionCustomerGroupId`, `PrimaryContactFaxDescription`, `NatureOfAssessee`, `WriteoffReason`, `PersonMiddleName`, `InvoiceAddressLocationId`, `PersonPhoneticLastName`, `LanguageId`, `IsPurchRequestUsed`, `AddressStreet`, `IsPublicSector_IT`, `SATRegistrationName_MX`, `TaxRegimeCode_MX`, `CFDITemporaryExport_MX`, `IsSimplifiedPrimaryAddress`, `IsSimplifiedDeliveryAddress`, `IsSimplifiedInvoiceAddress`, `CredManEligibleCreditLimitCurrency`, `CredManCustCreditMaxAlt`, `CredManStatusReasonId`, `CredManEligibleCreditMax`, `CredManCustUnlimitedCredit`, `CredManEligibleCreditLimitDate`, `CredManWithAgency`, `CredManCreditLimitDate`, `CredManNextSchedReviewDate`, `CredManLastReviewDate`, `CredManCustomerSince`, `CredManTitleHeld`, `CredManExclude`, `CredManBusinessStarted`, `CredManNotes`, `CredManCollectionGroupId`, `CredManGroupId`, `CredManAccountStatusId`, `CredManCreditLimitExpiryDate`, `KPFNettingActive`, `QMSApprovedCustomerGroupId`, `QMSWillPrintCustomerSpecificCertificateOfAnalysis`, `QMSCertificateOfAnalysisCustomerGroupId`, `QMSApprovedCustomerListCheckMethod`. Do not filter or group on them.

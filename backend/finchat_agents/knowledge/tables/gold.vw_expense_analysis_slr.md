@@ -24,7 +24,6 @@ synonyms: []
 built_from:
 - fact_fynapse_slr_journals
 known_issues: []
-row_count: null
 proposed_fields: []
 reviewed: false
 broken_error: the profiling query failed in the catalog export (no row count); the error text is not in the workbook
@@ -65,37 +64,3 @@ Expense analysis (line grain) over lakehouse_mvpai.silver.fact_fynapse_slr_journ
 | `SOURCE_SYSTEM` | string |  |  | `SOURCE_SYSTEM` |
 | `BUSINESS_EVENT` | string |  |  | `BUSINESS_EVENT` |
 | `JOURNAL_TYPE` | string |  |  | `JOURNAL_TYPE` |
-
-## Profile
-
-Rows in the latest export: unknown.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `ENTITY` | STRING |  |  |  |  |
-| `COST_CENTER` | STRING |  |  |  |  |
-| `ACCOUNT` | STRING |  |  |  |  |
-| `ACCOUNT_DESCRIPTION` | STRING |  |  |  |  |
-| `ACCOUNT_LABEL` | STRING |  |  |  |  |
-| `LINE_TYPE` | STRING |  |  |  |  |
-| `IS_EXPENSE_LINE` | BOOLEAN |  |  |  |  |
-| `EXPENSE_TYPE` | STRING |  |  |  |  |
-| `POSTING_DATE` | DATE |  |  |  |  |
-| `TRANSACTION_DATE` | DATE |  |  |  |  |
-| `POSTING_MONTH` | DATE |  |  |  |  |
-| `FISCAL_YEAR` | INT |  |  |  |  |
-| `PERIOD` | INT |  |  |  |  |
-| `SOURCE_TRANSACTION_ID` | STRING |  |  |  |  |
-| `JOURNAL_ID` | STRING |  |  |  |  |
-| `JOURNAL_LINE_ID` | STRING |  |  |  |  |
-| `JOURNAL_LINE_NO` | INT |  |  |  |  |
-| `LINE_DESCRIPTION` | STRING |  |  |  |  |
-| `AMOUNT_GBP` | DECIMAL |  |  |  |  |
-| `REPORTING_CURRENCY` | STRING |  |  |  |  |
-| `TRANSACTION_AMOUNT` | DECIMAL |  |  |  |  |
-| `TRANSACTION_CURRENCY` | STRING |  |  |  |  |
-| `FUNCTIONAL_AMOUNT` | DECIMAL |  |  |  |  |
-| `FUNCTIONAL_CURRENCY` | STRING |  |  |  |  |
-| `SOURCE_SYSTEM` | STRING |  |  |  |  |
-| `BUSINESS_EVENT` | STRING |  |  |  |  |
-| `JOURNAL_TYPE` | STRING |  |  |  |  |

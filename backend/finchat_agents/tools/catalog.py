@@ -16,19 +16,6 @@ COLUMN_VALUES_LIMIT = 100
 VALUES_PER_COLUMN = 12  # in a compact page; get_column_values gives the full list
 
 
-def _compact_profile(section: str) -> str:
-    """The profile table shrunk to what the agents use: the row count and the columns that are empty in every row."""
-    rows_line = next((ln for ln in section.splitlines() if ln.startswith("Rows in the latest export")), "")
-    empty = []
-    for ln in section.splitlines():
-        cells = [c.strip() for c in ln.strip().strip("|").split("|")]
-        if len(cells) >= 4 and cells[0].startswith("`") and cells[2] == "0":  # Column | Type | Distinct | Nulls ...
-            empty.append(cells[0])
-    note = (f"Empty in every row: {', '.join(empty)}. Do not filter or group on them." if empty
-            else "No column is empty in every row.")
-    return "## Profile\n\n" + "\n".join(x for x in (rows_line, note) if x) + "\n(Full profile: describe_table with detail='full'.)\n"
-
-
 def _compact_values(section: str) -> str:
     """Keep the first VALUES_PER_COLUMN stored values of each column."""
     out: list[str] = []
@@ -53,22 +40,10 @@ def _compact_values(section: str) -> str:
 
 
 def compact_page(body: str) -> str:
-    """A table page without the bulk the agents rarely need: sample rows are left out, the profile becomes the list of
-    empty columns, and each column shows at most VALUES_PER_COLUMN stored values. Columns, joins, metrics and notes stay
-    whole. Smaller pages make every following step of the agent loop faster, since each step resends the conversation."""
+    """A table page with at most VALUES_PER_COLUMN stored values per column; everything else stays whole. Smaller
+    pages make every following step of the agent loop faster, since each step resends the conversation."""
     parts = re.split(r"(?m)^(?=## )", body)
-    out = []
-    for part in parts:
-        head = part.split("\n", 1)[0].strip()
-        if head.startswith("## Sample rows"):
-            out.append("## Sample rows\n\n(Left out: describe_table with detail='full' shows them.)\n")
-        elif head.startswith("## Profile"):
-            out.append(_compact_profile(part))
-        elif head.startswith("## Values"):
-            out.append(_compact_values(part))
-        else:
-            out.append(part)
-    return "\n".join(p.rstrip("\n") + "\n" for p in out if p.strip())
+    return "".join(_compact_values(p) if p.startswith("## Values") else p for p in parts).strip()
 
 
 def _schema(props: dict[str, Any], required: list[str]) -> dict[str, Any]:
@@ -214,7 +189,7 @@ def make_catalog_tools(deps: DataDeps) -> list[Tool]:
             name="describe_table",
             description="Page of one table: grain, keys, entity and period columns, PII columns, known issues, columns "
                         "with meanings and SQL expressions, stored values (first few per column), empty columns, joins and "
-                        "notes. detail='full' adds sample rows, the full profile and every stored value (rarely needed).",
+                        "notes. detail='full' shows every stored value (rarely needed).",
             input_schema=_schema({"table": {"type": "string", "description": "Table name, schema.table or full name."},
                                   "detail": {"type": "string", "enum": ["compact", "full"],
                                              "description": "compact (default) or full."}}, ["table"]),

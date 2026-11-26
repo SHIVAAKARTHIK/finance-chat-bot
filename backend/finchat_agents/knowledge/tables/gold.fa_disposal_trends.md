@@ -19,7 +19,6 @@ built_from:
 - fact_asset_journal
 - fact_asset_master_transactions
 known_issues: []
-row_count: 7
 proposed_fields:
 - grain
 - primary_key
@@ -41,47 +40,25 @@ reviewed: false
 ## Values
 
 **YEAR**
-- `2026`: 7 rows
+- `2026`
 
 **MONTH**
-- `May`: 1 rows
-- `April`: 1 rows
-- `August`: 1 rows
-- `July`: 1 rows
-- `June`: 1 rows
-- `September`: 1 rows
-- `October`: 1 rows
+- `May`
+- `April`
+- `August`
+- `July`
+- `June`
+- `September`
+- `October`
 
 **DISPOSAL_COUNT**
-- `85`: 1 rows
-- `92`: 1 rows
-- `34`: 1 rows
-- `45`: 1 rows
-- `68`: 1 rows
-- `80`: 1 rows
-- `57`: 1 rows
+- `85`
+- `92`
+- `34`
+- `45`
+- `68`
+- `80`
+- `57`
 
 **POSTING_SCHEMA**
-- `GAAP`: 7 rows
-
-## Profile
-
-Rows in the latest export: 7.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `YEAR` | LONG | 1 | 0 | 2026 | 2026 |
-| `MONTH` | STRING | 7 | 0 | April | September |
-| `DISPOSAL_COUNT` | LONG | 7 | 0 | 34 | 92 |
-| `LEGAL_ENTITY` | STRING | 1 | 0 |  |  |
-| `POSTING_SCHEMA` | STRING | 1 | 0 | GAAP | GAAP |
-
-## Sample rows
-
-| YEAR | MONTH | DISPOSAL_COUNT | POSTING_SCHEMA |
-|---|---|---|---|
-| 2026 | April | 45 | GAAP |
-| 2026 | May | 68 | GAAP |
-| 2026 | June | 34 | GAAP |
-| 2026 | July | 92 | GAAP |
-| 2026 | August | 57 | GAAP |
+- `GAAP`

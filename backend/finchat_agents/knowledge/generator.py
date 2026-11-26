@@ -9,11 +9,13 @@ Never overwrites what a person edited:
 - a section whose heading is followed by `<!-- reviewed -->` is kept as is;
 - Columns and Values sections are merged: existing rows and cells are kept, only new columns / values are added.
 Safety exception: new columns whose names look like personal data are always added to `pii_columns` (append only).
-Generator-owned fields: status, broken_error, row_count. Profile and Sample rows sections are regenerated.
+Generator-owned fields: status, broken_error, and the "Empty columns" section.
+Pages hold only what the agents read: no row counts, per-value counts, data profile or sample rows (they are snapshots
+that go out of date; answers always come from live queries). The export's Samples sheet is not used.
 
-Data hygiene: values, samples and min/max of entity and key columns are not written to pages (entity codes change and
-must be checked live with get_column_values); personal-data columns are masked in samples and never listed, and email
-addresses are never written, whatever the column (`scrub_personal`, applied to reviewed sections too).
+Data hygiene: values of entity and key columns are not written to pages (entity codes change and must be checked live
+with get_column_values); values of personal-data columns are never listed, and email addresses are never written,
+whatever the column (`scrub_personal`, applied to reviewed sections too).
 
 Broken objects: tables named in the Errors sheet; when the workbook has no Errors sheet, tables without a row count
 (the profiling query failed). They get `status: broken`; a later clean export re-enables them.
@@ -39,7 +41,6 @@ TEXT_FIELDS = ("domain", "purpose", "grain", "entity_column")
 COLUMN_FIELDS = ("primary_key", "entity_column", "period_columns", "pii_columns")
 FILL_FIELDS = TEXT_FIELDS + LIST_FIELDS + ("known_issues", "layer")
 CONFIDENCE = {"high", "medium", "low"}
-SAMPLE_CELL_CHARS = 40
 MAX_VALUES_PER_COLUMN = 50
 
 PII_NAME = re.compile(
@@ -111,7 +112,6 @@ class CatalogTable:
     duplicate_rows: int | None = None
     columns: list[dict[str, Any]] = field(default_factory=list)
     values: dict[str, list[tuple[str, Any]]] = field(default_factory=dict)
-    samples: dict[int, dict[str, Any]] = field(default_factory=dict)
     fill: dict[str, str] = field(default_factory=dict)
     keys: list[dict[str, Any]] = field(default_factory=list)  # Keys sheet rows (declared and proposed keys)
     confidence: str = ""
@@ -280,13 +280,6 @@ def read_catalog(xlsx: Path | str, reviewed_csvs: Iterable[Path | str] = ()) -> 
             t.excel_altered.add(str(r["column"]))
             continue
         t.values.setdefault(str(r["column"]), []).append((str(r["value"]), r.get("count")))
-    for r in sheets.get("samples", []):
-        t = get(r["schema"], r["table"])
-        value = r.get("value")
-        if _excel_date(value, types.get((t.id, str(r["column"])), "")):
-            t.excel_altered.add(str(r["column"]))
-            value = "(altered in export)"
-        t.samples.setdefault(_int(r["row"]) or 0, {})[str(r["column"])] = value
     for r in sheets.get("keys", []):
         get(r["schema"], r["table"]).keys.append(r)
     for r in sheets.get("fill_in", []):
@@ -370,7 +363,6 @@ def _new_front(t: CatalogTable) -> dict[str, Any]:
         "synonyms": [],
         "built_from": [],
         "known_issues": [],
-        "row_count": None,
         "proposed_fields": [],
         "reviewed": False,
     }
@@ -438,7 +430,7 @@ def _merge_front(front: dict[str, Any], t: CatalogTable, report: GenerateReport,
         front["known_issues"] = issues
 
     front["proposed_fields"] = sorted(proposed)
-    front["row_count"] = t.row_count
+    front.pop("row_count", None)  # a snapshot the agents do not use
     if t.error:
         front["status"] = "broken"
         front["broken_error"] = t.error
@@ -492,11 +484,11 @@ def _merge_values(doc: PageDoc, t: CatalogTable, hidden: set[str]) -> None:
         if col in hidden:
             continue
         known = {v for v, _ in values.get(col, [])}
-        for raw, count in items[:MAX_VALUES_PER_COLUMN]:
+        for raw, _ in items[:MAX_VALUES_PER_COLUMN]:
             value = _one_line(raw)
             if value not in known:
                 known.add(value)
-                values.setdefault(col, []).append((value, f"{_txt(count)} rows" if count not in (None, "") else ""))
+                values.setdefault(col, []).append((value, ""))
     if values:
         doc.set_section("Values", render_values(values), after="Columns")
 
@@ -510,43 +502,22 @@ def _one_line(v: Any) -> str:
     return s if len(s) <= VALUE_CHARS else s[: VALUE_CHARS - 3] + "..."
 
 
-def _cell(v: Any) -> str:
-    s = "NULL" if v is None else str(v).replace("|", "\\|").replace("\n", " ")
-    return s if len(s) <= SAMPLE_CELL_CHARS else s[: SAMPLE_CELL_CHARS - 3] + "..."
-
-
-def _profile(doc: PageDoc, t: CatalogTable, hidden: set[str]) -> None:
-    section = doc.section("Profile")
-    if section is not None and section.reviewed:
+def _empty_columns(doc: PageDoc, t: CatalogTable) -> None:
+    """The only part of the data profile the agents use: columns that are empty in every row. The profile table and
+    sample rows of older pages are removed (unless a person marked them reviewed)."""
+    for heading in ("Profile", "Sample rows"):
+        old = doc.section(heading)
+        if old is not None and not old.reviewed:
+            doc.sections.remove(old)
+    section = doc.section("Empty columns")
+    if not t.columns or (section is not None and section.reviewed):
         return
-    lines = [f"Rows in the latest export: {t.row_count if t.row_count is not None else 'unknown'}."]
-    if t.duplicate_rows:
-        lines.append(f"Exact duplicate rows: {t.duplicate_rows}.")
-    if t.columns:
-        lines += ["", "| Column | Type | Distinct (approx) | Nulls | Min | Max |", "|---|---|---|---|---|---|"]
-        for c in t.columns:
-            name = str(c["column"])
-            show = name not in hidden
-            mn = _cell(c.get("min")) if show and c.get("min") is not None else ""
-            mx = _cell(c.get("max")) if show and c.get("max") is not None else ""
-            lines.append(
-                f"| `{name}` | {c.get('type') or ''} | {c.get('approx_distinct') if c.get('approx_distinct') is not None else ''} | "
-                f"{c.get('null_count') if c.get('null_count') is not None else ''} | {mn} | {mx} |"
-            )
-    doc.set_section("Profile", "\n".join(lines))
-
-
-def _samples(doc: PageDoc, t: CatalogTable, hidden: set[str], pii: set[str]) -> None:
-    section = doc.section("Sample rows")
-    if section is not None and section.reviewed:
-        return
-    if not t.samples:
-        return
-    cols = [c for c in (t.column_names or sorted({k for r in t.samples.values() for k in r})) if c not in hidden or c in pii]
-    lines = ["| " + " | ".join(cols) + " |", "|" + "---|" * len(cols)]
-    for _, row in sorted(t.samples.items())[:5]:
-        lines.append("| " + " | ".join("<masked>" if c in pii else _cell(row.get(c)) for c in cols) + " |")
-    doc.set_section("Sample rows", "\n".join(lines))
+    empty = [f"`{c['column']}`" for c in t.columns if _int(c.get("approx_distinct")) == 0]
+    if empty:
+        doc.set_section("Empty columns", f"Empty in every row: {', '.join(empty)}. Do not filter or group on them.",
+                        after="Values")
+    elif section is not None:
+        doc.sections.remove(section)
 
 
 def update_page(existing_text: str | None, t: CatalogTable, report: GenerateReport, domains: set[str] | None = None) -> str:
@@ -567,8 +538,7 @@ def update_page(existing_text: str | None, t: CatalogTable, report: GenerateRepo
     doc.front["pii_columns"] = pii
     hidden = _hidden_values(doc.front, t)
     _merge_values(doc, t, hidden)
-    _profile(doc, t, hidden)
-    _samples(doc, t, hidden, set(pii))
+    _empty_columns(doc, t)
     return scrub_personal(render_page(doc), pii)
 
 

@@ -134,15 +134,15 @@ def test_generate_creates_updates_and_marks_broken(env):
     assert fa.front["purpose"] == "Hand-written purpose that must survive."
     assert fa.front["grain"] == "one row per asset per book"  # CSV wins over Fill_in (empty) and old value
     assert fa.front["primary_key"] == ["ASSET", "BOOK"]
-    assert fa.front["row_count"] == 600
+    assert "row_count" not in fa.front
     assert [i["code"] for i in fa.front["known_issues"]] == ["duplicates"]
     assert fa.section("Notes").reviewed and fa.section("Notes").content == "Person notes stay."
     assert "Hand-written intro." in fa.intro
     cols = {c["name"]: c for c in parse_columns(fa.section("Columns").content)}
     assert cols["ASSET"]["meaning"] == "Asset number (person wrote this)." and cols["ASSET"]["sql"] == "trim(ASSET)"
     assert "STATUS" in cols  # new column added
-    assert "`Open`: 400 rows" in fa.section("Values").content
-    assert "Exact duplicate rows: 300." in fa.section("Profile").content
+    assert "- `Open`" in fa.section("Values").content and "rows" not in fa.section("Values").content
+    assert fa.section("Profile") is None and fa.section("Sample rows") is None
 
     # new page: proposals flagged, PII masked in samples and values
     vs = parse_page((tables / "gold.vendor_spend.md").read_text(encoding="utf-8"))
@@ -152,7 +152,7 @@ def test_generate_creates_updates_and_marks_broken(env):
     assert set(vs.front["proposed_fields"]) == {"grain", "primary_key"}
     assert vs.front["pii_columns"] == ["BUYER_NAME"]
     assert "Ann Example" not in (tables / "gold.vendor_spend.md").read_text(encoding="utf-8")
-    assert "<masked>" in vs.section("Sample rows").content
+    assert vs.section("Sample rows") is None and vs.section("Profile") is None
     assert vs.section("Values") is None  # the only listed values were PII
 
     # broken object
@@ -197,5 +197,5 @@ def test_fully_reviewed_page_front_matter_untouched(env):
     report = generate(make_xlsx(tmp / "cat.xlsx"), tables, [make_csv(tmp / "r.csv")])
     fa = parse_page(page.read_text(encoding="utf-8"))
     assert fa.front["grain"] == "old grain" and fa.front["primary_key"] == [] and fa.front["known_issues"] == []
-    assert fa.front["row_count"] == 600  # generator-owned
+    assert "row_count" not in fa.front
     assert "silver.fa_books: known_issues" in report.kept_reviewed

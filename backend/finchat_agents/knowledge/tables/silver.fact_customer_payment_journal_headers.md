@@ -17,7 +17,6 @@ pii_columns:
 synonyms: []
 built_from: []
 known_issues: []
-row_count: 2
 proposed_fields:
 - grain
 - primary_key
@@ -46,53 +45,27 @@ reviewed: false
 ## Values
 
 **JournalBatchNumber**
-- `100-000227`: 1 rows
-- `100-000234`: 1 rows
+- `100-000227`
+- `100-000234`
 
 **JournalName**
-- `CPJ`: 2 rows
+- `CPJ`
 
 **OverrideSalesTax**
-- `No`: 2 rows
+- `No`
 
 **Description**
-- `Customer payment journal`: 2 rows
+- `Customer payment journal`
 
 **IsPosted**
-- `Yes`: 1 rows
-- `No`: 1 rows
+- `Yes`
+- `No`
 
 **source_file_name**
-- `customerpaymentjournalheaders__20261116_105417.csv`: 2 rows
+- `customerpaymentjournalheaders__20261116_105417.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 11:43:08.189448+00:00`: 2 rows
+- `2026-11-16 11:43:08.189448+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 11:43:08.189448+00:00`: 2 rows
-
-## Profile
-
-Rows in the latest export: 2.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `dataAreaId` | STRING | 1 | 0 |  |  |
-| `JournalBatchNumber` | STRING | 2 | 0 | 100-000227 | 100-000234 |
-| `JournalName` | STRING | 1 | 0 | CPJ | CPJ |
-| `OverrideSalesTax` | STRING | 1 | 0 | No | No |
-| `Description` | STRING | 1 | 0 | Customer payment journal | Customer payment journal |
-| `IsPosted` | STRING | 2 | 0 | No | Yes |
-| `source_file_name` | STRING | 1 | 0 | customerpaymentjournalheaders__202611... | customerpaymentjournalheaders__202611... |
-| `HASH_KEY` | STRING | 2 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:08.189000 | 2026-11-16 11:43:08.189000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:08.189000 | 2026-11-16 11:43:08.189000 |
-
-## Sample rows
-
-| JournalBatchNumber | JournalName | OverrideSalesTax | Description | IsPosted | source_file_name | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|
-| 100-000227 | CPJ | No | Customer payment journal | Yes | customerpaymentjournalheaders__202611... | <masked> | 2026-11-16 11:43:08.189000 | <masked> | 2026-11-16 11:43:08.189000 |
-| 100-000234 | CPJ | No | Customer payment journal | No | customerpaymentjournalheaders__202611... | <masked> | 2026-11-16 11:43:08.189000 | <masked> | 2026-11-16 11:43:08.189000 |
+- `2026-11-16 11:43:08.189448+00:00`

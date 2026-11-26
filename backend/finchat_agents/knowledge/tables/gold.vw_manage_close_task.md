@@ -18,7 +18,6 @@ built_from:
 - manage_close_task_facts
 - manage_close_task_settings
 known_issues: []
-row_count: 165
 proposed_fields:
 - grain
 - primary_key
@@ -48,57 +47,32 @@ superseded_by:
 ## Values
 
 **TASK_FOLDER_NAME**
-- `Adjustments`: 74 rows
-- `Pre-Close`: 35 rows
-- `Sign-off`: 15 rows
-- `Sub-ledgers`: 13 rows
-- `Review`: 10 rows
-- `Pre-close`: 9 rows
-- `Reconciliation`: 3 rows
-- `Management Reporting`: 3 rows
-- `Accounts Receivable`: 1 rows
-- `Accounts Payable`: 1 rows
-- `Revenue`: 1 rows
+- `Adjustments`
+- `Pre-Close`
+- `Sign-off`
+- `Sub-ledgers`
+- `Review`
+- `Pre-close`
+- `Reconciliation`
+- `Management Reporting`
+- `Accounts Receivable`
+- `Accounts Payable`
+- `Revenue`
 
 **TASK_STATUS**
-- `Not Started`: 128 rows
-- `Approved`: 15 rows
-- `Prepared`: 15 rows
-- `In Progress`: 7 rows
+- `Not Started`
+- `Approved`
+- `Prepared`
+- `In Progress`
 
 **TASK_IS_FINALIZED**
-- `False`: 136 rows
-- `True`: 29 rows
+- `False`
+- `True`
 
 **TASK_STATE**
-- `Upcoming`: 128 rows
-- `Done`: 29 rows
-- `In Progress`: 8 rows
+- `Upcoming`
+- `Done`
+- `In Progress`
 
 **PERIOD_NAME**
-- `None`: 90 rows
-
-## Profile
-
-Rows in the latest export: 165.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `TASK_KEY` | STRING | 168 | 0 |  |  |
-| `TASK_SETTINGS_KEY` | STRING | 168 | 0 |  |  |
-| `TASK_FOLDER_NAME` | STRING | 11 | 0 | Accounts Payable | Sub-ledgers |
-| `TASK_STATUS` | STRING | 4 | 0 | Approved | Prepared |
-| `TASK_IS_FINALIZED` | STRING | 2 | 0 | False | True |
-| `TASK_STATE` | STRING | 3 | 0 | Done | Upcoming |
-| `LEGAL_ENTITY` | STRING | 8 | 0 |  |  |
-| `PERIOD_NAME` | STRING | 2 | 90 |  |  |
-
-## Sample rows
-
-| TASK_FOLDER_NAME | TASK_STATUS | TASK_IS_FINALIZED | TASK_STATE | PERIOD_NAME |
-|---|---|---|---|---|
-| Accounts Payable | Prepared | True | Done | (altered in export) |
-| Accounts Receivable | Prepared | True | Done | (altered in export) |
-| Pre-Close | Prepared | True | Done | (altered in export) |
-| Sub-ledgers | Prepared | True | Done | (altered in export) |
-| Adjustments | Not Started | False | Upcoming | (altered in export) |
+- `None`

@@ -27,7 +27,6 @@ built_from:
 - fact_cust_transactions
 - fact_cust_table_bi_entities
 known_issues: []
-row_count: null
 proposed_fields: []
 reviewed: false
 broken_error: the profiling query failed in the catalog export (no row count); the error text is not in the workbook
@@ -56,27 +55,3 @@ broken_error: the profiling query failed in the catalog export (no row count); t
 | `PERIOD_NAME` | string |  |  | `PERIOD_NAME` |
 | `PERIOD_START_DATE` | date |  |  | `PERIOD_START_DATE` |
 | `PERIOD_END_DATE` | date |  |  | `PERIOD_END_DATE` |
-
-## Profile
-
-Rows in the latest export: unknown.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `Reference` | STRING |  |  |  |  |
-| `Customer` | STRING |  |  |  |  |
-| `invoice_number` | STRING |  |  |  |  |
-| `Amount` | STRING |  |  |  |  |
-| `Invoice_date` | STRING |  |  |  |  |
-| `Due_date` | STRING |  |  |  |  |
-| `Aging` | STRING |  |  |  |  |
-| `Action` | STRING |  |  |  |  |
-| `email` | STRING |  |  |  |  |
-| `LEGAL_ENTITY` | STRING |  |  |  |  |
-| `PERIOD_TYPE` | STRING |  |  |  |  |
-| `PERIOD_YEAR` | INT |  |  |  |  |
-| `PERIOD_MONTH` | INT |  |  |  |  |
-| `PERIOD_QUARTER` | INT |  |  |  |  |
-| `PERIOD_NAME` | STRING |  |  |  |  |
-| `PERIOD_START_DATE` | DATE |  |  |  |  |
-| `PERIOD_END_DATE` | DATE |  |  |  |  |

@@ -25,7 +25,6 @@ built_from:
 - fact_vendor_invoice_journal_lines
 - fact_kpmg_vend_payment_bi_vend_trans_open
 known_issues: []
-row_count: 107
 proposed_fields: []
 reviewed: false
 ---
@@ -53,60 +52,34 @@ reviewed: false
 ## Values
 
 **SOURCE_TYPE**
-- `JOURNAL`: 102 rows
-- `HEADER`: 5 rows
+- `JOURNAL`
+- `HEADER`
 
 **STATUS**
-- `Ready For Payment`: 63 rows
-- `Awaiting Processing`: 29 rows
-- `Pending Approval`: 6 rows
-- `Approved`: 3 rows
-- `MATCHED`: 3 rows
-- `Paid`: 3 rows
+- `Ready For Payment`
+- `Awaiting Processing`
+- `Pending Approval`
+- `Approved`
+- `MATCHED`
+- `Paid`
 
 **PAYMENT_DATE**
-- `None`: 107 rows
+- `None`
 
 **CATEGORY**
-- `NA`: 102 rows
-- `Office Rent`: 2 rows
-- `Building`: 1 rows
-- `Computer/Laptop`: 1 rows
-- `Furniture`: 1 rows
+- `NA`
+- `Office Rent`
+- `Building`
+- `Computer/Laptop`
+- `Furniture`
 
 **PO_NUMBER**
-- `NA`: 102 rows
-- `None`: 2 rows
-- `100-000059`: 1 rows
-- `100-000057`: 1 rows
-- `100-000058`: 1 rows
+- `NA`
+- `None`
+- `100-000059`
+- `100-000057`
+- `100-000058`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 107.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `INVOICE` | STRING | 113 | 0 | INV-090 | Inv-059 |
-| `SUPPLIER` | STRING | 63 | 0 | Accord Field Services | Workday Inc. |
-| `AMOUNT` | STRING | 108 | 0 | 10050 | 9950 |
-| `JOURNAL_ID` | STRING | 104 | 0 |  | 100-000119 |
-| `SOURCE_TYPE` | STRING | 2 | 0 | HEADER | JOURNAL |
-| `STATUS` | STRING | 6 | 0 | Approved | Ready For Payment |
-| `INVOICE_DATE` | DATE | 109 | 0 | 2025-01-26 00:00:00 | 2026-11-09 00:00:00 |
-| `DUE_DATE` | STRING | 109 | 0 | 2025-02-05 12:00:00.0000000 +00:00 | 2026-11-19 12:00:00.0000000 +00:00 |
-| `PAYMENT_DATE` | DATE | 0 | 107 |  |  |
-| `AGE` | INT | 99 | 0 | 11 | 663 |
-| `CATEGORY` | STRING | 5 | 0 | Building | Office Rent |
-| `PO_NUMBER` | STRING | 4 | 2 | 100-000057 | NA |
-| `LEGAL_ENTITY` | STRING | 1 | 0 |  |  |
-
-## Sample rows
-
-| INVOICE | SUPPLIER | AMOUNT | JOURNAL_ID | SOURCE_TYPE | STATUS | INVOICE_DATE | DUE_DATE | PAYMENT_DATE | AGE | CATEGORY | PO_NUMBER |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| Inv-057 | Workday Inc. | 7500 | NULL | HEADER | Pending Approval | 2026-01-01 00:00:00 | 2026-01-11 12:00:00.0000000 +00:00 | NULL | 323 | Building | 100-000057 |
-| Inv-058 | ServiceNow Inc. | 7600 | NULL | HEADER | Pending Approval | 2026-01-02 00:00:00 | 2026-01-12 12:00:00.0000000 +00:00 | NULL | 322 | Computer/Laptop | 100-000058 |
-| Inv-059 | VMware LLC | 7700 | NULL | HEADER | Pending Approval | 2026-01-06 00:00:00 | 2026-01-16 12:00:00.0000000 +00:00 | NULL | 318 | Furniture | 100-000059 |
-| INV-090 | Evergreen Adjusting Services | 200 | NULL | HEADER | Pending Approval | 2026-11-09 00:00:00 | 2026-11-19 12:00:00.0000000 +00:00 | NULL | 11 | Office Rent | NULL |
-| INV-091 | ShieldPro Claims Agency | 1200 | NULL | HEADER | Pending Approval | 2026-11-09 00:00:00 | 2026-11-19 12:00:00.0000000 +00:00 | NULL | 11 | Office Rent | NULL |
+Empty in every row: `PAYMENT_DATE`. Do not filter or group on them.

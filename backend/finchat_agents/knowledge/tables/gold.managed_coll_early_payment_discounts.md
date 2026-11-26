@@ -22,7 +22,6 @@ built_from:
 - fact_cust_table_bi_entities
 - fact_cash_discounts
 known_issues: []
-row_count: 0
 proposed_fields: []
 reviewed: false
 ---
@@ -44,19 +43,6 @@ reviewed: false
 | `email` | string |  |  | `email` |
 | `LEGAL_ENTITY` | string |  |  | `LEGAL_ENTITY` |
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 0.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `Reference` | STRING | 0 | 0 |  |  |
-| `Customer` | STRING | 0 | 0 |  |  |
-| `invoice_number` | STRING | 0 | 0 |  |  |
-| `Amount` | STRING | 0 | 0 |  |  |
-| `Invoice_date` | DATE | 0 | 0 |  |  |
-| `Due_date` | DATE | 0 | 0 |  |  |
-| `Discounts` | STRING | 0 | 0 |  |  |
-| `Action` | STRING | 0 | 0 |  |  |
-| `email` | STRING | 0 | 0 |  |  |
-| `LEGAL_ENTITY` | STRING | 0 | 0 |  |  |
+Empty in every row: `Reference`, `Customer`, `invoice_number`, `Amount`, `Invoice_date`, `Due_date`, `Discounts`, `Action`, `email`, `LEGAL_ENTITY`. Do not filter or group on them.

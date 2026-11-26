@@ -17,7 +17,6 @@ built_from:
 - adra_account_facts
 - adra_transaction_facts
 known_issues: []
-row_count: 8
 proposed_fields: []
 reviewed:
 - superseded_by
@@ -40,34 +39,14 @@ superseded_by:
 ## Values
 
 **Accounts**
-- `208`: 1 rows
-- `1612`: 1 rows
-- `104`: 1 rows
-- `48`: 1 rows
-- `972`: 1 rows
-- `224`: 1 rows
-- `10`: 1 rows
-- `526`: 1 rows
+- `208`
+- `1612`
+- `104`
+- `48`
+- `972`
+- `224`
+- `10`
+- `526`
 
 **Aged > 60 days**
-- `0`: 8 rows
-
-## Profile
-
-Rows in the latest export: 8.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `Accounts` | LONG | 8 | 0 | 10 | 1612 |
-| `Aged > 60 days` | LONG | 1 | 0 | 0 | 0 |
-| `LEGAL_ENTITY` | STRING | 8 | 0 |  |  |
-
-## Sample rows
-
-| Accounts | Aged > 60 days |
-|---|---|
-| 208 | 0 |
-| 526 | 0 |
-| 1612 | 0 |
-| 48 | 0 |
-| 104 | 0 |
+- `0`

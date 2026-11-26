@@ -98,8 +98,8 @@ def test_excel_altered_dates_are_dropped(tmp_path):
     report = generate(make_full_xlsx(tmp_path / "c.xlsx"), tables, domains=DOMAINS)
     assert report.catalog["silver.periods"].excel_altered == {"PERIOD_NAME"}
     text = (tables / "silver.periods.md").read_text(encoding="utf-8")
-    assert "2026-02-25" not in text  # not in Values, Profile min/max or samples
-    assert "(altered in export)" in text and "2025-02-28" in text  # real DATE columns keep their dates
+    assert "2026-02-25" not in text and "(altered in export)" not in text  # dropped from the listed values
+    assert "## Profile" not in text and "## Sample rows" not in text and "row_count" not in text
 
 
 def test_broken_without_errors_sheet_domains_pii_and_hidden_values(tmp_path):
@@ -155,29 +155,33 @@ def test_values_roundtrip_with_spaces_and_line_breaks(tmp_path):
     t = CatalogTable("gold", "v", row_count=2, columns=[{"column": "Elimination ID", "type": "STRING"}, {"column": "TEXT", "type": "STRING"}],
                      values={"Elimination ID": [("ELM-1", 6)], "TEXT": [("line one\nline `two`", 1), ("short", 1)]})
     first = update_page(None, t, GenerateReport())
-    assert "- `line one line 'two'`: 1 rows" in first
+    assert "- `line one line 'two'`\n" in first and " rows" not in first  # no per-value counts
     assert update_page(first, t, GenerateReport()) == first
 
 
 
 # ---------------------------------------------------------------- latency phase 1: compact describe_table pages
 
-def test_compact_pages_are_much_smaller_and_keep_what_the_agents_use():
+def test_compact_pages_are_smaller_and_keep_what_the_agents_use():
+    import re
+
     from finchat_agents.knowledge.loader import Knowledge
     from finchat_agents.tools.catalog import VALUES_PER_COLUMN, compact_page
 
     kb = Knowledge.load()
     full = sum(len(p.body) for p in kb.tables.values())
     small = sum(len(compact_page(p.body)) for p in kb.tables.values())
-    assert small < full * 0.7  # at least 30% less text across all pages
+    assert small <= full
+    for page in kb.tables.values():  # snapshots that go out of date are not stored in the pages at all
+        assert "## Profile" not in page.body and "## Sample rows" not in page.body and page.meta.row_count is None
+        assert not re.search(r"(?m)^- `[^`]*`: [\d,]+ rows$", page.body)
     fy = compact_page(kb.resolve_table("silver.fact_fynapse_slr_journals").body)
-    assert "`FISCAL_YEAR`" in fy and "Empty in every row" in fy and "Rows in the latest export: 1200" in fy
+    assert "`FISCAL_YEAR`" in fy and "Empty in every row" in fy
     adra = kb.resolve_table("silver.adra_account_facts").body
     small_adra = compact_page(adra)
     for section in ("## Columns", "## Values", "## Joins", "## Named metrics", "## Notes"):
         assert section in small_adra, section
     assert "Not prepared" in small_adra  # stored values the SQL needs for filters stay
-    assert "## Sample rows" in small_adra and "detail='full'" in small_adra
     for block in small_adra.split("## Values", 1)[1].split("## ", 1)[0].split("**")[2::2]:
         assert block.count("\n- ") <= VALUES_PER_COLUMN + 1
 

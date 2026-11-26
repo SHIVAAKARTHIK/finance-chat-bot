@@ -18,7 +18,6 @@ synonyms: []
 built_from:
 - adra_tasks_task_settings_dimension (likely)
 known_issues: []
-row_count: 29
 proposed_fields:
 - grain
 - primary_key
@@ -59,176 +58,140 @@ superseded_by:
 ## Values
 
 **TaskSettingKey**
-- `2688677`: 1 rows
-- `2677500`: 1 rows
-- `2677484`: 1 rows
-- `2677503`: 1 rows
-- `2688678`: 1 rows
-- `2677498`: 1 rows
-- `2688667`: 1 rows
-- `2677488`: 1 rows
-- `2677502`: 1 rows
-- `2688674`: 1 rows
-- `2677491`: 1 rows
-- `2688681`: 1 rows
-- `2677492`: 1 rows
-- `2677489`: 1 rows
-- `2677487`: 1 rows
-- `2688675`: 1 rows
-- `2688671`: 1 rows
-- `2677485`: 1 rows
-- `2688680`: 1 rows
-- `2688676`: 1 rows
-- `2688679`: 1 rows
-- `2688673`: 1 rows
-- `2677501`: 1 rows
-- `2688672`: 1 rows
-- `2688685`: 1 rows
-- `2677486`: 1 rows
-- `2688683`: 1 rows
-- `2688684`: 1 rows
-- `2688682`: 1 rows
+- `2688677`
+- `2677500`
+- `2677484`
+- `2677503`
+- `2688678`
+- `2677498`
+- `2688667`
+- `2677488`
+- `2677502`
+- `2688674`
+- `2677491`
+- `2688681`
+- `2677492`
+- `2677489`
+- `2677487`
+- `2688675`
+- `2688671`
+- `2677485`
+- `2688680`
+- `2688676`
+- `2688679`
+- `2688673`
+- `2677501`
+- `2688672`
+- `2688685`
+- `2677486`
+- `2688683`
+- `2688684`
+- `2688682`
 
 **EngagementKey**
-- `949e65cb-7216-4cb5-9840-4bc138a1921b`: 29 rows
+- `949e65cb-7216-4cb5-9840-4bc138a1921b`
 
 **TaskName**
-- `Review Open PO's`: 6 rows
-- `Update Fixed Assets Schedule`: 5 rows
-- `Fixed Assets - Close Prior Month`: 5 rows
-- `Review Income Statement`: 3 rows
-- `Accrued Revenue Review`: 2 rows
-- `Bonus Accrual`: 1 rows
-- `Fixed Asset Depreciation`: 1 rows
-- `Review AP Aging, Open Invoice, & Pending Approval Reports`: 1 rows
-- `Run Draft Financial Statements`: 1 rows
-- `Review Balance Sheet`: 1 rows
-- `Produce Drafts for Internal Management Review`: 1 rows
-- `Review AP Aging, Open Invoice, & Pending Approval reports`: 1 rows
-- `Finance Approvals for Invoice Exceptions`: 1 rows
+- `Review Open PO's`
+- `Update Fixed Assets Schedule`
+- `Fixed Assets - Close Prior Month`
+- `Review Income Statement`
+- `Accrued Revenue Review`
+- `Bonus Accrual`
+- `Fixed Asset Depreciation`
+- `Review AP Aging, Open Invoice, & Pending Approval Reports`
+- `Run Draft Financial Statements`
+- `Review Balance Sheet`
+- `Produce Drafts for Internal Management Review`
+- `Review AP Aging, Open Invoice, & Pending Approval reports`
+- `Finance Approvals for Invoice Exceptions`
 
 **TaskCode**
-- `US001-23R`: 5 rows
-- `US001-04R`: 5 rows
-- `US001-24R`: 5 rows
-- `US001-22`: 1 rows
-- `UK003-03`: 1 rows
-- `US001-25`: 1 rows
-- `US001-07`: 1 rows
-- `US001-18`: 1 rows
-- `US001-21`: 1 rows
-- `US001-03`: 1 rows
-- `G002-03`: 1 rows
-- `US001-17`: 1 rows
-- `UK003-02`: 1 rows
-- `US001-11`: 1 rows
-- `UK003-01`: 1 rows
-- `US001-04`: 1 rows
-- `US001-27`: 1 rows
+- `US001-23R`
+- `US001-04R`
+- `US001-24R`
+- `US001-22`
+- `UK003-03`
+- `US001-25`
+- `US001-07`
+- `US001-18`
+- `US001-21`
+- `US001-03`
+- `G002-03`
+- `US001-17`
+- `UK003-02`
+- `US001-11`
+- `UK003-01`
+- `US001-04`
+- `US001-27`
 
 **TaskFolderName**
-- `Adjustments`: 12 rows
-- `Pre-Close`: 8 rows
-- `Sign-off`: 4 rows
-- `Sub-ledgers`: 3 rows
-- `Review`: 2 rows
+- `Adjustments`
+- `Pre-Close`
+- `Sign-off`
+- `Sub-ledgers`
+- `Review`
 
 **TaskFolderPath**
-- `Monthly Close/US001-United States/Adjustments`: 12 rows
-- `Monthly Close/US001-United States/Pre-Close`: 7 rows
-- `Monthly Close/US001-United States/Review`: 2 rows
-- `Monthly Close/US001-United States/General Ledger`: 2 rows
-- `Monthly Close/US001-United States/Sub-ledgers`: 2 rows
-- `Monthly Close/G002-Germany/General Ledger`: 1 rows
-- `Monthly Close/UK003-United Kingdom/Sub-ledgers`: 1 rows
-- `Monthly Close/UK003-United Kingdom/Pre-Close`: 1 rows
-- `Monthly Close/UK003-United Kingdom/General Ledger`: 1 rows
+- `Monthly Close/US001-United States/Adjustments`
+- `Monthly Close/US001-United States/Pre-Close`
+- `Monthly Close/US001-United States/Review`
+- `Monthly Close/US001-United States/General Ledger`
+- `Monthly Close/US001-United States/Sub-ledgers`
+- `Monthly Close/G002-Germany/General Ledger`
+- `Monthly Close/UK003-United Kingdom/Sub-ledgers`
+- `Monthly Close/UK003-United Kingdom/Pre-Close`
+- `Monthly Close/UK003-United Kingdom/General Ledger`
 
 **TaskDescription**
-- `Close out any PO's that are still open that can be closed`: 6 rows
-- `Updating schedule for Fixed Assets`: 5 rows
-- `The period-end closing routine for General Ledger has to be completed before starting the next period year.`: 5 rows
-- `Review comparative income statement for variances, research variances`: 3 rows
-- `Review the accrued revenue activity for the month. Record a JE for any significant changes.`: 2 rows
-- `Review the AP Aging, Open Invoice, and Pending Approval reports for any items that should have been paid, research wh...`: 2 rows
-- `This is for the legal entity US001 - United States`: 2 rows
-- `Book entry to accrual bonus`: 1 rows
-- `None`: 1 rows
-- `Update Fixed Asset schedules with New Additions and Create Depreciation JEs`: 1 rows
-- `Review balance sheet for abnormal variances, research variances`: 1 rows
+- `Close out any PO's that are still open that can be closed`
+- `Updating schedule for Fixed Assets`
+- `The period-end closing routine for General Ledger has to be completed before starting the next period year.`
+- `Review comparative income statement for variances, research variances`
+- `Review the accrued revenue activity for the month. Record a JE for any significant changes.`
+- `Review the AP Aging, Open Invoice, and Pending Approval reports for any items that should have been paid, research wh...`
+- `This is for the legal entity US001 - United States`
+- `Book entry to accrual bonus`
+- `None`
+- `Update Fixed Asset schedules with New Additions and Create Depreciation JEs`
+- `Review balance sheet for abnormal variances, research variances`
 
 **TaskProcedure**
-- `None`: 16 rows
-- `1. Download prior month's schedule 2. Pull Fixed Asset register from ERP 3. Add new Fixed Assets to schedule 4. Tie t...`: 5 rows
-- `1. Run the report of the status at period end 2. Check the balance agrees with the previous period reconciled amount ...`: 5 rows
-- `Log in to NetSuiteGo to Fixed Asset module (Look at attachment for detailed print screens)Add new fixed assetsUpdate ...`: 1 rows
-- `- Attach all legal checklists ensuring completeness of report. - Cast to final Trial Balance and ensure correct class...`: 1 rows
-- `Produce clean copy of final draft produced in task`: 1 rows
+- `None`
+- `1. Download prior month's schedule 2. Pull Fixed Asset register from ERP 3. Add new Fixed Assets to schedule 4. Tie t...`
+- `1. Run the report of the status at period end 2. Check the balance agrees with the previous period reconciled amount ...`
+- `Log in to NetSuiteGo to Fixed Asset module (Look at attachment for detailed print screens)Add new fixed assetsUpdate ...`
+- `- Attach all legal checklists ensuring completeness of report. - Cast to final Trial Balance and ensure correct class...`
+- `Produce clean copy of final draft produced in task`
 
 **TaskType**
-- `Daily`: 15 rows
-- `Periodic`: 14 rows
+- `Daily`
+- `Periodic`
 
 **TaskIsInternalControl**
-- `False`: 29 rows
+- `False`
 
 **TaskNumberOfApprovals**
-- `1`: 22 rows
-- `0`: 7 rows
+- `1`
+- `0`
 
 **TaskReminderDays**
-- `0`: 27 rows
-- `None`: 2 rows
+- `0`
+- `None`
 
 **TaskExpectedCompletionTime**
-- `0`: 15 rows
-- `480`: 5 rows
-- `60`: 3 rows
-- `20`: 2 rows
-- `180`: 2 rows
-- `120`: 2 rows
+- `0`
+- `480`
+- `60`
+- `20`
+- `180`
+- `120`
 
 **TaskLibraryAttachments**
-- `0`: 29 rows
+- `0`
 
 **MDP_CREATED_DATE**
-- `2026-10-23 10:51:53.854944+00:00`: 29 rows
+- `2026-10-23 10:51:53.854944+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-10-23 10:51:53.854944+00:00`: 29 rows
-
-## Profile
-
-Rows in the latest export: 29.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `TaskSettingKey` | LONG | 29 | 0 | 2677484 | 2688685 |
-| `EngagementKey` | STRING | 1 | 0 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 949e65cb-7216-4cb5-9840-4bc138a1921b |
-| `TaskName` | STRING | 13 | 0 | Accrued Revenue Review | Update Fixed Assets Schedule |
-| `TaskCode` | STRING | 17 | 0 | G002-03 | US001-27 |
-| `TaskFolderName` | STRING | 5 | 0 | Adjustments | Sub-ledgers |
-| `TaskFolderPath` | STRING | 9 | 0 | Monthly Close/G002-Germany/General Le... | Monthly Close/US001-United States/Sub... |
-| `TaskDescription` | STRING | 10 | 1 | Book entry to accrual bonus | Updating schedule for Fixed Assets |
-| `TaskProcedure` | STRING | 5 | 16 | - Attach all legal checklists ensurin... | Produce clean copy of final draft pro... |
-| `TaskType` | STRING | 2 | 0 | Daily | Periodic |
-| `TaskIsInternalControl` | BOOLEAN | 1 | 0 | False | False |
-| `TaskNumberOfApprovals` | INT | 2 | 0 | 0 | 1 |
-| `TaskReminderDays` | INT | 1 | 2 | 0 | 0 |
-| `TaskExpectedCompletionTime` | INT | 6 | 0 | 0 | 480 |
-| `TaskLibraryAttachments` | INT | 1 | 0 | 0 | 0 |
-| `HASH_KEY` | STRING | 30 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-10-23 10:51:53.855000 | 2026-10-23 10:51:53.855000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-10-23 10:51:53.855000 | 2026-10-23 10:51:53.855000 |
-
-## Sample rows
-
-| TaskSettingKey | EngagementKey | TaskName | TaskCode | TaskFolderName | TaskFolderPath | TaskDescription | TaskProcedure | TaskType | TaskIsInternalControl | TaskNumberOfApprovals | TaskReminderDays | TaskExpectedCompletionTime | TaskLibraryAttachments | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2677484 | 949e65cb-7216-4cb5-9840-4bc138a1921b | Review AP Aging, Open Invoice, & Pend... | UK003-01 | Pre-Close | Monthly Close/UK003-United Kingdom/Pr... | Review the AP Aging, Open Invoice, an... | NULL | Periodic | False | 0 | 0 | 60 | 0 | <masked> | 2026-10-23 10:51:53.855000 | <masked> | 2026-10-23 10:51:53.855000 |
-| 2677485 | 949e65cb-7216-4cb5-9840-4bc138a1921b | Accrued Revenue Review | UK003-02 | Sub-ledgers | Monthly Close/UK003-United Kingdom/Su... | Review the accrued revenue activity f... | NULL | Periodic | False | 0 | 0 | 180 | 0 | <masked> | 2026-10-23 10:51:53.855000 | <masked> | 2026-10-23 10:51:53.855000 |
-| 2677486 | 949e65cb-7216-4cb5-9840-4bc138a1921b | Review Income Statement | UK003-03 | Sign-off | Monthly Close/UK003-United Kingdom/Ge... | Review comparative income statement f... | NULL | Periodic | False | 0 | 0 | 480 | 0 | <masked> | 2026-10-23 10:51:53.855000 | <masked> | 2026-10-23 10:51:53.855000 |
-| 2677487 | 949e65cb-7216-4cb5-9840-4bc138a1921b | Review Income Statement | G002-03 | Sign-off | Monthly Close/G002-Germany/General Le... | Review comparative income statement f... | NULL | Periodic | False | 0 | 0 | 480 | 0 | <masked> | 2026-10-23 10:51:53.855000 | <masked> | 2026-10-23 10:51:53.855000 |
-| 2677488 | 949e65cb-7216-4cb5-9840-4bc138a1921b | Review AP Aging, Open Invoice, & Pend... | US001-03 | Pre-Close | Monthly Close/US001-United States/Pre... | Review the AP Aging, Open Invoice, an... | NULL | Periodic | False | 1 | 0 | 60 | 0 | <masked> | 2026-10-23 10:51:53.855000 | <masked> | 2026-10-23 10:51:53.855000 |
+- `2026-10-23 10:51:53.854944+00:00`

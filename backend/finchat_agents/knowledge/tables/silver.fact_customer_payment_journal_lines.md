@@ -14,7 +14,6 @@ pii_columns: []
 synonyms: []
 built_from: []
 known_issues: []
-row_count: 2
 proposed_fields: []
 reviewed: false
 ---
@@ -98,285 +97,206 @@ reviewed: false
 ## Values
 
 **JournalBatchNumber**
-- `100-000227`: 1 rows
-- `100-000234`: 1 rows
+- `100-000227`
+- `100-000234`
 
 **LineNumber**
-- `1`: 2 rows
+- `1`
 
 **UseSalesTaxDirectionFromMainAccount**
-- `No`: 2 rows
+- `No`
 
 **MarkedInvoice**
-- `100-000002`: 1 rows
-- `100-000003`: 1 rows
+- `100-000002`
+- `100-000003`
 
 **Voucher**
-- `CPJ-000000001`: 1 rows
-- `CPJ-000000002`: 1 rows
+- `CPJ-000000001`
+- `CPJ-000000002`
 
 **DepositNumber**
-- `None`: 2 rows
+- `None`
 
 **ItemWithholdingTaxGroup**
-- `None`: 2 rows
+- `None`
 
 **OffsetAccountType**
-- `Ledger`: 1 rows
-- `Bank`: 1 rows
+- `Ledger`
+- `Bank`
 
 **PostdatedCheckCashierDisplayValue**
-- `None`: 2 rows
+- `None`
 
 **PostdatedCheckMaturityDate**
-- `1900-01-01 12:00:00+00:00`: 2 rows
+- `1900-01-01 12:00:00+00:00`
 
 **SettleVoucher**
-- `SelectedTransact`: 2 rows
+- `SelectedTransact`
 
 **TransactionDate**
-- `2026-10-26 12:00:00+00:00`: 1 rows
-- `2026-10-23 12:00:00+00:00`: 1 rows
+- `2026-10-26 12:00:00+00:00`
+- `2026-10-23 12:00:00+00:00`
 
 **NACHAIATOFACScreeningIndicator**
-- `Zero`: 2 rows
+- `Zero`
 
 **BankTransactionType**
-- `None`: 2 rows
+- `None`
 
 **PaymentReference**
-- `None`: 2 rows
+- `None`
 
 **CustomerName**
-- `MICROSOFT CORPORATION`: 2 rows
+- `MICROSOFT CORPORATION`
 
 **ChineseVoucherType**
-- `None`: 2 rows
+- `None`
 
 **NACHAIATForeignExchangeIndicator**
-- `None`: 2 rows
+- `None`
 
 **PostdatedCheckSalespersonDisplayValue**
-- `None`: 2 rows
+- `None`
 
 **NACHAIATForeignExchangeReferenceIndicator**
-- `One`: 2 rows
+- `One`
 
 **DebitAmount**
-- `0`: 2 rows
+- `0`
 
 **TaxItemGroup**
-- `None`: 2 rows
+- `None`
 
 **NACHAIATOFACSecondaryScreeningIndicator**
-- `Zero`: 2 rows
+- `Zero`
 
 **ThirdPartyBankAccountId**
-- `None`: 2 rows
+- `None`
 
 **TransactionText**
-- `None`: 2 rows
+- `None`
 
 **PostdatedCheckNumber**
-- `None`: 2 rows
+- `None`
 
 **AccountDisplayValue**
-- `100\-000001`: 2 rows
+- `100\-000001`
 
 **OffsetAccountDisplayValue**
-- `None`: 1 rows
-- `Central`: 1 rows
+- `None`
+- `Central`
 
 **DefaultDimensionsForAccountDisplayValue**
-- `None`: 2 rows
+- `None`
 
 **PostdatedCheckOriginalCheckNumber**
-- `None`: 2 rows
+- `None`
 
 **PaymentMethodName**
-- `None`: 2 rows
+- `None`
 
 **CentralBankImportDate**
-- `1900-01-01 12:00:00+00:00`: 2 rows
+- `1900-01-01 12:00:00+00:00`
 
 **NACHAIATReceivingDFIQualifier**
-- `One`: 2 rows
+- `One`
 
 **OffsetTransactionText**
-- `None`: 2 rows
+- `None`
 
 **UseABankDepositSlip**
-- `No`: 2 rows
+- `No`
 
 **PaymentSpecification**
-- `None`: 2 rows
+- `None`
 
 **OffsetFinTagDisplayValue**
-- `None`: 2 rows
+- `None`
 
 **PostdatedCheckIsReplacementCheck**
-- `No`: 2 rows
+- `No`
 
 **NACHAIATOriginatingDFIQualifier**
-- `One`: 2 rows
+- `One`
 
 **AccountType**
-- `Cust`: 2 rows
+- `Cust`
 
 **TaxGroup**
-- `None`: 2 rows
+- `None`
 
 **ExchangeRate**
-- `100`: 2 rows
+- `100`
 
 **ReportingCurrencyExchRate**
-- `100`: 2 rows
+- `100`
 
 **FinTagDisplayValue**
-- `None`: 2 rows
+- `None`
 
 **PaymentId**
-- `None`: 2 rows
+- `None`
 
 **PostingProfile**
-- `GEN`: 2 rows
+- `GEN`
 
 **CalculateWithholdingTax**
-- `No`: 2 rows
+- `No`
 
 **PostdatedCheckReasonForStop**
-- `None`: 2 rows
+- `None`
 
 **CreditAmount**
-- `1000`: 2 rows
+- `1000`
 
 **OverrideSalesTax**
-- `No`: 2 rows
+- `No`
 
 **IsPrepayment**
-- `No`: 2 rows
+- `No`
 
 **NACHAIATForeignExchangeReference**
-- `None`: 2 rows
+- `None`
 
 **DefaultDimensionsForOffsetAccountDisplayValue**
-- `None`: 2 rows
+- `None`
 
 **ReportingCurrencyExchRateSecondary**
-- `0`: 2 rows
+- `0`
 
 **CurrencyCode**
-- `USD`: 2 rows
+- `USD`
 
 **SecondaryExchangeRate**
-- `0`: 2 rows
+- `0`
 
 **PostdatedCheckReceivedDate**
-- `1900-01-01 12:00:00+00:00`: 2 rows
+- `1900-01-01 12:00:00+00:00`
 
 **PostdatedCheckBankBranch**
-- `None`: 2 rows
+- `None`
 
 **CentralBankPurposeCode**
-- `None`: 2 rows
+- `None`
 
 **PostdatedCheckReplacementComments**
-- `None`: 2 rows
+- `None`
 
 **PostdatedCheckStopPayment**
-- `No`: 2 rows
+- `No`
 
 **ChineseVoucher**
-- `None`: 2 rows
+- `None`
 
 **PostdatedCheckBankName**
-- `None`: 2 rows
+- `None`
 
 **CentralBankPurposeText**
-- `None`: 2 rows
+- `None`
 
 **PaymentNotes**
-- `None`: 2 rows
+- `None`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 2.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `dataAreaId` | STRING | 1 | 0 |  |  |
-| `JournalBatchNumber` | STRING | 2 | 0 | 100-000227 | 100-000234 |
-| `LineNumber` | INT | 1 | 0 | 1 | 1 |
-| `UseSalesTaxDirectionFromMainAccount` | STRING | 1 | 0 | No | No |
-| `MarkedInvoice` | STRING | 2 | 0 | 100-000002 | 100-000003 |
-| `Voucher` | STRING | 2 | 0 | CPJ-000000001 | CPJ-000000002 |
-| `DepositNumber` | STRING | 0 | 2 |  |  |
-| `ItemWithholdingTaxGroup` | STRING | 0 | 2 |  |  |
-| `OffsetAccountType` | STRING | 2 | 0 | Bank | Ledger |
-| `PostdatedCheckCashierDisplayValue` | STRING | 0 | 2 |  |  |
-| `PostdatedCheckMaturityDate` | TIMESTAMP | 1 | 0 | 1900-01-02 12:00:00 | 1900-01-02 12:00:00 |
-| `SettleVoucher` | STRING | 1 | 0 | SelectedTransact | SelectedTransact |
-| `TransactionDate` | TIMESTAMP | 2 | 0 | 2026-10-23 12:00:00 | 2026-10-26 12:00:00 |
-| `NACHAIATOFACScreeningIndicator` | STRING | 1 | 0 | Zero | Zero |
-| `BankTransactionType` | STRING | 0 | 2 |  |  |
-| `PaymentReference` | STRING | 0 | 2 |  |  |
-| `CustomerName` | STRING | 1 | 0 | MICROSOFT CORPORATION | MICROSOFT CORPORATION |
-| `ChineseVoucherType` | STRING | 0 | 2 |  |  |
-| `NACHAIATForeignExchangeIndicator` | STRING | 1 | 0 | None | None |
-| `PostdatedCheckSalespersonDisplayValue` | STRING | 0 | 2 |  |  |
-| `NACHAIATForeignExchangeReferenceIndicator` | STRING | 1 | 0 | One | One |
-| `DebitAmount` | DECIMAL | 1 | 0 | 0 | 0 |
-| `TaxItemGroup` | STRING | 0 | 2 |  |  |
-| `NACHAIATOFACSecondaryScreeningIndicator` | STRING | 1 | 0 | Zero | Zero |
-| `ThirdPartyBankAccountId` | STRING | 0 | 2 |  |  |
-| `TransactionText` | STRING | 0 | 2 |  |  |
-| `PostdatedCheckNumber` | STRING | 0 | 2 |  |  |
-| `AccountDisplayValue` | STRING | 1 | 0 | 100\-000001 | 100\-000001 |
-| `OffsetAccountDisplayValue` | STRING | 1 | 1 | Central | Central |
-| `DefaultDimensionsForAccountDisplayValue` | STRING | 0 | 2 |  |  |
-| `PostdatedCheckOriginalCheckNumber` | STRING | 0 | 2 |  |  |
-| `PaymentMethodName` | STRING | 0 | 2 |  |  |
-| `CentralBankImportDate` | TIMESTAMP | 1 | 0 | 1900-01-02 12:00:00 | 1900-01-02 12:00:00 |
-| `NACHAIATReceivingDFIQualifier` | STRING | 1 | 0 | One | One |
-| `OffsetTransactionText` | STRING | 0 | 2 |  |  |
-| `MarkedInvoiceCompany` | STRING | 1 | 0 |  |  |
-| `UseABankDepositSlip` | STRING | 1 | 0 | No | No |
-| `PaymentSpecification` | STRING | 0 | 2 |  |  |
-| `OffsetFinTagDisplayValue` | STRING | 0 | 2 |  |  |
-| `PostdatedCheckIsReplacementCheck` | STRING | 1 | 0 | No | No |
-| `NACHAIATOriginatingDFIQualifier` | STRING | 1 | 0 | One | One |
-| `AccountType` | STRING | 1 | 0 | Cust | Cust |
-| `TaxGroup` | STRING | 0 | 2 |  |  |
-| `ExchangeRate` | DECIMAL | 1 | 0 | 100 | 100 |
-| `ReportingCurrencyExchRate` | DECIMAL | 1 | 0 | 100 | 100 |
-| `FinTagDisplayValue` | STRING | 0 | 2 |  |  |
-| `PaymentId` | STRING | 0 | 2 |  |  |
-| `PostingProfile` | STRING | 1 | 0 | GEN | GEN |
-| `CalculateWithholdingTax` | STRING | 1 | 0 | No | No |
-| `PostdatedCheckReasonForStop` | STRING | 0 | 2 |  |  |
-| `CreditAmount` | DECIMAL | 1 | 0 | 1000 | 1000 |
-| `OverrideSalesTax` | STRING | 1 | 0 | No | No |
-| `OffsetCompany` | STRING | 1 | 0 |  |  |
-| `IsPrepayment` | STRING | 1 | 0 | No | No |
-| `NACHAIATForeignExchangeReference` | STRING | 0 | 2 |  |  |
-| `DefaultDimensionsForOffsetAccountDisplayValue` | STRING | 0 | 2 |  |  |
-| `ReportingCurrencyExchRateSecondary` | DECIMAL | 1 | 0 | 0 | 0 |
-| `CurrencyCode` | STRING | 1 | 0 | USD | USD |
-| `SecondaryExchangeRate` | DECIMAL | 1 | 0 | 0 | 0 |
-| `PostdatedCheckReceivedDate` | TIMESTAMP | 1 | 0 | 1900-01-02 12:00:00 | 1900-01-02 12:00:00 |
-| `Company` | STRING | 1 | 0 |  |  |
-| `PostdatedCheckBankBranch` | STRING | 0 | 2 |  |  |
-| `CentralBankPurposeCode` | STRING | 0 | 2 |  |  |
-| `PostdatedCheckReplacementComments` | STRING | 0 | 2 |  |  |
-| `PostdatedCheckStopPayment` | STRING | 1 | 0 | No | No |
-| `ChineseVoucher` | STRING | 0 | 2 |  |  |
-| `PostdatedCheckBankName` | STRING | 0 | 2 |  |  |
-| `CentralBankPurposeText` | STRING | 0 | 2 |  |  |
-| `PaymentNotes` | STRING | 0 | 2 |  |  |
-
-## Sample rows
-
-| JournalBatchNumber | LineNumber | UseSalesTaxDirectionFromMainAccount | MarkedInvoice | Voucher | DepositNumber | ItemWithholdingTaxGroup | OffsetAccountType | PostdatedCheckCashierDisplayValue | PostdatedCheckMaturityDate | SettleVoucher | TransactionDate | NACHAIATOFACScreeningIndicator | BankTransactionType | PaymentReference | CustomerName | ChineseVoucherType | NACHAIATForeignExchangeIndicator | PostdatedCheckSalespersonDisplayValue | NACHAIATForeignExchangeReferenceIndicator | DebitAmount | TaxItemGroup | NACHAIATOFACSecondaryScreeningIndicator | ThirdPartyBankAccountId | TransactionText | PostdatedCheckNumber | AccountDisplayValue | OffsetAccountDisplayValue | DefaultDimensionsForAccountDisplayValue | PostdatedCheckOriginalCheckNumber | PaymentMethodName | CentralBankImportDate | NACHAIATReceivingDFIQualifier | OffsetTransactionText | UseABankDepositSlip | PaymentSpecification | OffsetFinTagDisplayValue | PostdatedCheckIsReplacementCheck | NACHAIATOriginatingDFIQualifier | AccountType | TaxGroup | ExchangeRate | ReportingCurrencyExchRate | FinTagDisplayValue | PaymentId | PostingProfile | CalculateWithholdingTax | PostdatedCheckReasonForStop | CreditAmount | OverrideSalesTax | IsPrepayment | NACHAIATForeignExchangeReference | DefaultDimensionsForOffsetAccountDisplayValue | ReportingCurrencyExchRateSecondary | CurrencyCode | SecondaryExchangeRate | PostdatedCheckReceivedDate | PostdatedCheckBankBranch | CentralBankPurposeCode | PostdatedCheckReplacementComments | PostdatedCheckStopPayment | ChineseVoucher | PostdatedCheckBankName | CentralBankPurposeText | PaymentNotes |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 100-000227 | 1 | No | 100-000002 | CPJ-000000001 | NULL | NULL | Bank | NULL | 1900-01-02 12:00:00 | SelectedTransact | 2026-10-23 12:00:00 | Zero | NULL | NULL | MICROSOFT CORPORATION | NULL | None | NULL | One | 0 | NULL | Zero | NULL | NULL | NULL | 100\-000001 | Central | NULL | NULL | NULL | 1900-01-02 12:00:00 | One | NULL | No | NULL | NULL | No | One | Cust | NULL | 100 | 100 | NULL | NULL | GEN | No | NULL | 1000 | No | No | NULL | NULL | 0 | USD | 0 | 1900-01-02 12:00:00 | NULL | NULL | NULL | No | NULL | NULL | NULL | NULL |
-| 100-000234 | 1 | No | 100-000003 | CPJ-000000002 | NULL | NULL | Ledger | NULL | 1900-01-02 12:00:00 | SelectedTransact | 2026-10-26 12:00:00 | Zero | NULL | NULL | MICROSOFT CORPORATION | NULL | None | NULL | One | 0 | NULL | Zero | NULL | NULL | NULL | 100\-000001 | NULL | NULL | NULL | NULL | 1900-01-02 12:00:00 | One | NULL | No | NULL | NULL | No | One | Cust | NULL | 100 | 100 | NULL | NULL | GEN | No | NULL | 1000 | No | No | NULL | NULL | 0 | USD | 0 | 1900-01-02 12:00:00 | NULL | NULL | NULL | No | NULL | NULL | NULL | NULL |
+Empty in every row: `DepositNumber`, `ItemWithholdingTaxGroup`, `PostdatedCheckCashierDisplayValue`, `BankTransactionType`, `PaymentReference`, `ChineseVoucherType`, `PostdatedCheckSalespersonDisplayValue`, `TaxItemGroup`, `ThirdPartyBankAccountId`, `TransactionText`, `PostdatedCheckNumber`, `DefaultDimensionsForAccountDisplayValue`, `PostdatedCheckOriginalCheckNumber`, `PaymentMethodName`, `OffsetTransactionText`, `PaymentSpecification`, `OffsetFinTagDisplayValue`, `TaxGroup`, `FinTagDisplayValue`, `PaymentId`, `PostdatedCheckReasonForStop`, `NACHAIATForeignExchangeReference`, `DefaultDimensionsForOffsetAccountDisplayValue`, `PostdatedCheckBankBranch`, `CentralBankPurposeCode`, `PostdatedCheckReplacementComments`, `ChineseVoucher`, `PostdatedCheckBankName`, `CentralBankPurposeText`, `PaymentNotes`. Do not filter or group on them.

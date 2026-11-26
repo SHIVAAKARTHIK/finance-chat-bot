@@ -19,7 +19,6 @@ built_from: []
 known_issues:
 - code: empty_column
   note: KNOWN_AS, LANGUAGE_ID all null
-row_count: 45
 proposed_fields:
 - grain
 - primary_key
@@ -47,137 +46,113 @@ reviewed: false
 ## Values
 
 **NAME**
-- `Royal Premium Budget`: 2 rows
-- `A.J. Kaufman Institute, LLC`: 1 rows
-- `RBJ`: 1 rows
-- `Burns & Wilcox, Ltd`: 1 rows
-- `INS62`: 1 rows
-- `HWKGL`: 1 rows
-- `INS63`: 1 rows
-- `Global Excess Partners`: 1 rows
-- `Noremac Marketing`: 1 rows
-- `Canadian Reports`: 1 rows
-- `DAT`: 1 rows
-- `Sterling Enterprises`: 1 rows
-- `Node`: 1 rows
-- `INS24`: 1 rows
-- `Evergreen Solutions`: 1 rows
-- `RB Jones, Marine`: 1 rows
-- `Burns & Wilcox, LTD`: 1 rows
-- `INS33`: 1 rows
-- `Grandview Holdings`: 1 rows
-- `Burns & Wilcox Canada Claims`: 1 rows
-- `CAN`: 1 rows
-- `AJK Enterprises, Inc.`: 1 rows
-- `CIBL`: 1 rows
-- `INS36`: 1 rows
-- `PrimeEdge Inc.`: 1 rows
-- `INS27`: 1 rows
-- `INS14`: 1 rows
-- `Pinnacle Ventures`: 1 rows
-- `INS08`: 1 rows
-- `INS59`: 1 rows
-- `US Reports`: 1 rows
-- `INSHOLDING`: 1 rows
-- `HKEUR`: 1 rows
-- `INS28`: 1 rows
-- `Burns & Wilcox, RE`: 1 rows
-- `INS25`: 1 rows
-- `INS65`: 1 rows
-- `Node International`: 1 rows
-- `AJK Enterprises`: 1 rows
-- `INS26`: 1 rows
-- `INS38`: 1 rows
-- `INS01`: 1 rows
-- `INS30`: 1 rows
-- `AJK Canada Insurance Holdings`: 1 rows
+- `Royal Premium Budget`
+- `A.J. Kaufman Institute, LLC`
+- `RBJ`
+- `Burns & Wilcox, Ltd`
+- `INS62`
+- `HWKGL`
+- `INS63`
+- `Global Excess Partners`
+- `Noremac Marketing`
+- `Canadian Reports`
+- `DAT`
+- `Sterling Enterprises`
+- `Node`
+- `INS24`
+- `Evergreen Solutions`
+- `RB Jones, Marine`
+- `Burns & Wilcox, LTD`
+- `INS33`
+- `Grandview Holdings`
+- `Burns & Wilcox Canada Claims`
+- `CAN`
+- `AJK Enterprises, Inc.`
+- `CIBL`
+- `INS36`
+- `PrimeEdge Inc.`
+- `INS27`
+- `INS14`
+- `Pinnacle Ventures`
+- `INS08`
+- `INS59`
+- `US Reports`
+- `INSHOLDING`
+- `HKEUR`
+- `INS28`
+- `Burns & Wilcox, RE`
+- `INS25`
+- `INS65`
+- `Node International`
+- `AJK Enterprises`
+- `INS26`
+- `INS38`
+- `INS01`
+- `INS30`
+- `AJK Canada Insurance Holdings`
 
 **KNOWN_AS**
-- `None`: 45 rows
+- `None`
 
 **LANGUAGE_ID**
-- `None`: 45 rows
+- `None`
 
 **PARTY_NUMBER**
-- `7408`: 1 rows
-- `5505`: 1 rows
-- `7212`: 1 rows
-- `8401`: 1 rows
-- `7405`: 1 rows
-- `7216`: 1 rows
-- `7414`: 1 rows
-- `7215`: 1 rows
-- `7406`: 1 rows
-- `7404`: 1 rows
-- `7303`: 1 rows
-- `5502`: 1 rows
-- `{2CE71508-E13F-48A0-BB18-0B3518F330D3}`: 1 rows
-- `7302`: 1 rows
-- `7207`: 1 rows
-- `5503`: 1 rows
-- `7407`: 1 rows
-- `7415`: 1 rows
-- `7209`: 1 rows
-- `7410`: 1 rows
-- `7204`: 1 rows
-- `7409`: 1 rows
-- `7214`: 1 rows
-- `7203`: 1 rows
-- `7419`: 1 rows
-- `7201`: 1 rows
-- `7306`: 1 rows
-- `7416`: 1 rows
-- `7205`: 1 rows
-- `5504`: 1 rows
-- `7412`: 1 rows
-- `7206`: 1 rows
-- `7202`: 1 rows
-- `7301`: 1 rows
-- `7411`: 1 rows
-- `7304`: 1 rows
-- `7305`: 1 rows
-- `7417`: 1 rows
-- `7211`: 1 rows
-- `7213`: 1 rows
-- `5501`: 1 rows
-- `7210`: 1 rows
-- `7208`: 1 rows
-- `7413`: 1 rows
-- `7418`: 1 rows
+- `7408`
+- `5505`
+- `7212`
+- `8401`
+- `7405`
+- `7216`
+- `7414`
+- `7215`
+- `7406`
+- `7404`
+- `7303`
+- `5502`
+- `{2CE71508-E13F-48A0-BB18-0B3518F330D3}`
+- `7302`
+- `7207`
+- `5503`
+- `7407`
+- `7415`
+- `7209`
+- `7410`
+- `7204`
+- `7409`
+- `7214`
+- `7203`
+- `7419`
+- `7201`
+- `7306`
+- `7416`
+- `7205`
+- `5504`
+- `7412`
+- `7206`
+- `7202`
+- `7301`
+- `7411`
+- `7304`
+- `7305`
+- `7417`
+- `7211`
+- `7213`
+- `5501`
+- `7210`
+- `7208`
+- `7413`
+- `7418`
 
 **SOURCE_FILE_NAME**
-- `companies__20261116_105417.csv`: 45 rows
+- `companies__20261116_105417.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 11:43:18.248801+00:00`: 45 rows
+- `2026-11-16 11:43:18.248801+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 11:43:18.248801+00:00`: 45 rows
+- `2026-11-16 11:43:18.248801+00:00`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 45.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `DATA_AREA` | STRING | 44 | 0 |  |  |
-| `NAME` | STRING | 43 | 0 | A.J. Kaufman Institute, LLC | US Reports |
-| `KNOWN_AS` | STRING | 0 | 45 |  |  |
-| `LANGUAGE_ID` | STRING | 0 | 45 |  |  |
-| `PARTY_NUMBER` | STRING | 45 | 0 | 5501 | {2CE71508-E13F-48A0-BB18-0B3518F330D3} |
-| `SOURCE_FILE_NAME` | STRING | 1 | 0 | companies__20261116_105417.csv | companies__20261116_105417.csv |
-| `HASH_KEY` | STRING | 45 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:18.249000 | 2026-11-16 11:43:18.249000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:18.249000 | 2026-11-16 11:43:18.249000 |
-
-## Sample rows
-
-| NAME | KNOWN_AS | LANGUAGE_ID | PARTY_NUMBER | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|
-| DAT | NULL | NULL | {2CE71508-E13F-48A0-BB18-0B3518F330D3} | companies__20261116_105417.csv | <masked> | 2026-11-16 11:43:18.249000 | <masked> | 2026-11-16 11:43:18.249000 |
-| Evergreen Solutions | NULL | NULL | 5501 | companies__20261116_105417.csv | <masked> | 2026-11-16 11:43:18.249000 | <masked> | 2026-11-16 11:43:18.249000 |
-| PrimeEdge Inc. | NULL | NULL | 5502 | companies__20261116_105417.csv | <masked> | 2026-11-16 11:43:18.249000 | <masked> | 2026-11-16 11:43:18.249000 |
-| Sterling Enterprises | NULL | NULL | 5503 | companies__20261116_105417.csv | <masked> | 2026-11-16 11:43:18.249000 | <masked> | 2026-11-16 11:43:18.249000 |
-| Grandview Holdings | NULL | NULL | 5504 | companies__20261116_105417.csv | <masked> | 2026-11-16 11:43:18.249000 | <masked> | 2026-11-16 11:43:18.249000 |
+Empty in every row: `KNOWN_AS`, `LANGUAGE_ID`. Do not filter or group on them.

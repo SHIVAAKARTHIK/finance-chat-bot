@@ -17,7 +17,6 @@ built_from: []
 known_issues:
 - code: empty_column
   note: table is empty (0 rows)
-row_count: 0
 proposed_fields:
 - grain
 reviewed: false
@@ -36,13 +35,6 @@ Access screen: access rows covered by each certification (append-only).
 | `access_id` | long |  |  | `access_id` |
 | `created_at` | timestamp |  |  | `created_at` |
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 0.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `certification_line_id` | LONG | 0 | 0 |  |  |
-| `certification_id` | LONG | 0 | 0 |  |  |
-| `access_id` | LONG | 0 | 0 |  |  |
-| `created_at` | TIMESTAMP | 0 | 0 |  |  |
+Empty in every row: `certification_line_id`, `certification_id`, `access_id`, `created_at`. Do not filter or group on them.

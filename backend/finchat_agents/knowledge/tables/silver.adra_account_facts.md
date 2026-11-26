@@ -48,7 +48,6 @@ known_issues:
     drops them.
 reviewed: true
 proposed_fields: []
-row_count: 97
 ---
 
 # adra_account_facts
@@ -147,172 +146,176 @@ balances, unidentified (unreconciled) balances, documents and rejections.
 **IS_CARRIED_FORWARD**
 - `True`: carried forward
 - `False`: not carried forward
-- `None`: 33 rows
+- `None`
 
 **ACCOUNT_STATUS_REASON**
-- `None`: 64 rows
+- `None`
 
 **ACCOUNT_CREATED_IN_PERIOD**
-- `2026-10-23 10:47:07.0000000 +00:00`: 40 rows
-- `None`: 33 rows
-- `2026-10-29 05:52:10.0000000 +00:00`: 23 rows
-- `2026-10-18 09:40:39.0000000 +00:00`: 1 rows
+- `2026-10-23 10:47:07.0000000 +00:00`
+- `None`
+- `2026-10-29 05:52:10.0000000 +00:00`
+- `2026-10-18 09:40:39.0000000 +00:00`
 
 **NO_OF_DOCUMENTS**
-- `0`: 97 rows
+- `0`
 
 **NO_OF_PREPARERS**
-- `1`: 63 rows
-- `2`: 34 rows
+- `1`
+- `2`
 
 **NO_OF_APPROVERS**
-- `1`: 59 rows
-- `2`: 38 rows
+- `1`
+- `2`
 
 **NO_OF_REVIEWERS**
-- `0`: 96 rows
-- `1`: 1 rows
+- `0`
+- `1`
 
 **STATUS_COMMENT**
-- `Account Period Created`: 42 rows
-- `None`: 39 rows
-- `Set to not preapred due to update in balance as a result of import`: 16 rows
+- `Account Period Created`
+- `None`
+- `Set to not preapred due to update in balance as a result of import`
 
 **ACCOUNT_PURPOSE**
-- `None`: 97 rows
+- `None`
 
 **ACCOUNT_PROCEDURE**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_01**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_02**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_03**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_04**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_05**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_06**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_07**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_08**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_09**
-- `None`: 97 rows
+- `None`
 
 **EXTRA_FIELD_10**
-- `None`: 97 rows
+- `None`
 
 **NO_OF_REJECTS**
-- `0`: 64 rows
-- `None`: 33 rows
+- `0`
+- `None`
 
 **PREPARED_DATE**
-- `None`: 58 rows
-- `2026-10-25 07:34:30.0000000 +00:00`: 1 rows
-- `46342.42591`: 1 rows
-- `46342.4274`: 1 rows
-- `2026-10-29 10:11:12.0000000 +00:00`: 1 rows
-- `2026-10-25 04:59:43.0000000 +00:00`: 1 rows
-- `2026-10-29 10:10:55.0000000 +00:00`: 1 rows
-- `2026-10-25 07:40:02.0000000 +00:00`: 1 rows
-- `2026-10-25 05:00:17.0000000 +00:00`: 1 rows
-- `46342.42655`: 1 rows
-- `2026-10-25 04:58:30.0000000 +00:00`: 1 rows
-- `2026-10-25 04:59:14.0000000 +00:00`: 1 rows
-- `2026-10-25 04:54:22.0000000 +00:00`: 1 rows
-- `2026-10-29 10:08:33.0000000 +00:00`: 1 rows
-- `2026-10-25 07:38:05.0000000 +00:00`: 1 rows
-- `2026-10-25 05:01:07.0000000 +00:00`: 1 rows
-- `2026-10-24 15:56:32.0000000 +00:00`: 1 rows
-- `2026-10-29 10:12:29.0000000 +00:00`: 1 rows
-- `46342.42753`: 1 rows
-- `2026-10-29 10:12:04.0000000 +00:00`: 1 rows
-- `46342.42613`: 1 rows
-- `2026-10-29 10:07:51.0000000 +00:00`: 1 rows
-- `2026-10-24 16:07:17.0000000 +00:00`: 1 rows
-- `2026-10-29 10:10:29.0000000 +00:00`: 1 rows
-- `2026-10-25 07:31:13.0000000 +00:00`: 1 rows
-- `2026-10-25 07:27:36.0000000 +00:00`: 1 rows
-- `2026-10-29 10:08:58.0000000 +00:00`: 1 rows
-- `2026-10-29 10:11:29.0000000 +00:00`: 1 rows
-- `2026-10-24 16:06:16.0000000 +00:00`: 1 rows
-- `2026-10-24 16:02:15.0000000 +00:00`: 1 rows
-- `2026-10-29 10:11:10.0000000 +00:00`: 1 rows
-- `2026-10-29 10:12:40.0000000 +00:00`: 1 rows
-- `46342.42553`: 1 rows
-- `2026-10-29 10:10:20.0000000 +00:00`: 1 rows
-- `46342.42602`: 1 rows
-- `46342.42714`: 1 rows
-- `46342.42704`: 1 rows
-- `2026-10-25 07:33:14.0000000 +00:00`: 1 rows
-- `2026-10-29 10:13:17.0000000 +00:00`: 1 rows
-- `46342.42726`: 1 rows
+- `None`
+- `2026-10-25 07:34:30.0000000 +00:00`
+- `46342.42591`
+- `46342.4274`
+- `2026-10-29 10:11:12.0000000 +00:00`
+- `2026-10-25 04:59:43.0000000 +00:00`
+- `2026-10-29 10:10:55.0000000 +00:00`
+- `2026-10-25 07:40:02.0000000 +00:00`
+- `2026-10-25 05:00:17.0000000 +00:00`
+- `46342.42655`
+- `2026-10-25 04:58:30.0000000 +00:00`
+- `2026-10-25 04:59:14.0000000 +00:00`
+- `2026-10-25 04:54:22.0000000 +00:00`
+- `2026-10-29 10:08:33.0000000 +00:00`
+- `2026-10-25 07:38:05.0000000 +00:00`
+- `2026-10-25 05:01:07.0000000 +00:00`
+- `2026-10-24 15:56:32.0000000 +00:00`
+- `2026-10-29 10:12:29.0000000 +00:00`
+- `46342.42753`
+- `2026-10-29 10:12:04.0000000 +00:00`
+- `46342.42613`
+- `2026-10-29 10:07:51.0000000 +00:00`
+- `2026-10-24 16:07:17.0000000 +00:00`
+- `2026-10-29 10:10:29.0000000 +00:00`
+- `2026-10-25 07:31:13.0000000 +00:00`
+- `2026-10-25 07:27:36.0000000 +00:00`
+- `2026-10-29 10:08:58.0000000 +00:00`
+- `2026-10-29 10:11:29.0000000 +00:00`
+- `2026-10-24 16:06:16.0000000 +00:00`
+- `2026-10-24 16:02:15.0000000 +00:00`
+- `2026-10-29 10:11:10.0000000 +00:00`
+- `2026-10-29 10:12:40.0000000 +00:00`
+- `46342.42553`
+- `2026-10-29 10:10:20.0000000 +00:00`
+- `46342.42602`
+- `46342.42714`
+- `46342.42704`
+- `2026-10-25 07:33:14.0000000 +00:00`
+- `2026-10-29 10:13:17.0000000 +00:00`
+- `46342.42726`
 
 **APPROVED_DATE**
-- `None`: 74 rows
-- `46342.43833`: 6 rows
-- `46342.44012`: 4 rows
-- `2026-10-25 04:56:41.0000000 +00:00`: 1 rows
-- `2026-10-25 07:24:26.0000000 +00:00`: 1 rows
-- `2026-10-25 04:57:35.0000000 +00:00`: 1 rows
-- `2026-10-25 05:02:34.0000000 +00:00`: 1 rows
-- `2026-10-25 07:24:52.0000000 +00:00`: 1 rows
-- `2026-10-25 07:24:40.0000000 +00:00`: 1 rows
-- `2026-10-25 07:25:02.0000000 +00:00`: 1 rows
-- `2026-10-29 10:16:42.0000000 +00:00`: 1 rows
-- `2026-10-29 12:33:16.0000000 +00:00`: 1 rows
-- `2026-10-29 10:16:31.0000000 +00:00`: 1 rows
-- `2026-10-29 12:33:06.0000000 +00:00`: 1 rows
-- `2026-10-29 10:10:50.0000000 +00:00`: 1 rows
-- `2026-10-29 10:13:32.0000000 +00:00`: 1 rows
+- `None`
+- `46342.43833`
+- `46342.44012`
+- `2026-10-25 04:56:41.0000000 +00:00`
+- `2026-10-25 07:24:26.0000000 +00:00`
+- `2026-10-25 04:57:35.0000000 +00:00`
+- `2026-10-25 05:02:34.0000000 +00:00`
+- `2026-10-25 07:24:52.0000000 +00:00`
+- `2026-10-25 07:24:40.0000000 +00:00`
+- `2026-10-25 07:25:02.0000000 +00:00`
+- `2026-10-29 10:16:42.0000000 +00:00`
+- `2026-10-29 12:33:16.0000000 +00:00`
+- `2026-10-29 10:16:31.0000000 +00:00`
+- `2026-10-29 12:33:06.0000000 +00:00`
+- `2026-10-29 10:10:50.0000000 +00:00`
+- `2026-10-29 10:13:32.0000000 +00:00`
 
 **REVIEWED_DATE**
-- `None`: 97 rows
+- `None`
 
 **REJECTED_DATE**
-- `None`: 97 rows
+- `None`
 
 **BALANCE_UPDATED_DATE**
-- `2026-10-23 10:47:28.0000000 +00:00`: 40 rows
-- `2026-10-29 05:52:29.0000000 +00:00`: 23 rows
-- `46342.41964`: 12 rows
-- `46342.40172`: 10 rows
-- `46342.41965`: 9 rows
-- `46342.4017`: 2 rows
-- `2026-10-18 09:40:48.0000000 +00:00`: 1 rows
+- `2026-10-23 10:47:28.0000000 +00:00`
+- `2026-10-29 05:52:29.0000000 +00:00`
+- `46342.41964`
+- `46342.40172`
+- `46342.41965`
+- `46342.4017`
+- `2026-10-18 09:40:48.0000000 +00:00`
 
 **ACCOUNT_STATUS_COMMENTS**
-- `None`: 97 rows
+- `None`
 
 **ACCOUNT_STATUS_REASON_TEXT**
-- `None`: 97 rows
+- `None`
 
 **REVIEW_COMMENT**
-- `None`: 97 rows
+- `None`
 
 **SOURCE_FILE_NAME**
-- `accountfacts__20261116_094201.csv`: 64 rows
-- `adra_account_facts.csv`: 33 rows
+- `accountfacts__20261116_094201.csv`
+- `adra_account_facts.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 09:54:35.180338+00:00`: 64 rows
-- `2026-11-16 18:53:24.519208+00:00`: 33 rows
+- `2026-11-16 09:54:35.180338+00:00`
+- `2026-11-16 18:53:24.519208+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 09:54:35.180338+00:00`: 64 rows
-- `2026-11-16 18:53:24.519208+00:00`: 33 rows
+- `2026-11-16 09:54:35.180338+00:00`
+- `2026-11-16 18:53:24.519208+00:00`
+
+## Empty columns
+
+Empty in every row: `ACCOUNT_PURPOSE`, `ACCOUNT_PROCEDURE`, `EXTRA_FIELD_01`, `EXTRA_FIELD_02`, `EXTRA_FIELD_03`, `EXTRA_FIELD_04`, `EXTRA_FIELD_05`, `EXTRA_FIELD_06`, `EXTRA_FIELD_07`, `EXTRA_FIELD_08`, `EXTRA_FIELD_09`, `EXTRA_FIELD_10`, `REVIEWED_BY_NAME`, `REVIEWED_BY_USERNAME`, `REVIEWED_DATE`, `REJECTED_DATE`, `ACCOUNT_STATUS_COMMENTS`, `ACCOUNT_STATUS_REASON_TEXT`, `REVIEW_COMMENT`. Do not filter or group on them.
 
 ## Joins (approved, use the full key)
 
@@ -342,87 +345,3 @@ Join conditions are in `joins.yaml`.
 - "Who approved" = APPROVED_BY_NAME with APPROVED_DATE; if APPROVED_DATE is NULL nobody has approved it yet
   (APPROVER_NAME is only the assigned approver).
 - Verified examples for this table are in `examples.yaml`.
-
-## Profile
-
-Rows in the latest export: 97.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `ACCOUNT_KEY` | STRING | 93 | 0 |  |  |
-| `ENGAGEMENT_KEY` | STRING | 1 | 0 |  |  |
-| `LEGAL_ENTITY_KEY` | STRING | 9 | 0 |  |  |
-| `PERIOD_KEY` | STRING | 9 | 0 |  |  |
-| `FISCAL_YEAR_PERIOD_KEY` | STRING | 3 | 0 |  |  |
-| `PREPARER_USERNAME` | STRING | 4 | 0 |  |  |
-| `PREPARER_NAME` | STRING | 4 | 0 |  |  |
-| `APPROVER_USERNAME` | STRING | 4 | 0 |  |  |
-| `APPROVER_NAME` | STRING | 4 | 0 |  |  |
-| `REVIEWER_USERNAME` | STRING | 1 | 96 |  |  |
-| `REVIEWER_NAME` | STRING | 1 | 96 |  |  |
-| `ASSIGNED_TO_USERNAME` | STRING | 5 | 8 |  |  |
-| `ASSIGNED_TO_NAME` | STRING | 5 | 8 |  |  |
-| `ACCOUNT_STATUS` | STRING | 3 | 0 | Approved | Prepared |
-| `ACCOUNT_STATUS_REASON` | STRING | 1 | 33 | None | None |
-| `IS_FINALIZED` | STRING | 2 | 0 | False | True |
-| `IS_CARRIED_FORWARD` | STRING | 1 | 33 | False | False |
-| `BALANCER_ACCOUNT_URL` | STRING | 99 | 0 | https://balancer.adra.com/engagements... | https://balancer.adra.com/engagements... |
-| `ACCOUNT_CREATED_IN_PERIOD` | STRING | 3 | 33 | 2026-10-18 09:40:39.0000000 +00:00 | 2026-10-29 05:52:10.0000000 +00:00 |
-| `NO_OF_DOCUMENTS` | STRING | 1 | 0 | 0 | 0 |
-| `NO_OF_PREPARERS` | STRING | 2 | 0 | 1 | 2 |
-| `NO_OF_APPROVERS` | STRING | 2 | 0 | 1 | 2 |
-| `NO_OF_REVIEWERS` | STRING | 2 | 0 | 0 | 1 |
-| `BALANCE` | STRING | 95 | 0 | -1122 | 98583.59 |
-| `BALANCE_ABS` | STRING | 99 | 0 | 0 | 98583.59 |
-| `UNIDENTIFIED_BALANCE` | STRING | 58 | 0 | -110908 | 992715 |
-| `UNIDENTIFIED_BALANCE_ABS` | STRING | 58 | 0 | 0 | 992715 |
-| `BALANCE_ENGAGEMENT` | STRING | 93 | 0 | -10381.98 | 98583.59 |
-| `BALANCE_ENGAGEMENT_ABS` | STRING | 95 | 0 | 0 | 98583.59 |
-| `UNIDENTIFIED_BALANCE_ENGAGEMENT` | STRING | 57 | 0 | -10381.98 | 992715 |
-| `UNIDENTIFIED_BALANCE_ENGAGEMENT_ABS` | STRING | 59 | 0 | 0 | 992715 |
-| `STATUS_COMMENT` | STRING | 2 | 39 | Account Period Created | Set to not preapred due to update in ... |
-| `ACCOUNT_PURPOSE` | STRING | 0 | 97 |  |  |
-| `ACCOUNT_PROCEDURE` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_01` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_02` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_03` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_04` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_05` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_06` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_07` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_08` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_09` | STRING | 0 | 97 |  |  |
-| `EXTRA_FIELD_10` | STRING | 0 | 97 |  |  |
-| `NO_OF_REJECTS` | STRING | 1 | 33 | 0 | 0 |
-| `ACCOUNT_PERIOD_COMMENT_KEY` | STRING | 63 | 33 |  |  |
-| `ACCOUNT_PERIOD_TRANSACTION_KEY` | STRING | 63 | 33 |  |  |
-| `PREPARED_BY_NAME` | STRING | 3 | 58 |  |  |
-| `PREPARED_BY_USERNAME` | STRING | 3 | 58 |  |  |
-| `APPROVED_BY_NAME` | STRING | 3 | 74 |  |  |
-| `APPROVED_BY_USERNAME` | STRING | 3 | 74 |  |  |
-| `REVIEWED_BY_NAME` | STRING | 0 | 97 |  |  |
-| `REVIEWED_BY_USERNAME` | STRING | 0 | 97 |  |  |
-| `PREPARED_DATE` | STRING | 39 | 58 | 2026-10-24 15:56:32.0000000 +00:00 | 46342.42753 |
-| `APPROVED_DATE` | STRING | 14 | 74 | 2026-10-25 04:56:41.0000000 +00:00 | 46342.44012 |
-| `REVIEWED_DATE` | STRING | 0 | 97 |  |  |
-| `REJECTED_DATE` | STRING | 0 | 97 |  |  |
-| `BALANCE_UPDATED_DATE` | STRING | 7 | 0 | 2026-10-18 09:40:48.0000000 +00:00 | 46342.41965 |
-| `ACCOUNT_STATUS_COMMENTS` | STRING | 0 | 97 |  |  |
-| `ACCOUNT_STATUS_REASON_TEXT` | STRING | 0 | 97 |  |  |
-| `REVIEW_COMMENT` | STRING | 0 | 97 |  |  |
-| `SOURCE_FILE_NAME` | STRING | 2 | 0 | accountfacts__20261116_094201.csv | adra_account_facts.csv |
-| `HASH_KEY` | STRING | 97 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 2 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 2 | 0 | 2026-11-16 09:54:35.180000 | 2026-11-16 18:53:24.519000 |
-| `MDP_MODIFIED_BY` | STRING | 2 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 2 | 0 | 2026-11-16 09:54:35.180000 | 2026-11-16 18:53:24.519000 |
-
-## Sample rows
-
-| PREPARER_USERNAME | PREPARER_NAME | APPROVER_USERNAME | APPROVER_NAME | REVIEWER_USERNAME | REVIEWER_NAME | ASSIGNED_TO_USERNAME | ASSIGNED_TO_NAME | ACCOUNT_STATUS | ACCOUNT_STATUS_REASON | IS_FINALIZED | IS_CARRIED_FORWARD | BALANCER_ACCOUNT_URL | ACCOUNT_CREATED_IN_PERIOD | NO_OF_DOCUMENTS | NO_OF_PREPARERS | NO_OF_APPROVERS | NO_OF_REVIEWERS | BALANCE | BALANCE_ABS | UNIDENTIFIED_BALANCE | UNIDENTIFIED_BALANCE_ABS | BALANCE_ENGAGEMENT | BALANCE_ENGAGEMENT_ABS | UNIDENTIFIED_BALANCE_ENGAGEMENT | UNIDENTIFIED_BALANCE_ENGAGEMENT_ABS | STATUS_COMMENT | ACCOUNT_PURPOSE | ACCOUNT_PROCEDURE | EXTRA_FIELD_01 | EXTRA_FIELD_02 | EXTRA_FIELD_03 | EXTRA_FIELD_04 | EXTRA_FIELD_05 | EXTRA_FIELD_06 | EXTRA_FIELD_07 | EXTRA_FIELD_08 | EXTRA_FIELD_09 | EXTRA_FIELD_10 | NO_OF_REJECTS | PREPARED_BY_NAME | PREPARED_BY_USERNAME | APPROVED_BY_NAME | APPROVED_BY_USERNAME | REVIEWED_BY_NAME | REVIEWED_BY_USERNAME | PREPARED_DATE | APPROVED_DATE | REVIEWED_DATE | REJECTED_DATE | BALANCE_UPDATED_DATE | ACCOUNT_STATUS_COMMENTS | ACCOUNT_STATUS_REASON_TEXT | REVIEW_COMMENT | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | Not prepared | NULL | False | NULL | https://balancer.adra.com/engagements... | NULL | 0 | 1 | 1 | 0 | 1254246.64 | 1254246.64 | 104.71 | 104.71 | 1661625.95 | 1661625.95 | 138.72 | 138.72 | Set to not preapred due to update in ... | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | NULL | NULL | NULL | NULL | 46342.41964 | NULL | NULL | NULL | adra_account_facts.csv | <masked> | 2026-11-16 18:53:24.519000 | <masked> | 2026-11-16 18:53:24.519000 |
-| <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | Not prepared | NULL | False | NULL | https://balancer.adra.com/engagements... | NULL | 0 | 1 | 1 | 0 | 528437.11 | 528437.11 | 1624.58 | 1624.58 | 700073.48 | 700073.48 | 2152.24 | 2152.24 | Set to not preapred due to update in ... | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | NULL | NULL | NULL | NULL | 46342.41964 | NULL | NULL | NULL | adra_account_facts.csv | <masked> | 2026-11-16 18:53:24.519000 | <masked> | 2026-11-16 18:53:24.519000 |
-| <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | Not prepared | NULL | False | NULL | https://balancer.adra.com/engagements... | NULL | 0 | 1 | 1 | 0 | 6531120.01 | 6531120.01 | 1434.19 | 1434.19 | 8652427.79 | 8652427.79 | 1900.01 | 1900.01 | Set to not preapred due to update in ... | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | NULL | NULL | NULL | NULL | 46342.41964 | NULL | NULL | NULL | adra_account_facts.csv | <masked> | 2026-11-16 18:53:24.519000 | <masked> | 2026-11-16 18:53:24.519000 |
-| <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | Not prepared | NULL | False | NULL | https://balancer.adra.com/engagements... | NULL | 0 | 1 | 1 | 0 | 116921.92 | 116921.92 | 91.01 | 91.01 | 154898.16 | 154898.16 | 120.57 | 120.57 | Set to not preapred due to update in ... | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | NULL | NULL | NULL | NULL | 46342.41965 | NULL | NULL | NULL | adra_account_facts.csv | <masked> | 2026-11-16 18:53:24.519000 | <masked> | 2026-11-16 18:53:24.519000 |
-| <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | Not prepared | NULL | False | NULL | https://balancer.adra.com/engagements... | NULL | 0 | 1 | 1 | 0 | 173305.14 | 173305.14 | 620.2 | 620.2 | 229594.65 | 229594.65 | 821.64 | 821.64 | Set to not preapred due to update in ... | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | <masked> | <masked> | <masked> | <masked> | <masked> | NULL | NULL | NULL | NULL | 46342.41965 | NULL | NULL | NULL | adra_account_facts.csv | <masked> | 2026-11-16 18:53:24.519000 | <masked> | 2026-11-16 18:53:24.519000 |

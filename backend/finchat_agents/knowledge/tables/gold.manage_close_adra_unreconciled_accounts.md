@@ -21,7 +21,6 @@ built_from:
 - adra_account_facts
 - adra_transaction_facts
 known_issues: []
-row_count: 56
 proposed_fields: []
 reviewed:
 - superseded_by
@@ -50,95 +49,70 @@ superseded_by:
 ## Values
 
 **ACCOUNT**
-- `176100 Credit Card - Expenses Control`: 6 rows
-- `109023 CMC control account`: 3 rows
-- `239001 IBA Liabilities`: 3 rows
-- `199001 IBA Debtor`: 3 rows
-- `144000 Accrued Brokerage`: 3 rows
-- `109036 IBA Bank Account CAD`: 2 rows
-- `109051 JPMC Bank`: 1 rows
-- `142000 Fixed Asset Control Account`: 1 rows
-- `211211 Direct LAE Reserves`: 1 rows
-- `191100 Prepaid expenses`: 1 rows
-- `191110 Prepaid expenses - admitted`: 1 rows
-- `239210 Use Tax Payable`: 1 rows
-- `212200 Assumed Unearned Premiums`: 1 rows
-- `141111 Premium Receivable - Current - Direct`: 1 rows
-- `103803 Equity (Investment)`: 1 rows
-- `131623 Bonds - State Acct SET1`: 1 rows
-- `109045 IBA Bank Account NOK`: 1 rows
-- `221400 INTERCOMPANY TRADE PAYABLES`: 1 rows
-- `109053 CITI Bank`: 1 rows
-- `333420 Non Admitted Assets - Prepaid Expense`: 1 rows
-- `109033 IBA Bank Account GBP`: 1 rows
-- `222200 Corporate taxes payable`: 1 rows
-- `213440 Accounts Payable`: 1 rows
-- `213130 ACCOUNTS RECEIVABLE CREDIT BALANCES`: 1 rows
-- `141121 Premium Receivable - Current - Assumed`: 1 rows
-- `213230 COST OF SALES ACCRUAL`: 1 rows
-- `211111 Direct Loss Reserves`: 1 rows
-- `145100 Deferred policy acquisition costs- Direct`: 1 rows
-- `213210 DEPOSITS AND UNEARNED REVENUE`: 1 rows
-- `211220 Accounts Payable`: 1 rows
-- `123100 INTERCOMPANY RECEIVABLE ACCRUAL`: 1 rows
-- `231000 Accounts payable - insurance companies`: 1 rows
-- `192200 Salvage and subrogation recoverable`: 1 rows
-- `122500 INTERCOMPANY TRADE RECEIVABLES`: 1 rows
-- `131300 Bonds - Premium`: 1 rows
-- `239200 Taxes Payable`: 1 rows
-- `222110 Premium taxes payable`: 1 rows
-- `123200 ACCOUNTS RECEIVABLE ACCRUALS.`: 1 rows
-- `212100 Direct Unearned Premiums`: 1 rows
-- `142200 Funds held by on deposit`: 1 rows
-- `213110 ACCRUED BONUSES & COMMISSION`: 1 rows
-- `109521 FHLB - Deposit`: 1 rows
+- `176100 Credit Card - Expenses Control`
+- `109023 CMC control account`
+- `239001 IBA Liabilities`
+- `199001 IBA Debtor`
+- `144000 Accrued Brokerage`
+- `109036 IBA Bank Account CAD`
+- `109051 JPMC Bank`
+- `142000 Fixed Asset Control Account`
+- `211211 Direct LAE Reserves`
+- `191100 Prepaid expenses`
+- `191110 Prepaid expenses - admitted`
+- `239210 Use Tax Payable`
+- `212200 Assumed Unearned Premiums`
+- `141111 Premium Receivable - Current - Direct`
+- `103803 Equity (Investment)`
+- `131623 Bonds - State Acct SET1`
+- `109045 IBA Bank Account NOK`
+- `221400 INTERCOMPANY TRADE PAYABLES`
+- `109053 CITI Bank`
+- `333420 Non Admitted Assets - Prepaid Expense`
+- `109033 IBA Bank Account GBP`
+- `222200 Corporate taxes payable`
+- `213440 Accounts Payable`
+- `213130 ACCOUNTS RECEIVABLE CREDIT BALANCES`
+- `141121 Premium Receivable - Current - Assumed`
+- `213230 COST OF SALES ACCRUAL`
+- `211111 Direct Loss Reserves`
+- `145100 Deferred policy acquisition costs- Direct`
+- `213210 DEPOSITS AND UNEARNED REVENUE`
+- `211220 Accounts Payable`
+- `123100 INTERCOMPANY RECEIVABLE ACCRUAL`
+- `231000 Accounts payable - insurance companies`
+- `192200 Salvage and subrogation recoverable`
+- `122500 INTERCOMPANY TRADE RECEIVABLES`
+- `131300 Bonds - Premium`
+- `239200 Taxes Payable`
+- `222110 Premium taxes payable`
+- `123200 ACCOUNTS RECEIVABLE ACCRUALS.`
+- `212100 Direct Unearned Premiums`
+- `142200 Funds held by on deposit`
+- `213110 ACCRUED BONUSES & COMMISSION`
+- `109521 FHLB - Deposit`
 
 **SUPPORTING_BALANCE**
-- `0`: 34 rows
-- `2754368.12`: 1 rows
-- `526812.53`: 1 rows
-- `376420`: 1 rows
-- `-210983`: 1 rows
-- `-14148`: 1 rows
-- `988931`: 1 rows
-- `-72408`: 1 rows
-- `6529685.82`: 1 rows
-- `-140351`: 1 rows
-- `1254141.93`: 1 rows
-- `-15651157.75`: 1 rows
-- `2531890.55`: 1 rows
-- `-106760`: 1 rows
-- `-3182019.99`: 1 rows
-- `10496.08`: 1 rows
-- `-2929121.74`: 1 rows
-- `-232.96`: 1 rows
-- `-116911`: 1 rows
-- `116830.91`: 1 rows
-- `172684.94`: 1 rows
-- `301489`: 1 rows
-- `17617.63`: 1 rows
-
-## Profile
-
-Rows in the latest export: 56.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `ACCOUNT` | STRING | 43 | 0 | 103803 Equity (Investment) | 333420 Non Admitted Assets - Prepaid ... |
-| `LEGAL_ENTITY` | STRING | 8 | 0 |  |  |
-| `ENTITY_NAME` | STRING | 8 | 0 |  |  |
-| `GL_BALANCE` | DECIMAL | 57 | 0 | -19697737.46 | 6531120.01 |
-| `SUPPORTING_BALANCE` | DECIMAL | 24 | 0 | -15651157.75 | 6529685.82 |
-| `DIFFERENCE` | DECIMAL | 59 | 0 | -19697737.46 | 1193073.56 |
-| `ACTION` | STRING | 57 | 0 | https://balancer.adra.com/engagements... | https://balancer.adra.com/engagements... |
-| `PERIOD_NAME` | STRING | 3 | 0 |  |  |
-
-## Sample rows
-
-| ACCOUNT | GL_BALANCE | SUPPORTING_BALANCE | DIFFERENCE | ACTION | PERIOD_NAME |
-|---|---|---|---|---|---|
-| 103803 Equity (Investment) | 39599 | 0 | 39599 | https://balancer.adra.com/engagements... | (altered in export) |
-| 109051 JPMC Bank | 154878 | 0 | 154878 | https://balancer.adra.com/engagements... | (altered in export) |
-| 109053 CITI Bank | 205407 | 0 | 205407 | https://balancer.adra.com/engagements... | (altered in export) |
-| 109521 FHLB - Deposit | 45867 | 0 | 45867 | https://balancer.adra.com/engagements... | (altered in export) |
-| 131300 Bonds - Premium | 35066 | 0 | 35066 | https://balancer.adra.com/engagements... | (altered in export) |
+- `0`
+- `2754368.12`
+- `526812.53`
+- `376420`
+- `-210983`
+- `-14148`
+- `988931`
+- `-72408`
+- `6529685.82`
+- `-140351`
+- `1254141.93`
+- `-15651157.75`
+- `2531890.55`
+- `-106760`
+- `-3182019.99`
+- `10496.08`
+- `-2929121.74`
+- `-232.96`
+- `-116911`
+- `116830.91`
+- `172684.94`
+- `301489`
+- `17617.63`

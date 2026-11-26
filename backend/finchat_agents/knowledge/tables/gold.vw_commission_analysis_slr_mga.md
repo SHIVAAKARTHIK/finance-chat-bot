@@ -25,7 +25,6 @@ synonyms: []
 built_from:
 - fact_fynapse_slr_journals
 known_issues: []
-row_count: null
 proposed_fields: []
 reviewed: false
 broken_error: the profiling query failed in the catalog export (no row count); the error text is not in the workbook
@@ -73,44 +72,3 @@ Commission (brokerage) income analysis (actuals only), line grain, over lakehous
 | `JOURNAL_ID` | string |  |  | `JOURNAL_ID` |
 | `JOURNAL_LINE_ID` | string |  |  | `JOURNAL_LINE_ID` |
 | `JOURNAL_LINE_NO` | int |  |  | `JOURNAL_LINE_NO` |
-
-## Profile
-
-Rows in the latest export: unknown.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `POSTING_DATE` | DATE |  |  |  |  |
-| `TRANSACTION_DATE` | DATE |  |  |  |  |
-| `FISCAL_YEAR` | INT |  |  |  |  |
-| `PERIOD` | INT |  |  |  |  |
-| `PERIOD_START_DATE` | DATE |  |  |  |  |
-| `MONTH_NAME` | STRING |  |  |  |  |
-| `MONTH_YEAR` | STRING |  |  |  |  |
-| `LEGAL_ENTITY` | STRING |  |  |  |  |
-| `COMPANY_CODE` | STRING |  |  |  |  |
-| `COMPANY_NAME` | STRING |  |  |  |  |
-| `COMPANY_LABEL` | STRING |  |  |  |  |
-| `PROFIT_CENTER` | STRING |  |  |  |  |
-| `PROFIT_CENTER_NAME` | STRING |  |  |  |  |
-| `PROFIT_CENTER_LABEL` | STRING |  |  |  |  |
-| `ACCOUNT` | STRING |  |  |  |  |
-| `ACCOUNT_DESCRIPTION` | STRING |  |  |  |  |
-| `COMMISSION_INCOME_GBP` | DECIMAL |  |  |  |  |
-| `REPORTING_CURRENCY` | STRING |  |  |  |  |
-| `COMMISSION_INCOME_TXN` | DECIMAL |  |  |  |  |
-| `TRANSACTION_CURRENCY` | STRING |  |  |  |  |
-| `COMMISSION_INCOME_FUNCTIONAL` | DECIMAL |  |  |  |  |
-| `FUNCTIONAL_CURRENCY` | STRING |  |  |  |  |
-| `SOURCE_TRANSACTION_ID` | STRING |  |  |  |  |
-| `POLICY_REFERENCE` | STRING |  |  |  |  |
-| `POLICY_NAME` | STRING |  |  |  |  |
-| `NOVIDEA_REFERENCE` | STRING |  |  |  |  |
-| `LINE_DESCRIPTION` | STRING |  |  |  |  |
-| `ENTRY_TYPE` | STRING |  |  |  |  |
-| `SOURCE_SYSTEM` | STRING |  |  |  |  |
-| `BUSINESS_EVENT` | STRING |  |  |  |  |
-| `JOURNAL_TYPE` | STRING |  |  |  |  |
-| `JOURNAL_ID` | STRING |  |  |  |  |
-| `JOURNAL_LINE_ID` | STRING |  |  |  |  |
-| `JOURNAL_LINE_NO` | INT |  |  |  |  |

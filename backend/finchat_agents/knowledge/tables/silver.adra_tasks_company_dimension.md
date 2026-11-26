@@ -17,7 +17,6 @@ pii_columns:
 synonyms: []
 built_from: []
 known_issues: []
-row_count: 12
 proposed_fields:
 - grain
 - primary_key
@@ -44,37 +43,10 @@ reviewed: false
 ## Values
 
 **SOURCE_FILE_NAME**
-- `companydimension__20261116_174302.csv`: 12 rows
+- `companydimension__20261116_174302.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 17:52:12.136372+00:00`: 12 rows
+- `2026-11-16 17:52:12.136372+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 17:52:12.136372+00:00`: 12 rows
-
-## Profile
-
-Rows in the latest export: 12.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `COMPANY_KEY` | STRING | 12 | 0 |  |  |
-| `ENGAGEMENT_KEY` | STRING | 1 | 0 |  |  |
-| `COMPANY_NAME` | STRING | 12 | 0 |  |  |
-| `COMPANY_CODE` | STRING | 11 | 0 |  |  |
-| `SOURCE_FILE_NAME` | STRING | 1 | 0 | companydimension__20261116_174302.csv | companydimension__20261116_174302.csv |
-| `HASH_KEY` | STRING | 12 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 17:52:12.136000 | 2026-11-16 17:52:12.136000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 17:52:12.136000 | 2026-11-16 17:52:12.136000 |
-
-## Sample rows
-
-| SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|
-| companydimension__20261116_174302.csv | <masked> | 2026-11-16 17:52:12.136000 | <masked> | 2026-11-16 17:52:12.136000 |
-| companydimension__20261116_174302.csv | <masked> | 2026-11-16 17:52:12.136000 | <masked> | 2026-11-16 17:52:12.136000 |
-| companydimension__20261116_174302.csv | <masked> | 2026-11-16 17:52:12.136000 | <masked> | 2026-11-16 17:52:12.136000 |
-| companydimension__20261116_174302.csv | <masked> | 2026-11-16 17:52:12.136000 | <masked> | 2026-11-16 17:52:12.136000 |
-| companydimension__20261116_174302.csv | <masked> | 2026-11-16 17:52:12.136000 | <masked> | 2026-11-16 17:52:12.136000 |
+- `2026-11-16 17:52:12.136372+00:00`

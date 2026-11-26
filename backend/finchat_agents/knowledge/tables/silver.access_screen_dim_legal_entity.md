@@ -15,7 +15,6 @@ pii_columns: []
 synonyms: []
 built_from: []
 known_issues: []
-row_count: 3
 proposed_fields:
 - grain
 reviewed: false
@@ -37,23 +36,4 @@ Access screen: legal entity master.
 ## Values
 
 **created_at**
-- `2026-11-18 15:44:43.735301+00:00`: 3 rows
-
-## Profile
-
-Rows in the latest export: 3.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `legal_entity_id` | LONG | 3 | 0 |  |  |
-| `legal_entity_code` | STRING | 3 | 0 |  |  |
-| `legal_entity_name` | STRING | 3 | 0 |  |  |
-| `created_at` | TIMESTAMP | 1 | 0 | 2026-11-18 15:44:43.735000 | 2026-11-18 15:44:43.735000 |
-
-## Sample rows
-
-| created_at |
-|---|
-| 2026-11-18 15:44:43.735000 |
-| 2026-11-18 15:44:43.735000 |
-| 2026-11-18 15:44:43.735000 |
+- `2026-11-18 15:44:43.735301+00:00`

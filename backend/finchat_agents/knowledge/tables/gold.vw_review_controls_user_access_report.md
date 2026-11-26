@@ -19,7 +19,6 @@ synonyms: []
 built_from:
 - review_controls_user_access_report
 known_issues: []
-row_count: 4
 proposed_fields:
 - grain
 - primary_key
@@ -46,50 +45,24 @@ reviewed: false
 ## Values
 
 **Role**
-- `AR Clerk`: 1 rows
-- `CFO`: 1 rows
-- `Controller`: 1 rows
-- `AP Clerk`: 1 rows
+- `AR Clerk`
+- `CFO`
+- `Controller`
+- `AP Clerk`
 
 **Areas_with_access**
-- `10`: 2 rows
-- `1`: 2 rows
+- `10`
+- `1`
 
 **Areas_they_can_change**
-- `10`: 2 rows
-- `1`: 2 rows
+- `10`
+- `1`
 
 **Access**
-- `Review Access`: 4 rows
+- `Review Access`
 
 **MDP_CREATED_DATE**
-- `2026-11-04 10:51:39.204030+00:00`: 4 rows
+- `2026-11-04 10:51:39.204030+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-04 10:51:39.204030+00:00`: 4 rows
-
-## Profile
-
-Rows in the latest export: 4.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `User` | STRING | 4 | 0 |  |  |
-| `Role` | STRING | 4 | 0 | AP Clerk | Controller |
-| `Areas_with_access` | INT | 2 | 0 | 1 | 10 |
-| `Areas_they_can_change` | INT | 2 | 0 | 1 | 10 |
-| `Access` | STRING | 1 | 0 | Review Access | Review Access |
-| `HASH_KEY` | STRING | 4 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-04 10:51:39.204000 | 2026-11-04 10:51:39.204000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-04 10:51:39.204000 | 2026-11-04 10:51:39.204000 |
-
-## Sample rows
-
-| User | Role | Areas_with_access | Areas_they_can_change | Access | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|
-| <masked> | CFO | 10 | 10 | Review Access | <masked> | 2026-11-04 10:51:39.204000 | <masked> | 2026-11-04 10:51:39.204000 |
-| <masked> | Controller | 10 | 10 | Review Access | <masked> | 2026-11-04 10:51:39.204000 | <masked> | 2026-11-04 10:51:39.204000 |
-| <masked> | AR Clerk | 1 | 1 | Review Access | <masked> | 2026-11-04 10:51:39.204000 | <masked> | 2026-11-04 10:51:39.204000 |
-| <masked> | AP Clerk | 1 | 1 | Review Access | <masked> | 2026-11-04 10:51:39.204000 | <masked> | 2026-11-04 10:51:39.204000 |
+- `2026-11-04 10:51:39.204030+00:00`

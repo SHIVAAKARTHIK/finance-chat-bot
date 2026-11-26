@@ -28,7 +28,6 @@ built_from:
 - access_screen_dim_application
 - access_screen_dim_legal_entity
 known_issues: []
-row_count: 10
 proposed_fields: []
 reviewed: false
 ---
@@ -52,48 +51,22 @@ reviewed: false
 ## Values
 
 **DEPARTMENT**
-- `Finance`: 10 rows
+- `Finance`
 
 **NUMBER_OF_REPORTEES**
-- `2`: 10 rows
+- `2`
 
 **APPLICATION**
-- `D365`: 3 rows
-- `UI`: 3 rows
-- `FYNAPSE`: 2 rows
-- `POWERBI`: 2 rows
+- `D365`
+- `UI`
+- `FYNAPSE`
+- `POWERBI`
 
 **ACCESS_TYPE**
-- `No Access`: 2 rows
-- `Approver`: 2 rows
-- `Read`: 2 rows
-- `Admin`: 1 rows
-- `AR Analyst`: 1 rows
-- `AP Analyst`: 1 rows
-- `Read/Write`: 1 rows
-
-## Profile
-
-Rows in the latest export: 10.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `MANAGER_NAME` | STRING | 1 | 0 |  |  |
-| `EMAIL_ID` | STRING | 1 | 0 |  |  |
-| `DEPARTMENT` | STRING | 1 | 0 | Finance | Finance |
-| `NUMBER_OF_REPORTEES` | LONG | 1 | 0 | 2 | 2 |
-| `REPORTEE_NAME` | STRING | 2 | 0 |  |  |
-| `REPORTEE_EMAIL_ID` | STRING | 2 | 0 |  |  |
-| `APPLICATION` | STRING | 4 | 0 | D365 | UI |
-| `LEGAL_ENTITY` | STRING | 5 | 0 |  |  |
-| `ACCESS_TYPE` | STRING | 7 | 0 | AP Analyst | Read/Write |
-
-## Sample rows
-
-| MANAGER_NAME | EMAIL_ID | DEPARTMENT | NUMBER_OF_REPORTEES | REPORTEE_NAME | REPORTEE_EMAIL_ID | APPLICATION | ACCESS_TYPE |
-|---|---|---|---|---|---|---|---|
-| <masked> | <masked> | Finance | 2 | <masked> | <masked> | D365 | Read |
-| <masked> | <masked> | Finance | 2 | <masked> | <masked> | D365 | No Access |
-| <masked> | <masked> | Finance | 2 | <masked> | <masked> | FYNAPSE | Approver |
-| <masked> | <masked> | Finance | 2 | <masked> | <masked> | POWERBI | Read/Write |
-| <masked> | <masked> | Finance | 2 | <masked> | <masked> | UI | AP Analyst |
+- `No Access`
+- `Approver`
+- `Read`
+- `Admin`
+- `AR Analyst`
+- `AP Analyst`
+- `Read/Write`

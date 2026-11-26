@@ -20,7 +20,6 @@ built_from: []
 known_issues:
 - code: empty_column
   note: SRU_CODE all null
-row_count: 1867
 proposed_fields:
 - grain
 - primary_key
@@ -83,198 +82,139 @@ reviewed: false
 ## Values
 
 **CHART_OF_ACCOUNTS**
-- `INSCOA`: 574 rows
-- `Shared`: 555 rows
-- `COA`: 541 rows
-- `Rock_It`: 163 rows
-- `HCOA`: 34 rows
+- `INSCOA`
+- `Shared`
+- `COA`
+- `Rock_It`
+- `HCOA`
 
 **SRU_CODE**
-- `None`: 1867 rows
+- `None`
 
 **MAIN_ACCOUNT_TYPE**
-- `Asset`: 657 rows
-- `Expense`: 553 rows
-- `Liability`: 284 rows
-- `Revenue`: 263 rows
-- `Equity`: 99 rows
-- `ProfitAndLoss`: 9 rows
-- `BalanceSheet`: 1 rows
-- `Total`: 1 rows
+- `Asset`
+- `Expense`
+- `Liability`
+- `Revenue`
+- `Equity`
+- `ProfitAndLoss`
+- `BalanceSheet`
+- `Total`
 
 **REPORTING_EXCHANGE_ADJUSTMENT_RATE_TYPE**
-- `None`: 1867 rows
+- `None`
 
 **CLOSING**
-- `None`: 1867 rows
+- `None`
 
 **FOREIGN_CURRENCY_REVALUATION**
-- `No`: 1867 rows
+- `No`
 
 **INFLATION_ADJUSTMENT**
-- `No`: 1867 rows
+- `No`
 
 **OFFSET_ACCOUNT_DISPLAY_VALUE**
-- `None`: 1867 rows
+- `None`
 
 **PARENT_MAIN_ACCOUNT_ID**
-- `None`: 1867 rows
+- `None`
 
 **FINANCIAL_REPORTING_CURRENCY_TRANSLATION_TYPE**
-- `WeightedAverage`: 1867 rows
+- `WeightedAverage`
 
 **DEFAULT_CURRENCY**
-- `USD`: 1806 rows
-- `None`: 61 rows
+- `USD`
+- `None`
 
 **DEBIT_CREDIT_DEFAULT**
-- `None`: 1262 rows
-- `Debit`: 397 rows
-- `Credit`: 208 rows
+- `None`
+- `Debit`
+- `Credit`
 
 **ACTIVE_TO**
-- `1900-01-01 12:00:00.0000000 +00:00`: 1867 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **MANDATORY_PAYMENT_REFERENCE**
-- `No`: 1867 rows
+- `No`
 
 **MONETARY**
-- `No`: 1867 rows
+- `No`
 
 **BALANCE_CONTROL**
-- `None`: 1867 rows
+- `None`
 
 **OPENING_ACCOUNT_ID**
-- `None`: 1867 rows
+- `None`
 
 **VALIDATE_POSTING_TYPE**
-- `Optional`: 1867 rows
+- `Optional`
 
 **REPOMO_TYPE**
-- `NotApplicable`: 1867 rows
+- `NotApplicable`
 
 **EXCHANGE_ADJUSTMENT_RATE_TYPE**
-- `None`: 1867 rows
+- `None`
 
 **IS_SUSPENDED**
-- `No`: 1867 rows
+- `No`
 
 **ADJUSTMENT_METHOD**
-- `None`: 1867 rows
+- `None`
 
 **POSTING_TYPE**
-- `None`: 1867 rows
+- `None`
 
 **CHART_OF_ACCOUNTS_REC_ID**
-- `5637147576`: 574 rows
-- `5637144577`: 555 rows
-- `5637145326`: 541 rows
-- `5637146076`: 163 rows
-- `5637146826`: 34 rows
+- `5637147576`
+- `5637144577`
+- `5637145326`
+- `5637146076`
+- `5637146826`
 
 **VALIDATE_CURRENCY**
-- `Optional`: 1867 rows
+- `Optional`
 
 **REPORTING_ACCOUNT_TYPE**
-- `None`: 1867 rows
+- `None`
 
 **FINANCIAL_REPORTING_EXCHANGE_RATE_TYPE**
-- `None`: 1867 rows
+- `None`
 
 **DEFAULT_CONSOLIDATION_ACCOUNT**
-- `None`: 1867 rows
+- `None`
 
 **DO_NOT_ALLOW_MANUAL_ENTRY**
-- `No`: 1865 rows
-- `Yes`: 2 rows
+- `No`
+- `Yes`
 
 **DEBIT_CREDIT_REQUIREMENT**
-- `None`: 1867 rows
+- `None`
 
 **VALIDATE_USER**
-- `Optional`: 1867 rows
+- `Optional`
 
 **ACTIVE_FROM**
-- `1900-01-01 12:00:00.0000000 +00:00`: 1867 rows
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **NATURE_CODE_BR**
-- `None`: 1337 rows
-- `4`: 222 rows
-- `1`: 198 rows
-- `2`: 108 rows
-- `3`: 2 rows
+- `None`
+- `4`
+- `1`
+- `2`
+- `3`
 
 **INCOME_STATEMENT_CATEGORY**
-- `None`: 1867 rows
+- `None`
 
 **SOURCE_FILE_NAME**
-- `mainaccounts__20261116_105417.csv`: 1867 rows
+- `mainaccounts__20261116_105417.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 11:41:35.174303+00:00`: 1867 rows
+- `2026-11-16 11:41:35.174303+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 11:41:35.174303+00:00`: 1867 rows
+- `2026-11-16 11:41:35.174303+00:00`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 1867.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `CHART_OF_ACCOUNTS` | STRING | 5 | 0 | COA | Shared |
-| `MAIN_ACCOUNT_ID` | STRING | 710 | 0 | 100004 | 999999 |
-| `MAIN_ACCOUNT_REC_ID` | STRING | 1764 | 0 | 5637144576 | 5637160331 |
-| `SRU_CODE` | STRING | 0 | 1867 |  |  |
-| `MAIN_ACCOUNT_TYPE` | STRING | 8 | 0 | Asset | Total |
-| `NAME` | STRING | 983 | 0 | (Loss)/Gain on Fixed Asset | WrittenPremiumOffset |
-| `REPORTING_EXCHANGE_ADJUSTMENT_RATE_TYPE` | STRING | 0 | 1867 |  |  |
-| `USER_NAME` | STRING | 0 | 1867 |  |  |
-| `CLOSING` | STRING | 1 | 0 | None | None |
-| `ACCOUNT_CATEGORY_DESCRIPTION` | STRING | 173 | 723 | AIF Commissions | Written premium |
-| `FOREIGN_CURRENCY_REVALUATION` | STRING | 1 | 0 | No | No |
-| `INFLATION_ADJUSTMENT` | STRING | 1 | 0 | No | No |
-| `OFFSET_ACCOUNT_DISPLAY_VALUE` | STRING | 0 | 1867 |  |  |
-| `PARENT_MAIN_ACCOUNT_ID` | STRING | 0 | 1867 |  |  |
-| `FINANCIAL_REPORTING_CURRENCY_TRANSLATION_TYPE` | STRING | 1 | 0 | WeightedAverage | WeightedAverage |
-| `DEFAULT_CURRENCY` | STRING | 1 | 61 | USD | USD |
-| `DEBIT_CREDIT_DEFAULT` | STRING | 3 | 0 | Credit | None |
-| `ACTIVE_TO` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `MANDATORY_PAYMENT_REFERENCE` | STRING | 1 | 0 | No | No |
-| `MONETARY` | STRING | 1 | 0 | No | No |
-| `BALANCE_CONTROL` | STRING | 1 | 0 | None | None |
-| `OPENING_ACCOUNT_ID` | STRING | 0 | 1867 |  |  |
-| `VALIDATE_POSTING_TYPE` | STRING | 1 | 0 | Optional | Optional |
-| `REPOMO_TYPE` | STRING | 1 | 0 | NotApplicable | NotApplicable |
-| `EXCHANGE_ADJUSTMENT_RATE_TYPE` | STRING | 0 | 1867 |  |  |
-| `IS_SUSPENDED` | STRING | 1 | 0 | No | No |
-| `ADJUSTMENT_METHOD` | STRING | 1 | 0 | None | None |
-| `POSTING_TYPE` | STRING | 1 | 0 | None | None |
-| `CHART_OF_ACCOUNTS_REC_ID` | STRING | 5 | 0 | 5637144577 | 5637147576 |
-| `VALIDATE_CURRENCY` | STRING | 1 | 0 | Optional | Optional |
-| `MAIN_ACCOUNT_CATEGORY` | STRING | 159 | 723 | AALOAN | WRIPREMGAOF |
-| `REPORTING_ACCOUNT_TYPE` | STRING | 1 | 0 | None | None |
-| `FINANCIAL_REPORTING_EXCHANGE_RATE_TYPE` | STRING | 0 | 1867 |  |  |
-| `DEFAULT_CONSOLIDATION_ACCOUNT` | STRING | 0 | 1867 |  |  |
-| `DO_NOT_ALLOW_MANUAL_ENTRY` | STRING | 2 | 0 | No | Yes |
-| `DEBIT_CREDIT_REQUIREMENT` | STRING | 1 | 0 | None | None |
-| `VALIDATE_USER` | STRING | 1 | 0 | Optional | Optional |
-| `ACTIVE_FROM` | STRING | 1 | 0 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `NATURE_CODE_BR` | STRING | 4 | 1337 | 1 | 4 |
-| `INCOME_STATEMENT_CATEGORY` | STRING | 0 | 1867 |  |  |
-| `SOURCE_FILE_NAME` | STRING | 1 | 0 | mainaccounts__20261116_105417.csv | mainaccounts__20261116_105417.csv |
-| `HASH_KEY` | STRING | 1907 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:41:35.174000 | 2026-11-16 11:41:35.174000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:41:35.174000 | 2026-11-16 11:41:35.174000 |
-
-## Sample rows
-
-| CHART_OF_ACCOUNTS | MAIN_ACCOUNT_ID | MAIN_ACCOUNT_REC_ID | SRU_CODE | MAIN_ACCOUNT_TYPE | NAME | REPORTING_EXCHANGE_ADJUSTMENT_RATE_TYPE | USER_NAME | CLOSING | ACCOUNT_CATEGORY_DESCRIPTION | FOREIGN_CURRENCY_REVALUATION | INFLATION_ADJUSTMENT | OFFSET_ACCOUNT_DISPLAY_VALUE | PARENT_MAIN_ACCOUNT_ID | FINANCIAL_REPORTING_CURRENCY_TRANSLATION_TYPE | DEFAULT_CURRENCY | DEBIT_CREDIT_DEFAULT | ACTIVE_TO | MANDATORY_PAYMENT_REFERENCE | MONETARY | BALANCE_CONTROL | OPENING_ACCOUNT_ID | VALIDATE_POSTING_TYPE | REPOMO_TYPE | EXCHANGE_ADJUSTMENT_RATE_TYPE | IS_SUSPENDED | ADJUSTMENT_METHOD | POSTING_TYPE | CHART_OF_ACCOUNTS_REC_ID | VALIDATE_CURRENCY | MAIN_ACCOUNT_CATEGORY | REPORTING_ACCOUNT_TYPE | FINANCIAL_REPORTING_EXCHANGE_RATE_TYPE | DEFAULT_CONSOLIDATION_ACCOUNT | DO_NOT_ALLOW_MANUAL_ENTRY | DEBIT_CREDIT_REQUIREMENT | VALIDATE_USER | ACTIVE_FROM | NATURE_CODE_BR | INCOME_STATEMENT_CATEGORY | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Shared | 101106 | 5637144576 | NULL | Asset | BMO - Operating - TH Risk Management | NULL | <masked> | None | Cash and equivalents - fiduciary | No | No | NULL | NULL | WeightedAverage | USD | Debit | 1900-01-01 12:00:00.0000000 +00:00 | No | No | None | NULL | Optional | NotApplicable | NULL | No | None | None | 5637144577 | Optional | Cash - Fiduciary | None | NULL | NULL | No | None | Optional | 1900-01-01 12:00:00.0000000 +00:00 | 1 | NULL | mainaccounts__20261116_105417.csv | <masked> | 2026-11-16 11:41:35.174000 | <masked> | 2026-11-16 11:41:35.174000 |
-| Shared | 101113 | 5637144577 | NULL | Asset | BMO - Operating | NULL | <masked> | None | Cash and short term investments | No | No | NULL | NULL | WeightedAverage | USD | Debit | 1900-01-01 12:00:00.0000000 +00:00 | No | No | None | NULL | Optional | NotApplicable | NULL | No | None | None | 5637144577 | Optional | CSTINV | None | NULL | NULL | No | None | Optional | 1900-01-01 12:00:00.0000000 +00:00 | 1 | NULL | mainaccounts__20261116_105417.csv | <masked> | 2026-11-16 11:41:35.174000 | <masked> | 2026-11-16 11:41:35.174000 |
-| Shared | 101413 | 5637144578 | NULL | Asset | BMO - Claims ZBA - Omega | NULL | <masked> | None | Cash and short term investments | No | No | NULL | NULL | WeightedAverage | USD | Debit | 1900-01-01 12:00:00.0000000 +00:00 | No | No | None | NULL | Optional | NotApplicable | NULL | No | None | None | 5637144577 | Optional | CSTINV | None | NULL | NULL | No | None | Optional | 1900-01-01 12:00:00.0000000 +00:00 | 1 | NULL | mainaccounts__20261116_105417.csv | <masked> | 2026-11-16 11:41:35.174000 | <masked> | 2026-11-16 11:41:35.174000 |
-| Shared | 101602 | 5637144579 | NULL | Asset | BMO - Trust - Exchange | NULL | <masked> | None | Cash and short term investments | No | No | NULL | NULL | WeightedAverage | USD | Debit | 1900-01-01 12:00:00.0000000 +00:00 | No | No | None | NULL | Optional | NotApplicable | NULL | No | None | None | 5637144577 | Optional | CSTINV | None | NULL | NULL | No | None | Optional | 1900-01-01 12:00:00.0000000 +00:00 | 1 | NULL | mainaccounts__20261116_105417.csv | <masked> | 2026-11-16 11:41:35.174000 | <masked> | 2026-11-16 11:41:35.174000 |
-| Shared | 101604 | 5637144580 | NULL | Asset | BMO - Trust - TH Preferred | NULL | <masked> | None | Cash and short term investments | No | No | NULL | NULL | WeightedAverage | USD | Debit | 1900-01-01 12:00:00.0000000 +00:00 | No | No | None | NULL | Optional | NotApplicable | NULL | No | None | None | 5637144577 | Optional | CSTINV | None | NULL | NULL | No | None | Optional | 1900-01-01 12:00:00.0000000 +00:00 | 1 | NULL | mainaccounts__20261116_105417.csv | <masked> | 2026-11-16 11:41:35.174000 | <masked> | 2026-11-16 11:41:35.174000 |
+Empty in every row: `SRU_CODE`, `REPORTING_EXCHANGE_ADJUSTMENT_RATE_TYPE`, `USER_NAME`, `OFFSET_ACCOUNT_DISPLAY_VALUE`, `PARENT_MAIN_ACCOUNT_ID`, `OPENING_ACCOUNT_ID`, `EXCHANGE_ADJUSTMENT_RATE_TYPE`, `FINANCIAL_REPORTING_EXCHANGE_RATE_TYPE`, `DEFAULT_CONSOLIDATION_ACCOUNT`, `INCOME_STATEMENT_CATEGORY`. Do not filter or group on them.

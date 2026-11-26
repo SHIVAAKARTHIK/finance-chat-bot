@@ -18,7 +18,6 @@ synonyms: []
 built_from:
 - adra_account_dimensions (likely)
 known_issues: []
-row_count: 1
 proposed_fields:
 - grain
 - primary_key
@@ -68,105 +67,68 @@ superseded_by:
 ## Values
 
 **BaseClass**
-- `Not set`: 1 rows
+- `Not set`
 
 **AccountClass**
-- `Not set`: 1 rows
+- `Not set`
 
 **AccountType**
-- `Normal`: 1 rows
+- `Normal`
 
 **IsKeyAccount**
-- `False`: 1 rows
+- `False`
 
 **ReconciliationType**
-- `Basic`: 1 rows
+- `Basic`
 
 **RiskType**
-- `Not set`: 1 rows
+- `Not set`
 
 **PrepareFrequency**
-- `Month end`: 1 rows
+- `Month end`
 
 **ApproveFrequency**
-- `Month end`: 1 rows
+- `Month end`
 
 **ReviewFrequency**
-- `Month end`: 1 rows
+- `Month end`
 
 **Account_Id**
-- `2267785`: 1 rows
+- `2267785`
 
 **ParentAccountId**
-- `0`: 1 rows
+- `0`
 
 **AccountNumber**
-- `101101`: 1 rows
+- `101101`
 
 **AccountName**
-- `ABC Test Account`: 1 rows
+- `ABC Test Account`
 
 **Account**
-- `101101 ABC Test Account`: 1 rows
+- `101101 ABC Test Account`
 
 **AccountSubClass**
-- `None`: 1 rows
+- `None`
 
 **SystemCertify**
-- `Not allowed`: 1 rows
+- `Not allowed`
 
 **CarryForward**
-- `Never`: 1 rows
+- `Never`
 
 **AccountProcedure**
-- `None`: 1 rows
+- `None`
 
 **AccountPurpose**
-- `None`: 1 rows
+- `None`
 
 **MDP_CREATED_DATE**
-- `2026-10-23 10:52:07.081835+00:00`: 1 rows
+- `2026-10-23 10:52:07.081835+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-10-23 10:52:07.081835+00:00`: 1 rows
+- `2026-10-23 10:52:07.081835+00:00`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 1.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `Account_Key` | LONG | 1 | 0 |  |  |
-| `BaseClass` | STRING | 1 | 0 | Not set | Not set |
-| `Engagement_Key` | INT | 1 | 0 |  |  |
-| `ParentAccount_Key` | LONG | 1 | 0 |  |  |
-| `AccountClass` | STRING | 1 | 0 | Not set | Not set |
-| `AccountType` | STRING | 1 | 0 | Normal | Normal |
-| `IsKeyAccount` | BOOLEAN | 1 | 0 | False | False |
-| `ReconciliationType` | STRING | 1 | 0 | Basic | Basic |
-| `RiskType` | STRING | 1 | 0 | Not set | Not set |
-| `PrepareFrequency` | STRING | 1 | 0 | Month end | Month end |
-| `ApproveFrequency` | STRING | 1 | 0 | Month end | Month end |
-| `ReviewFrequency` | STRING | 1 | 0 | Month end | Month end |
-| `Account_Id` | LONG | 1 | 0 | 2267785 | 2267785 |
-| `ParentAccountId` | LONG | 1 | 0 | 0 | 0 |
-| `AccountNumber` | STRING | 1 | 0 | 101101 | 101101 |
-| `AccountName` | STRING | 1 | 0 | ABC Test Account | ABC Test Account |
-| `Account` | STRING | 1 | 0 | 101101 ABC Test Account | 101101 ABC Test Account |
-| `AccountSubClass` | STRING | 0 | 1 |  |  |
-| `SystemCertify` | STRING | 1 | 0 | Not allowed | Not allowed |
-| `CarryForward` | STRING | 1 | 0 | Never | Never |
-| `AccountProcedure` | STRING | 0 | 1 |  |  |
-| `AccountPurpose` | STRING | 0 | 1 |  |  |
-| `LegalEntity_Key` | INT | 1 | 0 |  |  |
-| `HASH_KEY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-10-23 10:52:07.082000 | 2026-10-23 10:52:07.082000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-10-23 10:52:07.082000 | 2026-10-23 10:52:07.082000 |
-
-## Sample rows
-
-| BaseClass | AccountClass | AccountType | IsKeyAccount | ReconciliationType | RiskType | PrepareFrequency | ApproveFrequency | ReviewFrequency | Account_Id | ParentAccountId | AccountNumber | AccountName | Account | AccountSubClass | SystemCertify | CarryForward | AccountProcedure | AccountPurpose | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Not set | Not set | Normal | False | Basic | Not set | Month end | Month end | Month end | 2267785 | 0 | 101101 | ABC Test Account | 101101 ABC Test Account | NULL | Not allowed | Never | NULL | NULL | <masked> | 2026-10-23 10:52:07.082000 | <masked> | 2026-10-23 10:52:07.082000 |
+Empty in every row: `AccountSubClass`, `AccountProcedure`, `AccountPurpose`. Do not filter or group on them.

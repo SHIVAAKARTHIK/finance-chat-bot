@@ -17,7 +17,6 @@ synonyms: []
 built_from:
 - dim_bank_account_table_bi_entities
 known_issues: []
-row_count: 0
 proposed_fields: []
 reviewed: false
 ---
@@ -35,15 +34,6 @@ reviewed: false
 | `BALANCE_USD` | string |  |  | `BALANCE_USD` |
 | `BANK_ACCOUNT_ID` | string |  |  | `BANK_ACCOUNT_ID` |
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 0.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `BANK` | STRING | 0 | 0 |  |  |
-| `ENTITY` | STRING | 0 | 0 |  |  |
-| `CURRENCY` | STRING | 0 | 0 |  |  |
-| `BALANCE_LOCAL_CURRENCY` | STRING | 0 | 0 |  |  |
-| `BALANCE_USD` | STRING | 0 | 0 |  |  |
-| `BANK_ACCOUNT_ID` | STRING | 0 | 0 |  |  |
+Empty in every row: `BANK`, `ENTITY`, `CURRENCY`, `BALANCE_LOCAL_CURRENCY`, `BALANCE_USD`, `BANK_ACCOUNT_ID`. Do not filter or group on them.

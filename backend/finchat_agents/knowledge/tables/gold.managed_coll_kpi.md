@@ -20,7 +20,6 @@ built_from:
 - fact_cust_transactions
 - fact_cash_discounts
 known_issues: []
-row_count: 6
 proposed_fields: []
 reviewed: false
 ---
@@ -40,42 +39,20 @@ reviewed: false
 ## Values
 
 **Section**
-- `Receivables overview`: 2 rows
-- `Overdue`: 2 rows
-- `Early payment discounts`: 2 rows
+- `Receivables overview`
+- `Overdue`
+- `Early payment discounts`
 
 **KPI**
-- `Invoice Count`: 2 rows
-- `Overdue`: 1 rows
-- `Total receivables`: 1 rows
-- `Overdue value`: 1 rows
-- `Early payment discounts value`: 1 rows
+- `Invoice Count`
+- `Overdue`
+- `Total receivables`
+- `Overdue value`
+- `Early payment discounts value`
 
 **Amount**
-- `1000`: 4 rows
-- `None`: 2 rows
+- `1000`
+- `None`
 
 **Count**
-- `1`: 6 rows
-
-## Profile
-
-Rows in the latest export: 6.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `Section` | STRING | 3 | 0 | Early payment discounts | Receivables overview |
-| `KPI` | STRING | 5 | 0 | Early payment discounts value | Total receivables |
-| `Amount` | DOUBLE | 1 | 2 | 1000 | 1000 |
-| `Count` | LONG | 1 | 0 | 1 | 1 |
-| `LEGAL_ENTITY` | STRING | 1 | 0 |  |  |
-
-## Sample rows
-
-| Section | KPI | Amount | Count |
-|---|---|---|---|
-| Receivables overview | Total receivables | 1000 | 1 |
-| Receivables overview | Overdue | 1000 | 1 |
-| Overdue | Overdue value | 1000 | 1 |
-| Overdue | Invoice Count | NULL | 1 |
-| Early payment discounts | Early payment discounts value | 1000 | 1 |
+- `1`

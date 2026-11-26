@@ -22,7 +22,6 @@ known_issues:
 - code: empty_column
   note: EXPENSE_USER_GROUP_INFO, PROJECT_USER_GROUP_INFO, LEDGER_USER_GROUP_INFO, PAYROLL_USER_GROUP_INFO, RETAIL_USER_GROUP_INFO
     all null
-row_count: 5096
 proposed_fields:
 - grain
 - primary_key
@@ -83,206 +82,149 @@ reviewed: false
 ## Values
 
 **CALENDAR**
-- `FY`: 5096 rows
+- `FY`
 
 **YEAR_NAME**
-- `2021`: 392 rows
-- `2016`: 392 rows
-- `2018`: 392 rows
-- `2023`: 392 rows
-- `2026`: 392 rows
-- `2022`: 392 rows
-- `2020`: 392 rows
-- `2017`: 392 rows
-- `2019`: 392 rows
-- `2025`: 392 rows
-- `2014`: 392 rows
-- `2015`: 392 rows
-- `2024`: 392 rows
+- `2021`
+- `2016`
+- `2018`
+- `2023`
+- `2026`
+- `2022`
+- `2020`
+- `2017`
+- `2019`
+- `2025`
+- `2014`
+- `2015`
+- `2024`
 
 **PERIOD_NAME**
-- `Period 1`: 364 rows
-- `Period 6`: 364 rows
-- `Period 10`: 364 rows
-- `Period 8`: 364 rows
-- `Period 11`: 364 rows
-- `Period 13`: 364 rows
-- `Period 12`: 364 rows
-- `Period 9`: 364 rows
-- `Period 2`: 364 rows
-- `Period 5`: 364 rows
-- `Period 4`: 364 rows
-- `Period 3`: 364 rows
-- `Period 0`: 364 rows
-- `Period 7`: 364 rows
+- `Period 1`
+- `Period 6`
+- `Period 10`
+- `Period 8`
+- `Period 11`
+- `Period 13`
+- `Period 12`
+- `Period 9`
+- `Period 2`
+- `Period 5`
+- `Period 4`
+- `Period 3`
+- `Period 0`
+- `Period 7`
 
 **EXPENSE_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **VENDOR_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **BANK_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **CUSTOMER_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **PROJECT_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **LEDGER_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **PAYROLL_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **RETAIL_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **RETAIL_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **PURCHASE_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **PERIOD_STATUS**
-- `Open`: 4368 rows
-- `OnHold`: 364 rows
-- `Closed`: 364 rows
+- `Open`
+- `OnHold`
+- `Closed`
 
 **FIXED_ASSETS_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **PRODUCTION_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **FIXED_ASSETS_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **INVENTORY_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **PURCHASE_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **EXPENSE_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **INVENTORY_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **PAYROLL_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **TAX_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **VENDOR_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **BANK_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **SALES_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **FIXED_ASSETS_RU_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **LEDGER_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **CUSTOMER_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **TAX_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **SALES_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **PROJECT_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **PRODUCTION_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **FIXED_ASSETS_RU_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **ITM_ACCESS_LEVEL**
-- `All`: 5096 rows
+- `All`
 
 **ITM_USER_GROUP_INFO**
-- `None`: 5096 rows
+- `None`
 
 **SOURCE_FILE_NAME**
-- `ledgerfiscalperiodsv2__20261116_105417.csv`: 5096 rows
+- `ledgerfiscalperiodsv2__20261116_105417.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 11:43:20.744205+00:00`: 5096 rows
+- `2026-11-16 11:43:20.744205+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 11:43:20.744205+00:00`: 5096 rows
+- `2026-11-16 11:43:20.744205+00:00`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 5096.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `LEDGER_NAME` | STRING | 29 | 0 |  |  |
-| `CALENDAR` | STRING | 1 | 0 | FY | FY |
-| `YEAR_NAME` | STRING | 13 | 0 | 2014 | 2026 |
-| `PERIOD_NAME` | STRING | 14 | 0 | Period 0 | Period 9 |
-| `LEGAL_ENTITY_ID` | STRING | 29 | 0 |  |  |
-| `EXPENSE_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `VENDOR_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `BANK_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `CUSTOMER_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `PROJECT_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `LEDGER_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `PAYROLL_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `RETAIL_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `RETAIL_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `PURCHASE_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `PERIOD_STATUS` | STRING | 3 | 0 | Closed | Open |
-| `FIXED_ASSETS_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `PRODUCTION_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `FIXED_ASSETS_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `INVENTORY_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `PURCHASE_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `EXPENSE_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `INVENTORY_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `PAYROLL_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `TAX_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `VENDOR_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `BANK_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `SALES_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `FIXED_ASSETS_RU_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `LEDGER_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `CUSTOMER_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `TAX_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `SALES_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `PROJECT_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `PRODUCTION_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `FIXED_ASSETS_RU_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `ITM_ACCESS_LEVEL` | STRING | 1 | 0 | All | All |
-| `ITM_USER_GROUP_INFO` | STRING | 0 | 5096 |  |  |
-| `SOURCE_FILE_NAME` | STRING | 1 | 0 | ledgerfiscalperiodsv2__20261116_10541... | ledgerfiscalperiodsv2__20261116_10541... |
-| `HASH_KEY` | STRING | 4914 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:20.744000 | 2026-11-16 11:43:20.744000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:43:20.744000 | 2026-11-16 11:43:20.744000 |
-
-## Sample rows
-
-| CALENDAR | YEAR_NAME | PERIOD_NAME | EXPENSE_USER_GROUP_INFO | VENDOR_ACCESS_LEVEL | BANK_ACCESS_LEVEL | CUSTOMER_ACCESS_LEVEL | PROJECT_USER_GROUP_INFO | LEDGER_USER_GROUP_INFO | PAYROLL_USER_GROUP_INFO | RETAIL_USER_GROUP_INFO | RETAIL_ACCESS_LEVEL | PURCHASE_USER_GROUP_INFO | PERIOD_STATUS | FIXED_ASSETS_USER_GROUP_INFO | PRODUCTION_USER_GROUP_INFO | FIXED_ASSETS_ACCESS_LEVEL | INVENTORY_USER_GROUP_INFO | PURCHASE_ACCESS_LEVEL | EXPENSE_ACCESS_LEVEL | INVENTORY_ACCESS_LEVEL | PAYROLL_ACCESS_LEVEL | TAX_USER_GROUP_INFO | VENDOR_USER_GROUP_INFO | BANK_USER_GROUP_INFO | SALES_ACCESS_LEVEL | FIXED_ASSETS_RU_ACCESS_LEVEL | LEDGER_ACCESS_LEVEL | CUSTOMER_USER_GROUP_INFO | TAX_ACCESS_LEVEL | SALES_USER_GROUP_INFO | PROJECT_ACCESS_LEVEL | PRODUCTION_ACCESS_LEVEL | FIXED_ASSETS_RU_USER_GROUP_INFO | ITM_ACCESS_LEVEL | ITM_USER_GROUP_INFO | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| FY | 2020 | Period 11 | NULL | All | All | All | NULL | NULL | NULL | NULL | All | NULL | Open | NULL | NULL | All | NULL | All | All | All | All | NULL | NULL | NULL | All | All | All | NULL | All | NULL | All | All | NULL | All | NULL | ledgerfiscalperiodsv2__20261116_10541... | <masked> | 2026-11-16 11:43:20.744000 | <masked> | 2026-11-16 11:43:20.744000 |
-| FY | 2020 | Period 12 | NULL | All | All | All | NULL | NULL | NULL | NULL | All | NULL | Open | NULL | NULL | All | NULL | All | All | All | All | NULL | NULL | NULL | All | All | All | NULL | All | NULL | All | All | NULL | All | NULL | ledgerfiscalperiodsv2__20261116_10541... | <masked> | 2026-11-16 11:43:20.744000 | <masked> | 2026-11-16 11:43:20.744000 |
-| FY | 2021 | Period 1 | NULL | All | All | All | NULL | NULL | NULL | NULL | All | NULL | Open | NULL | NULL | All | NULL | All | All | All | All | NULL | NULL | NULL | All | All | All | NULL | All | NULL | All | All | NULL | All | NULL | ledgerfiscalperiodsv2__20261116_10541... | <masked> | 2026-11-16 11:43:20.744000 | <masked> | 2026-11-16 11:43:20.744000 |
-| FY | 2021 | Period 2 | NULL | All | All | All | NULL | NULL | NULL | NULL | All | NULL | Open | NULL | NULL | All | NULL | All | All | All | All | NULL | NULL | NULL | All | All | All | NULL | All | NULL | All | All | NULL | All | NULL | ledgerfiscalperiodsv2__20261116_10541... | <masked> | 2026-11-16 11:43:20.744000 | <masked> | 2026-11-16 11:43:20.744000 |
-| FY | 2021 | Period 3 | NULL | All | All | All | NULL | NULL | NULL | NULL | All | NULL | Open | NULL | NULL | All | NULL | All | All | All | All | NULL | NULL | NULL | All | All | All | NULL | All | NULL | All | All | NULL | All | NULL | ledgerfiscalperiodsv2__20261116_10541... | <masked> | 2026-11-16 11:43:20.744000 | <masked> | 2026-11-16 11:43:20.744000 |
+Empty in every row: `EXPENSE_USER_GROUP_INFO`, `PROJECT_USER_GROUP_INFO`, `LEDGER_USER_GROUP_INFO`, `PAYROLL_USER_GROUP_INFO`, `RETAIL_USER_GROUP_INFO`, `PURCHASE_USER_GROUP_INFO`, `FIXED_ASSETS_USER_GROUP_INFO`, `PRODUCTION_USER_GROUP_INFO`, `INVENTORY_USER_GROUP_INFO`, `TAX_USER_GROUP_INFO`, `VENDOR_USER_GROUP_INFO`, `BANK_USER_GROUP_INFO`, `CUSTOMER_USER_GROUP_INFO`, `SALES_USER_GROUP_INFO`, `FIXED_ASSETS_RU_USER_GROUP_INFO`, `ITM_USER_GROUP_INFO`. Do not filter or group on them.

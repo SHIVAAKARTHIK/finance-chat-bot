@@ -20,7 +20,6 @@ known_issues:
 - code: duplicates
   note: 158 exact duplicate rows in the latest export (55.4%). Check duplicates at the grain before counting or summing; warn
     the user.
-row_count: 285
 proposed_fields: []
 reviewed: false
 ---
@@ -122,383 +121,282 @@ reviewed: false
 ## Values
 
 **LINE_NUMBER**
-- `1`: 102 rows
-- `USA`: 92 rows
-- `None`: 73 rows
-- `NJ 07058`: 18 rows
+- `1`
+- `USA`
+- `None`
+- `NJ 07058`
 
 **INVOICE_DECLARATION_ID**
-- `None`: 285 rows
+- `None`
 
 **CASH_DISCOUNT_AMOUNT**
-- `0`: 102 rows
-- `Blank`: 92 rows
-- `None`: 91 rows
+- `0`
+- `Blank`
+- `None`
 
 **UUID**
-- `None`: 285 rows
+- `None`
 
 **OFFSET_FIN_TAG_DISPLAY_VALUE**
-- `None`: 285 rows
+- `None`
 
 **POSTING_PROFILE**
-- `GEN`: 102 rows
-- `0`: 92 rows
-- `None`: 91 rows
+- `GEN`
+- `0`
+- `None`
 
 **LIST_CODE**
-- `None`: 183 rows
-- `IncludeNot`: 102 rows
+- `None`
+- `IncludeNot`
 
 **OFFSET_DEFAULT_DIMENSION_DISPLAY_VALUE**
-- `None`: 193 rows
-- `Shipment`: 92 rows
+- `None`
+- `Shipment`
 
 **REPORTING_CURRENCY_EXCH_RATE**
-- `None`: 183 rows
-- `100`: 102 rows
+- `None`
+- `100`
 
 **PAYMENT_ID**
-- `None`: 285 rows
+- `None`
 
 **ACCOUNT_TYPE**
-- `None`: 183 rows
-- `Vend`: 102 rows
+- `None`
+- `Vend`
 
 **TERMS_OF_PAYMENT**
-- `None`: 183 rows
-- `N10`: 102 rows
+- `None`
+- `N10`
 
 **REMITTANCE_ADDRESS_STREET**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_DISTRICT_NAME**
-- `None`: 285 rows
+- `None`
 
 **EXCHANGE_RATE_SECOND**
-- `None`: 183 rows
-- `0`: 102 rows
+- `None`
+- `0`
 
 **TRANSACTION_TYPE**
-- `None`: 183 rows
-- `Vend`: 102 rows
+- `None`
+- `Vend`
 
 **CHINESE_VOUCHER**
-- `None`: 285 rows
+- `None`
 
 **TAX_1099_FIELDS**
-- `None`: 183 rows
-- `0`: 102 rows
+- `None`
+- `0`
 
 **METHOD_OF_PAYMENT**
-- `None`: 285 rows
+- `None`
 
 **CHINESE_VOUCHER_TYPE**
-- `None`: 285 rows
+- `None`
 
 **ASSET_ID**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_CITY**
-- `None`: 285 rows
+- `None`
 
 **EXCHANGE_RATE**
-- `None`: 183 rows
-- `100`: 102 rows
+- `None`
+- `100`
 
 **DOCUMENT**
-- `None`: 285 rows
+- `None`
 
 **DESCRIPTION**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_STATE**
-- `None`: 284 rows
-- `CA`: 1 rows
+- `None`
+- `CA`
 
 **REMITTANCE_ADDRESS_ZIP_CODE**
-- `None`: 285 rows
+- `None`
 
 **DELIVERY_DATE**
-- `None`: 183 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 102 rows
+- `None`
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **OVERRIDE_SALES_TAX_BR**
-- `None`: 183 rows
-- `No`: 102 rows
+- `None`
+- `No`
 
 **REMITTANCE_ADDRESS_COUNTY**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_LOCATION_ID**
-- `None`: 284 rows
-- `7502`: 1 rows
+- `None`
+- `7502`
 
 **APPROVED**
-- `None`: 183 rows
-- `Yes`: 102 rows
+- `None`
+- `Yes`
 
 **CASH_DISCOUNT**
-- `None`: 285 rows
+- `None`
 
 **TAX_EXEMPT_NUMBER**
-- `None`: 285 rows
+- `None`
 
 **CURRENCY**
-- `None`: 183 rows
-- `USD`: 102 rows
+- `None`
+- `USD`
 
 **ITEM_WITHHOLDING_TAX_GROUP_CODE**
-- `None`: 285 rows
+- `None`
 
 **OFFSET_ACCOUNT_TYPE**
-- `None`: 183 rows
-- `Ledger`: 102 rows
+- `None`
+- `Ledger`
 
 **BANK_ACCOUNT_ID**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_COUNTRY_ISO_CODE**
-- `None`: 284 rows
-- `US`: 1 rows
+- `None`
+- `US`
 
 **CASH_DISCOUNT_DATE**
-- `None`: 183 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 102 rows
+- `None`
+- `1900-01-01 12:00:00.0000000 +00:00`
 
 **DEBIT**
-- `None`: 183 rows
-- `0`: 102 rows
+- `None`
+- `0`
 
 **IMPORTED_SALES_TAX**
-- `None`: 183 rows
-- `0`: 102 rows
+- `None`
+- `0`
 
 **TAX_GROUP_BR**
-- `None`: 285 rows
+- `None`
 
 **OVERRIDE_SALES_TAX**
-- `None`: 183 rows
-- `No`: 102 rows
+- `None`
+- `No`
 
 **REMITTANCE_ADDRESS_TIME_ZONE**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_DESCRIPTION**
-- `None`: 284 rows
-- `ShieldPro Claims Agency`: 1 rows
+- `None`
+- `ShieldPro Claims Agency`
 
 **GST_HST_TAX_TYPE**
-- `None`: 183 rows
+- `None`
 
 **ASSET_TRANS_TYPE**
-- `None`: 183 rows
+- `None`
 
 **TAX_ITEM_GROUP_BR**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_VALID_FROM**
-- `None`: 183 rows
-- `1900-01-01 00:00:00.0000000 +00:00`: 101 rows
-- `2026-10-15 15:52:58.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 00:00:00.0000000 +00:00`
+- `2026-10-15 15:52:58.0000000 +00:00`
 
 **CUST_VEND_BANK_ACCOUNT_ID**
-- `None`: 285 rows
+- `None`
 
 **IS_WITHHOLDING_TAX_CALCULATE**
-- `None`: 183 rows
-- `No`: 102 rows
+- `None`
+- `No`
 
 **REMITTANCE_ADDRESS_VALID_TO**
-- `None`: 183 rows
-- `1900-01-01 00:00:00.0000000 +00:00`: 101 rows
-- `2154-12-31 23:59:59.0000000 +00:00`: 1 rows
+- `None`
+- `1900-01-01 00:00:00.0000000 +00:00`
+- `2154-12-31 23:59:59.0000000 +00:00`
 
 **OFFSET_ACCOUNT_DISPLAY_VALUE**
-- `None`: 183 rows
-- `551310---------`: 10 rows
-- `552310---------`: 5 rows
-- `552200---------`: 5 rows
-- `552320---------`: 5 rows
-- `551600---------`: 5 rows
-- `551420---------`: 5 rows
-- `551320---------`: 5 rows
-- `551500---------`: 5 rows
-- `551430---------`: 5 rows
-- `551440---------`: 5 rows
-- `551450---------`: 5 rows
-- `552100---------`: 5 rows
-- `551410---------`: 5 rows
-- `555530---------`: 4 rows
-- `555610---------`: 4 rows
-- `555700---------`: 4 rows
-- `555620---------`: 4 rows
-- `555800---------`: 4 rows
-- `552410---------`: 4 rows
-- `555600---------`: 4 rows
-- `555611---------`: 4 rows
+- `None`
+- `551310---------`
+- `552310---------`
+- `552200---------`
+- `552320---------`
+- `551600---------`
+- `551420---------`
+- `551320---------`
+- `551500---------`
+- `551430---------`
+- `551440---------`
+- `551450---------`
+- `552100---------`
+- `551410---------`
+- `555530---------`
+- `555610---------`
+- `555700---------`
+- `555620---------`
+- `555800---------`
+- `552410---------`
+- `555600---------`
+- `555611---------`
 
 **SALES_TAX_GROUP**
-- `None`: 285 rows
+- `None`
 
 **DEFAULT_DIMENSION_DISPLAY_VALUE**
-- `None`: 183 rows
-- `---------`: 102 rows
+- `None`
+- `---------`
 
 **REMITTANCE_ADDRESS_LATITUDE**
-- `None`: 183 rows
-- `0`: 102 rows
+- `None`
+- `0`
 
 **SALES_TAX_CODE**
-- `None`: 285 rows
+- `None`
 
 **FULL_PRIMARY_REMITTANCE_ADDRESS**
-- `None`: 284 rows
-- `CA`: 1 rows
+- `None`
+- `CA`
 
 **ITEM_SALES_TAX_GROUP**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_COUNTRY**
-- `None`: 285 rows
+- `None`
 
 **FIN_TAG_DISPLAY_VALUE**
-- `None`: 285 rows
+- `None`
 
 **OFFSET_TRANSACTION_TEXT**
-- `None`: 285 rows
+- `None`
 
 **TYPE_OF_OPERATION**
-- `None`: 184 rows
-- `Blank`: 101 rows
+- `None`
+- `Blank`
 
 **BOOK_ID**
-- `None`: 285 rows
+- `None`
 
 **PAYMENT_SPECIFICATION**
-- `None`: 285 rows
+- `None`
 
 **REMITTANCE_ADDRESS_LONGITUDE**
-- `None`: 184 rows
-- `0`: 101 rows
+- `None`
+- `0`
 
 **ITM_COST_TYPE_ID**
-- `None`: 285 rows
+- `None`
 
 **ITM_COST_AREA**
-- `None`: 184 rows
-- `Shipment`: 101 rows
+- `None`
+- `Shipment`
 
 **SOURCE_FILE_NAME**
-- `vendinvoicejournallines__20261116_105417.csv`: 285 rows
+- `vendinvoicejournallines__20261116_105417.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 11:42:04.854621+00:00`: 285 rows
+- `2026-11-16 11:42:04.854621+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 11:42:04.854621+00:00`: 285 rows
+- `2026-11-16 11:42:04.854621+00:00`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 285.
-Exact duplicate rows: 158.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `DATA_AREA_ID` | STRING | 25 | 0 |  |  |
-| `JOURNAL_BATCH_NUMBER` | STRING | 128 | 92 | CA 90401 | 100-000119 |
-| `LINE_NUMBER` | STRING | 3 | 73 | NJ 07058 | USA |
-| `ACCOUNT_DISPLAY_VALUE` | STRING | 59 | 183 | 100\-000001 | 100\-000060 |
-| `INVOICE_DECLARATION_ID` | STRING | 0 | 285 |  |  |
-| `CASH_DISCOUNT_AMOUNT` | STRING | 2 | 91 | 0 | Blank |
-| `UUID` | STRING | 0 | 285 |  |  |
-| `OFFSET_FIN_TAG_DISPLAY_VALUE` | STRING | 0 | 285 |  |  |
-| `POSTING_PROFILE` | STRING | 2 | 91 | 0 | GEN |
-| `LIST_CODE` | STRING | 1 | 183 | IncludeNot | IncludeNot |
-| `OFFSET_DEFAULT_DIMENSION_DISPLAY_VALUE` | STRING | 1 | 193 | Shipment | Shipment |
-| `REPORTING_CURRENCY_EXCH_RATE` | STRING | 1 | 183 | 100 | 100 |
-| `PAYMENT_ID` | STRING | 0 | 285 |  |  |
-| `ACCOUNT_TYPE` | STRING | 1 | 183 | Vend | Vend |
-| `TERMS_OF_PAYMENT` | STRING | 1 | 183 | N10 | N10 |
-| `REMITTANCE_ADDRESS_STREET` | STRING | 0 | 285 |  |  |
-| `REMITTANCE_ADDRESS_DISTRICT_NAME` | STRING | 0 | 285 |  |  |
-| `EXCHANGE_RATE_SECOND` | STRING | 1 | 183 | 0 | 0 |
-| `TRANSACTION_TYPE` | STRING | 1 | 183 | Vend | Vend |
-| `CHINESE_VOUCHER` | STRING | 0 | 285 |  |  |
-| `TAX_1099_FIELDS` | STRING | 1 | 183 | 0 | 0 |
-| `METHOD_OF_PAYMENT` | STRING | 0 | 285 |  |  |
-| `CHINESE_VOUCHER_TYPE` | STRING | 0 | 285 |  |  |
-| `ASSET_ID` | STRING | 0 | 285 |  |  |
-| `REMITTANCE_ADDRESS_CITY` | STRING | 0 | 285 |  |  |
-| `EXCHANGE_RATE` | STRING | 1 | 183 | 100 | 100 |
-| `DOCUMENT` | STRING | 0 | 285 |  |  |
-| `DESCRIPTION` | STRING | 0 | 285 |  |  |
-| `REMITTANCE_ADDRESS_STATE` | STRING | 1 | 284 | CA | CA |
-| `REMITTANCE_ADDRESS_ZIP_CODE` | STRING | 0 | 285 |  |  |
-| `INVOICE` | STRING | 106 | 183 | INV2001 | INV2102 |
-| `DELIVERY_DATE` | STRING | 1 | 183 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `OVERRIDE_SALES_TAX_BR` | STRING | 1 | 183 | No | No |
-| `REMITTANCE_ADDRESS_COUNTY` | STRING | 0 | 285 |  |  |
-| `DATE` | STRING | 106 | 183 | 2025-01-26 12:00:00.0000000 +00:00 | 2026-08-25 12:00:00.0000000 +00:00 |
-| `REMITTANCE_ADDRESS_LOCATION_ID` | STRING | 1 | 284 | 7502 | 7502 |
-| `VOUCHER` | STRING | 104 | 183 | VIJ-000000001 | VIJ-000000102 |
-| `APPROVER_NUMBER` | STRING | 1 | 219 |  |  |
-| `APPROVED` | STRING | 1 | 183 | Yes | Yes |
-| `CASH_DISCOUNT` | STRING | 0 | 285 |  |  |
-| `TAX_EXEMPT_NUMBER` | STRING | 0 | 285 |  |  |
-| `CURRENCY` | STRING | 1 | 183 | USD | USD |
-| `ITEM_WITHHOLDING_TAX_GROUP_CODE` | STRING | 0 | 285 |  |  |
-| `OFFSET_ACCOUNT_TYPE` | STRING | 1 | 183 | Ledger | Ledger |
-| `INVOICE_DATE` | STRING | 106 | 183 | 2025-01-26 12:00:00.0000000 +00:00 | 2026-08-25 12:00:00.0000000 +00:00 |
-| `BANK_ACCOUNT_ID` | STRING | 0 | 285 |  |  |
-| `REMITTANCE_ADDRESS_COUNTRY_ISO_CODE` | STRING | 1 | 284 | US | US |
-| `CASH_DISCOUNT_DATE` | STRING | 1 | 183 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `DEBIT` | STRING | 1 | 183 | 0 | 0 |
-| `IMPORTED_SALES_TAX` | STRING | 1 | 183 | 0 | 0 |
-| `OFFSET_COMPANY` | STRING | 1 | 183 |  |  |
-| `TAX_GROUP_BR` | STRING | 0 | 285 |  |  |
-| `DUE_DATE` | STRING | 105 | 183 | 2025-02-05 12:00:00.0000000 +00:00 | 2026-09-04 12:00:00.0000000 +00:00 |
-| `OVERRIDE_SALES_TAX` | STRING | 1 | 183 | No | No |
-| `REMITTANCE_ADDRESS_TIME_ZONE` | STRING | 0 | 285 |  |  |
-| `REMITTANCE_ADDRESS_DESCRIPTION` | STRING | 1 | 284 | ShieldPro Claims Agency | ShieldPro Claims Agency |
-| `CREDIT` | STRING | 101 | 183 | 10050 | 9950 |
-| `GST_HST_TAX_TYPE` | STRING | 1 | 183 | None | None |
-| `ASSET_TRANS_TYPE` | STRING | 1 | 183 | None | None |
-| `TAX_ITEM_GROUP_BR` | STRING | 0 | 285 |  |  |
-| `COMPANY` | STRING | 1 | 183 |  |  |
-| `REMITTANCE_ADDRESS_VALID_FROM` | STRING | 2 | 183 | 1900-01-01 00:00:00.0000000 +00:00 | 2026-10-15 15:52:58.0000000 +00:00 |
-| `CUST_VEND_BANK_ACCOUNT_ID` | STRING | 0 | 285 |  |  |
-| `IS_WITHHOLDING_TAX_CALCULATE` | STRING | 1 | 183 | No | No |
-| `REMITTANCE_ADDRESS_VALID_TO` | STRING | 2 | 183 | 1900-01-01 00:00:00.0000000 +00:00 | 2154-12-31 23:59:59.0000000 +00:00 |
-| `OFFSET_ACCOUNT_DISPLAY_VALUE` | STRING | 20 | 183 | 551310--------- | 555800--------- |
-| `SALES_TAX_GROUP` | STRING | 0 | 285 |  |  |
-| `DEFAULT_DIMENSION_DISPLAY_VALUE` | STRING | 1 | 183 | --------- | --------- |
-| `REMITTANCE_ADDRESS_LATITUDE` | STRING | 1 | 183 | 0 | 0 |
-| `SALES_TAX_CODE` | STRING | 0 | 285 |  |  |
-| `FULL_PRIMARY_REMITTANCE_ADDRESS` | STRING | 1 | 284 | CA | CA |
-| `ITEM_SALES_TAX_GROUP` | STRING | 0 | 285 |  |  |
-| `REMITTANCE_ADDRESS_COUNTRY` | STRING | 0 | 285 |  |  |
-| `FIN_TAG_DISPLAY_VALUE` | STRING | 0 | 285 |  |  |
-| `OFFSET_TRANSACTION_TEXT` | STRING | 0 | 285 |  |  |
-| `TYPE_OF_OPERATION` | STRING | 1 | 184 | Blank | Blank |
-| `BOOK_ID` | STRING | 0 | 285 |  |  |
-| `PAYMENT_SPECIFICATION` | STRING | 0 | 285 |  |  |
-| `REMITTANCE_ADDRESS_LONGITUDE` | STRING | 1 | 184 | 0 | 0 |
-| `ITM_COST_TYPE_ID` | STRING | 0 | 285 |  |  |
-| `ITM_COST_AREA` | STRING | 1 | 184 | Shipment | Shipment |
-| `SOURCE_FILE_NAME` | STRING | 1 | 0 | vendinvoicejournallines__20261116_105... | vendinvoicejournallines__20261116_105... |
-| `HASH_KEY` | STRING | 135 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:42:04.855000 | 2026-11-16 11:42:04.855000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 11:42:04.855000 | 2026-11-16 11:42:04.855000 |
-
-## Sample rows
-
-| JOURNAL_BATCH_NUMBER | LINE_NUMBER | ACCOUNT_DISPLAY_VALUE | INVOICE_DECLARATION_ID | CASH_DISCOUNT_AMOUNT | UUID | OFFSET_FIN_TAG_DISPLAY_VALUE | POSTING_PROFILE | LIST_CODE | OFFSET_DEFAULT_DIMENSION_DISPLAY_VALUE | REPORTING_CURRENCY_EXCH_RATE | PAYMENT_ID | ACCOUNT_TYPE | TERMS_OF_PAYMENT | REMITTANCE_ADDRESS_STREET | REMITTANCE_ADDRESS_DISTRICT_NAME | EXCHANGE_RATE_SECOND | TRANSACTION_TYPE | CHINESE_VOUCHER | TAX_1099_FIELDS | METHOD_OF_PAYMENT | CHINESE_VOUCHER_TYPE | ASSET_ID | REMITTANCE_ADDRESS_CITY | EXCHANGE_RATE | DOCUMENT | DESCRIPTION | REMITTANCE_ADDRESS_STATE | REMITTANCE_ADDRESS_ZIP_CODE | INVOICE | DELIVERY_DATE | OVERRIDE_SALES_TAX_BR | REMITTANCE_ADDRESS_COUNTY | DATE | REMITTANCE_ADDRESS_LOCATION_ID | VOUCHER | APPROVER_NUMBER | APPROVED | CASH_DISCOUNT | TAX_EXEMPT_NUMBER | CURRENCY | ITEM_WITHHOLDING_TAX_GROUP_CODE | OFFSET_ACCOUNT_TYPE | INVOICE_DATE | BANK_ACCOUNT_ID | REMITTANCE_ADDRESS_COUNTRY_ISO_CODE | CASH_DISCOUNT_DATE | DEBIT | IMPORTED_SALES_TAX | TAX_GROUP_BR | DUE_DATE | OVERRIDE_SALES_TAX | REMITTANCE_ADDRESS_TIME_ZONE | REMITTANCE_ADDRESS_DESCRIPTION | CREDIT | GST_HST_TAX_TYPE | ASSET_TRANS_TYPE | TAX_ITEM_GROUP_BR | REMITTANCE_ADDRESS_VALID_FROM | CUST_VEND_BANK_ACCOUNT_ID | IS_WITHHOLDING_TAX_CALCULATE | REMITTANCE_ADDRESS_VALID_TO | OFFSET_ACCOUNT_DISPLAY_VALUE | SALES_TAX_GROUP | DEFAULT_DIMENSION_DISPLAY_VALUE | REMITTANCE_ADDRESS_LATITUDE | SALES_TAX_CODE | FULL_PRIMARY_REMITTANCE_ADDRESS | ITEM_SALES_TAX_GROUP | REMITTANCE_ADDRESS_COUNTRY | FIN_TAG_DISPLAY_VALUE | OFFSET_TRANSACTION_TEXT | TYPE_OF_OPERATION | BOOK_ID | PAYMENT_SPECIFICATION | REMITTANCE_ADDRESS_LONGITUDE | ITM_COST_TYPE_ID | ITM_COST_AREA | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| MI 48277-1906 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | vendinvoicejournallines__20261116_105... | <masked> | 2026-11-16 11:42:04.855000 | <masked> | 2026-11-16 11:42:04.855000 |
-| NULL | USA | NULL | NULL | Blank | NULL | NULL | 0 | NULL | Shipment | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | vendinvoicejournallines__20261116_105... | <masked> | 2026-11-16 11:42:04.855000 | <masked> | 2026-11-16 11:42:04.855000 |
-| FL 34420 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | vendinvoicejournallines__20261116_105... | <masked> | 2026-11-16 11:42:04.855000 | <masked> | 2026-11-16 11:42:04.855000 |
-| NULL | USA | NULL | NULL | Blank | NULL | NULL | 0 | NULL | Shipment | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | vendinvoicejournallines__20261116_105... | <masked> | 2026-11-16 11:42:04.855000 | <masked> | 2026-11-16 11:42:04.855000 |
-| NJ 07101-0489 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | vendinvoicejournallines__20261116_105... | <masked> | 2026-11-16 11:42:04.855000 | <masked> | 2026-11-16 11:42:04.855000 |
+Empty in every row: `INVOICE_DECLARATION_ID`, `UUID`, `OFFSET_FIN_TAG_DISPLAY_VALUE`, `PAYMENT_ID`, `REMITTANCE_ADDRESS_STREET`, `REMITTANCE_ADDRESS_DISTRICT_NAME`, `CHINESE_VOUCHER`, `METHOD_OF_PAYMENT`, `CHINESE_VOUCHER_TYPE`, `ASSET_ID`, `REMITTANCE_ADDRESS_CITY`, `DOCUMENT`, `DESCRIPTION`, `REMITTANCE_ADDRESS_ZIP_CODE`, `REMITTANCE_ADDRESS_COUNTY`, `CASH_DISCOUNT`, `TAX_EXEMPT_NUMBER`, `ITEM_WITHHOLDING_TAX_GROUP_CODE`, `BANK_ACCOUNT_ID`, `TAX_GROUP_BR`, `REMITTANCE_ADDRESS_TIME_ZONE`, `TAX_ITEM_GROUP_BR`, `CUST_VEND_BANK_ACCOUNT_ID`, `SALES_TAX_GROUP`, `SALES_TAX_CODE`, `ITEM_SALES_TAX_GROUP`, `REMITTANCE_ADDRESS_COUNTRY`, `FIN_TAG_DISPLAY_VALUE`, `OFFSET_TRANSACTION_TEXT`, `BOOK_ID`, `PAYMENT_SPECIFICATION`, `ITM_COST_TYPE_ID`. Do not filter or group on them.

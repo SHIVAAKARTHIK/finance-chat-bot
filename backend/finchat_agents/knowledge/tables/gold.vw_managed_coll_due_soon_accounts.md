@@ -21,7 +21,6 @@ built_from:
 - fact_cust_transactions
 - fact_cust_table_bi_entities
 known_issues: []
-row_count: null
 proposed_fields: []
 reviewed: false
 broken_error: the profiling query failed in the catalog export (no row count); the error text is not in the workbook
@@ -43,20 +42,3 @@ broken_error: the profiling query failed in the catalog export (no row count); t
 | `Action` | string |  |  | `Action` |
 | `email` | string |  |  | `email` |
 | `LEGAL_ENTITY` | string |  |  | `LEGAL_ENTITY` |
-
-## Profile
-
-Rows in the latest export: unknown.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `Reference` | STRING |  |  |  |  |
-| `Customer` | STRING |  |  |  |  |
-| `invoice_number` | STRING |  |  |  |  |
-| `Amount` | STRING |  |  |  |  |
-| `Invoice_date` | STRING |  |  |  |  |
-| `Due_date` | STRING |  |  |  |  |
-| `Aging` | STRING |  |  |  |  |
-| `Action` | STRING |  |  |  |  |
-| `email` | STRING |  |  |  |  |
-| `LEGAL_ENTITY` | STRING |  |  |  |  |

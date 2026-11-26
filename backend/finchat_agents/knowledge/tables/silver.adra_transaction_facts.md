@@ -33,7 +33,6 @@ known_issues:
   note: Every column is stored as STRING. Cast numbers and dates; CURRENCY is a code, not a number.
 reviewed: true
 proposed_fields: []
-row_count: 4622
 ---
 
 # adra_transaction_facts
@@ -96,175 +95,175 @@ age in days and ageing bucket.
 **TRANSACTION_STATUS**
 - `Required adjustment`: needs an adjusting entry
 - `Not Set`: no status recorded
-- `Balance detail`: 4116 rows
-- `Timing`: 66 rows
-- `Unresolved`: 11 rows
+- `Balance detail`
+- `Timing`
+- `Unresolved`
 
 **ACCOUNT_STATUS**
-- `Not prepared`: 3325 rows
-- `Approved`: 912 rows
-- `Prepared`: 385 rows
+- `Not prepared`
+- `Approved`
+- `Prepared`
 
 **ACCOUNT_IS_FINALIZED**
-- `False`: 3820 rows
-- `True`: 802 rows
+- `False`
+- `True`
 
 **ACCOUNT_IS_CARRIED_FORWARD**
-- `False`: 4622 rows
+- `False`
 
 **ACCOUNT_UNIDENTIFIED_BALANCE**
-- `0`: 1330 rows
-- `-2755.69`: 671 rows
-- `1434.19`: 671 rows
-- `6.9`: 374 rows
-- `-6.92`: 363 rows
-- `-805.7`: 165 rows
-- `250.87`: 154 rows
-- `104.71`: 132 rows
-- `-2633.23`: 104 rows
-- `-56.32`: 104 rows
-- `91.01`: 88 rows
-- `-4.27`: 88 rows
-- `-990.29`: 48 rows
-- `283619`: 44 rows
-- `382543`: 44 rows
-- `0.08`: 44 rows
-- `-110908`: 33 rows
-- `1624.58`: 33 rows
-- `-199272`: 22 rows
-- `-3.75`: 22 rows
-- `-12773`: 22 rows
-- `620.2`: 22 rows
-- `-143271`: 11 rows
-- `992715`: 11 rows
-- `-132355`: 11 rows
-- `-83500`: 11 rows
+- `0`
+- `-2755.69`
+- `1434.19`
+- `6.9`
+- `-6.92`
+- `-805.7`
+- `250.87`
+- `104.71`
+- `-2633.23`
+- `-56.32`
+- `91.01`
+- `-4.27`
+- `-990.29`
+- `283619`
+- `382543`
+- `0.08`
+- `-110908`
+- `1624.58`
+- `-199272`
+- `-3.75`
+- `-12773`
+- `620.2`
+- `-143271`
+- `992715`
+- `-132355`
+- `-83500`
 
 **ACCOUNT_UNIDENTIFIED_BALANCE_ENGAGEMENT**
-- `0`: 1330 rows
-- `-3650.74`: 671 rows
-- `1900.01`: 671 rows
-- `7.81`: 374 rows
-- `-7.83`: 363 rows
-- `-1067.39`: 165 rows
-- `332.35`: 154 rows
-- `138.72`: 132 rows
-- `-74.61`: 104 rows
-- `-3488.5`: 104 rows
-- `120.57`: 88 rows
-- `-4.83`: 88 rows
-- `-1311.94`: 48 rows
-- `0.09`: 44 rows
-- `283619`: 44 rows
-- `382543`: 44 rows
-- `-110908`: 33 rows
-- `2152.24`: 33 rows
-- `-199272`: 22 rows
-- `-4.24`: 22 rows
-- `-12773`: 22 rows
-- `821.64`: 22 rows
-- `-143271`: 11 rows
-- `992715`: 11 rows
-- `-132355`: 11 rows
-- `-83500`: 11 rows
+- `0`
+- `-3650.74`
+- `1900.01`
+- `7.81`
+- `-7.83`
+- `-1067.39`
+- `332.35`
+- `138.72`
+- `-74.61`
+- `-3488.5`
+- `120.57`
+- `-4.83`
+- `-1311.94`
+- `0.09`
+- `283619`
+- `382543`
+- `-110908`
+- `2152.24`
+- `-199272`
+- `-4.24`
+- `-12773`
+- `821.64`
+- `-143271`
+- `992715`
+- `-132355`
+- `-83500`
 
 **BOOOKING_DATE**
-- `2026-09-01 00:00:00.0000000 +00:00`: 1573 rows
-- `2026-08-31 00:00:00.0000000 +00:00`: 1562 rows
-- `2025-02-28 00:00:00.0000000 +00:00`: 605 rows
-- `2026-10-31 00:00:00.0000000 +00:00`: 176 rows
-- `2026-09-04 00:00:00.0000000 +00:00`: 88 rows
-- `2026-09-15 00:00:00.0000000 +00:00`: 80 rows
-- `2026-09-10 00:00:00.0000000 +00:00`: 72 rows
-- `2026-09-21 00:00:00.0000000 +00:00`: 72 rows
-- `2026-09-17 00:00:00.0000000 +00:00`: 64 rows
-- `2026-09-07 00:00:00.0000000 +00:00`: 56 rows
-- `2026-09-18 00:00:00.0000000 +00:00`: 48 rows
-- `2026-09-16 00:00:00.0000000 +00:00`: 48 rows
-- `2026-09-08 00:00:00.0000000 +00:00`: 48 rows
-- `2026-09-14 00:00:00.0000000 +00:00`: 32 rows
-- `2026-09-09 00:00:00.0000000 +00:00`: 24 rows
-- `2025-02-10 00:00:00.0000000 +00:00`: 22 rows
-- `2025-02-18 00:00:00.0000000 +00:00`: 22 rows
-- `2025-02-20 00:00:00.0000000 +00:00`: 11 rows
-- `2025-02-11 00:00:00.0000000 +00:00`: 11 rows
-- `2026-09-20 00:00:00.0000000 +00:00`: 8 rows
+- `2026-09-01 00:00:00.0000000 +00:00`
+- `2026-08-31 00:00:00.0000000 +00:00`
+- `2025-02-28 00:00:00.0000000 +00:00`
+- `2026-10-31 00:00:00.0000000 +00:00`
+- `2026-09-04 00:00:00.0000000 +00:00`
+- `2026-09-15 00:00:00.0000000 +00:00`
+- `2026-09-10 00:00:00.0000000 +00:00`
+- `2026-09-21 00:00:00.0000000 +00:00`
+- `2026-09-17 00:00:00.0000000 +00:00`
+- `2026-09-07 00:00:00.0000000 +00:00`
+- `2026-09-18 00:00:00.0000000 +00:00`
+- `2026-09-16 00:00:00.0000000 +00:00`
+- `2026-09-08 00:00:00.0000000 +00:00`
+- `2026-09-14 00:00:00.0000000 +00:00`
+- `2026-09-09 00:00:00.0000000 +00:00`
+- `2025-02-10 00:00:00.0000000 +00:00`
+- `2025-02-18 00:00:00.0000000 +00:00`
+- `2025-02-20 00:00:00.0000000 +00:00`
+- `2025-02-11 00:00:00.0000000 +00:00`
+- `2026-09-20 00:00:00.0000000 +00:00`
 
 **TEXT**
-- `None`: 4589 rows
-- `Bonds-1`: 11 rows
-- `Bonds-2`: 11 rows
-- `Bonds-3`: 11 rows
+- `None`
+- `Bonds-1`
+- `Bonds-2`
+- `Bonds-3`
 
 **CURRENCY**
-- `44`: 1980 rows
-- `111`: 1154 rows
-- `50`: 740 rows
-- `30`: 462 rows
-- `71`: 121 rows
-- `24`: 110 rows
-- `73`: 33 rows
-- `120`: 22 rows
+- `44`
+- `111`
+- `50`
+- `30`
+- `71`
+- `24`
+- `73`
+- `120`
 
 **CURRENCY_NAME**
-- `US Dollar`: 1980 rows
-- `British Pound`: 1154 rows
-- `Euro`: 740 rows
-- `Canadian Dollar`: 462 rows
-- `Swedish Krona`: 121 rows
-- `Australian Dollar`: 110 rows
-- `Norwegian Krone`: 33 rows
-- `South African Rand`: 22 rows
+- `US Dollar`
+- `British Pound`
+- `Euro`
+- `Canadian Dollar`
+- `Swedish Krona`
+- `Australian Dollar`
+- `Norwegian Krone`
+- `South African Rand`
 
 **COUNT_OF_ATTACHMENTS**
-- `0`: 4622 rows
+- `0`
 
 **AGE_DAYS**
-- `30`: 1562 rows
-- `29`: 1562 rows
-- `0`: 781 rows
-- `26`: 88 rows
-- `15`: 80 rows
-- `9`: 72 rows
-- `20`: 72 rows
-- `13`: 64 rows
-- `23`: 56 rows
-- `14`: 48 rows
-- `22`: 48 rows
-- `12`: 48 rows
-- `16`: 32 rows
-- `10`: 30 rows
-- `21`: 24 rows
-- `18`: 22 rows
-- `8`: 11 rows
-- `60`: 11 rows
-- `17`: 11 rows
+- `30`
+- `29`
+- `0`
+- `26`
+- `15`
+- `9`
+- `20`
+- `13`
+- `23`
+- `14`
+- `22`
+- `12`
+- `16`
+- `10`
+- `21`
+- `18`
+- `8`
+- `60`
+- `17`
 
 **AGE_GROUP**
-- `0-30 Days`: 4611 rows
-- `31-60 Days`: 11 rows
+- `0-30 Days`
+- `31-60 Days`
 
 **ENGAGEMENT_GUID**
-- `949e65cb-7216-4cb5-9840-4bc138a1921b`: 4622 rows
+- `949e65cb-7216-4cb5-9840-4bc138a1921b`
 
 **SOURCE_FILE_NAME**
-- `transactionfacts__20261116_174201.csv`: 442 rows
-- `transactionfacts__20261116_154202.csv`: 442 rows
-- `transactionfacts__20261116_134202.csv`: 442 rows
-- `transactionfacts__20261116_191049.csv`: 442 rows
-- `transactionfacts__20261116_194202.csv`: 442 rows
-- `transactionfacts__20261116_144205.csv`: 442 rows
-- `transactionfacts__20261116_164202.csv`: 442 rows
-- `transactionfacts__20261116_192918.csv`: 442 rows
-- `transactionfacts__20261116_124207.csv`: 362 rows
-- `transactionfacts__20261116_114202.csv`: 362 rows
-- `transactionfacts__20261116_104201.csv`: 362 rows
+- `transactionfacts__20261116_174201.csv`
+- `transactionfacts__20261116_154202.csv`
+- `transactionfacts__20261116_134202.csv`
+- `transactionfacts__20261116_191049.csv`
+- `transactionfacts__20261116_194202.csv`
+- `transactionfacts__20261116_144205.csv`
+- `transactionfacts__20261116_164202.csv`
+- `transactionfacts__20261116_192918.csv`
+- `transactionfacts__20261116_124207.csv`
+- `transactionfacts__20261116_114202.csv`
+- `transactionfacts__20261116_104201.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 19:45:18.855787+00:00`: 4622 rows
+- `2026-11-16 19:45:18.855787+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 19:45:18.855787+00:00`: 4622 rows
+- `2026-11-16 19:45:18.855787+00:00`
 
 ## Joins (approved, use the full key)
 
@@ -281,58 +280,3 @@ age in days and ageing bucket.
 | `transaction_count` | Number of reconciling items. | `COUNT(*)` | additive |
 | `total_amount_abs` | Gross amount of items. | `SUM(TRY_CAST(AMOUNT_ABS AS DECIMAL(38,2)))` | additive |
 | `oldest_item_age_days` | Age in days of the oldest item. | `MAX(TRY_CAST(AGE_DAYS AS INT))` | non additive |
-
-## Profile
-
-Rows in the latest export: 4622.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `TRANSACTION_KEY` | STRING | 442 | 0 |  |  |
-| `REFERENCE_JOURNAL_NUMBER` | STRING | 392 | 154 | 01a1c962-52ff-741c-b20d-5c041c9e12d7 | Tax payment-201 |
-| `ENGAGEMENT_KEY` | STRING | 1 | 0 |  |  |
-| `LEGAL_ENTITY_KEY` | STRING | 9 | 0 |  |  |
-| `PERIOD_KEY` | STRING | 9 | 0 |  |  |
-| `FISCAL_YEAR_PERIOD_KEY` | STRING | 3 | 0 |  |  |
-| `ACCOUNT_KEY` | STRING | 65 | 0 |  |  |
-| `ITEM_ADDED_BY_USERNAME` | STRING | 3 | 0 |  |  |
-| `ITEM_ADDED_BY_NAME` | STRING | 3 | 0 |  |  |
-| `TRANSACTION_TYPE` | STRING | 2 | 0 | Ledger transaction | Subledger transaction |
-| `TRANSACTION_STATUS` | STRING | 5 | 0 | Balance detail | Unresolved |
-| `ACCOUNT_STATUS` | STRING | 3 | 0 | Approved | Prepared |
-| `ACCOUNT_IS_FINALIZED` | STRING | 2 | 0 | False | True |
-| `ACCOUNT_IS_CARRIED_FORWARD` | STRING | 1 | 0 | False | False |
-| `ITEM_CREATED_DATE` | STRING | 58 | 0 | 2026-10-18 16:39:06.0000000 +00:00 | 2026-11-16 13:27:23.0000000 +00:00 |
-| `ACCOUNT_BALANCE` | STRING | 66 | 0 | -13424 | 98583.59 |
-| `ACCOUNT_UNIDENTIFIED_BALANCE` | STRING | 27 | 0 | -110908 | 992715 |
-| `ACCOUNT_BALANCE_ENGAGEMENT` | STRING | 65 | 0 | -10381.98 | 98583.59 |
-| `ACCOUNT_UNIDENTIFIED_BALANCE_ENGAGEMENT` | STRING | 27 | 0 | -1067.39 | 992715 |
-| `BOOOKING_DATE` | STRING | 20 | 0 | 2025-02-10 00:00:00.0000000 +00:00 | 2026-10-31 00:00:00.0000000 +00:00 |
-| `TEXT` | STRING | 3 | 4589 | Bonds-1 | Bonds-3 |
-| `AMOUNT` | STRING | 449 | 0 | -0.05 | 988931 |
-| `AMOUNT_ABS` | STRING | 430 | 0 | 0 | 9898040.66 |
-| `CURRENCY_RATE` | STRING | 178 | 0 | 0.0176470588 | 1.25 |
-| `TRANSACTION_AMOUNT` | STRING | 430 | 0 | -0.04 | 99586.04 |
-| `CURRENCY` | STRING | 8 | 0 | 111 | 73 |
-| `CURRENCY_NAME` | STRING | 8 | 0 | Australian Dollar | US Dollar |
-| `COUNT_OF_ATTACHMENTS` | STRING | 1 | 0 | 0 | 0 |
-| `AGE_DAYS` | STRING | 19 | 0 | 0 | 9 |
-| `AGE_GROUP` | STRING | 2 | 0 | 0-30 Days | 31-60 Days |
-| `ACCOUNT_PERIOD_TRANSACTION_KEY` | STRING | 65 | 0 |  |  |
-| `ENGAGEMENT_GUID` | STRING | 1 | 0 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 949e65cb-7216-4cb5-9840-4bc138a1921b |
-| `SOURCE_FILE_NAME` | STRING | 11 | 0 | transactionfacts__20261116_104201.csv | transactionfacts__20261116_194202.csv |
-| `HASH_KEY` | STRING | 4641 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 19:45:18.856000 | 2026-11-16 19:45:18.856000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 19:45:18.856000 | 2026-11-16 19:45:18.856000 |
-
-## Sample rows
-
-| REFERENCE_JOURNAL_NUMBER | ITEM_ADDED_BY_USERNAME | ITEM_ADDED_BY_NAME | TRANSACTION_TYPE | TRANSACTION_STATUS | ACCOUNT_STATUS | ACCOUNT_IS_FINALIZED | ACCOUNT_IS_CARRIED_FORWARD | ITEM_CREATED_DATE | ACCOUNT_BALANCE | ACCOUNT_UNIDENTIFIED_BALANCE | ACCOUNT_BALANCE_ENGAGEMENT | ACCOUNT_UNIDENTIFIED_BALANCE_ENGAGEMENT | BOOOKING_DATE | TEXT | AMOUNT | AMOUNT_ABS | CURRENCY_RATE | TRANSACTION_AMOUNT | CURRENCY | CURRENCY_NAME | COUNT_OF_ATTACHMENTS | AGE_DAYS | AGE_GROUP | ENGAGEMENT_GUID | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| NULL | <masked> | <masked> | Ledger transaction | Balance detail | Prepared | False | False | 2026-10-18 16:39:06.0000000 +00:00 | 30890 | 0 | 30890 | 0 | 2026-09-01 00:00:00.0000000 +00:00 | NULL | 30890 | 30890 | 1 | 30890 | 44 | US Dollar | 0 | 60 | 31-60 Days | 949e65cb-7216-4cb5-9840-4bc138a1921b | transactionfacts__20261116_104201.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |
-| INSPECTION FEES | <masked> | <masked> | Subledger transaction | Balance detail | Approved | False | False | 2026-10-23 10:54:07.0000000 +00:00 | 51853 | 0 | 51853 | 0 | 2025-02-28 00:00:00.0000000 +00:00 | NULL | 10022 | 10022 | 1 | 10022 | 44 | US Dollar | 0 | 0 | 0-30 Days | 949e65cb-7216-4cb5-9840-4bc138a1921b | transactionfacts__20261116_104201.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |
-| MANAGEMENT FEES RECEIPT | <masked> | <masked> | Subledger transaction | Balance detail | Approved | False | False | 2026-10-23 10:54:07.0000000 +00:00 | 51853 | 0 | 51853 | 0 | 2025-02-28 00:00:00.0000000 +00:00 | NULL | 15664 | 15664 | 1 | 15664 | 44 | US Dollar | 0 | 0 | 0-30 Days | 949e65cb-7216-4cb5-9840-4bc138a1921b | transactionfacts__20261116_104201.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |
-| DIRECT_PAID_LOSS | <masked> | <masked> | Subledger transaction | Balance detail | Prepared | False | False | 2026-10-23 10:54:07.0000000 +00:00 | -26257 | 0 | -26257 | 0 | 2025-02-28 00:00:00.0000000 +00:00 | NULL | -4326 | 4326 | 1 | -4326 | 44 | US Dollar | 0 | 0 | 0-30 Days | 949e65cb-7216-4cb5-9840-4bc138a1921b | transactionfacts__20261116_104201.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |
-| DIRECT_PAID_LOSS_LAE | <masked> | <masked> | Subledger transaction | Balance detail | Prepared | False | False | 2026-10-23 10:54:07.0000000 +00:00 | -26257 | 0 | -26257 | 0 | 2025-02-28 00:00:00.0000000 +00:00 | NULL | -6078 | 6078 | 1 | -6078 | 44 | US Dollar | 0 | 0 | 0-30 Days | 949e65cb-7216-4cb5-9840-4bc138a1921b | transactionfacts__20261116_104201.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |

@@ -17,7 +17,6 @@ built_from:
 - pipeline_logs
 - anomaly_audit
 known_issues: []
-row_count: 2
 proposed_fields: []
 reviewed: false
 ---
@@ -37,36 +36,21 @@ reviewed: false
 ## Values
 
 **KPI**
-- `System processing completed without exception`: 1 rows
-- `Count of Anomalies`: 1 rows
+- `System processing completed without exception`
+- `Count of Anomalies`
 
 **PERCENTAGE**
-- `99.54`: 1 rows
-- `18`: 1 rows
+- `99.54`
+- `18`
 
 **KPI_COUNT**
-- `866`: 1 rows
-- `18`: 1 rows
+- `866`
+- `18`
 
 **TOTAL_COUNT**
-- `870`: 1 rows
-- `31`: 1 rows
+- `870`
+- `31`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 2.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `KPI` | STRING | 2 | 0 | Count of Anomalies | System processing completed without e... |
-| `PERCENTAGE` | DECIMAL | 2 | 0 | 18 | 99.54 |
-| `KPI_COUNT` | LONG | 2 | 0 | 18 | 866 |
-| `TOTAL_COUNT` | LONG | 2 | 0 | 31 | 870 |
-| `LEGAL_ENTITY` | NULL | 0 | 2 |  |  |
-
-## Sample rows
-
-| KPI | PERCENTAGE | KPI_COUNT | TOTAL_COUNT |
-|---|---|---|---|
-| System processing completed without e... | 99.54 | 866 | 870 |
-| Count of Anomalies | 18 | 18 | 31 |
+Empty in every row: `LEGAL_ENTITY`. Do not filter or group on them.

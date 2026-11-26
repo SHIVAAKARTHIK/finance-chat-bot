@@ -20,7 +20,6 @@ built_from:
 - dim_bank_account_table_bi_entities
 - dim_main_accounts
 known_issues: []
-row_count: 8
 proposed_fields: []
 reviewed: false
 ---
@@ -39,45 +38,28 @@ reviewed: false
 ## Values
 
 **SECTION**
-- `Liquidity`: 3 rows
-- `Investment Portfolio`: 3 rows
-- `Actual Cash Balances By Bank Ac`: 2 rows
+- `Liquidity`
+- `Investment Portfolio`
+- `Actual Cash Balances By Bank Ac`
 
 **KPI**
-- `Actual cash`: 1 rows
-- `13-week low`: 1 rows
-- `Liquid assets`: 1 rows
-- `Current ratio`: 1 rows
-- `Quick ratio`: 1 rows
-- `Portfolio value`: 1 rows
-- `Invested this month`: 1 rows
-- `Liquid asset %`: 1 rows
+- `Actual cash`
+- `13-week low`
+- `Liquid assets`
+- `Current ratio`
+- `Quick ratio`
+- `Portfolio value`
+- `Invested this month`
+- `Liquid asset %`
 
 **AMOUNT**
-- `0`: 2 rows
-- `5821852.77`: 2 rows
-- `33490614`: 1 rows
-- `1.28`: 1 rows
-- `1.15`: 1 rows
-- `0.8519082304`: 1 rows
+- `0`
+- `5821852.77`
+- `33490614`
+- `1.28`
+- `1.15`
+- `0.8519082304`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 8.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `SECTION` | STRING | 3 | 0 | Actual Cash Balances By Bank Ac | Liquidity |
-| `KPI` | STRING | 8 | 0 | 13-week low | Quick ratio |
-| `AMOUNT` | DECIMAL | 6 | 0 | 0 | 33490614 |
-| `LEGAL_ENTITY` | STRING | 0 | 8 |  |  |
-
-## Sample rows
-
-| SECTION | KPI | AMOUNT |
-|---|---|---|
-| Actual Cash Balances By Bank Ac | Actual cash | 0 |
-| Actual Cash Balances By Bank Ac | 13-week low | 0 |
-| Liquidity | Liquid assets | 33490614 |
-| Liquidity | Current ratio | 1.28 |
-| Liquidity | Quick ratio | 1.15 |
+Empty in every row: `LEGAL_ENTITY`. Do not filter or group on them.

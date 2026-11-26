@@ -17,7 +17,6 @@ built_from:
 - adra_account_facts
 - adra_transaction_facts
 known_issues: []
-row_count: 9
 proposed_fields: []
 reviewed:
 - superseded_by
@@ -40,37 +39,17 @@ superseded_by:
 ## Values
 
 **ACCOUNTS_RECONCILED**
-- `0`: 4 rows
-- `5`: 1 rows
-- `26.1`: 1 rows
-- `36.4`: 1 rows
-- `33.3`: 1 rows
-- `30`: 1 rows
+- `0`
+- `5`
+- `26.1`
+- `36.4`
+- `33.3`
+- `30`
 
 **EXCEPTIONS_OVER_THRESHOLD**
-- `0`: 4 rows
-- `13`: 1 rows
-- `32.5`: 1 rows
-- `20`: 1 rows
-- `33.3`: 1 rows
-- `27.3`: 1 rows
-
-## Profile
-
-Rows in the latest export: 9.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `ACCOUNTS_RECONCILED` | DECIMAL | 6 | 0 | 0 | 36.4 |
-| `EXCEPTIONS_OVER_THRESHOLD` | DECIMAL | 6 | 0 | 0 | 33.3 |
-| `LEGAL_ENTITY` | STRING | 8 | 1 |  |  |
-
-## Sample rows
-
-| ACCOUNTS_RECONCILED | EXCEPTIONS_OVER_THRESHOLD |
-|---|---|
-| 26.1 | 13 |
-| 0 | 0 |
-| 5 | 32.5 |
-| 0 | 0 |
-| 33.3 | 33.3 |
+- `0`
+- `13`
+- `32.5`
+- `20`
+- `33.3`
+- `27.3`

@@ -33,7 +33,6 @@ known_issues:
   note: Every column is stored as STRING. Cast PERIOD_START / PERIOD_END to DATE before comparing.
 reviewed: true
 proposed_fields: []
-row_count: 9
 ---
 
 # adra_period_dimensions
@@ -77,69 +76,69 @@ Use it to turn the period a user names into PERIOD_KEY values.
 - `Opened`: period open (the only value in the November 2026 export)
 
 **FISCAL_YEAR_NAME**
-- `FY26`: 8 rows
-- `FY25`: 1 rows
+- `FY26`
+- `FY25`
 
 **FISCAL_YEAR_START**
-- `2026-01-01 00:00:00.0000000 +00:00`: 8 rows
-- `2025-01-01 00:00:00.0000000 +00:00`: 1 rows
+- `2026-01-01 00:00:00.0000000 +00:00`
+- `2025-01-01 00:00:00.0000000 +00:00`
 
 **FISCAL_YEAR_END**
-- `2026-12-31 00:00:00.0000000 +00:00`: 8 rows
-- `2025-12-31 00:00:00.0000000 +00:00`: 1 rows
+- `2026-12-31 00:00:00.0000000 +00:00`
+- `2025-12-31 00:00:00.0000000 +00:00`
 
 **PERIOD**
-- `2026-09-30 Sep 26`: 6 rows
-- `2026-10-31 Oct 26`: 2 rows
-- `2025-02-28 Feb 25`: 1 rows
+- `2026-09-30 Sep 26`
+- `2026-10-31 Oct 26`
+- `2025-02-28 Feb 25`
 
 **PERIOD_SEQUENCE**
-- `9`: 6 rows
-- `10`: 2 rows
-- `2`: 1 rows
+- `9`
+- `10`
+- `2`
 
 **PERIOD_START**
-- `2026-09-01 00:00:00.0000000 +00:00`: 6 rows
-- `2026-10-01 00:00:00.0000000 +00:00`: 2 rows
-- `2025-02-01 00:00:00.0000000 +00:00`: 1 rows
+- `2026-09-01 00:00:00.0000000 +00:00`
+- `2026-10-01 00:00:00.0000000 +00:00`
+- `2025-02-01 00:00:00.0000000 +00:00`
 
 **PERIOD_END**
-- `2026-09-30 00:00:00.0000000 +00:00`: 6 rows
-- `2026-10-31 00:00:00.0000000 +00:00`: 2 rows
-- `2025-02-28 00:00:00.0000000 +00:00`: 1 rows
+- `2026-09-30 00:00:00.0000000 +00:00`
+- `2026-10-31 00:00:00.0000000 +00:00`
+- `2025-02-28 00:00:00.0000000 +00:00`
 
 **PERIOD_FREQUENCY**
-- `Quarter end`: 6 rows
-- `Month end`: 3 rows
+- `Quarter end`
+- `Month end`
 
 **PERIOD_CREATED_DATE**
-- `2026-11-16 09:38:29.0000000 +00:00`: 2 rows
-- `2026-10-23 10:47:28.0000000 +00:00`: 1 rows
-- `2026-11-16 09:38:22.0000000 +00:00`: 1 rows
-- `2026-10-29 05:52:29.0000000 +00:00`: 1 rows
-- `2026-11-16 09:38:28.0000000 +00:00`: 1 rows
-- `2026-11-16 09:38:27.0000000 +00:00`: 1 rows
-- `2026-10-18 09:40:48.0000000 +00:00`: 1 rows
-- `2026-11-16 09:38:21.0000000 +00:00`: 1 rows
+- `2026-11-16 09:38:29.0000000 +00:00`
+- `2026-10-23 10:47:28.0000000 +00:00`
+- `2026-11-16 09:38:22.0000000 +00:00`
+- `2026-10-29 05:52:29.0000000 +00:00`
+- `2026-11-16 09:38:28.0000000 +00:00`
+- `2026-11-16 09:38:27.0000000 +00:00`
+- `2026-10-18 09:40:48.0000000 +00:00`
+- `2026-11-16 09:38:21.0000000 +00:00`
 
 **FISCAL_YEAR_PERIOD_ID**
-- `29004`: 6 rows
-- `29005`: 2 rows
-- `16025`: 1 rows
+- `29004`
+- `29005`
+- `16025`
 
 **FISCAL_YEAR_PERIOD_GUID**
-- `7d5727bb-5abb-437e-b237-8885e00774b3`: 6 rows
-- `ca744d3a-6ee3-4f5e-b4b4-da3977098f35`: 2 rows
-- `5a62ef15-04e3-4522-9f37-4c13bb28d65c`: 1 rows
+- `7d5727bb-5abb-437e-b237-8885e00774b3`
+- `ca744d3a-6ee3-4f5e-b4b4-da3977098f35`
+- `5a62ef15-04e3-4522-9f37-4c13bb28d65c`
 
 **SOURCE_FILE_NAME**
-- `perioddimensions__20261116_194202.csv`: 9 rows
+- `perioddimensions__20261116_194202.csv`
 
 **MDP_CREATED_DATE**
-- `2026-11-16 19:45:18.855721+00:00`: 9 rows
+- `2026-11-16 19:45:18.855721+00:00`
 
 **MDP_MODIFIED_DATE**
-- `2026-11-16 19:45:18.855721+00:00`: 9 rows
+- `2026-11-16 19:45:18.855721+00:00`
 
 ## Joins (approved, use the full key)
 
@@ -153,42 +152,3 @@ Use it to turn the period a user names into PERIOD_KEY values.
 - "Latest period" for an entity = the period with the greatest PERIOD_END that has fact rows for that entity.
 - If the requested period has no fact rows, say so and name the periods that do have data; do not fall back silently.
 - Comparing with a previous period needs fact rows for both periods; if one is missing, say the comparison cannot be made.
-
-## Profile
-
-Rows in the latest export: 9.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `PERIOD_KEY` | STRING | 9 | 0 |  |  |
-| `ENGAGEMENT_KEY` | STRING | 1 | 0 |  |  |
-| `LEGAL_ENTITY_KEY` | STRING | 9 | 0 |  |  |
-| `FISCAL_YEAR_NAME` | STRING | 2 | 0 | FY25 | FY26 |
-| `FISCAL_YEAR_START` | STRING | 2 | 0 | 2025-01-01 00:00:00.0000000 +00:00 | 2026-01-01 00:00:00.0000000 +00:00 |
-| `FISCAL_YEAR_END` | STRING | 2 | 0 | 2025-12-31 00:00:00.0000000 +00:00 | 2026-12-31 00:00:00.0000000 +00:00 |
-| `PERIOD` | STRING | 3 | 0 | 2025-02-28 Feb 25 | 2026-10-31 Oct 26 |
-| `PERIOD_NAME` | STRING | 3 | 0 |  |  |
-| `PERIOD_SEQUENCE` | STRING | 3 | 0 | 10 | 9 |
-| `PERIOD_START` | STRING | 3 | 0 | 2025-02-01 00:00:00.0000000 +00:00 | 2026-10-01 00:00:00.0000000 +00:00 |
-| `PERIOD_END` | STRING | 3 | 0 | 2025-02-28 00:00:00.0000000 +00:00 | 2026-10-31 00:00:00.0000000 +00:00 |
-| `PERIOD_FREQUENCY` | STRING | 2 | 0 | Month end | Quarter end |
-| `PERIOD_STATUS` | STRING | 1 | 0 | Opened | Opened |
-| `PERIOD_CREATED_DATE` | STRING | 8 | 0 | 2026-10-18 09:40:48.0000000 +00:00 | 2026-11-16 09:38:29.0000000 +00:00 |
-| `FISCAL_YEAR_PERIOD_ID` | STRING | 3 | 0 | 16025 | 29005 |
-| `FISCAL_YEAR_PERIOD_GUID` | STRING | 3 | 0 | 5a62ef15-04e3-4522-9f37-4c13bb28d65c | ca744d3a-6ee3-4f5e-b4b4-da3977098f35 |
-| `SOURCE_FILE_NAME` | STRING | 1 | 0 | perioddimensions__20261116_194202.csv | perioddimensions__20261116_194202.csv |
-| `HASH_KEY` | STRING | 9 | 0 |  |  |
-| `MDP_CREATED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 19:45:18.856000 | 2026-11-16 19:45:18.856000 |
-| `MDP_MODIFIED_BY` | STRING | 1 | 0 |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP | 1 | 0 | 2026-11-16 19:45:18.856000 | 2026-11-16 19:45:18.856000 |
-
-## Sample rows
-
-| FISCAL_YEAR_NAME | FISCAL_YEAR_START | FISCAL_YEAR_END | PERIOD | PERIOD_NAME | PERIOD_SEQUENCE | PERIOD_START | PERIOD_END | PERIOD_FREQUENCY | PERIOD_STATUS | PERIOD_CREATED_DATE | FISCAL_YEAR_PERIOD_ID | FISCAL_YEAR_PERIOD_GUID | SOURCE_FILE_NAME | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
-|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| FY26 | 2026-01-01 00:00:00.0000000 +00:00 | 2026-12-31 00:00:00.0000000 +00:00 | 2026-10-31 Oct 26 | (altered in export) | 10 | 2026-10-01 00:00:00.0000000 +00:00 | 2026-10-31 00:00:00.0000000 +00:00 | Month end | Opened | 2026-10-18 09:40:48.0000000 +00:00 | 29005 | ca744d3a-6ee3-4f5e-b4b4-da3977098f35 | perioddimensions__20261116_194202.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |
-| FY25 | 2025-01-01 00:00:00.0000000 +00:00 | 2025-12-31 00:00:00.0000000 +00:00 | 2025-02-28 Feb 25 | (altered in export) | 2 | 2025-02-01 00:00:00.0000000 +00:00 | 2025-02-28 00:00:00.0000000 +00:00 | Month end | Opened | 2026-10-23 10:47:28.0000000 +00:00 | 16025 | 5a62ef15-04e3-4522-9f37-4c13bb28d65c | perioddimensions__20261116_194202.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |
-| FY26 | 2026-01-01 00:00:00.0000000 +00:00 | 2026-12-31 00:00:00.0000000 +00:00 | 2026-10-31 Oct 26 | (altered in export) | 10 | 2026-10-01 00:00:00.0000000 +00:00 | 2026-10-31 00:00:00.0000000 +00:00 | Month end | Opened | 2026-10-29 05:52:29.0000000 +00:00 | 29005 | ca744d3a-6ee3-4f5e-b4b4-da3977098f35 | perioddimensions__20261116_194202.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |
-| FY26 | 2026-01-01 00:00:00.0000000 +00:00 | 2026-12-31 00:00:00.0000000 +00:00 | 2026-09-30 Sep 26 | (altered in export) | 9 | 2026-09-01 00:00:00.0000000 +00:00 | 2026-09-30 00:00:00.0000000 +00:00 | Quarter end | Opened | 2026-11-16 09:38:21.0000000 +00:00 | 29004 | 7d5727bb-5abb-437e-b237-8885e00774b3 | perioddimensions__20261116_194202.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |
-| FY26 | 2026-01-01 00:00:00.0000000 +00:00 | 2026-12-31 00:00:00.0000000 +00:00 | 2026-09-30 Sep 26 | (altered in export) | 9 | 2026-09-01 00:00:00.0000000 +00:00 | 2026-09-30 00:00:00.0000000 +00:00 | Quarter end | Opened | 2026-11-16 09:38:22.0000000 +00:00 | 29004 | 7d5727bb-5abb-437e-b237-8885e00774b3 | perioddimensions__20261116_194202.csv | <masked> | 2026-11-16 19:45:18.856000 | <masked> | 2026-11-16 19:45:18.856000 |

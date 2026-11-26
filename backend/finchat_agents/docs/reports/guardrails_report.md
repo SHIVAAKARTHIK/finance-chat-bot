@@ -93,6 +93,9 @@ no role sees. To undo it for one column, remove it from that page's `pii_columns
 
 Removing the data from the files does not remove it from earlier commits.
 
+Later (2026-11-29) the table pages were trimmed to what the agents read: the data profile, sample rows, row counts and
+per-value counts were removed; value lists and an "Empty columns" note remain.
+
 ## Laptop test questions
 
 | Ask | Expect |

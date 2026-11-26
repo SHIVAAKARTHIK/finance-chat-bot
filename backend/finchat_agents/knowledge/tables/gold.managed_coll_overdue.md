@@ -21,7 +21,6 @@ built_from:
 - fact_cust_transactions
 - fact_cust_table_bi_entities
 known_issues: []
-row_count: 1
 proposed_fields:
 - grain
 - primary_key
@@ -48,48 +47,29 @@ reviewed: false
 ## Values
 
 **REFERENCE**
-- `100-000001`: 1 rows
+- `100-000001`
 
 **CUSTOMER**
-- `None`: 1 rows
+- `None`
 
 **INVOICE_NUMBER**
-- `100-000003`: 1 rows
+- `100-000003`
 
 **AMOUNT**
-- `1000`: 1 rows
+- `1000`
 
 **INVOICE_DATE**
-- `2026-09-26 00:00:00`: 1 rows
+- `2026-09-26 00:00:00`
 
 **DUE_DATE**
-- `2026-10-26 00:00:00`: 1 rows
+- `2026-10-26 00:00:00`
 
 **AGING**
-- `25 days overdue`: 1 rows
+- `25 days overdue`
 
 **ACTION**
-- `Reminder 1`: 1 rows
+- `Reminder 1`
 
-## Profile
+## Empty columns
 
-Rows in the latest export: 1.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `REFERENCE` | STRING | 1 | 0 | 100-000001 | 100-000001 |
-| `CUSTOMER` | STRING | 0 | 1 |  |  |
-| `INVOICE_NUMBER` | STRING | 1 | 0 | 100-000003 | 100-000003 |
-| `AMOUNT` | STRING | 1 | 0 | 1000 | 1000 |
-| `INVOICE_DATE` | DATE | 1 | 0 | 2026-09-26 00:00:00 | 2026-09-26 00:00:00 |
-| `DUE_DATE` | DATE | 1 | 0 | 2026-10-26 00:00:00 | 2026-10-26 00:00:00 |
-| `AGING` | STRING | 1 | 0 | 25 days overdue | 25 days overdue |
-| `ACTION` | STRING | 1 | 0 | Reminder 1 | Reminder 1 |
-| `EMAIL` | STRING | 1 | 0 |  |  |
-| `LEGAL_ENTITY` | STRING | 1 | 0 |  |  |
-
-## Sample rows
-
-| REFERENCE | CUSTOMER | INVOICE_NUMBER | AMOUNT | INVOICE_DATE | DUE_DATE | AGING | ACTION | EMAIL |
-|---|---|---|---|---|---|---|---|---|
-| 100-000001 | NULL | 100-000003 | 1000 | 2026-09-26 00:00:00 | 2026-10-26 00:00:00 | 25 days overdue | Reminder 1 | <masked> |
+Empty in every row: `CUSTOMER`. Do not filter or group on them.

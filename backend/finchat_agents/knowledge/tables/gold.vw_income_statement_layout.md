@@ -16,7 +16,6 @@ pii_columns: []
 synonyms: []
 built_from: []
 known_issues: []
-row_count: 22
 proposed_fields: []
 reviewed: false
 ---
@@ -45,165 +44,136 @@ Income statement presentation layout: ordered rows (headers, detail lines, subto
 ## Values
 
 **LINE_SORT**
-- `5`: 1 rows
-- `10`: 1 rows
-- `20`: 1 rows
-- `30`: 1 rows
-- `40`: 1 rows
-- `70`: 1 rows
-- `50`: 1 rows
-- `60`: 1 rows
-- `105`: 1 rows
-- `99`: 1 rows
-- `100`: 1 rows
-- `110`: 1 rows
-- `120`: 1 rows
-- `140`: 1 rows
-- `130`: 1 rows
-- `150`: 1 rows
-- `190`: 1 rows
-- `195`: 1 rows
-- `160`: 1 rows
-- `210`: 1 rows
-- `299`: 1 rows
-- `200`: 1 rows
+- `5`
+- `10`
+- `20`
+- `30`
+- `40`
+- `70`
+- `50`
+- `60`
+- `105`
+- `99`
+- `100`
+- `110`
+- `120`
+- `140`
+- `130`
+- `150`
+- `190`
+- `195`
+- `160`
+- `210`
+- `299`
+- `200`
 
 **LINE_NAME**
-- `None`: 2 rows
-- `Net Premiums Earned`: 1 rows
-- `Revenue`: 1 rows
-- `Service & Fee Income`: 1 rows
-- `Commission Income`: 1 rows
-- `Contra Revenue`: 1 rows
-- `Net Investment Income`: 1 rows
-- `Net Realized Investment Gains (Losses)`: 1 rows
-- `Other Income`: 1 rows
-- `Expenses`: 1 rows
-- `Total Revenue`: 1 rows
-- `Losses & Loss Adjustment Expenses`: 1 rows
-- `Underwriting Expenses`: 1 rows
-- `Investment Expenses`: 1 rows
-- `Interest Expense`: 1 rows
-- `General & Administrative Expenses`: 1 rows
-- `Other Expenses`: 1 rows
-- `Total Expenses`: 1 rows
-- `Provision for Income Taxes`: 1 rows
-- `Income Before Income Taxes`: 1 rows
-- `Net Income`: 1 rows
+- `None`
+- `Net Premiums Earned`
+- `Revenue`
+- `Service & Fee Income`
+- `Commission Income`
+- `Contra Revenue`
+- `Net Investment Income`
+- `Net Realized Investment Gains (Losses)`
+- `Other Income`
+- `Expenses`
+- `Total Revenue`
+- `Losses & Loss Adjustment Expenses`
+- `Underwriting Expenses`
+- `Investment Expenses`
+- `Interest Expense`
+- `General & Administrative Expenses`
+- `Other Expenses`
+- `Total Expenses`
+- `Provision for Income Taxes`
+- `Income Before Income Taxes`
+- `Net Income`
 
 **IS_LINE**
-- `HDR_REVENUE`: 1 rows
-- `Net Premiums Earned`: 1 rows
-- `Service & Fee Income`: 1 rows
-- `Commission Income`: 1 rows
-- `Contra Revenue`: 1 rows
-- `Net Investment Income`: 1 rows
-- `Net Realized Investment Gains (Losses)`: 1 rows
-- `Other Income`: 1 rows
-- `HDR_EXPENSES`: 1 rows
-- `TOTAL_REVENUE`: 1 rows
-- `SPACER_1`: 1 rows
-- `Losses & Loss Adjustment Expenses`: 1 rows
-- `Underwriting Expenses`: 1 rows
-- `Investment Expenses`: 1 rows
-- `Interest Expense`: 1 rows
-- `General & Administrative Expenses`: 1 rows
-- `SPACER_2`: 1 rows
-- `TOTAL_EXPENSES`: 1 rows
-- `Other Expenses`: 1 rows
-- `NET_INCOME`: 1 rows
-- `PRE_TAX_INCOME`: 1 rows
-- `Provision for Income Taxes`: 1 rows
+- `HDR_REVENUE`
+- `Net Premiums Earned`
+- `Service & Fee Income`
+- `Commission Income`
+- `Contra Revenue`
+- `Net Investment Income`
+- `Net Realized Investment Gains (Losses)`
+- `Other Income`
+- `HDR_EXPENSES`
+- `TOTAL_REVENUE`
+- `SPACER_1`
+- `Losses & Loss Adjustment Expenses`
+- `Underwriting Expenses`
+- `Investment Expenses`
+- `Interest Expense`
+- `General & Administrative Expenses`
+- `SPACER_2`
+- `TOTAL_EXPENSES`
+- `Other Expenses`
+- `NET_INCOME`
+- `PRE_TAX_INCOME`
+- `Provision for Income Taxes`
 
 **LINE_TYPE**
-- `Detail`: 14 rows
-- `Header`: 2 rows
-- `Subtotal`: 2 rows
-- `Spacer`: 2 rows
-- `Total`: 2 rows
+- `Detail`
+- `Header`
+- `Subtotal`
+- `Spacer`
+- `Total`
 
 **SECTION**
-- `Revenue`: 10 rows
-- `Expenses`: 9 rows
-- `Income Taxes`: 2 rows
-- `Result`: 1 rows
+- `Revenue`
+- `Expenses`
+- `Income Taxes`
+- `Result`
 
 **SECTION_SORT**
-- `1`: 10 rows
-- `2`: 9 rows
-- `3`: 2 rows
-- `4`: 1 rows
+- `1`
+- `2`
+- `3`
+- `4`
 
 **INDENT**
-- `1`: 14 rows
-- `0`: 8 rows
+- `1`
+- `0`
 
 **IS_BOLD**
-- `False`: 16 rows
-- `True`: 6 rows
+- `False`
+- `True`
 
 **VARIANCE_SIGN**
-- `1`: 14 rows
-- `-1`: 8 rows
+- `1`
+- `-1`
 
 **LINE_DISPLAY**
-- `Net Premiums Earned`: 1 rows
-- `REVENUE`: 1 rows
-- `Contra Revenue`: 1 rows
-- `Commission Income`: 1 rows
-- `Service & Fee Income`: 1 rows
-- `Other Income`: 1 rows
-- `Net Investment Income`: 1 rows
-- `Net Realized Investment Gains (Losses)`: 1 rows
-- `None`: 1 rows
-- `Total Revenue`: 1 rows
-- `EXPENSES`: 1 rows
-- `Underwriting Expenses`: 1 rows
-- `Losses & Loss Adjustment Expenses`: 1 rows
-- `Interest Expense`: 1 rows
-- `General & Administrative Expenses`: 1 rows
-- `Investment Expenses`: 1 rows
-- `Other Expenses`: 1 rows
-- `Total Expenses`: 1 rows
-- `Provision for Income Taxes`: 1 rows
-- `Income Before Income Taxes`: 1 rows
-- `Net Income`: 1 rows
+- `Net Premiums Earned`
+- `REVENUE`
+- `Contra Revenue`
+- `Commission Income`
+- `Service & Fee Income`
+- `Other Income`
+- `Net Investment Income`
+- `Net Realized Investment Gains (Losses)`
+- `None`
+- `Total Revenue`
+- `EXPENSES`
+- `Underwriting Expenses`
+- `Losses & Loss Adjustment Expenses`
+- `Interest Expense`
+- `General & Administrative Expenses`
+- `Investment Expenses`
+- `Other Expenses`
+- `Total Expenses`
+- `Provision for Income Taxes`
+- `Income Before Income Taxes`
+- `Net Income`
 
 **ROW_BG_COLOR**
-- `#FFFFFF`: 16 rows
-- `#00338D`: 3 rows
-- `#E7ECF5`: 2 rows
-- `#C9D4EA`: 1 rows
+- `#FFFFFF`
+- `#00338D`
+- `#E7ECF5`
+- `#C9D4EA`
 
 **ROW_FONT_COLOR**
-- `#000000`: 19 rows
-- `#FFFFFF`: 3 rows
-
-## Profile
-
-Rows in the latest export: 22.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `LINE_SORT` | INT | 22 | 0 | 5 | 299 |
-| `LINE_NAME` | STRING | 20 | 0 |  | Underwriting Expenses |
-| `IS_LINE` | STRING | 21 | 0 | Commission Income | Underwriting Expenses |
-| `LINE_TYPE` | STRING | 5 | 0 | Detail | Total |
-| `SECTION` | STRING | 4 | 0 | Expenses | Revenue |
-| `SECTION_SORT` | INT | 4 | 0 | 1 | 4 |
-| `INDENT` | INT | 2 | 0 | 0 | 1 |
-| `IS_BOLD` | BOOLEAN | 2 | 0 | False | True |
-| `VARIANCE_SIGN` | INT | 2 | 0 | -1 | 1 |
-| `LINE_DISPLAY` | STRING | 20 | 0 | EXPENSES | Underwriting Expenses |
-| `ROW_BG_COLOR` | STRING | 4 | 0 | #00338D | #FFFFFF |
-| `ROW_FONT_COLOR` | STRING | 2 | 0 | #000000 | #FFFFFF |
-
-## Sample rows
-
-| LINE_SORT | LINE_NAME | IS_LINE | LINE_TYPE | SECTION | SECTION_SORT | INDENT | IS_BOLD | VARIANCE_SIGN | LINE_DISPLAY | ROW_BG_COLOR | ROW_FONT_COLOR |
-|---|---|---|---|---|---|---|---|---|---|---|---|
-| 5 | Revenue | HDR_REVENUE | Header | Revenue | 1 | 0 | True | 1 | REVENUE | #00338D | #FFFFFF |
-| 10 | Net Premiums Earned | Net Premiums Earned | Detail | Revenue | 1 | 1 | False | 1 | Net Premiums Earned | #FFFFFF | #000000 |
-| 20 | Service & Fee Income | Service & Fee Income | Detail | Revenue | 1 | 1 | False | 1 | Service & Fee Income | #FFFFFF | #000000 |
-| 30 | Commission Income | Commission Income | Detail | Revenue | 1 | 1 | False | 1 | Commission Income | #FFFFFF | #000000 |
-| 40 | Contra Revenue | Contra Revenue | Detail | Revenue | 1 | 1 | False | 1 | Contra Revenue | #FFFFFF | #000000 |
+- `#000000`
+- `#FFFFFF`

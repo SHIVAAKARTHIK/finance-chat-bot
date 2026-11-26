@@ -19,7 +19,6 @@ built_from: []
 known_issues:
 - code: empty_column
   note: table has no statistics (empty or not profiled)
-row_count: null
 proposed_fields: []
 reviewed: false
 broken_error: the profiling query failed in the catalog export (no row count); the error text is not in the workbook
@@ -78,57 +77,3 @@ broken_error: the profiling query failed in the catalog export (no row count); t
 | `MDP_CREATED_DATE` | timestamp |  |  | `MDP_CREATED_DATE` |
 | `MDP_MODIFIED_BY` | string |  |  | `MDP_MODIFIED_BY` |
 | `MDP_MODIFIED_DATE` | timestamp |  |  | `MDP_MODIFIED_DATE` |
-
-## Profile
-
-Rows in the latest export: unknown.
-
-| Column | Type | Distinct (approx) | Nulls | Min | Max |
-|---|---|---|---|---|---|
-| `DATA_AREA_ID` | STRING |  |  |  |  |
-| `VENDOR_ACCOUNT_NUMBER` | STRING |  |  |  |  |
-| `VENDOR_PARTY_NUMBER` | STRING |  |  |  |  |
-| `VENDOR_ORGANIZATION_NAME` | STRING |  |  |  |  |
-| `VENDOR_KNOWN_AS_NAME` | STRING |  |  |  |  |
-| `VENDOR_SEARCH_NAME` | STRING |  |  |  |  |
-| `VENDOR_GROUP_ID` | STRING |  |  |  |  |
-| `VENDOR_TYPE` | STRING |  |  |  |  |
-| `VENDOR_PARTY_TYPE` | STRING |  |  |  |  |
-| `ADDRESS_STREET` | STRING |  |  |  |  |
-| `ADDRESS_CITY` | STRING |  |  |  |  |
-| `ADDRESS_STATE_ID` | STRING |  |  |  |  |
-| `ADDRESS_COUNTY_ID` | STRING |  |  |  |  |
-| `ADDRESS_ZIP_CODE` | STRING |  |  |  |  |
-| `ADDRESS_COUNTRY_REGION_ID` | STRING |  |  |  |  |
-| `FORMATTED_PRIMARY_ADDRESS` | STRING |  |  |  |  |
-| `PRIMARY_EMAIL_ADDRESS` | STRING |  |  |  |  |
-| `PRIMARY_PHONE_NUMBER` | STRING |  |  |  |  |
-| `PRIMARY_FAX_NUMBER` | STRING |  |  |  |  |
-| `PRIMARY_URL` | STRING |  |  |  |  |
-| `CURRENCY_CODE` | STRING |  |  |  |  |
-| `DEFAULT_PAYMENT_TERMS_NAME` | STRING |  |  |  |  |
-| `DEFAULT_VENDOR_PAYMENT_METHOD_NAME` | STRING |  |  |  |  |
-| `PAYMENT_ID` | STRING |  |  |  |  |
-| `BANK_ACCOUNT_ID` | STRING |  |  |  |  |
-| `CREDIT_LIMIT` | STRING |  |  |  |  |
-| `EXCHANGE_RATE` | STRING |  |  |  |  |
-| `FIXED_EXCHANGE_RATE` | STRING |  |  |  |  |
-| `SALES_TAX_GROUP_CODE` | STRING |  |  |  |  |
-| `TAX_1099_TYPE` | STRING |  |  |  |  |
-| `TAX_1099_FEDERAL_TAX_ID` | STRING |  |  |  |  |
-| `TAX_1099_BOX_ID` | STRING |  |  |  |  |
-| `PAN_NUMBER` | STRING |  |  |  |  |
-| `PAN_STATUS` | STRING |  |  |  |  |
-| `ON_HOLD_STATUS` | STRING |  |  |  |  |
-| `IS_W9_RECEIVED` | STRING |  |  |  |  |
-| `IS_REPORTING_TAX_1099` | STRING |  |  |  |  |
-| `VENDOR_HOLD_RELEASE_DATE` | STRING |  |  |  |  |
-| `VENDOR_LEAD_TIME` | STRING |  |  |  |  |
-| `ADDRESS_VALID_FROM` | STRING |  |  |  |  |
-| `ADDRESS_VALID_TO` | STRING |  |  |  |  |
-| `SOURCE_FILE_NAME` | STRING |  |  |  |  |
-| `HASH_KEY` | STRING |  |  |  |  |
-| `MDP_CREATED_BY` | STRING |  |  |  |  |
-| `MDP_CREATED_DATE` | TIMESTAMP |  |  |  |  |
-| `MDP_MODIFIED_BY` | STRING |  |  |  |  |
-| `MDP_MODIFIED_DATE` | TIMESTAMP |  |  |  |  |
