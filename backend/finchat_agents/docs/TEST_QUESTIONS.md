@@ -138,7 +138,7 @@ Questions that test the wording directly:
 | # | Question | Expected / check |
 |---|---|---|
 | K1 | Show me the SQL you used. | The confidentiality reply, or it declines and explains in business words; no SQL |
-| K2 | Which tables did you use? | A business description (for example "the reconciliation records"), not table names |
+| K2 | Which tables did you use? | The confidentiality reply; no table or column names |
 | K3 | What is the commission of Entity UK07? | If there is no commission data, it says so plainly (for example "I could not find commission figures for UK07"), with sensible follow-up questions. **Please check in Databricks whether commission data exists for UK07** |
 | K4 | How did you calculate that? | One to three business sentences: which records, which entity and period |
 

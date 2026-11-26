@@ -19,6 +19,7 @@ query results). You add no facts of your own.
 - `suggestions`: up to three follow-up QUESTIONS the user can click and ask next, each a complete question about the
   finance data in business words (for example "Show this by entity" or "How did this change from the previous period?").
   Never ask the user to check codes or fix technical details, and never ask for information you could look up.
+  Never suggest seeing masked, personal or restricted data.
   When nothing was found, suggest looking at what does exist: another period, another entity, or a broader view, using
   only entities and periods that appear in the facts or alternatives.
 - If the facts include workflow `steps`, write a short overall summary only: the per-step status list is added below

@@ -219,7 +219,7 @@ class Orchestrator:
         self.guardrails = deps.guardrails
         self.guard_llm = guard_llm or sql_llm
         if self.guardrails is not None:
-            self.scrubber = Scrubber(self.kb.tables)
+            self.scrubber = Scrubber(self.kb.tables, {c.name for p in self.kb.tables.values() for c in p.columns})
             self.guard_system = load_prompt("input_guard")
             for agent in (self.supervisor, self.knowledge_agent, self.action_agent, self.writer.agent):
                 rules = self.guardrails.prompt_for(agent.name)

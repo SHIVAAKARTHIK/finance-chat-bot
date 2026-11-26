@@ -8,11 +8,35 @@ from typing import Any, Iterable
 from ..patterns import EMAIL, MODEL, PATH, PHONE, REMOVED, SECRET
 
 INTERNAL_DATA = "finance data"
+WORD_BOUNDARY = re.compile(r"(?<=[a-z0-9])(?=[A-Z])|_+")
+# an SQL function written out, e.g. COUNT(*) or SUM(NET_AMOUNT); upper case only, so ordinary words are not touched
+SQL_CALL = re.compile(r"\b(?:COUNT|SUM|AVG|MIN|MAX)\s*\(\s*(?:DISTINCT\s+)?(?:\*|[\w.]+)\s*\)")
+# follow-up suggestions that ask to see what is masked or restricted are never offered
+UNMASK = re.compile(
+    r"unmask|without (?:the )?mask|remov\w+ (?:the )?mask|\bactual (?:preparer|approver|reviewer|user|employee|person)"
+    r"|\b(?:real|full) names?\b|\bpersonal (?:data|details)\b",
+    re.I,
+)
+
+
+def _words(identifier: str) -> str:
+    return " ".join(WORD_BOUNDARY.sub(" ", identifier).split()).lower()
+
+
+def _any_of(names: list[str], flags: int = 0) -> re.Pattern[str] | None:
+    ordered = sorted(names, key=len, reverse=True)
+    return re.compile(r"\b(?:" + "|".join(re.escape(n) for n in ordered) + r")\b", flags) if ordered else None
 PHONE_COLUMN = re.compile(r"phone|mobile|telephone", re.I)
 
 
 class Scrubber:
-    def __init__(self, table_ids: Iterable[str] = ()):
+    def __init__(self, table_ids: Iterable[str] = (), column_names: Iterable[str] = ()):
+        columns = {c for c in column_names if len(c) >= 6}
+        # only names that are clearly identifiers: with an underscore, or CamelCase such as TaskPreparerName
+        self._columns = [p for p in (
+            _any_of([c for c in columns if "_" in c], re.I),
+            _any_of([c for c in columns if "_" not in c and re.search(r"[a-z][A-Z]", c)]),
+        ) if p is not None]
         # short names with an underscore are certainly identifiers; single words ("joins") could be normal language
         short = sorted({t.split(".")[-1] for t in table_ids if "_" in t.split(".")[-1]}, key=len, reverse=True)
         names = [r"\blakehouse_mvpai(?:\.\w+)*", r"\b(?:silver|gold|aiops)\.\w+_\w+"]
@@ -30,6 +54,13 @@ class Scrubber:
             value, n = pattern.subn(replacement, value)
             if n:
                 removed.append(kind)
+        value, calls = SQL_CALL.subn("a calculation", value)
+        if calls:
+            removed.append("sql")
+        for pattern in self._columns:  # column names become ordinary words: ACCOUNT_STATUS -> account status
+            value, n = pattern.subn(lambda m: _words(m.group(0)), value)
+            if n and "column_name" not in removed:
+                removed.append("column_name")
         return value, removed
 
     @staticmethod

@@ -13,6 +13,7 @@ from finchat_agents.guardrails import GuardrailError, Guardrails, load_from_sett
 from finchat_agents.guardrails.bedrock import BedrockContentFilter, ContentFilterError, parse_response
 from finchat_agents.guardrails.evaluate import DEFAULT_CASES, Case, load_cases, main as evaluate_main, report, run_cases
 from finchat_agents.guardrails.input_checks.redact import redact_question
+from finchat_agents.guardrails.output_checks.filters import Scrubber
 from finchat_agents.guardrails.patterns import REMOVED
 from finchat_agents.guardrails.replies import DEFAULT_HARMFUL, DEFAULT_SUPPORT, UNAVAILABLE_TEXT
 from finchat_agents.llm import fake
@@ -212,3 +213,31 @@ def test_shipped_overrides_and_notes_load_and_replace_company_packs(tmp_path):
     rules = g.prompt_for("knowledge_agent")
     assert "- Widget deletion" in rules and "General knowledge:" in rules and "GROUNDED original" not in rules
     assert "NO-CAPS" not in rules and g.notes
+
+
+# ---------------------------------------------------------------- technical names and restricted follow-ups
+
+
+def _scrubber(kb) -> Scrubber:
+    return Scrubber(kb.tables, {c.name for p in kb.tables.values() for c in p.columns})
+
+
+def test_column_names_and_sql_calls_become_ordinary_words(kb):
+    clean, removed = _scrubber(kb).text(
+        "Counted with COUNT(*) on ACCOUNT_KEY, LEGAL_ENTITY_KEY, is_finalized and TaskPreparerName.")
+    assert clean == "Counted with a calculation on account key, legal entity key, is finalized and task preparer name."
+    assert removed == ["sql", "column_name"]
+
+
+def test_business_text_is_not_changed_by_the_column_filter(kb):
+    keep = ("The status is PENDING and the account period is Oct 26 for UK07. The sum (of both) is 97. "
+            "File adra_account_reconciliation_preparers_2a53.xlsx was saved.")
+    assert _scrubber(kb).text(keep) == (keep, [])
+
+
+async def test_suggestions_never_offer_restricted_data(kb, folder):
+    reply = writer("The count is 97.", sugg=["If permitted, display the actual preparer names without masking.",
+                                             "Show the count by entity."])
+    orch, *_ = build(kb, folder, fast_sql(), [reply], [verdict("allow")])
+    env = await orch.answer(QUESTION, ALL)
+    assert env.suggestions == ["Show the count by entity."]

@@ -11,7 +11,7 @@ from ..audit import log_check
 from ..bedrock import ContentFilterError
 from ..loader import Guardrails
 from ..replies import COULD_NOT_ANSWER_TEXT, UNAVAILABLE_TEXT, refusal_message
-from .filters import Scrubber
+from .filters import UNMASK, Scrubber
 
 MODEL_TEXT_STATUSES = ("answered", "partial", "clarification")  # others hold only fixed replies
 
@@ -49,7 +49,10 @@ async def check_output(env: Any, guardrails: Guardrails, scrubber: Scrubber, ctx
 
     env.answer = clean(env.answer)
     env.how_calculated = clean(env.how_calculated)
-    env.suggestions = [clean(s) for s in env.suggestions]
+    offered = [s for s in env.suggestions if not UNMASK.search(s)]
+    if len(offered) != len(env.suggestions):
+        removed.add("suggestion")
+    env.suggestions = [clean(s) for s in offered]
     env.notices = [clean(n) for n in env.notices]
     env.options = [clean(o) for o in env.options]
     for table in env.tables:
