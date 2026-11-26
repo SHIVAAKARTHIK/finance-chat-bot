@@ -15,7 +15,7 @@ switching is choosing which image the VM runs.
 3. In the backend's FastAPI entry point (where `app = FastAPI(...)` is created):
    ```python
    from finchat_agents.api.app import mount_v3
-   mount_v3(app, identity=<existing Entra identity dependency>)   # or omit identity: user_id comes from the body
+   mount_v3(app, identity=<existing Entra identity dependency>)   # required: without it /v3 answers 401
    ```
    `mount_v3` adds the `/v3` routes, then runs the warm-up after the app's own startup:
    - one MCP query;
@@ -27,7 +27,10 @@ switching is choosing which image the VM runs.
    tell me which packages clash.
 
 **Option B: a separate v3 container.** Build `deploy/Dockerfile.v3` (port 8010) and route `/v3/*` to it from the
-reverse proxy (or point the UI at it). Use this if the backend's dependencies cannot be changed.
+reverse proxy (or point the UI at it). Use this if the backend's dependencies cannot be changed. **This container has no
+login of its own, so since 2026-11-27 its chat, file and card routes answer 401.** Add an identity dependency (validate
+the Entra token) before using it. `ALLOW_REQUEST_IDENTITY=true` trusts the user id in the request and is for local
+testing only: anyone who can reach the port could then act as any user.
 
 Build (context = `backend/`):
 ```
@@ -77,6 +80,9 @@ curl -s http://localhost:<port>/v3/health
 docker compose exec backend python -m finchat_agents.deploy.smoke --base-url http://127.0.0.1:<port> --user-id <test user id>
 ```
 
+The smoke script sends the user id in the request, so it works only against a local test instance started with
+`ALLOW_REQUEST_IDENTITY=true`. Behind the backend's Entra login, test through the UI instead.
+
 ## 4. Health
 
 - `GET /v3/health/live`: the process answers (Docker healthcheck; calls nothing external).
@@ -108,17 +114,17 @@ changes, so no data rollback is needed. To return to v3, set `BACKEND_IMAGE_TAG=
 
 The UI only changes the chat call:
 - **Endpoint:** the v2 chat URL becomes `POST /v3/chat`.
-- **Request:** `{"conversation_id": "<id or omit for a new chat>", "message": "...", "user_id": "<Entra object id>", "groups": ["..."]}`.
-  `user_id`/`groups` are temporary. Once the backend passes its Entra identity to `mount_v3(identity=...)`, the UI
-  can stop sending them.
+- **Request:** `{"conversation_id": "<id or omit for a new chat>", "message": "..."}` with the user's login token.
+  The caller comes from `mount_v3(identity=...)`; `user_id`/`groups` in a request are ignored (they are used only with
+  `ALLOW_REQUEST_IDENTITY=true`, local testing).
 - **Response** (SPEC section 7): `conversation_id`, `message_id`, `status` (`answered|partial|clarification|declined|failed`),
   `answer` (Markdown), `how_calculated`, `tables[{title, columns, rows}]`, `files[{name, path}]`, `suggestions[]`,
   `notices[]`. Render `answer`, then show `notices`, `tables`, `files` and `suggestions` (as clickable follow-ups).
   Send the returned `conversation_id` with the next message.
-- **Files:** `files[].path` is a relative URL like `/v3/files/<conversation>/<name>`. Until identity comes from auth,
-  append `?user_id=<same id>`. Only the creator can download a file; anyone else gets 404.
+- **Files:** `files[].path` is a relative URL like `/v3/files/<conversation>/<name>`, fetched with the same login.
+  Only the creator can download a file; anyone else gets 404.
 - **Optional:**
   - `POST /v3/chat/stream` (SSE `step` events, then one `final` event with the same envelope) for progress;
-  - `GET /v3/cards?user_id=...` for the summary cards.
+  - `GET /v3/cards` for the summary cards.
 
 Keep the v2 URL as a config value in the UI so rollback is a config change.

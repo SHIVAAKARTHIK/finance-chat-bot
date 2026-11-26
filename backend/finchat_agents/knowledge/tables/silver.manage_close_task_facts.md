@@ -18,6 +18,12 @@ pii_columns:
 - TaskAddedByUsername
 - MDP_CREATED_BY
 - MDP_MODIFIED_BY
+- TaskPreparerName
+- TaskApprover
+- TaskApproverName
+- TaskPreparedByName
+- TaskLastApprovedByName
+- TaskAddedByName
 synonyms: []
 built_from:
 - adra_tasks_task_facts (likely)
@@ -115,18 +121,6 @@ superseded_by:
 - `2330`: 45 rows
 - `2331`: 9 rows
 - `2332`: 2 rows
-
-**TaskPreparerName**
-- `Shivam Gupta`: 29 rows
-- `Sushant Srivastava`: 27 rows
-
-**TaskApprover**
-- `Vishnumv@kpmg.com`: 30 rows
-- `None`: 26 rows
-
-**TaskApproverName**
-- `Vishnu MV`: 30 rows
-- `None`: 26 rows
 
 **TaskStatus**
 - `Prepared`: 33 rows
@@ -227,10 +221,6 @@ superseded_by:
 - `2026-10-29 08:30:00+00:00`: 1 rows
 - `2026-10-24 08:30:00+00:00`: 1 rows
 
-**TaskPreparedByName**
-- `None`: 31 rows
-- `Sushant Srivastava`: 25 rows
-
 **TaskPreparedDateTime**
 - `None`: 31 rows
 - `2026-10-23 06:12:25.846282+00:00`: 1 rows
@@ -259,10 +249,6 @@ superseded_by:
 - `2026-10-23 06:13:28.878092+00:00`: 1 rows
 - `2026-10-23 06:17:11.537041+00:00`: 1 rows
 
-**TaskLastApprovedByName**
-- `None`: 54 rows
-- `Vishnu MV`: 2 rows
-
 **TaskApprovedDateTime**
 - `None`: 54 rows
 - `2026-10-22 09:03:18.930817+00:00`: 1 rows
@@ -270,10 +256,6 @@ superseded_by:
 
 **TaskNumberOfRejects**
 - `0`: 56 rows
-
-**TaskAddedByName**
-- `Sushant Srivastava`: 41 rows
-- `None`: 15 rows
 
 **TaskAddedDateTime**
 - `2026-10-19 07:59:31.331936+00:00`: 4 rows
@@ -365,23 +347,23 @@ Rows in the latest export: 56.
 | `TaskId` | LONG | 56 | 0 | 2676905 | 2688685 |
 | `TaskCheckListItemFactKey` | LONG | 56 | 0 | 2676905 | 2688685 |
 | `TaskPreparer` | STRING | 2 | 0 |  |  |
-| `TaskPreparerName` | STRING | 2 | 0 | Shivam Gupta | Sushant Srivastava |
-| `TaskApprover` | STRING | 1 | 26 | Vishnumv@kpmg.com | Vishnumv@kpmg.com |
-| `TaskApproverName` | STRING | 1 | 26 | Vishnu MV | Vishnu MV |
+| `TaskPreparerName` | STRING | 2 | 0 |  |  |
+| `TaskApprover` | STRING | 1 | 26 |  |  |
+| `TaskApproverName` | STRING | 1 | 26 |  |  |
 | `TaskStatus` | STRING | 4 | 0 | Approved | Prepared |
 | `TaskApprovalStatus` | STRING | 3 | 0 | Approval not needed | Not approved |
 | `TaskIsFinalized` | BOOLEAN | 2 | 0 | False | True |
 | `TaskFinalized` | TIMESTAMP | 33 | 22 | 2026-10-19 07:38:10.561000 | 2026-10-23 06:19:10.375000 |
 | `TaskDueDateTime` | TIMESTAMP | 21 | 0 | 2026-10-23 06:30:00 | 2026-11-11 22:00:00 |
 | `TaskReminderDateTime` | TIMESTAMP | 17 | 5 | 2026-10-23 06:30:00 | 2026-11-11 22:00:00 |
-| `TaskPreparedByName` | STRING | 1 | 31 | Sushant Srivastava | Sushant Srivastava |
+| `TaskPreparedByName` | STRING | 1 | 31 |  |  |
 | `TaskPreparedByUsername` | STRING | 1 | 31 |  |  |
 | `TaskPreparedDateTime` | TIMESTAMP | 26 | 31 | 2026-10-19 08:58:30.719000 | 2026-10-23 06:19:09.758000 |
-| `TaskLastApprovedByName` | STRING | 1 | 54 | Vishnu MV | Vishnu MV |
+| `TaskLastApprovedByName` | STRING | 1 | 54 |  |  |
 | `TaskLastApprovedByUsername` | STRING | 1 | 54 |  |  |
 | `TaskApprovedDateTime` | TIMESTAMP | 2 | 54 | 2026-10-22 09:03:13.854000 | 2026-10-22 09:03:18.931000 |
 | `TaskNumberOfRejects` | INT | 1 | 0 | 0 | 0 |
-| `TaskAddedByName` | STRING | 1 | 15 | Sushant Srivastava | Sushant Srivastava |
+| `TaskAddedByName` | STRING | 1 | 15 |  |  |
 | `TaskAddedByUsername` | STRING | 1 | 15 |  |  |
 | `TaskAddedDateTime` | TIMESTAMP | 27 | 0 | 2026-10-17 15:59:24.404000 | 2026-10-22 10:42:52.675000 |
 | `PrecedingTasks` | INT | 2 | 0 | 0 | 1 |
@@ -404,8 +386,8 @@ Rows in the latest export: 56.
 
 | TaskKey | EngagementKey | DepartmentKey | FrequencyKey | ExtraFieldsKey | TaskListKey | TaskSettingsKey | TeamKey | TaskId | TaskCheckListItemFactKey | TaskPreparer | TaskPreparerName | TaskApprover | TaskApproverName | TaskStatus | TaskApprovalStatus | TaskIsFinalized | TaskFinalized | TaskDueDateTime | TaskReminderDateTime | TaskPreparedByName | TaskPreparedByUsername | TaskPreparedDateTime | TaskLastApprovedByName | TaskLastApprovedByUsername | TaskApprovedDateTime | TaskNumberOfRejects | TaskAddedByName | TaskAddedByUsername | TaskAddedDateTime | PrecedingTasks | SucceedingTasks | NotFinalizedPrecedingTasks | NotFinalizedSucceedingTasks | TaskActualCompletionTime | TaskNumberOfAttachments | TaskIsChecklist | TaskChecklistCompleteness | OffsetZeroDays | TaskLink | MDP_CREATED_BY | MDP_CREATED_DATE | MDP_MODIFIED_BY | MDP_MODIFIED_DATE |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
-| 2676905 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2457 | 2 | 2676905 | 16386 | 2676905 | 2330 | 2676905 | 2676905 | <masked> | Shivam Gupta | NULL | NULL | Closed | Approval not needed | True | 2026-10-19 07:47:50.390000 | 2026-11-03 22:00:00 | 2026-11-03 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | Sushant Srivastava | <masked> | 2026-10-17 15:59:24.404000 | 0 | 0 | 0 | 0 | 0 | 0 | False | 0 | 1 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
-| 2676906 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2457 | 2 | 2676906 | 16386 | 2676906 | 2330 | 2676906 | 2676906 | <masked> | Shivam Gupta | Vishnumv@kpmg.com | Vishnu MV | Closed | Not approved | True | 2026-10-19 07:38:10.561000 | 2026-11-03 22:00:00 | 2026-11-03 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | Sushant Srivastava | <masked> | 2026-10-17 15:59:24.404000 | 0 | 0 | 0 | 0 | 0 | 0 | False | 0 | 1 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
-| 2676907 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2457 | 2 | 2676907 | 16386 | 2676907 | 2330 | 2676907 | 2676907 | <masked> | Shivam Gupta | Vishnumv@kpmg.com | Vishnu MV | Closed | Not approved | True | 2026-10-19 07:48:26.073000 | 2026-11-04 22:00:00 | 2026-11-04 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | Sushant Srivastava | <masked> | 2026-10-17 15:59:24.404000 | 0 | 0 | 0 | 0 | 0 | 0 | False | 0 | 2 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
-| 2676918 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2454 | 2 | 2676918 | 16387 | 2676918 | 2330 | 2676918 | 2676918 | <masked> | Shivam Gupta | NULL | NULL | Closed | Approval not needed | True | 2026-10-19 07:48:58.647000 | 2026-11-03 22:00:00 | 2026-11-03 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | Sushant Srivastava | <masked> | 2026-10-17 16:01:20.914000 | 0 | 1 | 0 | 0 | 0 | 0 | False | 0 | 1 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
-| 2676919 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2454 | 2 | 2676919 | 16387 | 2676919 | 2330 | 2676919 | 2676919 | <masked> | Shivam Gupta | NULL | NULL | Closed | Approval not needed | True | 2026-10-19 07:48:34.584000 | 2026-11-06 22:00:00 | 2026-11-06 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | Sushant Srivastava | <masked> | 2026-10-17 16:01:20.914000 | 1 | 0 | 0 | 0 | 0 | 0 | False | 0 | 4 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
+| 2676905 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2457 | 2 | 2676905 | 16386 | 2676905 | 2330 | 2676905 | 2676905 | <masked> | <masked> | NULL | NULL | Closed | Approval not needed | True | 2026-10-19 07:47:50.390000 | 2026-11-03 22:00:00 | 2026-11-03 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | <masked> | <masked> | 2026-10-17 15:59:24.404000 | 0 | 0 | 0 | 0 | 0 | 0 | False | 0 | 1 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
+| 2676906 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2457 | 2 | 2676906 | 16386 | 2676906 | 2330 | 2676906 | 2676906 | <masked> | <masked> | <masked> | <masked> | Closed | Not approved | True | 2026-10-19 07:38:10.561000 | 2026-11-03 22:00:00 | 2026-11-03 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | <masked> | <masked> | 2026-10-17 15:59:24.404000 | 0 | 0 | 0 | 0 | 0 | 0 | False | 0 | 1 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
+| 2676907 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2457 | 2 | 2676907 | 16386 | 2676907 | 2330 | 2676907 | 2676907 | <masked> | <masked> | <masked> | <masked> | Closed | Not approved | True | 2026-10-19 07:48:26.073000 | 2026-11-04 22:00:00 | 2026-11-04 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | <masked> | <masked> | 2026-10-17 15:59:24.404000 | 0 | 0 | 0 | 0 | 0 | 0 | False | 0 | 2 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
+| 2676918 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2454 | 2 | 2676918 | 16387 | 2676918 | 2330 | 2676918 | 2676918 | <masked> | <masked> | NULL | NULL | Closed | Approval not needed | True | 2026-10-19 07:48:58.647000 | 2026-11-03 22:00:00 | 2026-11-03 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | <masked> | <masked> | 2026-10-17 16:01:20.914000 | 0 | 1 | 0 | 0 | 0 | 0 | False | 0 | 1 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |
+| 2676919 | 949e65cb-7216-4cb5-9840-4bc138a1921b | 2454 | 2 | 2676919 | 16387 | 2676919 | 2330 | 2676919 | 2676919 | <masked> | <masked> | NULL | NULL | Closed | Approval not needed | True | 2026-10-19 07:48:34.584000 | 2026-11-06 22:00:00 | 2026-11-06 22:00:00 | NULL | <masked> | NULL | NULL | <masked> | NULL | 0 | <masked> | <masked> | 2026-10-17 16:01:20.914000 | 1 | 0 | 0 | 0 | 0 | 0 | False | 0 | 4 | https://taskmanager.adra.com/engageme... | <masked> | 2026-10-23 10:51:27.606000 | <masked> | 2026-10-23 10:51:27.606000 |

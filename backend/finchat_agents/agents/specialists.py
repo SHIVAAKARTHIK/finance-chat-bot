@@ -15,9 +15,16 @@ PROMPTS_DIR = Path(__file__).resolve().parent / "prompts"
 KNOWLEDGE_EXAMPLES = 3
 
 
+# every agent that reads results, table pages or earlier answers gets this rule (the input check has its own wording)
+NO_DATA_RULE = ("data_rule", "input_guard")
+
+
 @lru_cache(maxsize=None)
 def load_prompt(name: str) -> str:
-    return (PROMPTS_DIR / f"{name}.md").read_text(encoding="utf-8").strip()
+    text = (PROMPTS_DIR / f"{name}.md").read_text(encoding="utf-8").strip()
+    if name in NO_DATA_RULE:
+        return text
+    return f"{text}\n\n{load_prompt('data_rule')}"
 
 
 def with_rules(prompt: str, kb: Knowledge) -> str:

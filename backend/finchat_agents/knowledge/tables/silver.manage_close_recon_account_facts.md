@@ -28,6 +28,9 @@ pii_columns:
 - ReviewedByUsername
 - MDP_CREATED_BY
 - MDP_MODIFIED_BY
+- PreparedByName
+- ApprovedByName
+- ReviewedByName
 synonyms: []
 built_from:
 - adra_account_facts (likely)
@@ -214,15 +217,6 @@ superseded_by:
 
 **NoOfRejects**
 - `0`: 1 rows
-
-**PreparedByName**
-- `None`: 1 rows
-
-**ApprovedByName**
-- `None`: 1 rows
-
-**ReviewedByName**
-- `None`: 1 rows
 
 **PreparedDate**
 - `None`: 1 rows

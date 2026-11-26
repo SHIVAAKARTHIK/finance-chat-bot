@@ -60,6 +60,16 @@ def _cell(v: Any) -> Any:
     return str(v)
 
 
+def _keep_text_as_text(wb: Any) -> None:
+    """Excel formula injection: data such as `=HYPERLINK(...)` must open as text, never run as a formula. openpyxl treats
+    text starting with "=" as a formula, so every text cell is marked as a string; the value itself is unchanged."""
+    for ws in wb.worksheets:
+        for row in ws.iter_rows():
+            for cell in row:
+                if isinstance(cell.value, str):
+                    cell.data_type = "s"
+
+
 META_SUFFIX = ".meta.json"  # owner record next to each file; the download route checks it
 
 
@@ -109,6 +119,7 @@ def write_workbook(path: Path, tables: list[tuple[str, SqlResult]]) -> None:
             ws.append([_cell(v) for v in row])
     if not wb.sheetnames:
         wb.create_sheet("Empty")
+    _keep_text_as_text(wb)
     tmp = path.with_suffix(".tmp.xlsx")
     wb.save(tmp)
     tmp.replace(path)  # atomic: a retry never leaves a half-written file

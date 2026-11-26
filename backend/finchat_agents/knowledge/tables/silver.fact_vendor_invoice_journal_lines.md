@@ -13,6 +13,7 @@ period_columns: []
 pii_columns:
 - MDP_CREATED_BY
 - MDP_MODIFIED_BY
+- APPROVER_NUMBER
 synonyms: []
 built_from: []
 known_issues:
@@ -233,10 +234,6 @@ reviewed: false
 - `None`: 284 rows
 - `7502`: 1 rows
 
-**APPROVER_NUMBER**
-- `None`: 219 rows
-- `11`: 66 rows
-
 **APPROVED**
 - `None`: 183 rows
 - `Yes`: 102 rows
@@ -445,7 +442,7 @@ Exact duplicate rows: 158.
 | `DATE` | STRING | 106 | 183 | 2025-01-26 12:00:00.0000000 +00:00 | 2026-08-25 12:00:00.0000000 +00:00 |
 | `REMITTANCE_ADDRESS_LOCATION_ID` | STRING | 1 | 284 | 7502 | 7502 |
 | `VOUCHER` | STRING | 104 | 183 | VIJ-000000001 | VIJ-000000102 |
-| `APPROVER_NUMBER` | STRING | 1 | 219 | 11 | 11 |
+| `APPROVER_NUMBER` | STRING | 1 | 219 |  |  |
 | `APPROVED` | STRING | 1 | 183 | Yes | Yes |
 | `CASH_DISCOUNT` | STRING | 0 | 285 |  |  |
 | `TAX_EXEMPT_NUMBER` | STRING | 0 | 285 |  |  |

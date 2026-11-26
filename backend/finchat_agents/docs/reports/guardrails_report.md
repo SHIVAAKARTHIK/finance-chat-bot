@@ -76,7 +76,22 @@ The data guardrails from SPEC section 4 are unchanged.
 
 ## Tests
 
-`pytest finchat_agents/tests`: 399 passed, 30 skipped (live tests).
+`pytest finchat_agents/tests`: 406 passed, 30 skipped (live tests).
+
+## Gaps outside the packs (fixed 2026-11-27)
+
+| Gap | Fix |
+|---|---|
+| `/v3` trusted `user_id` / `groups` from the request when no login dependency was given | Now 401 without a verified login. `ALLOW_REQUEST_IDENTITY=true` restores the old behaviour for local testing only. The backend routes (`/api/invoke/...`) are unchanged |
+| Excel export: text starting with `=` became a live formula | Every text cell is written as text; values are unchanged, numbers stay numbers |
+| No rule that data is not instructions | `agents/prompts/data_rule.md` is added to every agent prompt |
+| Personal data in table pages | Emails and names removed; 29 person columns in 8 tables were not marked as personal data and now are; the generator recognises `CamelCase` names and never writes email addresses. Two evaluation answers use "Person A / Person B" |
+
+**Behaviour change:** the newly marked columns are masked in answers, and queries may not filter, group or sort by
+them (for example "close tasks by approver name"). This follows the SPEC decision that person names are personal data
+no role sees. To undo it for one column, remove it from that page's `pii_columns`.
+
+Removing the data from the files does not remove it from earlier commits.
 
 ## Laptop test questions
 

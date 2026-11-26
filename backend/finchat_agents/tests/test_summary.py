@@ -456,7 +456,9 @@ ACCESS = AccessConfig({
 def cards_client(ex) -> httpx.AsyncClient:
     from types import SimpleNamespace
 
-    service = SimpleNamespace(access=ACCESS, store=AiopsStore(ex) if ex else None)
+    settings = Settings(_env_file=None, allow_request_identity=True)
+    service = SimpleNamespace(access=ACCESS, store=AiopsStore(ex) if ex else None,
+                              orchestrator=SimpleNamespace(settings=settings))
     app = FastAPI()
     app.include_router(create_router(service), prefix="/v3")
     return httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://t")

@@ -20,6 +20,16 @@ pii_columns:
 - PrimaryContactEmailRecordId
 - MDP_CREATED_BY
 - MDP_MODIFIED_BY
+- ContactPersonId
+- CollectionsContactPersonId
+- EmployeeResponsibleNumber
+- PersonFirstName
+- PersonLastNamePrefix
+- PersonPhoneticMiddleName
+- PersonLastName
+- PersonPhoneticFirstName
+- PersonMiddleName
+- PersonPhoneticLastName
 synonyms: []
 built_from: []
 known_issues:
@@ -385,10 +395,6 @@ reviewed: false
 - `None`: 2 rows
 - `USA`: 1 rows
 
-**ContactPersonId**
-- `None`: 2 rows
-- `No`: 1 rows
-
 **CustomerPaymentFineCode**
 - `None`: 3 rows
 
@@ -605,9 +611,6 @@ reviewed: false
 - `None`: 2 rows
 - `No`: 1 rows
 
-**CollectionsContactPersonId**
-- `None`: 2 rows
-
 **PersonMaritalStatus**
 - `None`: 3 rows
 
@@ -692,10 +695,6 @@ reviewed: false
 **FederalIndicator**
 - `None`: 3 rows
 
-**EmployeeResponsibleNumber**
-- `None`: 2 rows
-- `Standard`: 1 rows
-
 **PersonAnniversaryYear**
 - `None`: 2 rows
 - `No`: 1 rows
@@ -746,9 +745,6 @@ reviewed: false
 - `None`: 3 rows
 
 **PrimaryContactTwitterDescription**
-- `None`: 3 rows
-
-**PersonFirstName**
 - `None`: 3 rows
 
 **BrazilianCCM**
@@ -902,9 +898,6 @@ reviewed: false
 **StateInscription**
 - `None`: 3 rows
 
-**PersonLastNamePrefix**
-- `None`: 3 rows
-
 **SalesReturnTaxGroup**
 - `None`: 2 rows
 - `No`: 1 rows
@@ -928,10 +921,6 @@ reviewed: false
 
 **DeliveryAddressValidTo**
 - `None`: 3 rows
-
-**PersonPhoneticMiddleName**
-- `None`: 2 rows
-- `LB #842467`: 1 rows
 
 **OrganizationABCCode**
 - `None`: 3 rows
@@ -1139,10 +1128,6 @@ reviewed: false
 - `None`: 2 rows
 - `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
 
-**PersonLastName**
-- `None`: 2 rows
-- `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
-
 **PaymentIdType**
 - `None`: 2 rows
 - `1900-01-01 12:00:00.0000000 +00:00`: 1 rows
@@ -1226,9 +1211,6 @@ reviewed: false
 **AuthorityOffice**
 - `None`: 3 rows
 
-**PersonPhoneticFirstName**
-- `None`: 3 rows
-
 **PrimaryContactTelexPurpose**
 - `None`: 3 rows
 
@@ -1259,13 +1241,7 @@ reviewed: false
 **WriteoffReason**
 - `None`: 3 rows
 
-**PersonMiddleName**
-- `None`: 3 rows
-
 **InvoiceAddressLocationId**
-- `None`: 3 rows
-
-**PersonPhoneticLastName**
 - `None`: 3 rows
 
 **LanguageId**
@@ -1393,7 +1369,7 @@ Rows in the latest export: 3.
 | `IsFuelSurchargeApplied` | STRING | 2 | 1 | No | None |
 | `SalesTaxGroup` | STRING | 0 | 3 |  |  |
 | `AddressCountryRegionId` | STRING | 1 | 2 | USA | USA |
-| `ContactPersonId` | STRING | 1 | 2 | No | No |
+| `ContactPersonId` | STRING | 1 | 2 |  |  |
 | `CustomerPaymentFineCode` | STRING | 0 | 3 |  |  |
 | `BirthCountyCode` | STRING | 1 | 2 | 1447 | 1447 |
 | `InvoiceAddress` | STRING | 1 | 2 | InvoiceAccount | InvoiceAccount |
@@ -1459,7 +1435,7 @@ Rows in the latest export: 3.
 | `InvoiceAccount` | STRING | 0 | 3 |  |  |
 | `CentralBankPurposeNotes` | STRING | 1 | 2 | 0 | 0 |
 | `AddressBuildingComplement` | STRING | 1 | 2 | No | No |
-| `CollectionsContactPersonId` | STRING | 1 | 2 | None | None |
+| `CollectionsContactPersonId` | STRING | 1 | 2 |  |  |
 | `PersonMaritalStatus` | STRING | 0 | 3 |  |  |
 | `AddressLocationId` | STRING | 1 | 2 | TX | TX |
 | `PaymentSchedule` | STRING | 1 | 2 | No | No |
@@ -1484,7 +1460,7 @@ Rows in the latest export: 3.
 | `PaymentDay` | STRING | 0 | 3 |  |  |
 | `BrazilianNIT` | STRING | 1 | 2 | No | No |
 | `FederalIndicator` | STRING | 0 | 3 |  |  |
-| `EmployeeResponsibleNumber` | STRING | 1 | 2 | Standard | Standard |
+| `EmployeeResponsibleNumber` | STRING | 1 | 2 |  |  |
 | `PersonAnniversaryYear` | STRING | 1 | 2 | No | No |
 | `DefaultInventoryStatusId` | STRING | 0 | 3 |  |  |
 | `PrimaryContactEmailDescription` | STRING | 0 | 3 |  |  |
@@ -1558,7 +1534,7 @@ Rows in the latest export: 3.
 | `FederalAgencyLocationCode` | STRING | 0 | 3 |  |  |
 | `GiroTypeFreeTextInvoice` | STRING | 1 | 2 | MICROSOFT CORPORATIO | MICROSOFT CORPORATIO |
 | `DeliveryAddressValidTo` | STRING | 0 | 3 |  |  |
-| `PersonPhoneticMiddleName` | STRING | 1 | 2 | LB #842467 | LB #842467 |
+| `PersonPhoneticMiddleName` | STRING | 1 | 2 |  |  |
 | `OrganizationABCCode` | STRING | 0 | 3 |  |  |
 | `BrazilianCNAE` | STRING | 0 | 3 |  |  |
 | `WithholdingTaxGroupCode` | STRING | 0 | 3 |  |  |
@@ -1619,7 +1595,7 @@ Rows in the latest export: 3.
 | `NameAlias` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
 | `PrimaryContactFaxPurpose` | STRING | 1 | 2 | No | No |
 | `AddressStreetNumber` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
-| `PersonLastName` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
+| `PersonLastName` | STRING | 1 | 2 |  |  |
 | `PaymentIdType` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
 | `VendorAccount` | STRING | 1 | 2 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 |
 | `AddressCountryRegionISOCode` | STRING | 1 | 2 | No | No |
@@ -1708,4 +1684,4 @@ Rows in the latest export: 3.
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | 100-000001 | NULL | Organization | NULL | No | NULL | USA | NULL | NULL | NULL | InvoiceAccount | NULL | DoesNotApply | NULL | <masked> | NULL | No | <masked> | NULL | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | NULL | NULL | NULL | No | 0 | NULL | NULL | 75207 | None | NULL | NULL | None | NULL | 1900-01-01 00:00:00.0000000 +00:00 | None | No | NULL | NULL | NULL | NULL | NULL | 0 | NULL | DALLAS | NULL | NULL | NULL | None | 1950 N STEMMONS FWY SUITE 5010 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | customersv3__20261116_105417.csv | <masked> | 2026-11-16 11:43:19.958000 | <masked> | 2026-11-16 11:43:19.958000 |
 | TX 75207 | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | customersv3__20261116_105417.csv | <masked> | 2026-11-16 11:43:19.958000 | <masked> | 2026-11-16 11:43:19.958000 |
-| NULL | NULL | No | 0 | None | NULL | NULL | No | NULL | 1447 | NULL | NULL | NULL | NULL | <masked> | 1309 | NULL | <masked> | None | NULL | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | No | NULL | Always | NULL | No | No | NULL | NULL | NULL | 11 | 0 | NULL | NULL | NULL | NULL | 0 | NULL | NULL | NULL | NULL | USD | AllocationPriority10 | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 0 | NULL | NULL | No | NULL | 5637146371 | NULL | NULL | NULL | NULL | 0 | No | None | NULL | TX | No | No | NULL | No | No | No | 0 | NULL | MICROSOFT CORPORATION | NULL | NULL | NULL | 0 | No | RetailEx3 | NULL | None | NULL | NULL | NULL | No | NULL | Standard | No | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | Other | No | NULL | None | 1900-01-01 00:00:00.0000000 +00:00 | NULL | None | NULL | NULL | NULL | 0 | <masked> | NULL | Business | NULL | None | No | NULL | NULL | NULL | NULL | <masked> | 0 | NULL | NULL | 0 | No | No | NULL | NULL | No | NULL | NULL | MICROSOFT CORPORATION | No | NULL | 2154-12-31 23:59:59.0000000 +00:00 | NULL | Unknown | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | 0 | No | 1900-01-01 00:00:00.0000000 +00:00 | NULL | 1900-01-01 00:00:00.0000000 +00:00 | 0 | Accept | No | NULL | NULL | NULL | NULL | No | NULL | NULL | NotAvailable | NULL | MICROSOFT CORPORATIO | NULL | LB #842467 | NULL | NULL | NULL | US | NULL | NULL | NULL | NULL | NULL | NULL | No | No | NULL | 2025-06-25 10:29:08.0000000 +00:00 | 0 | Blank | Corporate | None | NULL | NULL | NULL | Normal | NULL | MICROSOFT CORPORATION | NULL | NULL | NULL | NULL | NULL | 0 | NULL | NULL | NULL | No | NULL | NULL | NULL | Company | NULL | NULL | NULL | NULL | en-US | No | 1950 N STEMMONS FWY SUITE 5010 | No | NULL | NULL | No | No | No | No | NULL | 0 | NULL | 0 | No | 1900-01-01 12:00:00.0000000 +00:00 | No | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | No | No | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | NULL | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | customersv3__20261116_105417.csv | <masked> | 2026-11-16 11:43:19.958000 | <masked> | 2026-11-16 11:43:19.958000 |
+| NULL | NULL | No | 0 | None | NULL | NULL | <masked> | NULL | 1447 | NULL | NULL | NULL | NULL | <masked> | 1309 | NULL | <masked> | None | NULL | NULL | NULL | NULL | NULL | NULL | No | NULL | NULL | No | NULL | Always | NULL | No | No | NULL | NULL | NULL | 11 | 0 | NULL | NULL | NULL | NULL | 0 | NULL | NULL | NULL | NULL | USD | AllocationPriority10 | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | 0 | NULL | NULL | No | NULL | 5637146371 | NULL | NULL | NULL | NULL | 0 | No | <masked> | NULL | TX | No | No | NULL | No | No | No | 0 | NULL | MICROSOFT CORPORATION | NULL | NULL | NULL | 0 | No | RetailEx3 | NULL | None | NULL | NULL | NULL | No | NULL | <masked> | No | NULL | <masked> | NULL | NULL | NULL | NULL | NULL | Other | No | NULL | None | 1900-01-01 00:00:00.0000000 +00:00 | NULL | None | NULL | NULL | NULL | 0 | <masked> | NULL | Business | NULL | None | No | NULL | NULL | NULL | NULL | <masked> | 0 | NULL | NULL | 0 | No | No | NULL | NULL | No | NULL | NULL | MICROSOFT CORPORATION | No | NULL | 2154-12-31 23:59:59.0000000 +00:00 | NULL | Unknown | NULL | NULL | <masked> | NULL | NULL | NULL | NULL | 0 | No | 1900-01-01 00:00:00.0000000 +00:00 | NULL | 1900-01-01 00:00:00.0000000 +00:00 | 0 | Accept | No | NULL | NULL | NULL | NULL | No | NULL | NULL | NotAvailable | NULL | MICROSOFT CORPORATIO | NULL | <masked> | NULL | NULL | NULL | US | NULL | NULL | NULL | NULL | NULL | NULL | No | No | NULL | 2025-06-25 10:29:08.0000000 +00:00 | 0 | Blank | Corporate | None | NULL | NULL | NULL | Normal | NULL | MICROSOFT CORPORATION | NULL | NULL | NULL | NULL | NULL | 0 | NULL | NULL | NULL | No | NULL | NULL | NULL | Company | NULL | NULL | NULL | NULL | en-US | No | 1950 N STEMMONS FWY SUITE 5010 | No | NULL | NULL | No | No | No | No | NULL | 0 | NULL | 0 | No | 1900-01-01 12:00:00.0000000 +00:00 | No | 1900-01-01 12:00:00.0000000 +00:00 | <masked> | 1900-01-01 12:00:00.0000000 +00:00 | 1900-01-01 12:00:00.0000000 +00:00 | No | No | 1900-01-01 12:00:00.0000000 +00:00 | NULL | NULL | NULL | NULL | 1900-01-01 12:00:00.0000000 +00:00 | No | NULL | No | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | NULL | customersv3__20261116_105417.csv | <masked> | 2026-11-16 11:43:19.958000 | <masked> | 2026-11-16 11:43:19.958000 |

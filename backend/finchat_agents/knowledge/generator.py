@@ -12,7 +12,8 @@ Safety exception: new columns whose names look like personal data are always add
 Generator-owned fields: status, broken_error, row_count. Profile and Sample rows sections are regenerated.
 
 Data hygiene: values, samples and min/max of entity and key columns are not written to pages (entity codes change and
-must be checked live with get_column_values); personal-data columns are masked in samples and never listed.
+must be checked live with get_column_values); personal-data columns are masked in samples and never listed, and email
+addresses are never written, whatever the column (`scrub_personal`, applied to reviewed sections too).
 
 Broken objects: tables named in the Errors sheet; when the workbook has no Errors sheet, tables without a row count
 (the profiling query failed). They get `status: broken`; a later clean export re-enables them.
@@ -42,17 +43,62 @@ SAMPLE_CELL_CHARS = 40
 MAX_VALUES_PER_COLUMN = 50
 
 PII_NAME = re.compile(
-    r"(EMAIL|USERNAME|USER_NAME|USER_ID|(^|_)(PREPARER|APPROVER|REVIEWER|ASSIGNEE|ASSIGNED_TO|PREPARED_BY|APPROVED_BY|"
+    r"(EMAIL|USERNAME|USER_NAME|USER_ID|PERSONNEL_NUMBER|(^|_)PERSON(_[A-Z]+)*_NAME(_PREFIX)?$"
+    r"|(^|_)(PREPARER|APPROVER|REVIEWER|ASSIGNEE|ASSIGNED_TO|PREPARED_BY|APPROVED_BY|"
     r"REVIEWED_BY|REJECTED_BY|CREATED_BY|MODIFIED_BY|ADDED_BY|EMPLOYEE|OWNER|RESPONSIBLE|CONTACT|MANAGER|REPORTEE|"
-    r"REQUESTER|BUYER|WORKER|PERSON|CERTIFIER)(_NAME|_ID|_USERNAME)?$)",
+    r"REQUESTER|BUYER|WORKER|PERSON|CERTIFIER)(_BY)?(_NAME|_ID|_USERNAME|_NUMBER)?$)",
     re.I,
 )
+CAMEL_BOUNDARY = re.compile(r"(?<=[a-z0-9])(?=[A-Z])")
+EMAIL = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}")
+MASKED = "<masked>"
 ENTITY_LIKE = re.compile(r"(ENTITY|DATA_AREA|DATAAREA|COMPANY|_KEY$)", re.I)
 PERIOD_LIKE = re.compile(r"(DATE|PERIOD|YEAR|MONTH|QUARTER|WEEK|ISSUED|COVERED)", re.I)
 
 
 def looks_pii(column: str) -> bool:
-    return bool(PII_NAME.search(column))
+    """Column names in both styles: APPROVED_BY_NAME and ApprovedByName."""
+    return bool(PII_NAME.search(column) or PII_NAME.search(CAMEL_BOUNDARY.sub("_", column)))
+
+
+def _cells(line: str) -> list[str]:
+    return re.split(r"(?<!\\)\|", line)
+
+
+def scrub_personal(text: str, pii: Iterable[str]) -> str:
+    """Remove personal data from a page's text: for personal-data columns their listed values, min/max and sample cells;
+    and every email address anywhere."""
+    pii = set(pii)
+    out: list[str] = []
+    section, header, skipping = "", [], False
+    for line in text.split("\n"):
+        if line.startswith("## "):
+            section, header, skipping = line[3:].strip().lower(), [], False
+        if section == "values":
+            head = re.match(r"^\*\*(.+?)\*\*\s*$", line.strip())
+            if head:
+                skipping = head.group(1) in pii
+            if skipping:
+                if not line.strip():
+                    skipping = False
+                continue
+            if line.lstrip().startswith("- ") and EMAIL.search(line):
+                continue
+        elif section == "profile" and line.startswith("| `"):
+            cells = _cells(line)
+            if len(cells) >= 8 and cells[1].strip().strip("`") in pii:
+                cells[5], cells[6] = "  ", "  "
+                line = "|".join(cells)
+        elif section == "sample rows" and line.startswith("|") and not line.startswith("|-"):
+            cells = _cells(line)
+            if not header:
+                header = [c.strip() for c in cells]
+            else:
+                cells = [f" {MASKED} " if i < len(header) and header[i] in pii and c.strip() not in ("", "NULL") else c
+                         for i, c in enumerate(cells)]
+                line = "|".join(cells)
+        out.append(EMAIL.sub(MASKED, line))
+    return "\n".join(out)
 
 
 @dataclass
@@ -523,7 +569,7 @@ def update_page(existing_text: str | None, t: CatalogTable, report: GenerateRepo
     _merge_values(doc, t, hidden)
     _profile(doc, t, hidden)
     _samples(doc, t, hidden, set(pii))
-    return render_page(doc)
+    return scrub_personal(render_page(doc), pii)
 
 
 def generate(

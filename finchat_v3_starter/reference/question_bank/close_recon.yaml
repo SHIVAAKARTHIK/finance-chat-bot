@@ -108,11 +108,11 @@ questions:
       as_role:
         pii_viewer:
           kind: answer
-          values: {prepared_by: Vishnu MV, prepared_at: "2026-10-25 04:59:14 UTC", approved_by: Sushant Srivastava, approved_at: "2026-10-25 07:25:02 UTC"}
+          values: {prepared_by: Person A, prepared_at: "2026-10-25 04:59:14 UTC", approved_by: Person B, approved_at: "2026-10-25 07:25:02 UTC"}
         standard:
           kind: answer
           values: {prepared_by: "<masked>", prepared_at: "2026-10-25 04:59:14 UTC", approved_by: "<masked>", approved_at: "2026-10-25 07:25:02 UTC"}
-    expected_text: "Account 103703 (Mutual Funds (Long Term)) was prepared by Vishnu MV on October 25, 2026 at 04:59:14 UTC and approved by Sushant Srivastava on October 25, 2026 at 07:25:02 UTC."
+    expected_text: "Account 103703 (Mutual Funds (Long Term)) was prepared by Person A on October 25, 2026 at 04:59:14 UTC and approved by Person B on October 25, 2026 at 07:25:02 UTC."
   - id: cr_not_found_999999999
     category: Negative / Anti-Fabrication
     question: What is the balance of account 999999999 for 100-Northwind in Feb 25?

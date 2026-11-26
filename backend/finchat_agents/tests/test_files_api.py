@@ -34,7 +34,7 @@ async def make_file(tmp_path) -> dict:
 
 
 def client_for(tmp_path, identity=None) -> httpx.AsyncClient:
-    service = SimpleNamespace(access=ACCESS, orchestrator=SimpleNamespace(settings=Settings(_env_file=None, output_dir=str(tmp_path))))
+    service = SimpleNamespace(access=ACCESS, orchestrator=SimpleNamespace(settings=Settings(_env_file=None, output_dir=str(tmp_path), allow_request_identity=True)))
     app = FastAPI()
     app.include_router(create_router(service, identity=identity) if identity else create_router(service), prefix="/v3")
     return httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://t")

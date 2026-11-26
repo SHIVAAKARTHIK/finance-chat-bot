@@ -201,7 +201,8 @@ def fast_script():
 
 def make_service(kb, executor=None, sql_script=None, resp_script=None):
     s, r = fast_script()
-    orch, sql_p, resp_p, server, sink = make_orch(kb, sql_script or s, resp_script or r)
+    # these tests call /v3 directly with a user id in the request (the local-testing setting)
+    orch, sql_p, resp_p, server, sink = make_orch(kb, sql_script or s, resp_script or r, allow_request_identity=True)
     store = AiopsStore(executor) if executor is not None else None
     return ChatService(orch, ACCESS, store=store, writer=BackgroundWriter() if store else None), sql_p
 

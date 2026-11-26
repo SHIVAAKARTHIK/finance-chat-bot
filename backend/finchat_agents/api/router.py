@@ -9,13 +9,15 @@ POST /v3/conversations/{conversation_id}/clear-context   later questions ignore 
 GET  /v3/files/{conversation}/{file}, GET /v3/cards
 GET  /v3/health       readiness (MCP, Bedrock, aiops; 503 unless green)   GET /v3/health/live  liveness
 
-Identity: pass `identity=` (a FastAPI dependency returning Identity from the existing Entra auth). Until the existing
-app provides one, the user_id / groups in the request body are used.
+Identity: pass `identity=` (a FastAPI dependency returning Identity from the existing Entra auth). Without a verified
+identity every route except health answers 401. For local testing only, ALLOW_REQUEST_IDENTITY=true trusts the
+user_id / groups sent in the request.
 """
 from __future__ import annotations
 
 import asyncio
 import json
+import logging
 from typing import Any, AsyncIterator, Awaitable, Callable
 
 from fastapi import APIRouter, Depends, HTTPException, Request
@@ -26,13 +28,15 @@ from ..agents.orchestrator import AnswerEnvelope
 from ..tracing.events import TraceEvent
 from .service import ChatService, Identity
 
+log = logging.getLogger(__name__)
+
 MAX_MESSAGE_CHARS = 4000
 
 
 class ChatRequest(BaseModel):
     conversation_id: str | None = None
     message: str = Field(min_length=1, max_length=MAX_MESSAGE_CHARS)
-    user_id: str | None = Field(default=None, description="Entra object id (temporary: until the app passes its auth identity)")
+    user_id: str | None = Field(default=None, description="Entra object id; used only with ALLOW_REQUEST_IDENTITY=true")
     groups: list[str] | None = None
 
 
@@ -40,16 +44,8 @@ IdentityProvider = Callable[..., Awaitable[Identity | None]]
 
 
 async def body_identity() -> None:
-    """Default: no identity from auth; the request body is used."""
+    """Default: no identity from auth (refused unless ALLOW_REQUEST_IDENTITY=true)."""
     return None
-
-
-def _identity(req: ChatRequest, auth: Identity | None) -> Identity:
-    if auth is not None:
-        return auth
-    if not req.user_id:
-        raise HTTPException(status_code=401, detail="user_id is required (no authenticated identity on the request)")
-    return Identity(user_id=req.user_id, groups=req.groups or [])
 
 
 class QueueSink:
@@ -80,18 +76,28 @@ def _sse(event: str, data: Any) -> str:
 
 def create_router(service: ChatService, identity: IdentityProvider = body_identity) -> APIRouter:
     router = APIRouter(tags=["finance-chat-v3"])
+    trust_request = service.orchestrator.settings.allow_request_identity
+    if trust_request:
+        log.warning("ALLOW_REQUEST_IDENTITY=true: user ids sent in requests are trusted (local testing only)")
+
+    def caller(auth: Identity | None, user_id: str | None, groups: list[str] | None = None) -> Identity:
+        if auth is not None:  # the verified login always wins over anything in the request
+            return auth
+        if not trust_request:
+            raise HTTPException(status_code=401, detail="A verified login is required")
+        if not user_id:
+            raise HTTPException(status_code=401, detail="user_id is required (no authenticated identity on the request)")
+        return Identity(user_id=user_id, groups=groups or [])
 
     @router.post("/chat", response_model=AnswerEnvelope)
     async def chat(req: ChatRequest, auth: Identity | None = Depends(identity)) -> AnswerEnvelope:
-        who = _identity(req, auth)
+        who = caller(auth, req.user_id, req.groups)
         return await service.chat(req.message, who, conversation_id=req.conversation_id)
 
     @router.post("/conversations/{conversation_id}/clear-context")
     async def clear_context(conversation_id: str, user_id: str | None = None,
                             auth: Identity | None = Depends(identity)) -> dict[str, Any]:
-        who = auth or (Identity(user_id=user_id) if user_id else None)
-        if who is None:
-            raise HTTPException(status_code=401, detail="No user identity on the request")
+        who = caller(auth, user_id)
         try:
             return await service.clear_context(conversation_id, who)
         except PermissionError as exc:
@@ -101,7 +107,7 @@ def create_router(service: ChatService, identity: IdentityProvider = body_identi
 
     @router.post("/chat/stream")
     async def chat_stream(req: ChatRequest, request: Request, auth: Identity | None = Depends(identity)) -> StreamingResponse:
-        who = _identity(req, auth)
+        who = caller(auth, req.user_id, req.groups)
         sink = QueueSink(hide_internals=getattr(service.orchestrator, "guardrails", None) is not None)
 
         async def events() -> AsyncIterator[str]:
@@ -130,10 +136,9 @@ def create_router(service: ChatService, identity: IdentityProvider = body_identi
         """Download a file created by export_excel / save_report. Only its creator may download it."""
         from .files import file_response, not_found, resolve_file
 
-        who = auth.user_id if auth is not None else user_id
-        if not who:
-            raise HTTPException(status_code=401, detail="user_id is required (no authenticated identity on the request)")
-        if not service.access.user_access(who, auth.groups if auth else []).has_access:
+        identity_ = caller(auth, user_id)
+        who = identity_.user_id
+        if not service.access.user_access(who, identity_.groups).has_access:
             raise not_found()
         settings = service.orchestrator.settings
         path = resolve_file(settings.resolve_path(settings.output_dir), conversation, file_name, who)
@@ -144,10 +149,8 @@ def create_router(service: ChatService, identity: IdentityProvider = body_identi
         """Active summary cards for the caller's role domains (filtered at read time)."""
         from ..storage.summary_store import SummaryStore, SummaryTablesMissing
 
-        who = auth.user_id if auth is not None else user_id
-        if not who:
-            raise HTTPException(status_code=401, detail="user_id is required (no authenticated identity on the request)")
-        access = service.access.user_access(who, auth.groups if auth else [])
+        identity_ = caller(auth, user_id)
+        access = service.access.user_access(identity_.user_id, identity_.groups)
         if not access.has_access:
             return {"cards": []}
         if service.store is None:

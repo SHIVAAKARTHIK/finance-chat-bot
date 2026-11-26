@@ -13,6 +13,8 @@ period_columns: []
 pii_columns:
 - MDP_CREATED_BY
 - MDP_MODIFIED_BY
+- PROJECT_WORKER_PERSONNEL_NUMBER
+- REQUESTER_PERSONNEL_NUMBER
 synonyms: []
 built_from: []
 known_issues:
@@ -196,9 +198,6 @@ reviewed: false
 **CUSTOMER_REQUISITION_NUMBER**
 - `None`: 109 rows
 
-**PROJECT_WORKER_PERSONNEL_NUMBER**
-- `None`: 109 rows
-
 **WILL_PRODUCT_RECEIVING_CROSS_DOCK_PRODUCTS**
 - `No`: 109 rows
 
@@ -267,9 +266,6 @@ reviewed: false
 
 **DEFAULT_LEDGER_DIMENSION_DISPLAY_VALUE**
 - `---------`: 109 rows
-
-**REQUESTER_PERSONNEL_NUMBER**
-- `None`: 109 rows
 
 **DELIVERY_ADDRESS_COUNTRY_REGION_ISO_CODE**
 - `US`: 109 rows

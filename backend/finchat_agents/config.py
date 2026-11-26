@@ -90,6 +90,10 @@ class Settings(BaseSettings):
     # The rolling summary is rewritten when the turns not yet in it pass this many tokens.
     summary_token_threshold: int = 3000
 
+    # /v3 routes take the caller from the app's verified login (`identity=`). true = also accept user_id / groups from the
+    # request: ONLY for local testing, because anyone who can reach the port could then act as any user.
+    allow_request_identity: bool = False
+
     # Company guardrails: pack text and project values are read from this folder (not part of the repository).
     # With guardrails enabled the app does not start if the folder is missing or incomplete.
     guardrails_enabled: bool = True

@@ -17,6 +17,8 @@ pii_columns:
 - RESPONSIBLE_NAME
 - MDP_CREATED_BY
 - MDP_MODIFIED_BY
+- CONTACT_PERSONNEL_NUMBER
+- RESPONSIBLE_PERSONNEL_NUMBER
 synonyms:
 - fixed asset master
 - asset master
@@ -134,9 +136,6 @@ Fixed asset master: one row per asset per company with asset name, asset group a
 **COMMENTS**
 - `None`: 301 rows
 
-**CONTACT_PERSONNEL_NUMBER**
-- `None`: 301 rows
-
 **DEPARTMENT_OPERATING_UNIT_NUMBER**
 - `None`: 301 rows
 
@@ -251,9 +250,6 @@ Fixed asset master: one row per asset per company with asset name, asset group a
 
 **REPLACEMENT_COST**
 - `0`: 301 rows
-
-**RESPONSIBLE_PERSONNEL_NUMBER**
-- `None`: 301 rows
 
 **ROOM_NUMBER**
 - `None`: 301 rows

@@ -15,6 +15,8 @@ pii_columns:
 - CONTACT_PERSON_ID
 - MDP_CREATED_BY
 - MDP_MODIFIED_BY
+- REQUESTER_PERSONNEL_NUMBER
+- ORDERER_PERSONNEL_NUMBER
 synonyms: []
 built_from: []
 known_issues:
@@ -241,9 +243,6 @@ reviewed: false
 - `None`: 109 rows
 
 **CHARGE_VENDOR_GROUP_ID**
-- `None`: 109 rows
-
-**REQUESTER_PERSONNEL_NUMBER**
 - `None`: 109 rows
 
 **PROJECT_ID**
@@ -478,9 +477,6 @@ reviewed: false
 - `None`: 109 rows
 
 **FIN_TAG_DISPLAY_VALUE**
-- `None`: 109 rows
-
-**ORDERER_PERSONNEL_NUMBER**
 - `None`: 109 rows
 
 **VENDOR_PAYMENT_METHOD_NAME**
