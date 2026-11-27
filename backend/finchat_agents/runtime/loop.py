@@ -28,6 +28,7 @@ from ..llm.types import (
 from ..tracing.events import utcnow
 from ..tracing.tracer import preview
 from .llm_call import traced_complete
+from ..tracing.databricks import called_by
 from .tools import GuardrailRefusal, RunContext, Tool, ToolContext, ToolError
 
 log = logging.getLogger(__name__)
@@ -124,7 +125,8 @@ async def execute_tool(call: ToolCall, step_no: int, *, tool_map: dict[str, Tool
         tctx = ToolContext(run=ctx, agent=agent, step=step_no, call_id=call.id)
         try:
             remaining = ctx.deadline - clock()
-            raw = await asyncio.wait_for(tool.handler(call.input, tctx), timeout=max(remaining, 0.001))
+            with called_by(f"{agent}:{call.name}"):
+                raw = await asyncio.wait_for(tool.handler(call.input, tctx), timeout=max(remaining, 0.001))
             output = serialize_output(raw)
         except ToolError as exc:
             is_error, output = True, str(exc)

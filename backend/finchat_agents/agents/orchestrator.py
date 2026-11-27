@@ -31,6 +31,7 @@ from ..runtime.llm_call import traced_complete
 from ..runtime.tools import Budget, RunContext
 from ..tools import DataDeps, build_data_tools
 from ..tools.run_sql import RESULTS_KEY
+from ..tracing.databricks import traced_question
 from ..tracing.sinks import TraceSink
 from ..tracing.tracer import Tracer, preview
 from .answer import AnswerWriter, tables_for
@@ -248,7 +249,8 @@ class Orchestrator:
         ctx.extras[QUESTION_KEY] = message
         ctx.extras[CONVERSATION_KEY] = conv_id
         try:
-            await self._answer(message, user, conversation_context, ctx, env)
+            with traced_question(tracer):  # every Databricks call of this question is recorded
+                await self._answer(message, user, conversation_context, ctx, env)
         except Exception as exc:  # never an exception to the user
             env.status, env.answer = "failed", "Sorry, something went wrong while answering. Please try again."
             env.debug.mode, env.debug.error = "failed", f"{type(exc).__name__}: {str(exc)[:300]}"

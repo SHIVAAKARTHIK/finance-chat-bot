@@ -10,6 +10,7 @@ from ..knowledge.models import TablePage
 from ..llm.types import ToolSpec
 from ..runtime.tools import GuardrailRefusal, Tool, ToolContext, ToolError
 from .deps import DataDeps, access_of
+from ..tracing.databricks import record_cache_hit
 from .run_sql import execute_guarded
 
 COLUMN_VALUES_LIMIT = 100
@@ -90,6 +91,7 @@ async def column_values(
     key = ("values", page.id, col.name, term, limit)
     cached = deps.cache.get(key)
     if cached is not None:
+        await record_cache_hit(f"values of {page.meta.fqn}.{col.name}")
         return cached
     where = f" WHERE lower(CAST(`{col.name}` AS STRING)) LIKE '%{term}%'" if term else ""
     sql = (

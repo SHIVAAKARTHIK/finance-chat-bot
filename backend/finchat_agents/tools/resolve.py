@@ -20,6 +20,7 @@ from ..llm.types import ToolSpec
 from ..runtime.tools import GuardrailRefusal, Tool, ToolContext, ToolError
 from .catalog import column_values, visible_table
 from .deps import DataDeps, access_of
+from ..tracing.databricks import record_cache_hit
 from .run_sql import execute_guarded
 
 MONTHS = {name.lower(): i for i, name in enumerate(calendar.month_abbr) if name}
@@ -154,6 +155,7 @@ async def _period_rows(deps: DataDeps, access: UserAccess, page: TablePage) -> l
     key = ("periods", page.id)
     cached = deps.cache.get(key)
     if cached is not None:
+        await record_cache_hit(f"period list of {page.meta.fqn}")
         return cached
     cols = [c for c in page.meta.period_columns if not _is_key(c)]
     types = {c: (page.column(c).type if page.column(c) else "string").lower() for c in cols}

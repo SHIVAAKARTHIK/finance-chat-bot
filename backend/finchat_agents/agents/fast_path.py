@@ -16,6 +16,7 @@ from ..runtime.llm_call import traced_complete
 from ..runtime.tools import GuardrailRefusal, RunContext, ToolError
 from ..tools.deps import DataDeps
 from ..tools.resolve import resolve_entity, resolve_period
+from ..tracing.databricks import called_by
 from ..guardrails.audit import log_decision
 from ..tools.run_sql import SqlResult, audit_query, execute_guarded, register_result
 from ..tracing.events import utcnow
@@ -70,7 +71,8 @@ class FastPathSuccess(BaseModel):
 async def _hints(deps: DataDeps, access: UserAccess, question: str, table: str) -> list[str]:
     hints = []
     try:
-        ent = await resolve_entity(deps, access, question, table)
+        with called_by(f"{AGENT}:resolve_entity"):
+            ent = await resolve_entity(deps, access, question, table)
         good = [m for m in ent["matches"] if m["score"] >= ENTITY_MIN_SCORE]
         if good:
             vals = "; ".join(f"{m['column']} = '{m['value']}' (match {m['score']})" for m in good[:4])
@@ -78,7 +80,8 @@ async def _hints(deps: DataDeps, access: UserAccess, question: str, table: str) 
     except ToolError:
         pass
     try:
-        per = await resolve_period(deps, access, question, table)
+        with called_by(f"{AGENT}:resolve_period"):
+            per = await resolve_period(deps, access, question, table)
         if per["matches"] and per["interpretation"] != "matched against period labels":
             vals = "; ".join(f"{m['label']}: {m['filters']}" for m in per["matches"][:6])
             hints.append(f"Period ({per['period_table']}, {per['interpretation']}): {vals}")
@@ -129,7 +132,8 @@ async def _run(sql: str, deps: DataDeps, access: UserAccess, ctx: RunContext, st
     ctx.counters.sql_calls += 1
     started = utcnow()
     try:
-        result = await execute_guarded(sql, deps, access)
+        with called_by(f"{AGENT}:run_sql"):
+            result = await execute_guarded(sql, deps, access)
     except ToolError as exc:
         await ctx.tracer.emit("tool_call", agent=AGENT, step=step, name="run_sql", status="error", started_at=started,
                               ended_at=utcnow(), payload={"input": preview(sql, 2000), "output": preview(str(exc), 1000)})

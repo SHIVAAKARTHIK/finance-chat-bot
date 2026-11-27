@@ -9,6 +9,8 @@ from ..access.rbac import UserAccess
 from ..guardrails.audit import log_decision
 from ..guardrails.output_checks.filters import Scrubber
 from ..runtime.tools import GuardrailRefusal, RunContext, Tool, ToolContext, ToolError
+from ..tracing.databricks import record_query
+from ..tracing.events import utcnow
 from .deps import DataDeps, access_of
 from .mcp_client import McpError, McpQueryError, McpTimeout
 from .sql_guard import GuardError, guard_sql
@@ -64,8 +66,14 @@ async def execute_guarded(sql: str, deps: DataDeps, access: UserAccess | None) -
         guarded = guard_sql(sql, deps.kb, access, s.sql_row_limit)
     except GuardError as exc:
         raise GuardrailRefusal(str(exc)) from exc
+    started = utcnow()
     try:
-        qr = await deps.mcp.query(guarded.sql, timeout_s=s.sql_timeout_seconds)
+        try:
+            qr = await deps.mcp.query(guarded.sql, timeout_s=s.sql_timeout_seconds)
+        except Exception as exc:
+            await record_query(guarded.sql, started, f"failed via {s.data_access}: {type(exc).__name__}", failed=True)
+            raise
+        await record_query(guarded.sql, started, f"{len(qr.rows)} rows via {s.data_access}")
     except McpQueryError as exc:
         raise ToolError(f"Databricks rejected the query: {exc} Fix the SQL and try again.") from exc
     except McpTimeout as exc:

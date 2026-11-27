@@ -92,6 +92,20 @@ is a platform setting. The request rate limit is the backend's and is not logged
 **Limits:** audit rows are written in the background; a failed write is reported in the application log and
 `/v3/health` (`write_failures`), and that entry is not retried. Without aiops storage only the trace file is written.
 
+## Databricks calls
+
+Each question records every data query as a `databricks_query` event (caller, start, duration, SQL, rows) and each
+cached lookup as `lookup_cache_hit`, in the same events table:
+
+```sql
+SELECT get_json_object(input_payload, '$.agent') AS caller, step_name, status, started_at, duration_ms
+FROM lakehouse_mvpai.aiops.finance_chat_message_events
+WHERE message_id = '<message_id>' AND step_name IN ('databricks_query', 'lookup_cache_hit')
+ORDER BY started_at;
+```
+
+Chat history reads and writes are not listed individually.
+
 ## Switches
 
 | Setting | Default | Effect |
